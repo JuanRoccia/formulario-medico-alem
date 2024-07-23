@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Formulario de Pacientes</title>
+    <title>MUSCULO-ESQUELÉTICO</title>
     <!-- <link rel="stylesheet" href="styles.css"> -->
     <!-- Tailwind CDN -->
     <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.15/dist/tailwind.min.css" rel="stylesheet">
@@ -34,42 +34,46 @@
             </div>      
           </div>
           <div class="mt-4">
-            <label class="block text-sm font-medium text-gray-900 mb-2" for="dni">
-              DNI
+            <label class="block text-sm font-medium text-gray-900 mb-2" for="edad">
+              Edad
             </label>
-            <input class="mt-2 block w-full rounded-md border-0 py-1.5 px-3 text-gray-900 ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6" id="dni" type="text">    
+            <input class="mt-2 block w-full rounded-md border-0 py-1.5 px-3 text-gray-900 ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6" id="edad" type="number">    
+          </div>
+          <div class="mt-4">
+            <label class="block text-sm font-medium text-gray-900 mb-2" for="ocupacion">
+              Ocupación
+            </label>
+            <input class="mt-2 block w-full rounded-md border-0 py-1.5 px-3 text-gray-900 ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6" id="ocupacion" type="text">    
           </div>
         </div>
           
         <!-- Cuestionario Principal -->
         <div class="mb-6">
-          <h2 class="text-2xl font-bold mb-4">Cuestionario de Seguridad para
-            Resonancia Magnética
+          <h2 class="text-2xl font-bold mb-4">Marque el sitio de dolor o problema
           </h2>
-          <h3 class="mb-4">La Resonancia Magnética Nuclear (RMN) es una técnica de imagen que combina la acción de un gran campo
-              magnético creado por un imán con la aplicación de ondas de radiofrecuencias. No emplea radiaciones ionizantes
-          </h3>
-          <h3 class="mb-4">
-            En RMN algunos objetos metálicos podrían suponer un inconveniente o una contraindicación
-            para realizarle la exploración solicitada, es por ello que debe leer atentamente esta encuesta y contestar todas las preguntas. Si necesita ayuda, consulte con nuestro personal.
-          </h3>
-          <h3 class="mb-4 text-1xl font-bold">
-            En caso de contestar afirmativamente alguna de las preguntas comuníqueselo al personal de RM
-          </h3>
+          <h3 class="mb-4">MARCAR LA CORRECTA:</h3>
           <div class="space-y-4">
             <div>
-              <p class="mb-2">¿Es usted portador de marcapasos?</p>
+              <p class="mb-2">Dolor</p>
               <div class="flex items-center space-x-4">
                 <label class="inline-flex items-center"> 
-                  <input type="radio" class="form-radio" name="pregunta1" value="si">            
-                  <span class="ml-2">Sí</span>   
+                  <input type="radio" class="form-radio" name="dolor" value="ante movimiento">            
+                  <span class="ml-2">Ante movimiento</span>   
                 </label>            
                 <label class="inline-flex items-center">            
-                  <input type="radio" class="form-radio" name="pregunta1" value="no">            
-                  <span class="ml-2">No</span>            
+                  <input type="radio" class="form-radio" name="dolor" value="en reposo">            
+                  <span class="ml-2">En Reposo</span>            
+                </label>
+                <label class="inline-flex items-center"> 
+                  <input type="radio" class="form-radio" name="opcion3" value="ante movimiento">            
+                  <span class="ml-2">At</span>   
                 </label>            
+                <label class="inline-flex items-center">            
+                  <input type="radio" class="form-radio" name="opcion4" value="en reposo">            
+                  <span class="ml-2">Ew</span>            
+                </label>    
               </div>        
-            </div>      
+            </div>     
             <div>        
               <p class="mb-2">¿Es usted alérgico a alguna sustancia?</p>        
               <div class="flex items-center space-x-4">          
