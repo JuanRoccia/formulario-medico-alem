@@ -7,19 +7,118 @@
     <!-- <link rel="stylesheet" href="styles.css"> -->
     <!-- Tailwind CDN -->
     <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.15/dist/tailwind.min.css" rel="stylesheet">
+    <!-- Font CDN -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400..700;1,400..700&display=swap" rel="stylesheet">
+    <style>
+        /*<uniquifier>: Use a unique and descriptive class name
+        <weight>: Use a value from 400 to 700*/
+
+            .lora {
+          font-family: "Lora", serif;
+          font-optical-sizing: auto;
+          font-weight: 500;
+          font-style: normal;
+        }
+        .header {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding: 20px; /* Color de fondo del encabezado */
+        }
+
+        .header {
+          max-width: 100%;
+          overflow: hidden;
+        }
+
+        .header img {
+          max-width: 100%;
+        }
+
+        .title-container h4,
+        .title-container h3,
+        .title-container h2 {
+          margin: 0;
+          line-height: 1.2;
+        }
+
+        .title-container h4 {
+          letter-spacing: 0.5px;
+        }
+
+        .title-container h3 {
+          letter-spacing: 2px;
+        }
+
+        .title-container h2 {
+          letter-spacing: 4px;
+        }
+
+        @media (min-width: 640px) {
+          .header {
+            align-items: center;
+          }
+          
+          .title-container h4 {
+            letter-spacing: 1px;
+          }
+
+          .title-container h3 {
+            letter-spacing: 3px;
+          }
+
+          .title-container h2 {
+            letter-spacing: 6px;
+          }
+        }
+        input[type=number]::-webkit-inner-spin-button, 
+        input[type=number]::-webkit-outer-spin-button { 
+          -webkit-appearance: none; 
+          margin: 0; 
+        }
+
+        input[type=number] { -moz-appearance:textfield; }
+        .date-input {
+          width: auto;
+          padding: 5px;
+        }
+        #additional-content input, #additional-medicacion input, #additional-onc input , #additional-deporte input{
+          width: 70%;
+        }
+        .space-y-1>:not([hidden])~:not([hidden]) {
+          --tw-space-y-reverse: 0;
+          margin-top: 0;
+        }
+        #signature-pad{
+            max-width: 100%;
+        }
+    </style>
   </head>
   <body class="bg-gray-100">
-    <div class="container mx-auto px-4 py-8">
-      <form class="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4">
-        
+    <div class="container mx-auto px-4 py-8 flex justify-center">
+      <form class="bg-white max-w-screen-lg shadow-md rounded px-8 pt-6 pb-8 mb-4">
+        <header class="header flex flex-col items-center sm:flex-row sm:justify-center py-4 px-2">
+            <div class="w-full sm:w-auto mb-4 sm:mb-0 sm:mr-4 flex justify-center">
+              <img src="C:\Users\ericd\OneDrive\Documentos\images\imagenes-alem.webp" alt="Logo Imágenes Alem" class="w-auto h-20 sm:h-24 object-contain">
+                <!--src="https://github.com/JuanRoccia/formulario-medico-alem/blob/main/images/imagenes-alem.webp"-->
+            </div>
+            <div class="title-container lora text-center">
+              <h4 class="text-xs sm:text-sm">CENTRO DE DIAGNÓSTICO</h4>
+              <h3 class="text-sm sm:text-base">POR IMÁGENES</h3>
+              <h2 class="text-xl sm:text-2xl font-bold">ALEM</h2>
+            </div>
+          </header>
         <!-- Datos Generales del Paciente -->
         <div class="mb-6">
-          <h2 class="text-2xl font-bold mb-4">Información del Paciente</h2>    
-          <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+          <h2 class="text-xl font-bold mb-4">Información del Paciente</h2>    
+          <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
             <div>
               <!-- block text-sm font-medium text-gray-900 leading-6 -->
               <!-- block text-gray-700 text-sm font-bold mb-2 -->
-              <label class="block text-sm font-medium text-gray-900 mb-2" for="nombre">
+              <label class="block text-sm font-medium text-gray-900 mb-2" for="nombre" required>
                 Nombre
               </label>
               <!-- mt-2 block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6 -->
@@ -27,23 +126,29 @@
               <input class="mt-2 block w-full rounded-md border-0 py-1.5 px-3 text-gray-900 ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6" id="nombre" type="text"> 
             </div> 
             <div>       
-              <label class="block text-sm font-medium text-gray-900 mb-2" for="apellido">
+              <label class="block text-sm font-medium text-gray-900 mb-2" for="apellido" required>
                 Apellido
               </label>
               <input class="mt-2 block w-full rounded-md border-0 py-1.5 px-3 text-gray-900 ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6" id="apellido" type="text">        
-            </div>      
+            </div> 
+            <div>
+                <label class="block text-sm font-medium text-gray-900 mb-2" for="dni" required>
+                    DNI
+                  </label>
+                  <input class="mt-2 block w-full rounded-md border-0 py-1.5 px-3 text-gray-900 ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6" id="dni" type="number">
+            </div>     
           </div>
-          <div class="mt-4">
+          <!--<div class="mt-4">
             <label class="block text-sm font-medium text-gray-900 mb-2" for="dni">
               DNI
             </label>
             <input class="mt-2 block w-full rounded-md border-0 py-1.5 px-3 text-gray-900 ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6" id="dni" type="text">    
-          </div>
+          </div>-->
         </div>
           
         <!-- Cuestionario Principal -->
         <div class="mb-6">
-          <h2 class="text-2xl font-bold mb-4">Cuestionario de Seguridad para
+          <h2 class="text-xl font-bold mb-4">Cuestionario de Seguridad para
             Resonancia Magnética
           </h2>
           <h3 class="mb-4">La Resonancia Magnética Nuclear (RMN) es una técnica de imagen que combina la acción de un gran campo
@@ -318,7 +423,7 @@
           <div class="">
             <label for="signature-pad" class="block text-sm font-medium leading-6 text-gray-900">Firma del paciente</label>
             <div class="mt-2">
-              <canvas id="signature-pad" class="border rounded-md w-full h-32"></canvas>
+              <canvas id="signature-pad" class="border rounded-md"></canvas>
             </div>
             <button type="button" id="clear" class="mt-2 rounded-md bg-red-500 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-red-400">Limpiar</button>
           </div>
@@ -436,6 +541,17 @@
           e.preventDefault();
           // Aquí iría la lógica para enviar el formulario, posiblemente por WhatsApp
           alert('Formulario enviado');
+      });
+    </script>
+    <script>
+      document.addEventListener("DOMContentLoaded", function() {
+          var canvas = document.getElementById("signature-pad");
+
+          var container = canvas.parentElement;
+          canvas.width = container.clientWidth;
+          canvas.height = 200; 
+          var signaturePad = new SignaturePad(canvas, {
+          });
       });
     </script>
   </body> 
