@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Formularios del Paciente</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-100 font-sans">
+    <div class="container mx-auto p-4">
+        <h1 class="text-2xl font-bold mb-6 text-gray-800">Formularios del Paciente</h1>
+        <div id="formContainer"></div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const urlParams = new URLSearchParams(window.location.search);
+            const forms = urlParams.getAll('form');
+
+            const formContainer = document.getElementById('formContainer');
+
+            forms.forEach(form => {
+                const iframe = document.createElement('iframe');
+                iframe.src = `${form}.html`;  // Asume que los formularios son form-1.html, form-2.html, etc.
+                iframe.className = 'w-full h-screen mb-4 border-0';
+                formContainer.appendChild(iframe);
+            });
+
+            if (forms.length === 0) {
+                formContainer.innerHTML = '<p class="text-red-500">No se han seleccionado formularios.</p>';
+            }
+        });
+    </script>
+</body>
+</html>

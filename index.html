@@ -105,7 +105,7 @@
                 return;
             }
 
-            const baseUrl = 'https://tudominio.com/forms?';
+            const baseUrl = 'http://127.0.0.1:3000/forms.html?';  // Cambiado a forms.html
             const formParams = selectedForms.map(form => `form=${form}`).join('&');
             const fullLink = `${baseUrl}${formParams}`;
 
