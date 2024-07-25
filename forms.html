@@ -5,15 +5,25 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Formularios del Paciente</title>
     <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        body {
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+        }
+        #formContainer {
+            flex-grow: 1;
+        }
+    </style>
 </head>
-<body class="bg-gray-100 font-sans">
-    <div class="container mx-auto p-4">
+<body class="bg-gray-100  font-sans">
+    <div class="container mx-auto p-4 flex flex-col min-h-screen">
         <h1 class="text-2xl font-bold mb-6 text-gray-800">Formularios del Paciente</h1>
-        <div id="formContainer" class="relative">
+        <div id="formContainer" class="relative flex-grow">
             <!-- Los iframes se insertarán aquí dinámicamente -->
         </div>
         <div class="mt-4 flex justify-between items-center">
-            <button id="prevBtn" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline disabled:opacity-50" disabled>Anterior</button>
+            <button id="prevBtn" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline disabled:opacity-50 z-50" disabled>Anterior</button>
             <div id="pageIndicator" class="text-gray-700"></div>
             <button id="nextBtn" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline z-50">Siguiente</button>
         </div>
@@ -33,7 +43,7 @@
                 forms.forEach((form, index) => {
                     const iframe = document.createElement('iframe');
                     iframe.src = `${form}.html`;
-                    iframe.className = 'w-full h-screen border-0 absolute top-0 left-0 transition-opacity duration-300';
+                    iframe.className = 'w-full h-full border-0 absolute top-0 left-0 transition-opacity duration-300';
                     iframe.style.display = index === 0 ? 'block' : 'none';
                     iframe.style.opacity = index === 0 ? '1' : '0';
                     formContainer.appendChild(iframe);
@@ -58,13 +68,23 @@
                 currentFormIndex = index;
                 updatePageIndicator();
                 prevBtn.disabled = currentFormIndex === 0;
-                nextBtn.disabled = currentFormIndex === forms.length - 1;
                 nextBtn.textContent = currentFormIndex === forms.length - 1 ? 'Finalizar' : 'Siguiente';
+                // prevBtn.disabled = currentFormIndex === 0;
+                // nextBtn.disabled = currentFormIndex === forms.length - 1;
+                // nextBtn.textContent = currentFormIndex === forms.length - 1 ? 'Finalizar' : 'Siguiente';
             }
 
             function isFormComplete(iframe) {
-                // Esta es una implementación de ejemplo. Deberás adaptarla según la estructura de tus formularios.
-                // Por ahora, simplemente devuelve true para permitir la navegación.
+                const iframeDocument = iframe.contentWindow.document;
+                const requiredInputs = iframeDocument.querySelectorAll('input[required], select[required], textarea[required]');
+                
+                for (let input of requiredInputs) {
+                    if (input.type === 'checkbox' || input.type === 'radio') {
+                        if (!input.checked) return false;
+                    } else if (!input.value.trim()) {
+                        return false;
+                    }
+                }
                 return true;
             }
 
@@ -95,6 +115,46 @@
                 updatePageIndicator();
             }
         });
+
+        // Eliminar scroll del iframe y que se vea completo
+        // document.addEventListener('DOMContentLoaded', function() {
+        //     const iframes = document.getElementsByTagName('iframe');
+        //     Array.from(iframes).forEach(iframe => {
+        //         iframe.addEventListener('load', function() {
+        //             this.style.height = this.contentWindow.document.body.scrollHeight + 'px';
+        //         });
+        //     });
+        // });
+        // document.addEventListener('DOMContentLoaded', function() {
+        //     const iframes = document.getElementsByTagName('iframe');
+        //     Array.from(iframes).forEach(iframe => {
+        //         iframe.addEventListener('load', function() {
+        //             this.contentWindow.document.documentElement.style.overflow = 'hidden';
+        //             this.contentWindow.document.documentElement.style.scrollbarWidth = 'none';
+        //             this.contentWindow.document.documentElement.style.webkitScrollbar = 'display: none';
+        //         });
+        //     });
+        // });
+
+        // Ajustar altura del iframe y eliminar scrollbars
+        document.addEventListener('DOMContentLoaded', function() {
+            const iframes = document.getElementsByTagName('iframe');
+            Array.from(iframes).forEach(iframe => {
+                iframe.addEventListener('load', function() {
+                    this.style.height = this.contentWindow.document.body.scrollHeight + 'px';
+                    this.contentWindow.document.documentElement.style.overflow = 'hidden';
+                    this.contentWindow.document.documentElement.style.scrollbarWidth = 'none';
+                    this.contentWindow.document.documentElement.style.webkitScrollbar = 'display: none';
+                    
+                    // Observador de mutaciones para ajustar la altura dinámicamente
+                    const resizeObserver = new ResizeObserver(() => {
+                        this.style.height = this.contentWindow.document.body.scrollHeight + 'px';
+                    });
+                    resizeObserver.observe(this.contentWindow.document.body);
+                });
+            });
+        });
+        
     </script>
 </body>
 </html>
