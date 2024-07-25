@@ -97,8 +97,8 @@
 
         function generateLink() {
             const selectedForms = [];
-            if (form1Checkbox.checked) selectedForms.push(form1Checkbox.value);
-            if (form2Checkbox.checked) selectedForms.push(form2Checkbox.value);
+            if (form1Checkbox.checked) selectedForms.push({value: form1Checkbox.value, name: 'Formulario 1'});
+            if (form2Checkbox.checked) selectedForms.push({value: form2Checkbox.value, name: 'Formulario 2'});
 
             if (selectedForms.length === 0) {
                 alert('Por favor, seleccione al menos un formulario.');
@@ -106,7 +106,7 @@
             }
 
             const baseUrl = 'https://formulario-medico-alem.netlify.app/forms.html?';  // Cambiado a forms.html
-            const formParams = selectedForms.map(form => `form=${form}`).join('&');
+            const formParams = selectedForms.map(form => `form=${form.value}&name=${encodeURIComponent(form.name)}`).join('&');
             const fullLink = `${baseUrl}${formParams}`;
 
             linkInput.value = fullLink;

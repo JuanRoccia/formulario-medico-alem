@@ -1,3 +1,133 @@
+En base a los formularios selecionados aca:
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard del Médico</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-100 font-sans">
+    <div class="container mx-auto p-4 max-w-md">
+        <!-- Login Form -->
+        <div id="loginForm" class="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4">
+            <h1 class="text-2xl font-bold mb-6 text-gray-800">Iniciar Sesión</h1>
+            <div class="mb-4">
+                <label class="block text-gray-700 text-sm font-bold mb-2" for="username">
+                    Usuario
+                </label>
+                <input class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="username" type="text" placeholder="Usuario">
+            </div>
+            <div class="mb-6">
+                <label class="block text-gray-700 text-sm font-bold mb-2" for="password">
+                    Contraseña
+                </label>
+                <input class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 mb-3 leading-tight focus:outline-none focus:shadow-outline" id="password" type="password" placeholder="******************">
+            </div>
+            <div class="flex items-center justify-between">
+                <button id="loginButton" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline" type="button">
+                    Iniciar Sesión
+                </button>
+            </div>
+        </div>
+
+        <!-- Dashboard Content (initially hidden) -->
+        <div id="dashboardContent" class="hidden">
+            <div class="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4">
+                <h1 class="text-2xl font-bold mb-6 text-gray-800">Dashboard del Médico</h1>
+                <div class="mb-4">
+                    <label class="inline-flex items-center">
+                        <input type="checkbox" id="form1" value="form-1" class="form-checkbox h-5 w-5 text-blue-600">
+                        <span class="ml-2 text-gray-700">Formulario 1</span>
+                    </label>
+                </div>
+                <div class="mb-6">
+                    <label class="inline-flex items-center">
+                        <input type="checkbox" id="form2" value="form-2" class="form-checkbox h-5 w-5 text-blue-600">
+                        <span class="ml-2 text-gray-700">Formulario 2</span>
+                    </label>
+                </div>
+                <button id="generateButton" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline">
+                    Generar Enlace
+                </button>
+                <div id="generatedLink" class="mt-6 hidden">
+                    <p class="text-gray-700 mb-2">Enlace generado:</p>
+                    <div class="flex">
+                        <input type="text" id="linkInput" readonly class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
+                        <button id="copyButton" class="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded ml-2 focus:outline-none focus:shadow-outline">
+                            Copiar
+                        </button>
+                    </div>
+                </div>
+                <div id="alertMessage" class="mt-4 hidden bg-green-100 border border-green-400 text-green-700 px-4 py-3 rounded relative" role="alert">
+                    <span class="block sm:inline">Enlace copiado al portapapeles</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const loginForm = document.getElementById('loginForm');
+        const dashboardContent = document.getElementById('dashboardContent');
+        const loginButton = document.getElementById('loginButton');
+        const usernameInput = document.getElementById('username');
+        const passwordInput = document.getElementById('password');
+        const generateButton = document.getElementById('generateButton');
+        const form1Checkbox = document.getElementById('form1');
+        const form2Checkbox = document.getElementById('form2');
+        const generatedLinkDiv = document.getElementById('generatedLink');
+        const linkInput = document.getElementById('linkInput');
+        const copyButton = document.getElementById('copyButton');
+        const alertMessage = document.getElementById('alertMessage');
+
+        loginButton.addEventListener('click', login);
+        generateButton.addEventListener('click', generateLink);
+        copyButton.addEventListener('click', copyToClipboard);
+
+        function login() {
+            const username = usernameInput.value;
+            const password = passwordInput.value;
+
+            if (username === 'admin' && password === '123456789') {
+                loginForm.classList.add('hidden');
+                dashboardContent.classList.remove('hidden');
+            } else {
+                alert('Credenciales incorrectas. Por favor, intente de nuevo.');
+            }
+        }
+
+        function generateLink() {
+            const selectedForms = [];
+            if (form1Checkbox.checked) selectedForms.push(form1Checkbox.value);
+            if (form2Checkbox.checked) selectedForms.push(form2Checkbox.value);
+
+            if (selectedForms.length === 0) {
+                alert('Por favor, seleccione al menos un formulario.');
+                return;
+            }
+
+            const baseUrl = 'https://formulario-medico-alem.netlify.app/forms.html?';  // Cambiado a forms.html
+            const formParams = selectedForms.map(form => `form=${form}`).join('&');
+            const fullLink = `${baseUrl}${formParams}`;
+
+            linkInput.value = fullLink;
+            generatedLinkDiv.classList.remove('hidden');
+        }
+
+        function copyToClipboard() {
+            linkInput.select();
+            document.execCommand('copy');
+            
+            alertMessage.classList.remove('hidden');
+            setTimeout(() => {
+                alertMessage.classList.add('hidden');
+            }, 3000);
+        }
+    </script>
+</body>
+</html>
+
+quisiera que los nombre de los mismos, por ejemplo si se selecciona "Formulaio 1" en el checkbox, se muestre luego en el forms.hmtml que se encarga de mostrar los formularios selecionados, para tener una informacion mas clara de los formularios que se estan seleccionando una vez ya en forms.html:
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -31,9 +161,6 @@
 <body class="bg-gray-100 font-sans">
     <div id="mainContainer" class="container mx-auto p-4 flex flex-col">
         <h1 class="text-2xl font-bold mb-6 text-gray-800">Formularios del Paciente</h1>
-        <div id="formList" class="mb-4">
-            <!-- Lista de formularios seleccionados se insertará aquí -->
-        </div>
         <div id="formContainer" class="mb-4">
             <!-- Los iframes se insertarán aquí dinámicamente -->
         </div>
@@ -50,25 +177,11 @@
         document.addEventListener('DOMContentLoaded', function() {
             const urlParams = new URLSearchParams(window.location.search);
             const forms = urlParams.getAll('form');
-            const formNames = urlParams.getAll('name');
             const formContainer = document.getElementById('formContainer');
-            const formList = document.getElementById('formList');
             const prevBtn = document.getElementById('prevBtn');
             const nextBtn = document.getElementById('nextBtn');
             const pageIndicator = document.getElementById('pageIndicator');
             let currentFormIndex = 0;
-
-            function createFormList() {
-                const list = document.createElement('ul');
-                list.className = 'list-disc pl-5 mb-4';
-                formNames.forEach((name, index) => {
-                    const listItem = document.createElement('li');
-                    listItem.textContent = decodeURIComponent(name);
-                    listItem.className = 'mb-1';
-                    list.appendChild(listItem);
-                });
-                formList.appendChild(list);
-            }
 
             function createIframes() {
                 forms.forEach((form, index) => {
@@ -196,7 +309,6 @@
             if (forms.length === 0) {
                 formContainer.innerHTML = '<p class="text-red-500">No se han seleccionado formularios.</p>';
             } else {
-                createFormList();
                 createIframes();
                 updatePageIndicator();
             }
