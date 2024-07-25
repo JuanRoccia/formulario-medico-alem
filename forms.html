@@ -11,21 +11,35 @@
             flex-direction: column;
             min-height: 100vh;
         }
+        #mainContainer {
+            flex: 1 0 auto;
+            display: flex;
+            flex-direction: column;
+        }
         #formContainer {
-            flex-grow: 1;
+            flex: 1 0 auto;
+        }
+        #navigationContainer {
+            flex-shrink: 0;
+            z-index: 1000;
+            padding: 10px 0;
+            background-color: white;
+            box-shadow: 0 -2px 10px rgba(0,0,0,0.1);
         }
     </style>
 </head>
-<body class="bg-gray-100  font-sans">
-    <div class="container mx-auto p-4 flex flex-col min-h-screen">
+<body class="bg-gray-100 font-sans">
+    <div id="mainContainer" class="container mx-auto p-4 flex flex-col">
         <h1 class="text-2xl font-bold mb-6 text-gray-800">Formularios del Paciente</h1>
-        <div id="formContainer" class="relative flex-grow">
+        <div id="formContainer" class="mb-4">
             <!-- Los iframes se insertarán aquí dinámicamente -->
         </div>
-        <div class="mt-4 flex justify-between items-center">
-            <button id="prevBtn" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline disabled:opacity-50 z-50" disabled>Anterior</button>
+    </div>
+    <div id="navigationContainer" class="w-full">
+        <div class="container mx-auto px-4 flex justify-between items-center">
+            <button id="prevBtn" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline disabled:opacity-50" disabled>Anterior</button>
             <div id="pageIndicator" class="text-gray-700"></div>
-            <button id="nextBtn" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline z-50">Siguiente</button>
+            <button id="nextBtn" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline">Siguiente</button>
         </div>
     </div>
 
@@ -43,11 +57,70 @@
                 forms.forEach((form, index) => {
                     const iframe = document.createElement('iframe');
                     iframe.src = `${form}.html`;
-                    iframe.className = 'w-full h-full border-0 absolute top-0 left-0 transition-opacity duration-300';
+                    iframe.className = 'w-full h-full border-0 top-0 left-0 transition-opacity duration-300';
                     iframe.style.display = index === 0 ? 'block' : 'none';
                     iframe.style.opacity = index === 0 ? '1' : '0';
+                    
+                    iframe.addEventListener('load', function() {
+                        adjustIframeHeight(this);
+                        setupFormValidation(this, index);
+                    });
+
+                    iframe.addEventListener('error', function() {
+                        console.error(`Error al cargar el formulario: ${form}.html`);
+                        // Manejar el error, tal vez mostrar un mensaje al usuario
+                    });
+                    
                     formContainer.appendChild(iframe);
                 });
+            }
+
+            function adjustIframeHeight(iframe) {
+                iframe.style.height = iframe.contentWindow.document.body.scrollHeight + 'px';
+                iframe.contentWindow.document.documentElement.style.overflow = 'hidden';
+                iframe.contentWindow.document.documentElement.style.scrollbarWidth = 'none';
+                iframe.contentWindow.document.documentElement.style.webkitScrollbar = 'display: none';
+                
+                const resizeObserver = new ResizeObserver(() => {
+                    iframe.style.height = iframe.contentWindow.document.body.scrollHeight + 'px';
+                });
+                resizeObserver.observe(iframe.contentWindow.document.body);
+            }
+
+            function setupFormValidation(iframe, index) {
+                const iframeDocument = iframe.contentWindow.document;
+                const requiredInputs = iframeDocument.querySelectorAll('input[required], select[required], textarea[required]');
+            
+                requiredInputs.forEach(input => {
+                    input.addEventListener('change', () => checkFormCompleteness(iframe));
+                });
+
+                // Verificar completitud inicial
+                checkFormCompleteness(iframe);
+            }
+
+            function checkFormCompleteness(iframe) {
+                const iframeDocument = iframe.contentWindow.document;
+                const requiredInputs = iframeDocument.querySelectorAll('input[required], select[required], textarea[required]');
+                console.log('requiredInputs:', requiredInputs);
+
+                let isComplete = true;
+                requiredInputs.forEach(input => {
+                    if (input.type === 'checkbox' || input.type === 'radio') {
+                        const name = input.name;
+                        const checkedInputs = iframeDocument.querySelectorAll(`input[name="${name}"]:checked`);
+                        if (checkedInputs.length === 0) {
+                            console.log(`Campo no completado: ${input.name}`);
+                            isComplete = false;
+                        }
+                    } else if (!input.value.trim()) {
+                        console.log(`Campo no completado: ${input.name || input.id}`);
+                        isComplete = false;
+                    }
+                });
+
+                // nextBtn.disabled = !isComplete;
+                return isComplete;
             }
 
             function updatePageIndicator() {
@@ -69,23 +142,6 @@
                 updatePageIndicator();
                 prevBtn.disabled = currentFormIndex === 0;
                 nextBtn.textContent = currentFormIndex === forms.length - 1 ? 'Finalizar' : 'Siguiente';
-                // prevBtn.disabled = currentFormIndex === 0;
-                // nextBtn.disabled = currentFormIndex === forms.length - 1;
-                // nextBtn.textContent = currentFormIndex === forms.length - 1 ? 'Finalizar' : 'Siguiente';
-            }
-
-            function isFormComplete(iframe) {
-                const iframeDocument = iframe.contentWindow.document;
-                const requiredInputs = iframeDocument.querySelectorAll('input[required], select[required], textarea[required]');
-                
-                for (let input of requiredInputs) {
-                    if (input.type === 'checkbox' || input.type === 'radio') {
-                        if (!input.checked) return false;
-                    } else if (!input.value.trim()) {
-                        return false;
-                    }
-                }
-                return true;
             }
 
             prevBtn.addEventListener('click', () => {
@@ -95,8 +151,12 @@
             });
 
             nextBtn.addEventListener('click', () => {
+                // alert('Estas tocando el boton siguiente');
                 const currentIframe = formContainer.getElementsByTagName('iframe')[currentFormIndex];
-                if (isFormComplete(currentIframe)) {
+                const iframeDocument = currentIframe.contentWindow.document;
+                const requiredInputs = iframeDocument.querySelectorAll('input[required], select[required], textarea[required]');
+                
+                if (currentIframe && checkFormCompleteness(currentIframe)) {
                     if (currentFormIndex < forms.length - 1) {
                         showForm(currentFormIndex + 1);
                     } else {
@@ -104,7 +164,15 @@
                         // Aquí puedes agregar código para enviar los datos o redirigir al usuario
                     }
                 } else {
-                    alert('Por favor, completa el formulario actual antes de continuar.');
+                    let incompleteFields = [];
+                    requiredInputs.forEach(input => {
+                        if ((input.type === 'checkbox' || input.type === 'radio') && !iframeDocument.querySelector(`input[name="${input.name}"]:checked`)) {
+                            incompleteFields.push(input.name);
+                        } else if (!input.value.trim()) {
+                            incompleteFields.push(input.name || input.id);
+                        }
+                    });
+                    alert(`Por favor, completa los siguientes campos antes de continuar: ${incompleteFields.join(', ')}`);
                 }
             });
 
@@ -114,47 +182,8 @@
                 createIframes();
                 updatePageIndicator();
             }
-        });
 
-        // Eliminar scroll del iframe y que se vea completo
-        // document.addEventListener('DOMContentLoaded', function() {
-        //     const iframes = document.getElementsByTagName('iframe');
-        //     Array.from(iframes).forEach(iframe => {
-        //         iframe.addEventListener('load', function() {
-        //             this.style.height = this.contentWindow.document.body.scrollHeight + 'px';
-        //         });
-        //     });
-        // });
-        // document.addEventListener('DOMContentLoaded', function() {
-        //     const iframes = document.getElementsByTagName('iframe');
-        //     Array.from(iframes).forEach(iframe => {
-        //         iframe.addEventListener('load', function() {
-        //             this.contentWindow.document.documentElement.style.overflow = 'hidden';
-        //             this.contentWindow.document.documentElement.style.scrollbarWidth = 'none';
-        //             this.contentWindow.document.documentElement.style.webkitScrollbar = 'display: none';
-        //         });
-        //     });
-        // });
-
-        // Ajustar altura del iframe y eliminar scrollbars
-        document.addEventListener('DOMContentLoaded', function() {
-            const iframes = document.getElementsByTagName('iframe');
-            Array.from(iframes).forEach(iframe => {
-                iframe.addEventListener('load', function() {
-                    this.style.height = this.contentWindow.document.body.scrollHeight + 'px';
-                    this.contentWindow.document.documentElement.style.overflow = 'hidden';
-                    this.contentWindow.document.documentElement.style.scrollbarWidth = 'none';
-                    this.contentWindow.document.documentElement.style.webkitScrollbar = 'display: none';
-                    
-                    // Observador de mutaciones para ajustar la altura dinámicamente
-                    const resizeObserver = new ResizeObserver(() => {
-                        this.style.height = this.contentWindow.document.body.scrollHeight + 'px';
-                    });
-                    resizeObserver.observe(this.contentWindow.document.body);
-                });
-            });
         });
-        
     </script>
 </body>
 </html>

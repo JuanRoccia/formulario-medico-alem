@@ -15,7 +15,7 @@
         /*<uniquifier>: Use a unique and descriptive class name
         <weight>: Use a value from 400 to 700*/
 
-            .lora {
+        .lora {
           font-family: "Lora", serif;
           font-optical-sizing: auto;
           font-weight: 500;
@@ -118,24 +118,24 @@
             <div>
               <!-- block text-sm font-medium text-gray-900 leading-6 -->
               <!-- block text-gray-700 text-sm font-bold mb-2 -->
-              <label class="block text-sm font-medium text-gray-900 mb-2" for="nombre" required>
+              <label class="block text-sm font-medium text-gray-900 mb-2" for="nombre">
                 Nombre
               </label>
               <!-- mt-2 block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6 -->
               <!-- shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline -->
-              <input class="mt-2 block w-full rounded-md border-0 py-1.5 px-3 text-gray-900 ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6" id="nombre" type="text"> 
+              <input class="mt-2 block w-full rounded-md border-0 py-1.5 px-3 text-gray-900 ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6" id="nombre" type="text" required> 
             </div> 
             <div>       
-              <label class="block text-sm font-medium text-gray-900 mb-2" for="apellido" required>
+              <label class="block text-sm font-medium text-gray-900 mb-2" for="apellido">
                 Apellido
               </label>
-              <input class="mt-2 block w-full rounded-md border-0 py-1.5 px-3 text-gray-900 ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6" id="apellido" type="text">        
+              <input class="mt-2 block w-full rounded-md border-0 py-1.5 px-3 text-gray-900 ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6" id="apellido" type="text" required>        
             </div> 
             <div>
-                <label class="block text-sm font-medium text-gray-900 mb-2" for="dni" required>
+                <label class="block text-sm font-medium text-gray-900 mb-2" for="dni">
                     DNI
                   </label>
-                  <input class="mt-2 block w-full rounded-md border-0 py-1.5 px-3 text-gray-900 ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6" id="dni" type="number">
+                  <input class="mt-2 block w-full rounded-md border-0 py-1.5 px-3 text-gray-900 ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6" id="dni" type="number" required>
             </div>     
           </div>
           <!--<div class="mt-4">
@@ -166,7 +166,7 @@
               <p class="mb-2">¿Es usted portador de marcapasos?</p>
               <div class="flex items-center space-x-4">
                 <label class="inline-flex items-center"> 
-                  <input type="radio" class="form-radio" name="pregunta1" value="si">            
+                  <input type="radio" class="form-radio" name="pregunta1" value="si" required>            
                   <span class="ml-2">Sí</span>   
                 </label>            
                 <label class="inline-flex items-center">            
@@ -179,7 +179,7 @@
               <p class="mb-2">¿Es usted alérgico a alguna sustancia?</p>        
               <div class="flex items-center space-x-4">          
                 <label class="inline-flex items-center">            
-                  <input type="radio" class="form-radio" name="pregunta2" value="si">            
+                  <input type="radio" class="form-radio" name="pregunta2" value="si" required>            
                   <span class="ml-2">Sí</span>            
                 </label>          
                 <label class="inline-flex items-center">          
@@ -192,7 +192,7 @@
               <p class="mb-2">¿Se ha realizado con anterioridad esta prueba? (Resonancia en general)</p>        
               <div class="flex items-center space-x-4">          
                 <label class="inline-flex items-center">            
-                  <input type="radio" class="form-radio" name="pregunta3" value="si">            
+                  <input type="radio" class="form-radio" name="pregunta3" value="si" required>            
                   <span class="ml-2">Sí</span>            
                 </label>          
                 <label class="inline-flex items-center">          
@@ -205,7 +205,7 @@
               <p class="mb-2">¿Tiene algún tipo de intervención quirúrgica? (General) ¿Cuáles?</p>        
               <div class="flex items-center space-x-4">          
                 <label class="inline-flex items-center">            
-                  <input type="radio" class="form-radio" name="pregunta4" value="si">            
+                  <input type="radio" class="form-radio" name="pregunta4" value="si" required>            
                   <span class="ml-2">Sí</span>            
                 </label>          
                 <label class="inline-flex items-center">          
@@ -222,7 +222,7 @@
               <p class="mb-2">¿Es usted portador de alguna prótesis de válvula metálica o prótesis cardíaca?</p>        
               <div class="flex items-center space-x-4">          
                 <label class="inline-flex items-center">            
-                  <input type="radio" class="form-radio" name="pregunta5" value="si">            
+                  <input type="radio" class="form-radio" name="pregunta5" value="si" required>            
                   <span class="ml-2">Sí</span>            
                 </label>          
                 <label class="inline-flex items-center">          
@@ -235,7 +235,7 @@
               <p class="mb-2">¿Está operado de aneurisma?</p>        
               <div class="flex items-center space-x-4">          
                 <label class="inline-flex items-center">            
-                  <input type="radio" class="form-radio" name="pregunta6" value="si">            
+                  <input type="radio" class="form-radio" name="pregunta6" value="si" required>            
                   <span class="ml-2">Sí</span>            
                 </label>          
                 <label class="inline-flex items-center">          
@@ -248,7 +248,7 @@
               <p class="mb-2">¿Tiene bomba de infusión de medicación implantada?</p>        
               <div class="flex items-center space-x-4">          
                 <label class="inline-flex items-center">            
-                  <input type="radio" class="form-radio" name="pregunta7" value="si">            
+                  <input type="radio" class="form-radio" name="pregunta7" value="si" required>            
                   <span class="ml-2">Sí</span>            
                 </label>          
                 <label class="inline-flex items-center">          
@@ -261,7 +261,7 @@
               <p class="mb-2">¿Es usted portador de filtros, stent vasculares o material similar?</p>        
               <div class="flex items-center space-x-4">          
                 <label class="inline-flex items-center">            
-                  <input type="radio" class="form-radio" name="pregunta8" value="si">            
+                  <input type="radio" class="form-radio" name="pregunta8" value="si" required>            
                   <span class="ml-2">Sí</span>            
                 </label>          
                 <label class="inline-flex items-center">          
@@ -274,7 +274,7 @@
               <p class="mb-2">¿Es usted portador de neuroestimulador?</p>        
               <div class="flex items-center space-x-4">          
                 <label class="inline-flex items-center">            
-                  <input type="radio" class="form-radio" name="pregunta9" value="si">            
+                  <input type="radio" class="form-radio" name="pregunta9" value="si" required>            
                   <span class="ml-2">Sí</span>            
                 </label>          
                 <label class="inline-flex items-center">          
@@ -287,7 +287,7 @@
               <p class="mb-2">¿Es usted portador de implante coclear, prótesis de oído/audífono implantado?</p>        
               <div class="flex items-center space-x-4">          
                 <label class="inline-flex items-center">            
-                  <input type="radio" class="form-radio" name="pregunta10" value="si">            
+                  <input type="radio" class="form-radio" name="pregunta10" value="si" required>            
                   <span class="ml-2">Sí</span>            
                 </label>          
                 <label class="inline-flex items-center">          
@@ -300,7 +300,7 @@
               <p class="mb-2">¿Tiene implantes dentales o dentadura postiza?</p>        
               <div class="flex items-center space-x-4">          
                 <label class="inline-flex items-center">            
-                  <input type="radio" class="form-radio" name="pregunta11" value="si">            
+                  <input type="radio" class="form-radio" name="pregunta11" value="si" required>            
                   <span class="ml-2">Sí</span>            
                 </label>          
                 <label class="inline-flex items-center">          
@@ -313,7 +313,7 @@
               <p class="mb-2">¿Tiene material de osteosíntesis implantado? (placas, clavos, tornillos, etc.)</p>        
               <div class="flex items-center space-x-4">          
                 <label class="inline-flex items-center">            
-                  <input type="radio" class="form-radio" name="pregunta12" value="si">            
+                  <input type="radio" class="form-radio" name="pregunta12" value="si" required>            
                   <span class="ml-2">Sí</span>            
                 </label>          
                 <label class="inline-flex items-center">          
@@ -326,7 +326,7 @@
               <p class="mb-2">¿Ha trabajado en lugares donde estuviese en contacto con metales? (soldadura)</p>        
               <div class="flex items-center space-x-4">          
                 <label class="inline-flex items-center">            
-                  <input type="radio" class="form-radio" name="pregunta13" value="si">            
+                  <input type="radio" class="form-radio" name="pregunta13" value="si" required>            
                   <span class="ml-2">Sí</span>            
                 </label>          
                 <label class="inline-flex items-center">          
@@ -339,7 +339,7 @@
               <p class="mb-2">¿Ha tenido algún accidente producido por objetos metálicos?</p>        
               <div class="flex items-center space-x-4">          
                 <label class="inline-flex items-center">            
-                  <input type="radio" class="form-radio" name="pregunta14" value="si">            
+                  <input type="radio" class="form-radio" name="pregunta14" value="si" required>            
                   <span class="ml-2">Sí</span>            
                 </label>          
                 <label class="inline-flex items-center">          
@@ -352,7 +352,7 @@
               <p class="mb-2">¿Lleva tatuajes, piercing u otros?</p>        
               <div class="flex items-center space-x-4">          
                 <label class="inline-flex items-center">            
-                  <input type="radio" class="form-radio" name="pregunta15" value="si">            
+                  <input type="radio" class="form-radio" name="pregunta15" value="si" required>            
                   <span class="ml-2">Sí</span>            
                 </label>          
                 <label class="inline-flex items-center">          
@@ -365,7 +365,7 @@
               <p class="mb-2">¿Tiene insuficiencia renal?</p>        
               <div class="flex items-center space-x-4">          
                 <label class="inline-flex items-center">            
-                  <input type="radio" class="form-radio" name="pregunta16" value="si">            
+                  <input type="radio" class="form-radio" name="pregunta16" value="si" required>            
                   <span class="ml-2">Sí</span>            
                 </label>          
                 <label class="inline-flex items-center">          
@@ -390,7 +390,7 @@
             <div>
               <p class="mb-2">¿Quién lo derivó al centro?</p>
               <div class="flex items-center space-x-4">
-                <input type="text" class="form-input mt-1 block w-full" placeholder="Escriba aquí">      
+                <input type="text" class="form-input mt-1 block w-full" placeholder="Escriba aquí" name="derivación" required>      
               </div>
             </div>
             <!-- Agrega más preguntas aquí -->  
@@ -453,6 +453,7 @@
             signaturePad.clear();
         });
 
+        // Respecto a la firma hay algo raro con esto, se rompe cuando lo sacas y no deberia, no hay ningun id con myForm
         document.getElementById('myForm').addEventListener('submit', function(e) {
             e.preventDefault();
             if (signaturePad.isEmpty()) {
