@@ -46,6 +46,11 @@
         </div>
     </div>
 
+    <script src="https://cdn.jsdelivr.net/npm/html2canvas@1.4.1/dist/html2canvas.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/signature_pad@4.0.0/dist/signature_pad.umd.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+
     <script>
         document.addEventListener('DOMContentLoaded', function() {
             const urlParams = new URLSearchParams(window.location.search);
@@ -147,6 +152,10 @@
                 pageIndicator.textContent = `Página ${currentFormIndex + 1} de ${forms.length}`;
             }
 
+            function updateButtonText() {
+                nextBtn.textContent = forms.length === 1 || currentFormIndex === forms.length - 1 ? 'Finalizar' : 'Siguiente';
+            }
+
             function showForm(index) {
                 const iframes = formContainer.getElementsByTagName('iframe');
                 Array.from(iframes).forEach((iframe, i) => {
@@ -161,7 +170,8 @@
                 currentFormIndex = index;
                 updatePageIndicator();
                 prevBtn.disabled = currentFormIndex === 0;
-                nextBtn.textContent = currentFormIndex === forms.length - 1 ? 'Finalizar' : 'Siguiente';
+                // nextBtn.textContent = currentFormIndex === forms.length - 1 ? 'Finalizar' : 'Siguiente';
+                updateButtonText();
             }
 
             prevBtn.addEventListener('click', () => {
@@ -180,8 +190,13 @@
                     if (currentFormIndex < forms.length - 1) {
                         showForm(currentFormIndex + 1);
                     } else {
-                        alert('Has completado todos los formularios.');
-                        // Aquí puedes agregar código para enviar los datos o redirigir al usuario
+                        finalizeProcess();
+                        // alert('Has completado todos los formularios.');
+                        // Descargar los formularios en formato PDF y jpg
+                        // downloadForms();
+                        // console.log('Formularios descargados');
+                        // Enviar los formularios por whatsapp
+
                     }
                 } else {
                     let incompleteFields = [];
@@ -196,12 +211,45 @@
                 }
             });
 
+            function finalizeProcess() {
+                alert('Has completado todos los formularios.');
+                downloadForms().then(() => {
+                    prepareWhatsAppShare();
+                });
+            }
+
+            async function downloadForms() {
+                for (let index = 0; index < forms.length; index++) {
+                    const iframe = formContainer.getElementsByTagName('iframe')[index];
+                    const iframeContent = iframe.contentWindow.document.body;
+
+                    // Convert to PDF
+                    await html2pdf().from(iframeContent).save(`form_${index + 1}.pdf`);
+
+                    // Convert to JPG
+                    const canvas = await html2canvas(iframeContent);
+                    const link = document.createElement('a');
+                    link.download = `form_${index + 1}.jpg`;
+                    link.href = canvas.toDataURL('image/jpeg');
+                    link.click();
+                }
+            }
+
+            function prepareWhatsAppShare() {
+                // Aquí puedes implementar la lógica para compartir por WhatsApp
+                // Por ejemplo, abrir un nuevo enlace de WhatsApp con un mensaje predefinido
+                const message = encodeURIComponent('He completado los formularios. Aquí están adjuntos los archivos PDF y JPG.');
+                const whatsappLink = `https://wa.me/?text=${message}`;
+                window.open(whatsappLink, '_blank');
+            }
+
             if (forms.length === 0) {
                 formContainer.innerHTML = '<p class="text-red-500">No se han seleccionado formularios.</p>';
             } else {
                 createFormList();
                 createIframes();
                 updatePageIndicator();
+                updateButtonText();
             }
 
         });
