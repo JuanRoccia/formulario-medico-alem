@@ -112,6 +112,9 @@
                     input.addEventListener('change', () => checkFormCompleteness(iframe));
                 });
 
+                // Inicializar el pad de firma
+                const signaturePad = initializeSignaturePad(iframeDocument);
+
                 // Verificar completitud inicial
                 checkFormCompleteness(iframe);
             }

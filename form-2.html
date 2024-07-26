@@ -92,8 +92,23 @@
           --tw-space-y-reverse: 0;
           margin-top: 0;
         }
-        #signature-pad{
+        #signature-pad-2{
             max-width: 100%;
+        }
+        #signature-pad-2 {
+          width: 100%;
+          max-width: 500px;
+          height: 200px;
+        }
+        form {
+          max-width: 600px;
+          margin: 0 auto;
+          padding: 20px;
+        }
+
+        input, select, textarea {
+          width: 100%;
+          margin-bottom: 10px;
         }
     </style>
   </head>
@@ -146,22 +161,22 @@
         </div>
           
         <!-- Cuestionario -->
-        <div class="mb-6">
+        <!-- <div class="mb-6">
           <h3 class="text-xl font-bold underline mb-4">Marque el sitio de dolor o problema:
           </h3>
+
           <div class="flex flex-col sm:flex-row items-center justify-center gap-4 my-10 px-4">
-            <!-- Primer imagen y texto -->
             <div class="flex flex-col sm:flex-row items-center gap-2 w-full sm:w-auto">
               <span class="border border-black px-2 py-1 mb-2 sm:mb-0 text-sm">DERECHA</span>
               <img src="/images/frontal.webp" alt="Imagen 1" class="body-img w-24 h-auto object-contain">
             </div>
           
-            <!-- Segunda imagen y texto -->
             <div class="flex flex-col sm:flex-row items-center gap-2 w-full sm:w-auto">
               <span class="border border-black px-2 py-1 mb-2 sm:mb-0 text-sm">IZQUIERDA</span>
               <img src="/images/espalda.webp" alt="Imagen 2" class="body-img w-24 h-auto object-contain">
             </div>
           </div>
+
           <h3 class="mb-4">
             <span class="underline">MARCAR</span> LA CORRECTA:
           </h3>
@@ -169,7 +184,7 @@
             <div class="flex flex-col md:flex-row">
               <p class="pr-2">Dolor:</p>
               <div class="mb-4 md:mb-0 md:mr-4">
-                <div class="flex flex-wrap items-center space-x-0 space-y-1 md:space-y-0"> <!--md:space-x-4-->
+                <div class="flex flex-wrap items-center space-x-0 space-y-1 md:space-y-0">
                   <label class="inline-flex items-center w-full md:w-auto">
                     <input type="checkbox" class="form-checkbox ml-3" name="movimiento" value="option1">
                     <span class="ml-2">Ante movimiento</span>
@@ -209,10 +224,12 @@
                 </div>
               </div>
             </div>
+
             <div class="flex items-center space-x-2">        
               <p>Otros:</p>        
               <input type="text" class="form-input block w-full" placeholder="Escriba aquí">
             </div>
+
             <div class="flex flex-col md:flex-row">
               <p class="pr-4">Ubicación:</p>
               <div class="mb-4 md:mb-0 md:mr-4">
@@ -244,6 +261,7 @@
                 </div>
               </div>
             </div>
+
             <div class="flex flex-col md:flex-row md:items-center">
               <p class="pr-4">Desde cuándo los presenta:</p>
               <div class="mb-4 md:mb-0 md:mr-4">
@@ -252,6 +270,7 @@
                 </div>
               </div>
             </div>
+
             <div class="flex flex-col md:flex-row">
               <p class="pr-4">Estudios previos:</p>
               <div class="mb-4 md:mb-0 md:mr-4">
@@ -275,262 +294,253 @@
                 </div>
               </div>
             </div>
-              <div>        
-                <p class="mb-2">¿Tuvo un traumatismo?</p>        
-                <div class="flex items-center space-x-4">
-                  <label class="inline-flex items-center">          
-                    <input type="radio" class="form-radio" name="pregunta2" value="no" required>            
-                    <span class="ml-2">No</span>            
-                  </label>           
-                  <label class="inline-flex items-center">            
-                    <input type="radio" class="form-radio" name="pregunta2" value="si">            
-                    <span class="ml-2">Sí</span>            
-                  </label>
-                </div>          
+
+            <div>
+              <p class="mb-2">¿Tuvo un traumatismo?</p> 
+              <div class="flex items-center space-x-4">
+                <label class="inline-flex items-center">          
+                  <input type="radio" class="form-radio" name="pregunta2" value="no" required>            
+                  <span class="ml-2">No</span>            
+                </label>
+                <label class="inline-flex items-center">            
+                  <input type="radio" class="form-radio" name="pregunta2" value="si">            
+                  <span class="ml-2">Sí</span>            
+                </label>
+              </div>          
+            </div>
+            <div>        
+              <p class="mb-2">¿Le han realizado cirugía/s del sitio problema?</p>        
+              <div class="flex items-center space-x-4">                    
+                <label class="inline-flex items-center">          
+                  <input type="radio" class="form-radio" name="pregunta-cirugia" value="no" required>            
+                  <span class="ml-2">No</span>            
+                </label>        
+                <label class="inline-flex items-center">            
+                  <input type="radio" class="form-radio" name="pregunta-cirugia" value="si">            
+                  <span class="ml-2">Sí</span>            
+                </label>  
+              </div>          
+            </div>
+            <div id="additional-content" class="hidden">
+              <div class="flex items-center space-x-2 mt-4">        
+                <p>¿Qué tipo de cirugía?</p>        
+                <input type="text" class="form-input block" placeholder="Escriba aquí">
               </div>
-              <div>        
-                <p class="mb-2">¿Le han realizado cirugía/s del sitio problema?</p>        
-                <div class="flex items-center space-x-4">                    
-                  <label class="inline-flex items-center">          
-                    <input type="radio" class="form-radio" name="pregunta-cirugia" value="no" required>            
-                    <span class="ml-2">No</span>            
-                  </label>        
-                  <label class="inline-flex items-center">            
-                    <input type="radio" class="form-radio" name="pregunta-cirugia" value="si">            
-                    <span class="ml-2">Sí</span>            
-                  </label>  
-                </div>          
+              <div class="flex items-center space-x-2 mt-4">        
+                <p>¿Hace cuánto tiempo?</p>        
+                <input type="text" class="form-input block" placeholder="Escriba aquí">
               </div>
-              <div id="additional-content" class="hidden">
-                <div class="flex items-center space-x-2 mt-4">        
-                  <p>¿Qué tipo de cirugía?</p>        
-                  <input type="text" class="form-input block" placeholder="Escriba aquí">
-                </div>
-                <div class="flex items-center space-x-2 mt-4">        
-                  <p>¿Hace cuánto tiempo?</p>        
-                  <input type="text" class="form-input block" placeholder="Escriba aquí">
-                </div>
+            </div>
+            <div>        
+              <p class="mb-2">¿Toma Alguna medicion?</p>        
+              <div class="flex items-center space-x-4">
+                <label class="inline-flex items-center">          
+                  <input type="radio" class="form-radio" name="pregunta-medicacion" value="no" required>            
+                  <span class="ml-2">No</span>            
+                </label>          
+                <label class="inline-flex items-center">            
+                  <input type="radio" class="form-radio" name="pregunta-medicacion" value="si">            
+                  <span class="ml-2">Sí</span>            
+                </label>          
+              </div>          
+            </div>
+            <div id="additional-medicacion" class="hidden">
+              <div class="flex items-center space-x-2 mt-4">        
+                <p>INDIQUE CUALES:</p>        
+                <input type="text" class="form-input block" placeholder="Escriba aquí">
               </div>
-              <div>        
-                <p class="mb-2">¿Toma Alguna medicion?</p>        
-                <div class="flex items-center space-x-4">
-                  <label class="inline-flex items-center">          
-                    <input type="radio" class="form-radio" name="pregunta-medicacion" value="no" required>            
-                    <span class="ml-2">No</span>            
-                  </label>          
-                  <label class="inline-flex items-center">            
-                    <input type="radio" class="form-radio" name="pregunta-medicacion" value="si">            
-                    <span class="ml-2">Sí</span>            
-                  </label>          
-                </div>          
+            </div>
+            <div>        
+              <p class="mb-2">¿Presenta antecedentes oncológicos?</p>        
+              <div class="flex items-center space-x-4">
+                <label class="inline-flex items-center">          
+                  <input type="radio" class="form-radio" name="pregunta-oncologica" value="no" required>            
+                  <span class="ml-2">No</span>            
+                </label>          
+                <label class="inline-flex items-center">            
+                  <input type="radio" class="form-radio" name="pregunta-oncologica" value="si">            
+                  <span class="ml-2">Sí</span>            
+                </label>          
+              </div>          
+            </div>
+            <div id="additional-onc" class="hidden">
+              <div class="flex items-center space-x-2 mt-4">        
+                <p>¿Cuáles?</p>        
+                <input type="text" class="form-input block" placeholder="Escriba aquí">
               </div>
-              <div id="additional-medicacion" class="hidden">
-                <div class="flex items-center space-x-2 mt-4">        
-                  <p>INDIQUE CUALES:</p>        
-                  <input type="text" class="form-input block" placeholder="Escriba aquí">
-                </div>
+            </div>
+            <div>        
+              <p class="mb-2">¿Realiza algún deporte?</p>        
+              <div class="flex items-center space-x-4">
+                <label class="inline-flex items-center">          
+                  <input type="radio" class="form-radio" name="pregunta-deporte" value="no" required>            
+                  <span class="ml-2">No</span>            
+                </label>          
+                <label class="inline-flex items-center">            
+                  <input type="radio" class="form-radio" name="pregunta-deporte" value="si">            
+                  <span class="ml-2">Sí</span>            
+                </label>          
+              </div>          
+            </div>
+            <div id="additional-deporte" class="hidden">
+              <div class="flex items-center space-x-2 mt-4">        
+                <p>¿Cuál?</p>        
+                <input type="text" class="form-input block" placeholder="Escriba aquí">
               </div>
-              <div>        
-                <p class="mb-2">¿Presenta antecedentes oncológicos?</p>        
-                <div class="flex items-center space-x-4">
-                  <label class="inline-flex items-center">          
-                    <input type="radio" class="form-radio" name="pregunta-oncologica" value="no" required>            
-                    <span class="ml-2">No</span>            
-                  </label>          
-                  <label class="inline-flex items-center">            
-                    <input type="radio" class="form-radio" name="pregunta-oncologica" value="si">            
-                    <span class="ml-2">Sí</span>            
-                  </label>          
-                </div>          
-              </div>
-              <div id="additional-onc" class="hidden">
-                <div class="flex items-center space-x-2 mt-4">        
-                  <p>¿Cuáles?</p>        
-                  <input type="text" class="form-input block" placeholder="Escriba aquí">
-                </div>
-              </div>
-              <div>        
-                <p class="mb-2">¿Realiza algún deporte?</p>        
-                <div class="flex items-center space-x-4">
-                  <label class="inline-flex items-center">          
-                    <input type="radio" class="form-radio" name="pregunta-deporte" value="no" required>            
-                    <span class="ml-2">No</span>            
-                  </label>          
-                  <label class="inline-flex items-center">            
-                    <input type="radio" class="form-radio" name="pregunta-deporte" value="si">            
-                    <span class="ml-2">Sí</span>            
-                  </label>          
-                </div>          
-              </div>
-              <div id="additional-deporte" class="hidden">
-                <div class="flex items-center space-x-2 mt-4">        
-                  <p>¿Cuál?</p>        
-                  <input type="text" class="form-input block" placeholder="Escriba aquí">
-                </div>
-              </div>
-              <div>        
-                <p class="mb-2">Autorizo a utilizar las imágenes adquiridas de manera anónima con fines educativos</p> 
-              </div>  
-              <div class="flex flex-wrap items-center gap-2 mt-4">
-                <p class="text-sm">Bahía Blanca</p>
-                <input type="number" class="form-input w-16 text-sm" placeholder="Día">
-                <p class="text-sm">De</p>
-                <input type="text" class="form-input w-24 text-sm" placeholder="Mes">
-                <p class="text-sm">De 20</p>
-                <input type="number" class="form-input w-16 text-sm" placeholder="Año">
-              </div>
-              <!-- Agrega más preguntas aquí -->  
-            </div>      
-          </div>
+            </div>
+            <div>        
+              <p class="mb-2">Autorizo a utilizar las imágenes adquiridas de manera anónima con fines educativos</p> 
+            </div>  
+            <div class="flex flex-wrap items-center gap-2 mt-4">
+              <p class="text-sm">Bahía Blanca</p>
+              <input type="number" class="form-input w-16 text-sm" placeholder="Día">
+              <p class="text-sm">De</p>
+              <input type="text" class="form-input w-24 text-sm" placeholder="Mes">
+              <p class="text-sm">De 20</p>
+              <input type="number" class="form-input w-16 text-sm" placeholder="Año">
+            </div>
+          </div>      
+        </div> -->
+
+          <!-- Sección Firma -->
           <div class="mb-6">
             <h2 class="text-2xl font-bold mb-4">Firma</h2>
             <div class="">
-              <label for="signature-pad" class="block text-sm font-medium leading-6 text-gray-900">Firma del paciente</label>
+              <label for="signature-pad-2" class="block text-sm font-medium leading-6 text-gray-900">Firma del paciente</label>
               <div class="mt-2">
-                <canvas id="signature-pad" class="border rounded-md w-full max-w-lg"></canvas>
+                <canvas id="signature-pad-2" class="border rounded-md"></canvas>
               </div>
-              <button type="button" id="clear" class="mt-2 rounded-md bg-red-500 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-red-400">Limpiar</button>
+              <button type="button" id="clear-2" class="mt-2 rounded-md bg-red-500 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-red-400">Limpiar</button>
             </div>
           </div>
+
           <div class="flex flex-col sm:flex-row items-center space-y-2 sm:space-y-0 sm:space-x-2 mt-4">
             <label class="block text-sm font-medium text-gray-900" for="dni">
               DNI
             </label>
             <input class="block w-full sm:w-auto rounded-md border-0 text-gray-900 ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6" id="dni" type="text" required> 
           </div>
+
           <div class="flex flex-col sm:flex-row items-center space-y-2 sm:space-y-0 sm:space-x-2 mt-4">       
             <p>Parentesco (en caso de no firmar el paciente)</p>        
             <input type="text" class="form-input block w-full sm:w-auto" placeholder="parentesco">
           </div>
 
           <!-- Botones de Envío -->
-          <div class="mt-6 flex flex-col sm:flex-row items-center justify-end gap-y-2 sm:gap-x-6">
+          <!-- <div class="mt-6 flex flex-col sm:flex-row items-center justify-end gap-y-2 sm:gap-x-6">
             <button type="button" class="w-full sm:w-auto text-sm font-semibold leading-6 text-gray-900">Cancelar</button>
             <button type="submit" class="w-full sm:w-auto rounded-md bg-indigo-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">Enviar</button>
-          </div>
+          </div> -->
 
         </form>
       </div>
-
-      <!-- <script src="https://html2canvas.hertzen.com/dist/html2canvas.min.js"></script>  -->
-      <script src="https://cdn.jsdelivr.net/npm/html2canvas@1.4.1/dist/html2canvas.min.js"></script>  
-      <!-- <script src="script.js"></script>  -->
-
+      <script src="https://cdn.jsdelivr.net/npm/html2canvas@1.4.1/dist/html2canvas.min.js"></script>
       <script src="https://cdn.jsdelivr.net/npm/signature_pad@4.0.0/dist/signature_pad.umd.min.js"></script>
+
       <script>
-          const canvas = document.getElementById('signature-pad');
+        function initializeSignaturePad(formDocument) {
+          const canvas = formDocument.querySelector('#signature-pad-2');
           const signaturePad = new SignaturePad(canvas, {
-              backgroundColor: 'rgb(255, 255, 255)'
+            backgroundColor: 'rgb(255, 255, 255)'
           });
 
-          document.getElementById('clear').addEventListener('click', function() {
-              signaturePad.clear();
+          formDocument.querySelector('#clear-2').addEventListener('click', function() {
+            signaturePad.clear();
           });
 
-          // Respecto a la firma hay algo raro con esto, se rompe cuando lo sacas y no deberia, no hay ningun id con myForm
-          document.getElementById('myForm').addEventListener('submit', function(e) {
-              e.preventDefault();
-              if (signaturePad.isEmpty()) {
-                  alert('Por favor, proporcione una firma.');
-              } else {
-                  const signatureData = signaturePad.toDataURL();
-                  console.log(signatureData); // Aquí puedes enviar la firma al servidor
-                  // Continúa con el envío del formulario
-              }
-          });
-
-          // Configurar el tamaño del canvas
           function resizeCanvas() {
             const ratio = Math.max(window.devicePixelRatio || 1, 1);
             canvas.width = canvas.offsetWidth * ratio;
             canvas.height = canvas.offsetHeight * ratio;
             canvas.getContext("2d").scale(ratio, ratio);
-
-            // Ajusta el tamaño del canvas en el CSS
-            canvas.style.width = canvas.offsetWidth + 'px';
-            canvas.style.height = canvas.offsetHeight + 'px';
-
-            // Configurar el canvas para usar las coordenadas correctas
+            canvas.width = 500;
+            canvas.height = 200;
+            // canvas.style.width = canvas.offsetWidth + 'px';
+            // canvas.style.height = canvas.offsetHeight + 'px';
+            canvas.style.width = canvas.width + 'px';
+            canvas.style.height = canvas.height + 'px';
+            // const rect = canvas.getBoundingClientRect();
+            // canvas.width = rect.width;
+            // canvas.height = rect.height;
             const ctx = canvas.getContext("2d");
             ctx.scale(ratio, ratio);
-
-            signaturePad.clear(); // Limpia la firma existente
+            signaturePad.clear();
           }
 
-          // Ajustar el tamaño del canvas al cargar la página y al cambiar el tamaño de la ventana
-          window.addEventListener('load', resizeCanvas);
-          window.addEventListener('resize', resizeCanvas);
-
-          // Función para ajustar las coordenadas del evento
           function getMousePos(canvas, evt) {
-              const rect = canvas.getBoundingClientRect();
-              const scaleX = canvas.width / rect.width;
-              const scaleY = canvas.height / rect.height;
-              return {
-                  x: (evt.clientX - rect.left) * scaleX,
-                  y: (evt.clientY - rect.top) * scaleY
-              };
+            const rect = canvas.getBoundingClientRect();
+            const scaleX = canvas.width / rect.width;
+            const scaleY = canvas.height / rect.height;
+            return {
+              x: (evt.clientX - rect.left) * scaleX,
+              y: (evt.clientY - rect.top) * scaleY
+            };
           }
 
-          // Sobrescribe los métodos de SignaturePad para usar las coordenadas ajustadas
           const originalOnMouseDown = signaturePad._onMouseDown;
           signaturePad._onMouseDown = function(event) {
-              const position = getMousePos(canvas, event);
-              originalOnMouseDown.call(this, { ...event, clientX: position.x, clientY: position.y });
+            const position = getMousePos(canvas, event);
+            originalOnMouseDown.call(this, { ...event, clientX: position.x, clientY: position.y });
           };
 
           const originalOnMouseMove = signaturePad._onMouseMove;
           signaturePad._onMouseMove = function(event) {
-              const position = getMousePos(canvas, event);
-              originalOnMouseMove.call(this, { ...event, clientX: position.x, clientY: position.y });
+            const position = getMousePos(canvas, event);
+            originalOnMouseMove.call(this, { ...event, clientX: position.x, clientY: position.y });
           };
 
-          // Asegúrate de que el pad de firma use las coordenadas correctas en dispositivos táctiles
           canvas.addEventListener('touchstart', function(event) {
-              const touch = event.touches[0];
-              const mouseEvent = new MouseEvent("mousedown", {
-                  clientX: touch.clientX,
-                  clientY: touch.clientY
-              });
-              canvas.dispatchEvent(mouseEvent);
+            const touch = event.touches[0];
+            const mouseEvent = new MouseEvent("mousedown", {
+              clientX: touch.clientX,
+              clientY: touch.clientY
+            });
+            canvas.dispatchEvent(mouseEvent);
           }, false);
 
           canvas.addEventListener('touchmove', function(event) {
-              const touch = event.touches[0];
-              const mouseEvent = new MouseEvent("mousemove", {
-                  clientX: touch.clientX,
-                  clientY: touch.clientY
-              });
-              canvas.dispatchEvent(mouseEvent);
+            const touch = event.touches[0];
+            const mouseEvent = new MouseEvent("mousemove", {
+              clientX: touch.clientX,
+              clientY: touch.clientY
+            });
+            canvas.dispatchEvent(mouseEvent);
           }, false);
 
           canvas.addEventListener('touchend', function() {
-              const mouseEvent = new MouseEvent("mouseup", {});
-              canvas.dispatchEvent(mouseEvent);
+            const mouseEvent = new MouseEvent("mouseup", {});
+            canvas.dispatchEvent(mouseEvent);
           }, false);
-      </script>
 
-      <script>
-        // Aquí puedes agregar JavaScript para manejar la lógica del formulario
-        document.querySelector('form').addEventListener('submit', function(e) {
-            e.preventDefault();
-            // Aquí iría la lógica para enviar el formulario, posiblemente por WhatsApp
-            alert('Formulario enviado');
-        });
-      </script>
-      <script>
+          window.addEventListener('load', resizeCanvas);
+          window.addEventListener('resize', resizeCanvas);
+
+          return signaturePad;
+        }
 
         document.addEventListener("DOMContentLoaded", function() {
-            var canvas = document.getElementById("signature-pad");
+          const signaturePad = initializeSignaturePad(document);
+          
+          document.querySelector('form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            if (signaturePad.isEmpty()) {
+              alert('Por favor, proporcione una firma.');
+            } else {
+              const signatureData = signaturePad.toDataURL();
+              console.log(signatureData);
+              // Aquí iría la lógica para enviar el formulario, posiblemente por WhatsApp
+              alert('Formulario enviado');
+            }
+          });
 
-            var container = canvas.parentElement;
-            canvas.width = container.clientWidth;
-            canvas.height = 200; 
-            var signaturePad = new SignaturePad(canvas, {
-            });
+          const canvas = document.getElementById("signature-pad-2");
+          const container = canvas.parentElement;
+          canvas.width = container.clientWidth;
+          console.log("Tamaño del contenedor:", container.clientWidth);
+          canvas.width = 500;
+          canvas.height = 200; 
         });
-      </script>
-      <script>
+
         document.getElementById('fecha').addEventListener('input', function (e) {
           let value = this.value.replace(/[^0-9]/g, '');
           if (value.length > 2) {
@@ -541,56 +551,26 @@
           }
           this.value = value;
         });
-      </script>
-      <script>
-        document.querySelectorAll('input[name="pregunta-cirugia"]').forEach((elem) => {
-          elem.addEventListener('change', function(event) {
-            const additionalContent = document.getElementById('additional-content');
-            if (event.target.value === 'si') {
-              additionalContent.classList.remove('hidden');
-              additionalContent.classList.add('block');
-            } else {
-              additionalContent.classList.remove('block');
-              additionalContent.classList.add('hidden');
-            }
+
+        function toggleAdditionalContent(questionName, contentId) {
+          document.querySelectorAll(`input[name="${questionName}"]`).forEach((elem) => {
+            elem.addEventListener('change', function(event) {
+              const additionalContent = document.getElementById(contentId);
+              if (event.target.value === 'si') {
+                additionalContent.classList.remove('hidden');
+                additionalContent.classList.add('block');
+              } else {
+                additionalContent.classList.remove('block');
+                additionalContent.classList.add('hidden');
+              }
+            });
           });
-        });
-        document.querySelectorAll('input[name="pregunta-medicacion"]').forEach((elem) => {
-          elem.addEventListener('change', function(event) {
-            const additionalContent = document.getElementById('additional-medicacion');
-            if (event.target.value === 'si') {
-              additionalContent.classList.remove('hidden');
-              additionalContent.classList.add('block');
-            } else {
-              additionalContent.classList.remove('block');
-              additionalContent.classList.add('hidden');
-            }
-          });
-        });
-        document.querySelectorAll('input[name="pregunta-oncologica"]').forEach((elem) => {
-          elem.addEventListener('change', function(event) {
-            const additionalContent = document.getElementById('additional-onc');
-            if (event.target.value === 'si') {
-              additionalContent.classList.remove('hidden');
-              additionalContent.classList.add('block');
-            } else {
-              additionalContent.classList.remove('block');
-              additionalContent.classList.add('hidden');
-            }
-          });
-        });
-        document.querySelectorAll('input[name="pregunta-deporte"]').forEach((elem) => {
-          elem.addEventListener('change', function(event) {
-            const additionalContent = document.getElementById('additional-deporte');
-            if (event.target.value === 'si') {
-              additionalContent.classList.remove('hidden');
-              additionalContent.classList.add('block');
-            } else {
-              additionalContent.classList.remove('block');
-              additionalContent.classList.add('hidden');
-            }
-          });
-        });
+        }
+
+        toggleAdditionalContent('pregunta-cirugia', 'additional-content');
+        toggleAdditionalContent('pregunta-medicacion', 'additional-medicacion');
+        toggleAdditionalContent('pregunta-oncologica', 'additional-onc');
+        toggleAdditionalContent('pregunta-deporte', 'additional-deporte');
       </script>
   </body> 
 </html>
