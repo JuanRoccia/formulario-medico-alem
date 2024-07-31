@@ -420,21 +420,21 @@
 
       <script>
         const canvas = document.getElementById('signature-pad-2');
-        const signaturePad2 = new SignaturePad2(canvas, {
+        const signaturePad = new SignaturePad(canvas, {
             backgroundColor: 'rgb(255, 255, 255)'
         });
 
         document.getElementById('clear-2').addEventListener('click', function() {
-            signaturePad2.clear();
+            signaturePad.clear();
         });
 
         document.getElementById('myForm').addEventListener('submit', function(e) {
             e.preventDefault();
-            if (signaturePad2.isEmpty()) {
+            if (signaturePad.isEmpty()) {
                 alert('Por favor, proporcione una firma.');
             } else {
-                const signature2Data = signaturePad2.toDataURL();
-                console.log(signature2Data); // Aquí puedes enviar la firma al servidor
+                const signatureData = signaturePad.toDataURL();
+                console.log(signatureData); // Aquí puedes enviar la firma al servidor
                 // Continúa con el envío del formulario
             }
         });
@@ -454,7 +454,7 @@
           const ctx = canvas.getContext("2d");
           ctx.scale(ratio, ratio);
 
-          signaturePad2.clear(); // Limpia la firma existente
+          signaturePad.clear();
         }
 
         // Ajustar el tamaño del canvas al cargar la página y al cambiar el tamaño de la ventana
@@ -473,19 +473,18 @@
         }
 
         // Sobrescribe los métodos de SignaturePad para usar las coordenadas ajustadas
-        const originalOnMouseDown2 = signaturePad2._onMouseDown;
-        signaturePad2._onMouseDown = function(event) {
+        const originalOnMouseDown = signaturePad._onMouseDown;
+        signaturePad._onMouseDown = function(event) {
             const position = getMousePos(canvas, event);
-            originalOnMouseDown2.call(this, { ...event, clientX: position.x, clientY: position.y });
+            originalOnMouseDown.call(this, { ...event, clientX: position.x, clientY: position.y });
         };
 
-        const originalOnMouseMove2 = signaturePad2._onMouseMove;
-        signaturePad2._onMouseMove = function(event) {
+        const originalOnMouseMove = signaturePad._onMouseMove;
+        signaturePad._onMouseMove = function(event) {
             const position = getMousePos(canvas, event);
-            originalOnMouseMove2.call(this, { ...event, clientX: position.x, clientY: position.y });
+            originalOnMouseMove.call(this, { ...event, clientX: position.x, clientY: position.y });
         };
 
-        // Asegúrate de que el pad de firma use las coordenadas correctas en dispositivos táctiles
         canvas.addEventListener('touchstart', function(event) {
             const touch = event.touches[0];
             const mouseEvent = new MouseEvent("mousedown", {
@@ -511,7 +510,6 @@
     </script>
 
     <script>
-      // Aquí puedes agregar JavaScript para manejar la lógica del formulario
       document.querySelector('form').addEventListener('submit', function(e) {
           e.preventDefault();
           // Aquí iría la lógica para enviar el formulario, posiblemente por WhatsApp
@@ -526,7 +524,7 @@
           var container = canvas.parentElement;
           canvas.width = container.clientWidth;
           canvas.height = 200; 
-          var signaturePad2 = new SignaturePad2(canvas, {
+          var signaturePad = new SignaturePad(canvas, {
           });
       });
     </script>
