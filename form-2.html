@@ -420,21 +420,21 @@
 
       <script>
         const canvas = document.getElementById('signature-pad-2');
-        const signaturePad = new SignaturePad(canvas, {
+        const signaturePad2 = new SignaturePad2(canvas, {
             backgroundColor: 'rgb(255, 255, 255)'
         });
 
         document.getElementById('clear-2').addEventListener('click', function() {
-            signaturePad.clear();
+            signaturePad2.clear();
         });
 
         document.getElementById('myForm').addEventListener('submit', function(e) {
             e.preventDefault();
-            if (signaturePad.isEmpty()) {
+            if (signaturePad2.isEmpty()) {
                 alert('Por favor, proporcione una firma.');
             } else {
-                const signatureData = signaturePad.toDataURL();
-                console.log(signatureData); // Aquí puedes enviar la firma al servidor
+                const signature2Data = signaturePad2.toDataURL();
+                console.log(signature2Data); // Aquí puedes enviar la firma al servidor
                 // Continúa con el envío del formulario
             }
         });
@@ -473,16 +473,16 @@
         }
 
         // Sobrescribe los métodos de SignaturePad para usar las coordenadas ajustadas
-        const originalOnMouseDown = signaturePad._onMouseDown;
-        signaturePad._onMouseDown = function(event) {
+        const originalOnMouseDown2 = signaturePad2._onMouseDown;
+        signaturePad2._onMouseDown = function(event) {
             const position = getMousePos(canvas, event);
-            originalOnMouseDown.call(this, { ...event, clientX: position.x, clientY: position.y });
+            originalOnMouseDown2.call(this, { ...event, clientX: position.x, clientY: position.y });
         };
 
-        const originalOnMouseMove = signaturePad._onMouseMove;
-        signaturePad._onMouseMove = function(event) {
+        const originalOnMouseMove2 = signaturePad2._onMouseMove;
+        signaturePad2._onMouseMove = function(event) {
             const position = getMousePos(canvas, event);
-            originalOnMouseMove.call(this, { ...event, clientX: position.x, clientY: position.y });
+            originalOnMouseMove2.call(this, { ...event, clientX: position.x, clientY: position.y });
         };
 
         // Asegúrate de que el pad de firma use las coordenadas correctas en dispositivos táctiles
@@ -526,7 +526,7 @@
           var container = canvas.parentElement;
           canvas.width = container.clientWidth;
           canvas.height = 200; 
-          var signaturePad = new SignaturePad(canvas, {
+          var signaturePad2 = new SignaturePad2(canvas, {
           });
       });
     </script>
