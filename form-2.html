@@ -11,11 +11,17 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400..700;1,400..700&display=swap" rel="stylesheet">
+    <!-- Favicon -->
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon/favicon-16x16.png">
+    <link rel="manifest" href="/site.webmanifest">
+    <!-- Estilos CSS -->
     <style>
         /*<uniquifier>: Use a unique and descriptive class name
         <weight>: Use a value from 400 to 700*/
 
-            .lora {
+        .lora {
           font-family: "Lora", serif;
           font-optical-sizing: auto;
           font-weight: 500;
@@ -98,23 +104,27 @@
     </style>
   </head>
   <body class="bg-gray-100">
+    <!-- Contenedor Principal -->
     <div class="container mx-auto px-4 py-8 flex justify-center">
+      <!-- Formulario -->
       <form class="bg-white w-full max-w-screen-lg shadow-md rounded px-4 sm:px-8 pt-6 pb-8 mb-4">
-        <header class="header flex flex-col items-center sm:flex-row sm:justify-center py-4 px-2 mb-4">
-          <div class="w-full sm:w-auto mb-4 sm:mb-0 sm:mr-4 flex justify-center">
-            <img src="/images/imagenes-alem.webp" alt="Logo Imágenes Alem" class="w-auto h-20 sm:h-24 object-contain">
+        <!-- Encabezado -->
+        <header class="header flex flex-col items-center py-4 px-2 mb-4">
+          <div class="flex flex-col sm:flex-row items-center w-full sm:w-auto mb-4">
+              <img src="/images/imagenes-alem.webp" alt="Logo Imágenes Alem" class="w-auto h-20 sm:h-24 object-contain mb-4 sm:mb-0 sm:mr-4">
+              <div class="title-container lora text-center">
+                  <h4 class="text-xs sm:text-sm">CENTRO DE DIAGNÓSTICO</h4>
+                  <h3 class="text-sm sm:text-base">POR IMÁGENES</h3>
+                  <h2 class="text-xl sm:text-2xl font-bold">ALEM</h2>
+              </div>
           </div>
-          <div class="title-container lora text-center">
-            <h4 class="text-xs sm:text-sm">CENTRO DE DIAGNÓSTICO</h4>
-            <h3 class="text-sm sm:text-base">POR IMÁGENES</h3>
-            <h2 class="text-xl sm:text-2xl font-bold">ALEM</h2>
+          <div class="w-full text-center lora">
+              <h2 class="text-xl sm:text-2xl font-bold">MUSCULO-ESQUELÉTICO</h2>
           </div>
-        </header>
+      </header>
         <!-- Datos Generales del Paciente -->
         <div class="mb-6">
-          <h2 class="text-xl font-bold mb-4">MUSCULO-ESQUELÉTICO</h2>    
-        </div>
-        <div class="mb-6">   
+          <h2 class="text-xl font-bold mb-4">Información del Paciente</h2>
           <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
             <div>
               <label class="block text-sm font-medium text-gray-900 mb-2" for="nombre">
@@ -171,7 +181,7 @@
                 <div class="mb-4 md:mb-0 md:mr-4">
                   <div class="flex flex-wrap items-center space-x-0 space-y-1 md:space-y-0"> <!--md:space-x-4-->
                     <label class="inline-flex items-center w-full md:w-auto">
-                      <input type="checkbox" class="form-checkbox ml-3" name="movimiento" value="option1">
+                      <input type="checkbox" class="form-checkbox ml-3" name="movimiento" value="option1" required>
                       <span class="ml-2">Ante movimiento</span>
                     </label>
                     <label class="inline-flex items-center w-full md:w-auto">
@@ -218,7 +228,7 @@
                 <div class="mb-4 md:mb-0 md:mr-4">
                   <div class="flex flex-wrap md:flex-nowrap items-center space-x-0 md:space-x-4 space-y-1">
                     <label class="inline-flex items-center w-full md:w-auto">
-                        <input type="checkbox" class="form-checkbox ml-3 md:ml-0" name="interno" value="option1">
+                        <input type="checkbox" class="form-checkbox ml-3 md:ml-0" name="interno" value="option1" required>
                         <span class="ml-1">Interno</span>
                     </label>
                     <label class="inline-flex items-center w-full md:w-auto md:ml-2">
@@ -257,7 +267,7 @@
                 <div class="mb-4 md:mb-0 md:mr-4">
                   <div class="flex flex-wrap md:flex-nowrap items-center space-x-0 md:space-x-4 space-y-1">
                     <label class="inline-flex items-center w-full md:w-auto">
-                        <input type="checkbox" class="form-checkbox ml-3 md:ml-0" name="radiografia" value="option1">
+                        <input type="checkbox" class="form-checkbox ml-3 md:ml-0" name="radiografia" value="option1" required>
                         <span class="ml-1">RADIOGRAFÍA</span>
                     </label>
                     <label class="inline-flex items-center w-full md:w-auto md:ml-2">
@@ -279,7 +289,7 @@
                   <p class="mb-2">¿Tuvo un traumatismo?</p>        
                   <div class="flex items-center space-x-4">
                     <label class="inline-flex items-center">          
-                      <input type="radio" class="form-radio" name="pregunta2" value="no">            
+                      <input type="radio" class="form-radio" name="pregunta2" value="no" required>            
                       <span class="ml-2">No</span>            
                     </label>           
                     <label class="inline-flex items-center">            
@@ -292,7 +302,7 @@
                   <p class="mb-2">¿Le han realizado cirugía/s del sitio problema?</p>        
                   <div class="flex items-center space-x-4">                    
                     <label class="inline-flex items-center">          
-                      <input type="radio" class="form-radio" name="pregunta-cirugia" value="no">            
+                      <input type="radio" class="form-radio" name="pregunta-cirugia" value="no" required>            
                       <span class="ml-2">No</span>            
                     </label>        
                     <label class="inline-flex items-center">            
@@ -315,7 +325,7 @@
                   <p class="mb-2">¿Toma Alguna medicion?</p>        
                   <div class="flex items-center space-x-4">
                     <label class="inline-flex items-center">          
-                      <input type="radio" class="form-radio" name="pregunta-medicacion" value="no">            
+                      <input type="radio" class="form-radio" name="pregunta-medicacion" value="no" required>            
                       <span class="ml-2">No</span>            
                     </label>          
                     <label class="inline-flex items-center">            
@@ -334,7 +344,7 @@
                   <p class="mb-2">¿Presenta antecedentes oncológicos?</p>        
                   <div class="flex items-center space-x-4">
                     <label class="inline-flex items-center">          
-                      <input type="radio" class="form-radio" name="pregunta-oncologica" value="no">            
+                      <input type="radio" class="form-radio" name="pregunta-oncologica" value="no" required>            
                       <span class="ml-2">No</span>            
                     </label>          
                     <label class="inline-flex items-center">            
@@ -353,7 +363,7 @@
                   <p class="mb-2">¿Realiza algún deporte?</p>        
                   <div class="flex items-center space-x-4">
                     <label class="inline-flex items-center">          
-                      <input type="radio" class="form-radio" name="pregunta-deporte" value="no">            
+                      <input type="radio" class="form-radio" name="pregunta-deporte" value="no" required>            
                       <span class="ml-2">No</span>            
                     </label>          
                     <label class="inline-flex items-center">            
@@ -373,11 +383,11 @@
                 </div>  
                 <div class="flex flex-wrap items-center gap-2 mt-4">
                   <p class="text-sm">Bahía Blanca</p>
-                  <input type="number" class="form-input w-16 text-sm" placeholder="Día">
+                  <input type="number" class="form-input w-16 text-sm" placeholder="Día" required>
                   <p class="text-sm">De</p>
-                  <input type="text" class="form-input w-24 text-sm" placeholder="Mes">
+                  <input type="text" class="form-input w-24 text-sm" placeholder="Mes" required>
                   <p class="text-sm">De 20</p>
-                  <input type="number" class="form-input w-16 text-sm" placeholder="Año">
+                  <input type="number" class="form-input w-16 text-sm" placeholder="Año" required>
                 </div>
                 <!-- Agrega más preguntas aquí -->  
               </div>      
