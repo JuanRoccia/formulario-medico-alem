@@ -110,56 +110,55 @@
         </header>
         <!-- Cuestionario -->
         <div class="mb-6">
-          <h3 class="text-xl font-bold underline mb-4">Marque el sitio de dolor o problema:</h3>
-          <div class="flex flex-col sm:flex-row items-center justify-center gap-4 my-10 px-4">
-            <!-- Primer imagen y texto -->
-            <div class="flex flex-col sm:flex-row items-center gap-2 w-full sm:w-auto">
-              <span class="border border-black px-2 py-1 mb-2 sm:mb-0 text-sm">DERECHA</span>
-              <img src="/images/frontal.webp" alt="Imagen 1" class="body-img w-24 h-auto object-contain">
-            </div>
-            <!-- Segunda imagen y texto -->
-            <div class="flex flex-col sm:flex-row items-center gap-2 w-full sm:w-auto">
-              <span class="border border-black px-2 py-1 mb-2 sm:mb-0 text-sm">IZQUIERDA</span>
-              <img src="/images/espalda.webp" alt="Imagen 2" class="body-img w-24 h-auto object-contain">
-            </div>
-          </div>
-          <h3 class="mb-4"><span class="underline">MARCAR</span> LA CORRECTA:</h3>
+          <h3 class="mb-4">MARCAR LAS CORRECTAS:</h3>
           <div class="space-y-4">
             <div class="flex flex-col md:flex-row">
-              <p class="pr-2">Dolor:</p>
+              <p class="pr-2">Síntomas por los cuales se realiza el estudio:</p>
               <div class="mb-4 md:mb-0 md:mr-4">
                 <div class="flex flex-wrap items-center space-x-0 space-y-1 md:space-y-0"> <!--md:space-x-4-->
                   <label class="inline-flex items-center w-full md:w-auto">
-                    <input type="checkbox" class="form-checkbox ml-3" name="movimiento" value="option1" required>
-                    <span class="ml-2">Ante movimiento</span>
+                    <input type="checkbox" class="form-checkbox ml-3" name="ceguera" value="option1" required>
+                    <span class="ml-2">Ceguera</span>
                   </label>
                   <label class="inline-flex items-center w-full md:w-auto">
-                    <input type="checkbox" class="form-checkbox ml-3" name="reposo" value="option2">
-                    <span class="ml-1">En Reposo</span>
+                    <input type="checkbox" class="form-checkbox ml-3" name="olfato value="option2">
+                    <span class="ml-1">Perdida del olfato</span>
                   </label>
                   <label class="inline-flex items-center w-full md:w-auto">
-                    <input type="checkbox" class="form-checkbox ml-3" name="tumefacción" value="option3">
-                    <span class="ml-1">Tumefacción</span>
+                    <input type="checkbox" class="form-checkbox ml-3" name="vertigo" value="option3">
+                    <span class="ml-1">Vértigo</span>
                   </label>
                   <label class="inline-flex items-center w-full md:w-auto">
-                    <input type="checkbox" class="form-checkbox ml-3" name="calambres" value="option4">
-                    <span class="ml-1">Calambres</span>
+                    <input type="checkbox" class="form-checkbox ml-3" name="sordera" value="option4">
+                    <span class="ml-1">Sordera</span>
                   </label>
                   <label class="inline-flex items-center w-full md:w-auto">
-                    <input type="checkbox" class="form-checkbox ml-3" name="inestabilidad" value="option5">
-                    <span class="ml-1">Inestabilidad</span>
+                    <input type="checkbox" class="form-checkbox ml-3" name="fiebre" value="option5">
+                    <span class="ml-1">Fiebre</span>
                   </label>
                   <label class="inline-flex items-center w-full md:w-auto">
-                    <input type="checkbox" class="form-checkbox ml-3" name="bloqueo articular" value="option6">
-                    <span class="ml-1">Bloqueo articular</span>
+                    <input type="checkbox" class="form-checkbox ml-3" name="vision doble" value="option6">
+                    <span class="ml-1">Visión doble</span>
                   </label>
                   <label class="inline-flex items-center w-full md:w-auto">
-                    <input type="checkbox" class="form-checkbox ml-3" name="lumbalgia" value="option7">
-                    <span class="ml-1">Lumbalgia</span>
+                    <input type="checkbox" class="form-checkbox ml-3" name="convulsiones" value="option7">
+                    <span class="ml-1">Convulsiones</span>
                   </label>
                   <label class="inline-flex items-center w-full md:w-auto">
-                    <input type="checkbox" class="form-checkbox ml-3" name="adormecimiento" value="option8">
-                    <span class="ml-1">Adormecimiento</span>
+                    <input type="checkbox" class="form-checkbox ml-3" name="disfonia" value="option8">
+                    <span class="ml-1">Disfonía</span>
+                  </label>
+                  <label class="inline-flex items-center w-full md:w-auto">
+                    <input type="checkbox" class="form-checkbox ml-3" name="molestias al tragar" value="option9">
+                    <span class="ml-1">Molestias al tragar</span>
+                  </label>
+                  <label class="inline-flex items-center w-full md:w-auto">
+                    <input type="checkbox" class="form-checkbox ml-3" name="neuralgias" value="option9">
+                    <span class="ml-1">Neuralgias</span>
+                  </label>
+                  <label class="inline-flex items-center w-full md:w-auto">
+                    <input type="checkbox" class="form-checkbox ml-3" name="paralisis" value="option9">
+                    <span class="ml-1">Parálisis</span>
                   </label>
                   <label class="inline-flex items-center w-full md:w-auto">
                     <input type="checkbox" class="form-checkbox ml-3" name="hormigueos" value="option9">
@@ -167,44 +166,13 @@
                   </label>
                 </div>
               </div>
-            </div>
-            <div class="flex items-center space-x-2">   
-              <p>Otros:</p>        
-              <input type="text" class="form-input block w-full" placeholder="Escriba aquí">
-            </div>
-            <div class="flex flex-col md:flex-row">
-              <p class="pr-4">Ubicación:</p>
-              <div class="mb-4 md:mb-0 md:mr-4">
-                <div class="flex flex-wrap md:flex-nowrap items-center space-x-0 md:space-x-4 space-y-1">
-                  <label class="inline-flex items-center w-full md:w-auto">
-                    <input type="checkbox" class="form-checkbox ml-3 md:ml-0" name="interno" value="option1" required>
-                    <span class="ml-1">Interno</span>
-                  </label>
-                  <label class="inline-flex items-center w-full md:w-auto md:ml-2">
-                    <input type="checkbox" class="form-checkbox ml-3 md:ml-0" name="externo" value="option2">
-                    <span class="ml-1">Externo</span>
-                  </label>
-                  <label class="inline-flex items-center w-full md:w-auto md:ml-2">
-                    <input type="checkbox" class="form-checkbox ml-3 md:ml-0" name="anterior" value="option3">
-                    <span class="ml-1">Anterior</span>
-                  </label>
-                  <label class="inline-flex items-center w-full md:w-auto md:ml-2">
-                    <input type="checkbox" class="form-checkbox ml-3 md:ml-0" name="posterior" value="option4">
-                    <span class="ml-1">Posterior</span>
-                  </label>
-                  <label class="inline-flex items-center w-full md:w-auto md:ml-2">
-                    <input type="checkbox" class="form-checkbox ml-3 md:ml-0" name="derecha" value="option5">
-                    <span class="ml-1">Derecha</span>
-                  </label>
-                  <label class="inline-flex items-center w-full md:w-auto md:ml-2">
-                    <input type="checkbox" class="form-checkbox ml-3 md:ml-0" name="izquierda" value="option6">
-                    <span class="ml-1">Izquierda</span>
-                  </label>
-                </div>
+              <div class="flex items-center space-x-2">   
+                <p>Otros:</p>        
+                <input type="text" class="form-input block w-full" placeholder="Escriba aquí">
               </div>
             </div>
             <div class="flex flex-col md:flex-row md:items-center">
-              <p class="pr-4">Desde cuándo los presenta:</p>
+              <p class="pr-4">Desde cuándo los presenta aprox:</p>
               <div class="mb-4 md:mb-0 md:mr-4">
                 <div class="flex flex-wrap items-center">
                   <input type="text" id="fecha" name="fecha" class="date-input w-full sm:w-auto" placeholder="DD/MM/AAAA" pattern="\d{2}/\d{2}/\d{4}" required>
@@ -212,85 +180,123 @@
               </div>
             </div>
             <div class="flex flex-col md:flex-row">
-              <p class="pr-4">Estudios previos:</p>
+              <p class="pr-4">Los síntomas comenzaron de forma:</p>
               <div class="mb-4 md:mb-0 md:mr-4">
                 <div class="flex flex-wrap md:flex-nowrap items-center space-x-0 md:space-x-4 space-y-1">
                   <label class="inline-flex items-center w-full md:w-auto">
-                    <input type="checkbox" class="form-checkbox ml-3 md:ml-0" name="radiografia" value="option1" required>
-                    <span class="ml-1">RADIOGRAFÍA</span>
+                    <input type="checkbox" class="form-checkbox ml-3 md:ml-0" name="origen sintomas" value="option1" required>
+                    <span class="ml-1">Súbita</span>
                   </label>
                   <label class="inline-flex items-center w-full md:w-auto md:ml-2">
-                    <input type="checkbox" class="form-checkbox ml-3 md:ml-0" name="tomografia" value="option2">
-                    <span class="ml-1">TOMOGRAFÍA</span>
+                    <input type="checkbox" class="form-checkbox ml-3 md:ml-0" name="origen sintomas" value="option2">
+                    <span class="ml-1">Gradualmente</span>
                   </label>
                   <label class="inline-flex items-center w-full md:w-auto md:ml-2">
-                    <input type="checkbox" class="form-checkbox ml-3 md:ml-0" name="resonancia" value="option3">
-                    <span class="ml-1">RESONANCIA</span>
-                  </label>
-                  <label class="inline-flex items-center w-full md:w-auto md:ml-2">
-                    <input type="checkbox" class="form-checkbox ml-3 md:ml-0" name="ecografia" value="option4">
-                    <span class="ml-1">ECOGRAFÍA</span>
+                    <input type="checkbox" class="form-checkbox ml-3 md:ml-0" name="origen sintomas" value="option3">
+                    <span class="ml-1">Hace meses-años</span>
                   </label>
                 </div>
               </div>
             </div>
-            <div>      
-              <p class="mb-2">¿Tuvo un traumatismo?</p>        
+            
+            <div> 
+              <p class="mb-2">¿Tuvo un traumatismo de cráneo/cara?</p>        
               <div class="flex items-center space-x-4">
                 <label class="inline-flex items-center">          
-                  <input type="radio" class="form-radio" name="pregunta2" value="no" required>            
+                  <input type="radio" class="form-radio" name="traumatismo" value="no" required>            
                   <span class="ml-2">No</span>            
                 </label>           
                 <label class="inline-flex items-center">            
-                  <input type="radio" class="form-radio" name="pregunta2" value="si">            
+                  <input type="radio" class="form-radio" name="traumatismo" value="si">            
                   <span class="ml-2">Sí</span>            
                 </label>
-              </div>          
+              </div>
+              <div id="additional-traumatismo" class="hidden">
+                <div class="flex items-center space-x-2 mt-4">        
+                  <p>¿Dónde?</p>        
+                  <input type="text" class="form-input block" placeholder="Escriba aquí">
+                </div>
+                <div class="flex items-center space-x-2 mt-4">        
+                  <p>¿Hace cuánto?</p>        
+                  <input type="text" class="form-input block" placeholder="Escriba aquí">
+                </div>
+              </div>
             </div>
+
             <div>
-              <p class="mb-2">¿Le han realizado cirugía/s del sitio problema?</p>        
+              <p class="mb-2">Antecedentes de problemas al nacer o durante el parto:</p>        
               <div class="flex items-center space-x-4">  
                 <label class="inline-flex items-center">          
-                  <input type="radio" class="form-radio" name="pregunta-cirugia" value="no" required>            
+                  <input type="radio" class="form-radio" name="problemas al nacer" value="no" required>            
                   <span class="ml-2">No</span>            
                 </label>
                 <label class="inline-flex items-center">            
-                  <input type="radio" class="form-radio" name="pregunta-cirugia" value="si">            
+                  <input type="radio" class="form-radio" name="problemas al nacer" value="si">            
                   <span class="ml-2">Sí</span>            
                 </label>  
-              </div>      
-            </div>
-            <div id="additional-content" class="hidden">
-              <div class="flex items-center space-x-2 mt-4">        
-                <p>¿Qué tipo de cirugía?</p>        
-                <input type="text" class="form-input block" placeholder="Escriba aquí">
               </div>
-              <div class="flex items-center space-x-2 mt-4">        
-                <p>¿Hace cuánto tiempo?</p>        
-                <input type="text" class="form-input block" placeholder="Escriba aquí">
-              </div>
+              <div id="additional-problemas" class="hidden">
+                <div class="flex items-center space-x-2 mt-4">        
+                  <p>¿Cuáles?</p>        
+                  <input type="text" class="form-input block" placeholder="Escriba aquí">
+                </div>
+              </div>     
             </div>
+            
             <div>        
-              <p class="mb-2">¿Toma Alguna medicion?</p>        
+              <p class="mb-2">Se ha realizado Cirugías/biopsias en el área de estudio:</p>        
               <div class="flex items-center space-x-4">
                 <label class="inline-flex items-center">          
-                  <input type="radio" class="form-radio" name="pregunta-medicacion" value="no" required>            
+                  <input type="radio" class="form-radio" name="cirugias-biopsias" value="no" required>            
                   <span class="ml-2">No</span>            
                 </label>          
                 <label class="inline-flex items-center">            
-                  <input type="radio" class="form-radio" name="pregunta-medicacion" value="si">            
+                  <input type="radio" class="form-radio" name="cirugias-biopsias" value="si">            
                   <span class="ml-2">Sí</span>            
                 </label>          
-              </div>          
-            </div>
-            <div id="additional-medicacion" class="hidden">
-              <div class="flex items-center space-x-2 mt-4">       
-                <p>INDIQUE CUALES:</p>        
-                <input type="text" class="form-input block" placeholder="Escriba aquí">
               </div>
+              <div id="additional-cirugias" class="hidden">
+                <div class="flex items-center space-x-2 mt-4">       
+                  <p>¿Qué le hicieron?</p>        
+                  <input type="text" class="form-input block" placeholder="Escriba aquí">
+                </div>
+                <div class="flex items-center space-x-2 mt-4">       
+                  <p>Fecha: </p>        
+                  <input type="text" class="form-input block" placeholder="Escriba aquí">
+                </div>
+                <div class="flex items-center space-x-2 mt-4">       
+                  <p>Resultados de la cirugía o biopsia</p>        
+                  <input type="text" class="form-input block" placeholder="Escriba aquí">
+                </div>
+              </div>        
             </div>
+            
             <div>
-              <p class="mb-2">¿Presenta antecedentes oncológicos?</p>        
+              <p class="mb-2">¿Presenta antecedentes odontológicos?</p>        
+              <div class="flex items-center space-x-4">
+                <label class="inline-flex items-center">          
+                  <input type="radio" class="form-radio" name="pregunta-odontologica" value="no" required>            
+                  <span class="ml-2">No</span>            
+                </label>          
+                <label class="inline-flex items-center">            
+                  <input type="radio" class="form-radio" name="pregunta-odontologica" value="si">            
+                  <span class="ml-2">Sí</span>            
+                </label>          
+              </div>
+              <div id="additional-odontologica" class="hidden">
+                <div class="flex items-center space-x-2 mt-4">        
+                  <p>¿Cuál?</p>        
+                  <input type="text" class="form-input block" placeholder="Escriba aquí">
+                </div>
+                <div class="flex items-center space-x-2 mt-4">        
+                  <p>Fecha: </p>        
+                  <input type="text" class="form-input block" placeholder="Escriba aquí">
+                </div>
+              </div>         
+            </div>
+
+            <div>
+              <p class="mb-2">¿Presenta antecedentes oncológicos personales?</p>        
               <div class="flex items-center space-x-4">
                 <label class="inline-flex items-center">          
                   <input type="radio" class="form-radio" name="pregunta-oncologica" value="no" required>            
@@ -300,48 +306,268 @@
                   <input type="radio" class="form-radio" name="pregunta-oncologica" value="si">            
                   <span class="ml-2">Sí</span>            
                 </label>          
-              </div>          
-            </div>
-            <div id="additional-onc" class="hidden">
-              <div class="flex items-center space-x-2 mt-4">        
-                <p>¿Cuáles?</p>        
-                <input type="text" class="form-input block" placeholder="Escriba aquí">
               </div>
+              <div id="additional-oncologica" class="hidden">
+                <div class="flex items-center space-x-2 mt-4 mb-4">        
+                  <p>¿Cuál?</p>        
+                  <input type="text" class="form-input block" placeholder="Escriba aquí">
+                </div>
+                <p class="mb-1">Radioterapia: </p>        
+                <div class="flex items-center space-x-4">
+                  <label class="inline-flex items-center">          
+                    <input type="radio" class="form-radio" name="radioterapia" value="no" required>            
+                    <span class="ml-2">No</span>            
+                  </label>          
+                  <label class="inline-flex items-center">            
+                    <input type="radio" class="form-radio" name="radioterapia" value="si">            
+                    <span class="ml-2">Sí</span>            
+                  </label>      
+                </div>
+                <div class="flex items-center space-x-2 mb-4">        
+                  <p>Fecha: </p>        
+                  <input type="text" class="form-input block" placeholder="Escriba aquí">
+                </div>  
+                <p class="mb-1">Quimioterapia: </p>        
+                <div class="flex items-center space-x-4">
+                  <label class="inline-flex items-center">          
+                    <input type="radio" class="form-radio" name="quimioterapia" value="no" required>            
+                    <span class="ml-2">No</span>            
+                  </label>          
+                  <label class="inline-flex items-center">            
+                    <input type="radio" class="form-radio" name="quimioterapia" value="si">            
+                    <span class="ml-2">Sí</span>            
+                  </label>  
+                </div>
+                <div class="flex items-center space-x-2">        
+                  <p>Fecha: </p>        
+                  <input type="text" class="form-input block" placeholder="Escriba aquí">
+                </div> 
+              </div>         
             </div>
+            
             <div>
-              <p class="mb-2">¿Realiza algún deporte?</p>        
-              <div class="flex items-center space-x-4">
-                <label class="inline-flex items-center">          
-                  <input type="radio" class="form-radio" name="pregunta-deporte" value="no" required>            
+              <h3 class="mt-5 mb-2">PADECE O CREE HABER SUFRIDO ALGUNA DE LAS SIGUIENTES</h3>
+              <!-- Diabetes -->
+              <p class="">Diabetes:</p>        
+              <div class="flex items-center space-x-4 mb-4">
+                <label class="inline-flex items-center">       
+                  <input type="radio" class="form-radio" name="diabetes" value="no" required>            
                   <span class="ml-2">No</span>            
                 </label>          
                 <label class="inline-flex items-center">            
-                  <input type="radio" class="form-radio" name="pregunta-deporte" value="si">            
+                  <input type="radio" class="form-radio" name="diabetes" value="si">            
                   <span class="ml-2">Sí</span>            
                 </label>          
-              </div>       
-            </div>
-            <div id="additional-deporte" class="hidden">
-              <div class="flex items-center space-x-2 mt-4">        
-                <p>¿Cuál?</p>
-                <input type="text" class="form-input block" placeholder="Escriba aquí">
+              </div>
+              <!-- Hipertensión -->
+              <p class="">Hipertensión:</p>        
+              <div class="flex items-center space-x-4 mb-4">
+                <label class="inline-flex items-center">          
+                  <input type="radio" class="form-radio" name="hipertension" value="no" required>            
+                  <span class="ml-2">No</span>            
+                </label>          
+                <label class="inline-flex items-center">            
+                  <input type="radio" class="form-radio" name="hipertension" value="si">            
+                  <span class="ml-2">Sí</span>            
+                </label>          
+              </div>
+              <!-- Arritmias -->
+              <p class="">Arritmias:</p>        
+              <div class="flex items-center space-x-4 mb-4">
+                <label class="inline-flex items-center">          
+                  <input type="radio" class="form-radio" name="arritmias" value="no" required>            
+                  <span class="ml-2">No</span>            
+                </label>          
+                <label class="inline-flex items-center">            
+                  <input type="radio" class="form-radio" name="arritmias" value="si">            
+                  <span class="ml-2">Sí</span>            
+                </label>          
+              </div>
+              <!-- HIV -->
+              <p class="">HIV:</p>        
+              <div class="flex items-center space-x-4 mb-4">
+                <label class="inline-flex items-center">          
+                  <input type="radio" class="form-radio" name="hiv" value="no" required>            
+                  <span class="ml-2">No</span>            
+                </label>          
+                <label class="inline-flex items-center">            
+                  <input type="radio" class="form-radio" name="hiv" value="si">            
+                  <span class="ml-2">Sí</span>            
+                </label>          
+              </div>
+              <!-- Alteraciones Tiroideas -->
+              <p class="">Alt. Tiroideas:</p>        
+              <div class="flex items-center space-x-4 mb-4">
+                <label class="inline-flex items-center">          
+                  <input type="radio" class="form-radio" name="alt_tiroideas" value="no" required>            
+                  <span class="ml-2">No</span>            
+                </label>          
+                <label class="inline-flex items-center">            
+                  <input type="radio" class="form-radio" name="alt_tiroideas" value="si">            
+                  <span class="ml-2">Sí</span>            
+                </label>          
+              </div>
+              <!-- Esclerosis Múltiple -->
+              <p class="">Esclerosis Múltiple:</p>        
+              <div class="flex items-center space-x-4 mb-4">
+                <label class="inline-flex items-center">          
+                  <input type="radio" class="form-radio" name="esclerosis_multiple" value="no" required>            
+                  <span class="ml-2">No</span>            
+                </label>          
+                <label class="inline-flex items-center">            
+                  <input type="radio" class="form-radio" name="esclerosis_multiple" value="si">            
+                  <span class="ml-2">Sí</span>            
+                </label>          
+              </div>
+              <!-- Trastornos Psiquiátricos -->
+              <p class="">T. Psiquiátricos:</p>        
+              <div class="flex items-center space-x-4 mb-4">
+                <label class="inline-flex items-center">          
+                  <input type="radio" class="form-radio" name="trastornos_psiquiatricos" value="no" required>            
+                  <span class="ml-2">No</span>            
+                </label>          
+                <label class="inline-flex items-center">            
+                  <input type="radio" class="form-radio" name="trastornos_psiquiatricos" value="si">            
+                  <span class="ml-2">Sí</span>            
+                </label>          
+              </div>
+              <!-- Migraña -->
+              <p class="">Migraña:</p>        
+              <div class="flex items-center space-x-4 mb-4">
+                <label class="inline-flex items-center">          
+                  <input type="radio" class="form-radio" name="migrana" value="no" required>            
+                  <span class="ml-2">No</span>            
+                </label>          
+                <label class="inline-flex items-center">            
+                  <input type="radio" class="form-radio" name="migrana" value="si">            
+                  <span class="ml-2">Sí</span>            
+                </label>          
+              </div>
+              <!-- Parkinson -->
+              <p class="">Parkinson:</p>        
+              <div class="flex items-center space-x-4 mb-4">
+                <label class="inline-flex items-center">          
+                  <input type="radio" class="form-radio" name="parkinson" value="no" required>            
+                  <span class="ml-2">No</span>            
+                </label>          
+                <label class="inline-flex items-center">            
+                  <input type="radio" class="form-radio" name="parkinson" value="si">            
+                  <span class="ml-2">Sí</span>            
+                </label>          
+              </div>
+              <!-- Hidrocefalia -->
+              <p class="">Hidrocefalia:</p>        
+              <div class="flex items-center space-x-4 mb-4">
+                <label class="inline-flex items-center">          
+                  <input type="radio" class="form-radio" name="hidrocefalia" value="no" required>            
+                  <span class="ml-2">No</span>            
+                </label>          
+                <label class="inline-flex items-center">            
+                  <input type="radio" class="form-radio" name="hidrocefalia" value="si">            
+                  <span class="ml-2">Sí</span>            
+                </label>          
+              </div>
+              <!-- Alguna otra enfermedad -->
+              <p class="mb-2">Alguna otra enfermedad</p>        
+              <div class="flex items-center space-x-4 mb-4">
+                <input type="text" class="form-input w-full" name="otra_enfermedad" placeholder="Especifique...">
               </div>
             </div>
+
+            <div>
+              <p class="mb-2">¿Toma alguna medicación relacionada al estudio que se tiene que realizar?</p>        
+              <div class="flex items-center space-x-4">  
+                <label class="inline-flex items-center">          
+                  <input type="radio" class="form-radio" name="medicacion-relacionada" value="no" required>            
+                  <span class="ml-2">No</span>            
+                </label>
+                <label class="inline-flex items-center">            
+                  <input type="radio" class="form-radio" name="medicacion-relacionada" value="si">            
+                  <span class="ml-2">Sí</span>            
+                </label>  
+              </div>
+              <div id="medicacion-relacionada" class="hidden">
+                <div class="flex items-center space-x-2 mt-4">        
+                  <p>¿Cuáles?</p>        
+                  <input type="text" class="form-input block" placeholder="Escriba aquí">
+                </div>
+              </div>     
+            </div>
+
+            <div>
+              <p class="mb-2">¿Ha realizado exámenes de laboratorio por Prolactina Y Hormonas tiroideas?</p>        
+              <div class="flex items-center space-x-4">  
+                <label class="inline-flex items-center">          
+                  <input type="radio" class="form-radio" name="prolactina" value="no" required>            
+                  <span class="ml-2">No</span>            
+                </label>
+                <label class="inline-flex items-center">            
+                  <input type="radio" class="form-radio" name="prolactina" value="si">            
+                  <span class="ml-2">Sí</span>            
+                </label>  
+              </div>
+              <div id="prolactina" class="hidden">
+                <div class="flex items-center space-x-2 mt-4">        
+                  <p>¿Como fueron los resultados?</p>
+                </div>
+                <p class="mb-2">Prolactina: </p>        
+                <div class="flex items-center space-x-4 mb-2">  
+                  <label class="inline-flex items-center">          
+                    <input type="radio" class="form-radio" name="prolactinas" value="alta" required>            
+                    <span class="ml-2">Alta</span>            
+                  </label>
+                  <label class="inline-flex items-center">            
+                    <input type="radio" class="form-radio" name="prolactinas" value="baja">            
+                    <span class="ml-2">Baja</span>            
+                  </label>
+                  <label class="inline-flex items-center">            
+                    <input type="radio" class="form-radio" name="prolactinas" value="normal">            
+                    <span class="ml-2">Normal</span>            
+                  </label> 
+                </div>
+                <p class="mb-2">Hormonas tiroideas: </p>        
+                <div class="flex items-center space-x-4">  
+                  <label class="inline-flex items-center">          
+                    <input type="radio" class="form-radio" name="hormonas" value="alta" required>            
+                    <span class="ml-2">Alta</span>            
+                  </label>
+                  <label class="inline-flex items-center">            
+                    <input type="radio" class="form-radio" name="hormonas" value="baja">            
+                    <span class="ml-2">Baja</span>            
+                  </label>
+                  <label class="inline-flex items-center">            
+                    <input type="radio" class="form-radio" name="hormonas" value="normal">            
+                    <span class="ml-2">Normal</span>            
+                  </label> 
+                </div>
+              </div>     
+            </div>
+            
             <div>
               <p class="mb-2">Autorizo a utilizar las imágenes adquiridas de manera anónima con fines educativos</p> 
+              <div class="flex items-center space-x-4">  
+                <label class="inline-flex items-center">          
+                  <input type="radio" class="form-radio" name="autorizacion" value="no" required>            
+                  <span class="ml-2">No</span>            
+                </label>
+                <label class="inline-flex items-center">            
+                  <input type="radio" class="form-radio" name="autorizacion" value="si">            
+                  <span class="ml-2">Sí</span>            
+                </label>  
+              </div>
             </div>
-            <div class="flex flex-wrap items-center gap-2 mt-4">
+            <!-- <div class="flex flex-wrap items-center gap-2 mt-4">
               <p class="text-sm">Bahía Blanca</p>
               <input type="number" class="form-input w-16 text-sm" placeholder="Día" required>
               <p class="text-sm">De</p>
               <input type="text" class="form-input w-24 text-sm" placeholder="Mes" required>
               <p class="text-sm">De 20</p>
               <input type="number" class="form-input w-16 text-sm" placeholder="Año" required>
-            </div> 
+            </div>  -->
           </div>
         </div>
         <!-- Sección Firma -->
-        <div class="mb-6">
+        <!-- <div class="mb-6">
           <h2 class="text-2xl font-bold mb-4">Firma</h2>
           <div class="">
             <label for="signature-pad-2" class="block text-sm font-medium leading-6 text-gray-900">Firma del paciente</label>
@@ -350,19 +576,19 @@
             </div>
             <button type="button" id="clear-2" class="mt-2 rounded-md bg-red-500 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-red-400">Limpiar</button>
           </div>
-        </div>
+        </div> -->
         <!-- Sección Datos del Firmante -->
-        <div class="flex flex-col sm:flex-row md:items-center space-y-2 sm:space-y-0 sm:space-x-2 mt-4">
+        <!-- <div class="flex flex-col sm:flex-row md:items-center space-y-2 sm:space-y-0 sm:space-x-2 mt-4">
           <label class="block text-sm font-medium text-gray-900" for="dni">
             DNI
           </label>
           <input class="block w-full sm:w-auto rounded-md border-0 text-gray-900 ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6" id="dni" type="text" required> 
-        </div>
+        </div> -->
         <!-- Dato del responsable -->
-        <div class="flex flex-col sm:flex-row items-center space-y-2 sm:space-y-0 sm:space-x-2 mt-4">
+        <!-- <div class="flex flex-col sm:flex-row items-center space-y-2 sm:space-y-0 sm:space-x-2 mt-4">
           <p>Parentesco (en caso de no firmar el paciente)</p>        
           <input type="text" class="form-input block w-full sm:w-auto" placeholder="parentesco">
-        </div>
+        </div> -->
         <!-- Botones de Envío -->
         <!-- <div class="mt-6 flex flex-col sm:flex-row items-center justify-end gap-y-2 sm:gap-x-6">
           <button type="button" class="w-full sm:w-auto text-sm font-semibold leading-6 text-gray-900">Cancelar</button>
@@ -483,9 +709,9 @@
       });
     </script>
     <script>
-      document.querySelectorAll('input[name="pregunta-cirugia"]').forEach((elem) => {
+      document.querySelectorAll('input[name="traumatismo"]').forEach((elem) => {
         elem.addEventListener('change', function(event) {
-          const additionalContent = document.getElementById('additional-content');
+          const additionalContent = document.getElementById('additional-traumatismo');
           if (event.target.value === 'si') {
             additionalContent.classList.remove('hidden');
             additionalContent.classList.add('block');
@@ -495,9 +721,33 @@
           }
         });
       });
-      document.querySelectorAll('input[name="pregunta-medicacion"]').forEach((elem) => {
+      document.querySelectorAll('input[name="problemas al nacer"]').forEach((elem) => {
         elem.addEventListener('change', function(event) {
-          const additionalContent = document.getElementById('additional-medicacion');
+          const additionalContent = document.getElementById('additional-problemas');
+          if (event.target.value === 'si') {
+            additionalContent.classList.remove('hidden');
+            additionalContent.classList.add('block');
+          } else {
+            additionalContent.classList.remove('block');
+            additionalContent.classList.add('hidden');
+          }
+        });
+      });
+      document.querySelectorAll('input[name="cirugias-biopsias"]').forEach((elem) => {
+        elem.addEventListener('change', function(event) {
+          const additionalContent = document.getElementById('additional-cirugias');
+          if (event.target.value === 'si') {
+            additionalContent.classList.remove('hidden');
+            additionalContent.classList.add('block');
+          } else {
+            additionalContent.classList.remove('block');
+            additionalContent.classList.add('hidden');
+          }
+        });
+      });
+      document.querySelectorAll('input[name="pregunta-odontologica"]').forEach((elem) => {
+        elem.addEventListener('change', function(event) {
+          const additionalContent = document.getElementById('additional-odontologica');
           if (event.target.value === 'si') {
             additionalContent.classList.remove('hidden');
             additionalContent.classList.add('block');
@@ -509,7 +759,7 @@
       });
       document.querySelectorAll('input[name="pregunta-oncologica"]').forEach((elem) => {
         elem.addEventListener('change', function(event) {
-          const additionalContent = document.getElementById('additional-onc');
+          const additionalContent = document.getElementById('additional-oncologica');
           if (event.target.value === 'si') {
             additionalContent.classList.remove('hidden');
             additionalContent.classList.add('block');
@@ -519,9 +769,21 @@
           }
         });
       });
-      document.querySelectorAll('input[name="pregunta-deporte"]').forEach((elem) => {
+      document.querySelectorAll('input[name="medicacion-relacionada"]').forEach((elem) => {
         elem.addEventListener('change', function(event) {
-          const additionalContent = document.getElementById('additional-deporte');
+          const additionalContent = document.getElementById('medicacion-relacionada');
+          if (event.target.value === 'si') {
+            additionalContent.classList.remove('hidden');
+            additionalContent.classList.add('block');
+          } else {
+            additionalContent.classList.remove('block');
+            additionalContent.classList.add('hidden');
+          }
+        });
+      });
+      document.querySelectorAll('input[name="prolactina"]').forEach((elem) => {
+        elem.addEventListener('change', function(event) {
+          const additionalContent = document.getElementById('prolactina');
           if (event.target.value === 'si') {
             additionalContent.classList.remove('hidden');
             additionalContent.classList.add('block');
