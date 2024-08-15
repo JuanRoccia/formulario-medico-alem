@@ -1,0 +1,596 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Encuesta Mama</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-100">
+    <div class="container mx-auto px-4 py-8 flex justify-center">
+        <div class="w-full max-w-3xl bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4">
+            <div class="header flex flex-col items-center py-4 px-2 mb-4">
+                <div class="flex flex-col sm:flex-row items-center w-full sm:w-auto mb-4">
+                    <img src="/images/imagenes-alem.webp" alt="Logo Imágenes Alem" class="w-auto h-20 sm:h-24 object-contain mb-4 sm:mb-0 sm:mr-4">
+                    <div class="title-container lora text-center">
+                        <h4 class="text-xs sm:text-sm">CENTRO DE DIAGNÓSTICO</h4>
+                        <h3 class="text-sm sm:text-base">POR IMÁGENES</h3>
+                        <h2 class="text-xl sm:text-2xl font-bold">ALEM</h2>
+                    </div>
+                </div>
+                <div class="w-full text-center lora">
+                    <h2 class="text-xl sm:text-2xl font-bold">ENCUESTA MAMA</h2>
+                </div>
+            </div>
+
+            <form class="space-y-6">
+                <div>
+                    <p class="font-bold mb-2">¿TIENE ESTUDIOS PREVIOS DE LA ZONA A ESTUDIAR?</p>
+                    <div class="flex items-center space-x-4">
+                        <label class="inline-flex items-center">
+                            <input type="radio" name="estudios_previos" value="si" class="form-radio">
+                            <span class="ml-2">Sí</span>
+                        </label>
+                        <label class="inline-flex items-center">
+                            <input type="radio" name="estudios_previos" value="no" class="form-radio">
+                            <span class="ml-2">No</span>
+                        </label>
+                    </div>
+                    <div class="mt-2 space-y-2">
+                        <div>
+                            <label class="inline-flex items-center">
+                                <span class="mr-2">MAMOGRAFÍA:</span>
+                                <input type="date" class="form-input">
+                            </label>
+                        </div>
+                        <div>
+                            <label class="inline-flex items-center">
+                                <span class="mr-2">ECOGRAFÍA:</span>
+                                <input type="date" class="form-input">
+                            </label>
+                        </div>
+                        <div>
+                            <label class="inline-flex items-center">
+                                <span class="mr-2">RESONANCIA:</span>
+                                <input type="date" class="form-input">
+                            </label>
+                        </div>
+                    </div>
+                    <p class="text-sm italic mt-2">Debe traer, enviarnos y/o adjuntar estudios previos.</p>
+                </div>
+
+                <div>
+                    <p class="font-bold mb-2">¿PRESENTA HISTORIA FAMILIAR DE CANCER DE MAMA U OTRAS ENFERMEDADES ONCOLOGICAS?</p>
+                    <div class="flex items-center space-x-4">
+                        <label class="inline-flex items-center">
+                            <input type="radio" name="historia_familiar" value="si" class="form-radio">
+                            <span class="ml-2">Sí</span>
+                        </label>
+                        <label class="inline-flex items-center">
+                            <input type="radio" name="historia_familiar" value="no" class="form-radio">
+                            <span class="ml-2">No</span>
+                        </label>
+                    </div>
+                    <div class="mt-2">
+                        <p>¿Quién?</p>
+                        <div class="flex flex-wrap gap-4">
+                            <label class="inline-flex items-center">
+                                <input type="checkbox" class="form-checkbox">
+                                <span class="ml-2">MADRE</span>
+                            </label>
+                            <label class="inline-flex items-center">
+                                <input type="checkbox" class="form-checkbox">
+                                <span class="ml-2">HERMANA</span>
+                            </label>
+                            <label class="inline-flex items-center">
+                                <input type="checkbox" class="form-checkbox">
+                                <span class="ml-2">HIJA</span>
+                            </label>
+                            <label class="inline-flex items-center">
+                                <input type="checkbox" class="form-checkbox">
+                                <span class="ml-2">ABUELA</span>
+                            </label>
+                            <label class="inline-flex items-center">
+                                <span class="mr-2">OTRA:</span>
+                                <input type="text" class="form-input">
+                            </label>
+                        </div>
+                    </div>
+                </div>
+
+                <div>
+                    <p class="font-bold mb-2">¿PRESENTA CIRUGÍAS EN MAMAS?</p>
+                    <div class="flex items-center space-x-4">
+                        <label class="inline-flex items-center">
+                            <input type="radio" name="cirugias_mamas" value="si" class="form-radio">
+                            <span class="ml-2">Sí</span>
+                        </label>
+                        <label class="inline-flex items-center">
+                            <input type="radio" name="cirugias_mamas" value="no" class="form-radio">
+                            <span class="ml-2">No</span>
+                        </label>
+                    </div>
+                    <div class="mt-2 space-y-2">
+                        <div>
+                            <label class="inline-flex items-center">
+                                <input type="checkbox" class="form-checkbox">
+                                <span class="ml-2">MASTOPLASTIA</span>
+                            </label>
+                            <div class="ml-6 space-x-2">
+                                <label class="inline-flex items-center">
+                                    <input type="checkbox" class="form-checkbox">
+                                    <span class="ml-2">REDUCTORA</span>
+                                </label>
+                                <label class="inline-flex items-center">
+                                    <input type="checkbox" class="form-checkbox">
+                                    <span class="ml-2">PRÓTESIS</span>
+                                </label>
+                                <label class="inline-flex items-center">
+                                    <span class="mr-2">FECHA:</span>
+                                    <input type="date" class="form-input">
+                                </label>
+                            </div>
+                        </div>
+                        <div>
+                            <label class="inline-flex items-center">
+                                <input type="checkbox" class="form-checkbox">
+                                <span class="ml-2">BIOPSIA QUIRÚRGICA</span>
+                            </label>
+                            <label class="inline-flex items-center ml-4">
+                                <span class="mr-2">FECHA:</span>
+                                <input type="date" class="form-input">
+                            </label>
+                        </div>
+                        <div>
+                            <label class="inline-flex items-center">
+                                <input type="checkbox" class="form-checkbox">
+                                <span class="ml-2">SEGMENTECTOMÍA</span>
+                            </label>
+                            <label class="inline-flex items-center ml-4">
+                                <span class="mr-2">FECHA:</span>
+                                <input type="date" class="form-input">
+                            </label>
+                        </div>
+                        <div>
+                            <label class="inline-flex items-center">
+                                <input type="checkbox" class="form-checkbox">
+                                <span class="ml-2">MASTECTOMÍA</span>
+                            </label>
+                            <label class="inline-flex items-center ml-4">
+                                <span class="mr-2">FECHA:</span>
+                                <input type="date" class="form-input">
+                            </label>
+                        </div>
+                        <div>
+                            <label class="inline-flex items-center">
+                                <input type="checkbox" class="form-checkbox">
+                                <span class="ml-2">RECONSTRUCCIÓN</span>
+                            </label>
+                            <div class="ml-6 space-y-2">
+                                <label class="inline-flex items-center">
+                                    <input type="checkbox" class="form-checkbox">
+                                    <span class="ml-2">MÚSCULO ABDOMINAL</span>
+                                </label>
+                                <label class="inline-flex items-center">
+                                    <input type="checkbox" class="form-checkbox">
+                                    <span class="ml-2">MÚSCULO DORSAL</span>
+                                </label>
+                                <label class="inline-flex items-center">
+                                    <input type="checkbox" class="form-checkbox">
+                                    <span class="ml-2">PRÓTESIS</span>
+                                </label>
+                                <label class="inline-flex items-center">
+                                    <span class="mr-2">FECHA:</span>
+                                    <input type="date" class="form-input">
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div>
+                    <p class="font-bold mb-2">EN CASO DE MASTOPLASTIA:</p>
+                    <div class="space-y-2">
+                        <div>
+                            <p>SOSPECHA DE RUPTURA</p>
+                            <div class="flex items-center space-x-4">
+                                <label class="inline-flex items-center">
+                                    <input type="radio" name="sospecha_ruptura" value="si" class="form-radio">
+                                    <span class="ml-2">Sí</span>
+                                </label>
+                                <label class="inline-flex items-center">
+                                    <input type="radio" name="sospecha_ruptura" value="no" class="form-radio">
+                                    <span class="ml-2">No</span>
+                                </label>
+                            </div>
+                        </div>
+                        <div>
+                            <p>DOLOR</p>
+                            <div class="flex items-center space-x-4">
+                                <label class="inline-flex items-center">
+                                    <input type="radio" name="dolor" value="si" class="form-radio">
+                                    <span class="ml-2">Sí</span>
+                                </label>
+                                <label class="inline-flex items-center">
+                                    <input type="radio" name="dolor" value="no" class="form-radio">
+                                    <span class="ml-2">No</span>
+                                </label>
+                            </div>
+                        </div>
+                        <div>
+                            <p>CAMBIO PREVIO</p>
+                            <div class="flex items-center space-x-4">
+                                <label class="inline-flex items-center">
+                                    <input type="radio" name="cambio_previo" value="si" class="form-radio">
+                                    <span class="ml-2">Sí</span>
+                                </label>
+                                <label class="inline-flex items-center">
+                                    <input type="radio" name="cambio_previo" value="no" class="form-radio">
+                                    <span class="ml-2">No</span>
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div>
+                    <p class="font-bold mb-2">¿BIOPSIA PERCUTÁNEA?</p>
+                    <div class="flex items-center space-x-4">
+                        <label class="inline-flex items-center">
+                            <input type="radio" name="biopsia_percutanea" value="si" class="form-radio">
+                            <span class="ml-2">Sí</span>
+                        </label>
+                        <label class="inline-flex items-center">
+                            <input type="radio" name="biopsia_percutanea" value="no" class="form-radio">
+                            <span class="ml-2">No</span>
+                        </label>
+                    </div>
+                    <div class="mt-2 space-y-2">
+                        <label class="inline-flex items-center">
+                            <span class="mr-2">DATA:</span>
+                            <input type="date" class="form-input">
+                        </label>
+                        <div>
+                            <label class="block">
+                                <span class="mr-2">¿CUÁL?</span>
+                                <input type="text" class="form-input mt-1 block w-full">
+                            </label>
+                        </div>
+                        <div>
+                            <label class="block">
+                                <span class="mr-2">DIAGNÓSTICO:</span>
+                                <input type="text" class="form-input mt-1 block w-full">
+                            </label>
+                        </div>
+                    </div>
+                </div>
+
+                <div>
+                    <p class="font-bold mb-2">¿HA TENIDO TRATAMIENTO DE CÁNCER DE MAMA?</p>
+                    <div class="flex items-center space-x-4">
+                        <label class="inline-flex items-center">
+                            <input type="radio" name="tratamiento_cancer" value="si" class="form-radio">
+                            <span class="ml-2">Sí</span>
+                        </label>
+                        <label class="inline-flex items-center">
+                            <input type="radio" name="tratamiento_cancer" value="no" class="form-radio">
+                            <span class="ml-2">No</span>
+                        </label>
+                    </div>
+                    <div class="mt-2 space-y-2">
+                        <label class="inline-flex items-center">
+                            <span class="mr-2">FECHA:</span>
+                            <input type="date" class="form-input">
+                        </label>
+                    <div>
+                        <div id="additional-radioterapia" class="hidden"></div>
+                            <p>¿RADIOTERAPIA?</p>
+                            <div class="flex items-center space-x-4">
+                                <label class="inline-flex items-center">
+                                    <input type="radio" name="radioterapia" value="si" class="form-radio">
+                                    <span class="ml-2">Sí</span>
+                                </label>
+                                <label class="inline-flex items-center">
+                                    <input type="radio" name="radioterapia" value="no" class="form-radio">
+                                    <span class="ml-2">No</span>
+                                </label>
+                            </div>
+                            <div class="flex items-center space-x-2 mt-4">       
+                                <p>Fecha: </p>        
+                                <input type="text" class="form-input block" placeholder="Escriba aquí">
+                            </div>
+                        </div>  
+                    </div>
+                        <div>
+                            <div id="additional-quimioterapia" class="hidden"></div>
+                                <p>¿QUIMIOTERAPIA?</p>
+                                <div class="flex items-center space-x-4">
+                                    <label class="inline-flex items-center">
+                                        <input type="radio" name="quimioterapia" value="si" class="form-radio">
+                                        <span class="ml-2">Sí</span>
+                                    </label>
+                                    <label class="inline-flex items-center">
+                                        <input type="radio" name="quimioterapia" value="no" class="form-radio">
+                                        <span class="ml-2">No</span>
+                                    </label>
+                                </div>
+                                <div class="flex items-center space-x-2 mt-4">       
+                                    <p>Fecha: </p>        
+                                    <input type="text" class="form-input block" placeholder="Escriba aquí">
+                                </div>
+                            </div>  
+                        </div>
+                        <div>
+                            <div id="additional-tamoxifeno" class="hidden"></div>
+                                <p>¿TOMA TAMOXIFENO?</p>
+                                <div class="flex items-center space-x-4">
+                                    <label class="inline-flex items-center">
+                                        <input type="radio" name="tamoxifeno" value="si" class="form-radio">
+                                        <span class="ml-2">Sí</span>
+                                    </label>
+                                    <label class="inline-flex items-center">
+                                        <input type="radio" name="tamoxifeno" value="no" class="form-radio">
+                                        <span class="ml-2">No</span>
+                                    </label>
+                                </div>
+                                <div class="flex items-center space-x-2 mt-4">       
+                                    <p>Hace cuanto aprox: </p>        
+                                    <input type="text" class="form-input block" placeholder="Escriba aquí">
+                                </div>
+                            </div>  
+                        </div>
+                        <div>
+                            <div id="additional-anticonceptivos" class="hidden"></div>
+                                <p>¿UTILIZO ANTICONCEPTIVOS?</p>
+                                <div class="flex items-center space-x-4">
+                                    <label class="inline-flex items-center">
+                                        <input type="radio" name="anticonceptivos" value="si" class="form-radio">
+                                        <span class="ml-2">Sí</span>
+                                    </label>
+                                    <label class="inline-flex items-center">
+                                        <input type="radio" name="anticonceptivos" value="no" class="form-radio">
+                                        <span class="ml-2">No</span>
+                                    </label>
+                                </div>
+                                <div class="flex items-center space-x-2 mt-4">       
+                                    <p>Hace cuanto aprox: </p>        
+                                    <input type="text" class="form-input block" placeholder="Escriba aquí">
+                                </div>
+                            </div>  
+                        </div>
+                        <div>
+                            <div id="additional-terapia-hormonal" class="hidden"></div>
+                                <p>¿UTILIZO TERAPIA HORMONAL DE REEMPLAZO?</p>
+                                <div class="flex items-center space-x-4">
+                                    <label class="inline-flex items-center">
+                                        <input type="radio" name="terapia-hormonal" value="si" class="form-radio">
+                                        <span class="ml-2">Sí</span>
+                                    </label>
+                                    <label class="inline-flex items-center">
+                                        <input type="radio" name="terapia-hormonal" value="no" class="form-radio">
+                                        <span class="ml-2">No</span>
+                                    </label>
+                                </div>
+                                <div class="flex items-center space-x-2 mt-4">       
+                                    <p>Hace cuanto aprox: </p>        
+                                    <input type="text" class="form-input block" placeholder="Escriba aquí">
+                                </div>
+                            </div>  
+                        </div>
+                        <div>
+                            <p class="mb-2">Autorizo a utilizar las imágenes adquiridas de manera anónima con fines educativos</p> 
+                            <div class="flex items-center space-x-4">  
+                                <label class="inline-flex items-center">          
+                                <input type="radio" class="form-radio" name="autorizacion" value="no" required>            
+                                <span class="ml-2">No</span>            
+                                </label>
+                                <label class="inline-flex items-center">            
+                                <input type="radio" class="form-radio" name="autorizacion" value="si">            
+                                <span class="ml-2">Sí</span>            
+                                </label>  
+                            </div>
+                        </div>
+                    </div>    
+            </form>
+        </div>
+    </div>
+        <script src="https://cdn.jsdelivr.net/npm/html2canvas@1.4.1/dist/html2canvas.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/signature_pad@4.0.0/dist/signature_pad.umd.min.js"></script>
+        <script>
+            const canvas = document.getElementById('signature-pad-2');
+            const signaturePad = new SignaturePad(canvas, {
+                backgroundColor: 'rgb(255, 255, 255)'
+            });
+            document.getElementById('clear-2').addEventListener('click', function() {
+                signaturePad.clear();
+            });
+            document.getElementById('myForm').addEventListener('submit', function(e) {
+                e.preventDefault();
+                if (signaturePad.isEmpty()) {
+                    alert('Por favor, proporcione una firma.');
+                } else {
+                    const signatureData = signaturePad.toDataURL();
+                    console.log(signatureData); // Aquí puedes enviar la firma al servidor
+                    // Continúa con el envío del formulario
+                }
+            });
+            // Configurar el tamaño del canvas
+            function resizeCanvas() {
+                const ratio = Math.max(window.devicePixelRatio || 1, 1);
+                canvas.width = canvas.offsetWidth * ratio;
+                canvas.height = canvas.offsetHeight * ratio;
+                canvas.getContext("2d").scale(ratio, ratio);
+
+                // Ajusta el tamaño del canvas en el CSS
+                canvas.style.width = canvas.offsetWidth + 'px';
+                canvas.style.height = canvas.offsetHeight + 'px';
+
+                // Configurar el canvas para usar las coordenadas correctas
+                const ctx = canvas.getContext("2d");
+                ctx.scale(ratio, ratio);
+
+                signaturePad.clear();
+            }
+            // Ajustar el tamaño del canvas al cargar la página y al cambiar el tamaño de la ventana
+            window.addEventListener('load', resizeCanvas);
+            window.addEventListener('resize', resizeCanvas);
+            // Función para ajustar las coordenadas del evento
+            function getMousePos(canvas, evt) {
+                const rect = canvas.getBoundingClientRect();
+                const scaleX = canvas.width / rect.width;
+                const scaleY = canvas.height / rect.height;
+                return {
+                    x: (evt.clientX - rect.left) * scaleX,
+                    y: (evt.clientY - rect.top) * scaleY
+                };
+            }
+            // Sobrescribe los métodos de SignaturePad para usar las coordenadas ajustadas
+            const originalOnMouseDown = signaturePad._onMouseDown;
+            signaturePad._onMouseDown = function(event) {
+                const position = getMousePos(canvas, event);
+                originalOnMouseDown.call(this, { ...event, clientX: position.x, clientY: position.y });
+            };
+            const originalOnMouseMove = signaturePad._onMouseMove;
+            signaturePad._onMouseMove = function(event) {
+                const position = getMousePos(canvas, event);
+                originalOnMouseMove.call(this, { ...event, clientX: position.x, clientY: position.y });
+            };
+            canvas.addEventListener('touchstart', function(event) {
+                const touch = event.touches[0];
+                const mouseEvent = new MouseEvent("mousedown", {
+                    clientX: touch.clientX,
+                    clientY: touch.clientY
+                });
+                canvas.dispatchEvent(mouseEvent);
+            }, false);
+            canvas.addEventListener('touchmove', function(event) {
+                const touch = event.touches[0];
+                const mouseEvent = new MouseEvent("mousemove", {
+                    clientX: touch.clientX,
+                    clientY: touch.clientY
+                });
+                canvas.dispatchEvent(mouseEvent);
+            }, false);
+            canvas.addEventListener('touchend', function() {
+                const mouseEvent = new MouseEvent("mouseup", {});
+                canvas.dispatchEvent(mouseEvent);
+            }, false);
+            </script>
+            <script>
+            document.querySelector('form').addEventListener('submit', function(e) {
+                e.preventDefault();
+                // Aquí iría la lógica para enviar el formulario, posiblemente por WhatsApp
+                alert('Formulario enviado');
+            });
+            </script>
+            <script>
+            document.addEventListener("DOMContentLoaded", function() {
+                var canvas = document.getElementById("signature-pad-2");
+
+                var container = canvas.parentElement;
+                canvas.width = container.clientWidth;
+                canvas.height = 200; 
+                var signaturePad = new SignaturePad(canvas, {
+                });
+            });
+            </script>
+            <script>
+            document.getElementById('fecha').addEventListener('input', function (e) {
+                let value = this.value.replace(/[^0-9]/g, '');
+                if (value.length > 2) {
+                value = value.slice(0, 2) + '/' + value.slice(2);
+                }
+                if (value.length > 5) {
+                value = value.slice(0, 5) + '/' + value.slice(5);
+                }
+                this.value = value;
+            });
+            </script>
+            <script>
+            document.querySelectorAll('input[name="traumatismo"]').forEach((elem) => {
+                elem.addEventListener('change', function(event) {
+                const additionalContent = document.getElementById('additional-traumatismo');
+                if (event.target.value === 'si') {
+                    additionalContent.classList.remove('hidden');
+                    additionalContent.classList.add('block');
+                } else {
+                    additionalContent.classList.remove('block');
+                    additionalContent.classList.add('hidden');
+                }
+                });
+            });
+            document.querySelectorAll('input[name="problemas al nacer"]').forEach((elem) => {
+                elem.addEventListener('change', function(event) {
+                const additionalContent = document.getElementById('additional-problemas');
+                if (event.target.value === 'si') {
+                    additionalContent.classList.remove('hidden');
+                    additionalContent.classList.add('block');
+                } else {
+                    additionalContent.classList.remove('block');
+                    additionalContent.classList.add('hidden');
+                }
+                });
+            });
+            document.querySelectorAll('input[name="cirugias-biopsias"]').forEach((elem) => {
+                elem.addEventListener('change', function(event) {
+                const additionalContent = document.getElementById('additional-cirugias');
+                if (event.target.value === 'si') {
+                    additionalContent.classList.remove('hidden');
+                    additionalContent.classList.add('block');
+                } else {
+                    additionalContent.classList.remove('block');
+                    additionalContent.classList.add('hidden');
+                }
+                });
+            });
+            document.querySelectorAll('input[name="pregunta-odontologica"]').forEach((elem) => {
+                elem.addEventListener('change', function(event) {
+                const additionalContent = document.getElementById('additional-odontologica');
+                if (event.target.value === 'si') {
+                    additionalContent.classList.remove('hidden');
+                    additionalContent.classList.add('block');
+                } else {
+                    additionalContent.classList.remove('block');
+                    additionalContent.classList.add('hidden');
+                }
+                });
+            });
+            document.querySelectorAll('input[name="pregunta-oncologica"]').forEach((elem) => {
+                elem.addEventListener('change', function(event) {
+                const additionalContent = document.getElementById('additional-oncologica');
+                if (event.target.value === 'si') {
+                    additionalContent.classList.remove('hidden');
+                    additionalContent.classList.add('block');
+                } else {
+                    additionalContent.classList.remove('block');
+                    additionalContent.classList.add('hidden');
+                }
+                });
+            });
+            document.querySelectorAll('input[name="medicacion-relacionada"]').forEach((elem) => {
+                elem.addEventListener('change', function(event) {
+                const additionalContent = document.getElementById('medicacion-relacionada');
+                if (event.target.value === 'si') {
+                    additionalContent.classList.remove('hidden');
+                    additionalContent.classList.add('block');
+                } else {
+                    additionalContent.classList.remove('block');
+                    additionalContent.classList.add('hidden');
+                }
+                });
+            });
+            document.querySelectorAll('input[name="prolactina"]').forEach((elem) => {
+                elem.addEventListener('change', function(event) {
+                const additionalContent = document.getElementById('prolactina');
+                if (event.target.value === 'si') {
+                    additionalContent.classList.remove('hidden');
+                    additionalContent.classList.add('block');
+                } else {
+                    additionalContent.classList.remove('block');
+                    additionalContent.classList.add('hidden');
+                }
+                });
+            });
+        </script>
+    </body> 
+</html>
