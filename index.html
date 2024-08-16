@@ -40,10 +40,28 @@
                         <span class="ml-2 text-gray-700">Formulario 1</span>
                     </label>
                 </div>
-                <div class="mb-6">
+                <div class="mb-4">
                     <label class="inline-flex items-center">
                         <input type="checkbox" id="form2" value="form-2" class="form-checkbox h-5 w-5 text-blue-600">
                         <span class="ml-2 text-gray-700">Formulario 2</span>
+                    </label>
+                </div>
+                <div class="mb-4">
+                    <label class="inline-flex items-center">
+                        <input type="checkbox" id="form3" value="form-3" class="form-checkbox h-5 w-5 text-blue-600">
+                        <span class="ml-2 text-gray-700">Formulario 3</span>
+                    </label>
+                </div>
+                <div class="mb-4">
+                    <label class="inline-flex items-center">
+                        <input type="checkbox" id="form4" value="form-4" class="form-checkbox h-5 w-5 text-blue-600">
+                        <span class="ml-2 text-gray-700">Formulario 4</span>
+                    </label>
+                </div>
+                <div class="mb-6">
+                    <label class="inline-flex items-center">
+                        <input type="checkbox" id="form5" value="form-5" class="form-checkbox h-5 w-5 text-blue-600">
+                        <span class="ml-2 text-gray-700">Formulario 5</span>
                     </label>
                 </div>
                 <button id="generateButton" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline">
@@ -74,6 +92,9 @@
         const generateButton = document.getElementById('generateButton');
         const form1Checkbox = document.getElementById('form1');
         const form2Checkbox = document.getElementById('form2');
+        const form3Checkbox = document.getElementById('form3');
+        const form4Checkbox = document.getElementById('form4');
+        const form5Checkbox = document.getElementById('form5');
         const generatedLinkDiv = document.getElementById('generatedLink');
         const linkInput = document.getElementById('linkInput');
         const copyButton = document.getElementById('copyButton');
@@ -87,7 +108,7 @@
             const username = usernameInput.value;
             const password = passwordInput.value;
 
-            if (username === 'admin' && password === '123456789') {
+            if (username === 'admin' && password === 'admin') {
                 loginForm.classList.add('hidden');
                 dashboardContent.classList.remove('hidden');
             } else {
@@ -99,13 +120,16 @@
             const selectedForms = [];
             if (form1Checkbox.checked) selectedForms.push({value: form1Checkbox.value, name: 'Formulario 1'});
             if (form2Checkbox.checked) selectedForms.push({value: form2Checkbox.value, name: 'Formulario 2'});
+            if (form3Checkbox.checked) selectedForms.push({value: form3Checkbox.value, name: 'Formulario 3'});
+            if (form4Checkbox.checked) selectedForms.push({value: form4Checkbox.value, name: 'Formulario 4'});
+            if (form5Checkbox.checked) selectedForms.push({value: form5Checkbox.value, name: 'Formulario 5'});
 
             if (selectedForms.length === 0) {
                 alert('Por favor, seleccione al menos un formulario.');
                 return;
             }
 
-            const baseUrl = 'https://formulario-medico-alem.netlify.app/forms.html?';  // Cambiado a forms.html
+            const baseUrl = 'https://formulario-medico-alem.netlify.app/forms.html?'; // Change this URL to the actual URL
             const formParams = selectedForms.map(form => `form=${form.value}&name=${encodeURIComponent(form.name)}`).join('&');
             const fullLink = `${baseUrl}${formParams}`;
 
