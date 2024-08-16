@@ -1,2 +1,326 @@
-# Estructura de Archivos
-----------
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Encuesta Mama</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Tailwind CDN -->
+    <!-- <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.15/dist/tailwind.min.css" rel="stylesheet"> -->
+    <!-- Font CDN -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400..700;1,400..700&display=swap" rel="stylesheet">
+    <!-- Favicon -->
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon/favicon-16x16.png">
+    <link rel="manifest" href="/site.webmanifest">
+    <!-- Estilos CSS -->
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body class="bg-gray-100">
+    <!-- Contenedor Principal -->
+    <div class="container mx-auto px-4 py-8 flex justify-center">
+        <!-- Formulario -->
+        <form class="bg-white w-full max-w-screen-lg shadow-md rounded px-4 sm:px-8 pt-6 pb-8 mb-4">
+            <!-- Encabezado -->
+            <header class="header flex flex-col items-center py-4 px-2 mb-4">
+                <div class="flex flex-col sm:flex-row items-center w-full sm:w-auto mb-4">
+                    <img src="/images/imagenes-alem.webp" alt="Logo Imágenes Alem" class="w-auto h-20 sm:h-24 object-contain mb-4 sm:mb-0 sm:mr-4">
+                    <div class="title-container lora text-center">
+                        <h4 class="text-xs sm:text-sm">CENTRO DE DIAGNÓSTICO</h4>
+                        <h3 class="text-sm sm:text-base">POR IMÁGENES</h3>
+                        <h2 class="text-xl sm:text-2xl font-bold">ALEM</h2>
+                    </div>
+                </div>
+                <div class="w-full text-center lora">
+                    <h2 class="text-xl sm:text-2xl font-bold">ENCUESTA MAMA</h2>
+                </div>
+            </header>
+            <!-- Estudios Mamarios Previos -->
+            <div class="mb-6">
+                <p class="mb-2 font-semibold">¿Se ha realizado estudios mamarios previos?</p>
+                <div class="flex items-center space-x-4 mb-4">
+                    <label class="inline-flex items-center">
+                        <input type="radio" class="form-radio" name="estudios_previos" value="no" required>
+                        <span class="ml-2">No</span>
+                    </label>
+                    <label class="inline-flex items-center">
+                        <input type="radio" class="form-radio" name="estudios_previos" value="si">
+                        <span class="ml-2">Sí</span>
+                    </label>
+                </div>
+                <!-- Si realizo estudios mamarios -->
+                <div id="additional-estudios" class="hidden space-y-4">
+                    <div>
+                        <label class="block mb-2">
+                            <input type="checkbox" class="form-checkbox" name="estudio_mamografia">
+                            <span class="ml-2">Mamografía</span>
+                        </label>
+                        <input type="date" class="form-input block w-full text-slate-600" name="fecha_mamografia" placeholder="DD/MM/AAAA" pattern="\d{2}/\d{2}/\d{4}">
+                    </div>
+                    <div>
+                        <label class="block mb-2">
+                            <input type="checkbox" class="form-checkbox" name="estudio_ecografia">
+                            <span class="ml-2">Ecografía</span>
+                        </label>
+                        <input type="date" class="form-input block w-full text-slate-600" name="fecha_ecografia">
+                    </div>
+                    <div>
+                        <label class="block mb-2">
+                            <input type="checkbox" class="form-checkbox" name="estudio_resonancia">
+                            <span class="ml-2">Resonancia</span>
+                        </label>
+                        <input type="date" class="form-input block w-full text-slate-600" name="fecha_resonancia">
+                    </div>
+                    <div class="mt-4">
+                        <label class="block mb-2">
+                            <span class="font-semibold">Adjuntar o llevar estudios previos:</span>
+                        </label>
+                        <input type="file" class="form-input block w-full text-slate-600" name="archivo_estudios" multiple>
+                    </div>
+                </div>
+                <!-- Historia Familiar -->
+                <div class="mt-6">
+                    <p class="mb-2 font-semibold">¿Presenta historia familiar de cáncer de mama u otras enfermedades oncológicas?</p>
+                    <div class="flex items-center space-x-4 mb-4">
+                        <label class="inline-flex items-center">
+                            <input type="radio" class="form-radio" name="historia_familiar" value="no" required>
+                            <span class="ml-2">No</span>
+                        </label>
+                        <label class="inline-flex items-center">
+                            <input type="radio" class="form-radio" name="historia_familiar" value="si">
+                            <span class="ml-2">Sí</span>
+                        </label>
+                    </div>
+                    <!-- Si presenta historial familiar -->
+                    <div id="additional-historia-familiar" class="hidden space-y-2">
+                        <p class="font-semibold">Seleccione el familiar afectado:</p>
+                        <div class="flex flex-wrap gap-4">
+                            <label class="inline-flex items-center">
+                                <input type="checkbox" class="form-checkbox" name="familiar_afectado" value="madre">
+                                <span class="ml-2">Madre</span>
+                            </label>
+                            <label class="inline-flex items-center">
+                                <input type="checkbox" class="form-checkbox" name="familiar_afectado" value="hermana">
+                                <span class="ml-2">Hermana</span>
+                            </label>
+                            <label class="inline-flex items-center">
+                                <input type="checkbox" class="form-checkbox" name="familiar_afectado" value="hija">
+                                <span class="ml-2">Hija</span>
+                            </label>
+                            <label class="inline-flex items-center">
+                                <input type="checkbox" class="form-checkbox" name="familiar_afectado" value="abuela">
+                                <span class="ml-2">Abuela</span>
+                            </label>
+                            <label class="inline-flex items-center">
+                                <input type="checkbox" class="form-checkbox" name="familiar_afectado" value="otra">
+                                <span class="ml-2">Otra:</span>
+                            </label>
+                        </div>
+                        <input type="text" class="form-input block w-full mt-2" name="otro_familiar" placeholder="Especifique otro familiar">
+                    </div>
+                </div>
+            </div>
+            <!-- Cirugías en Mamas -->
+            <div class="mb-6">
+                <p class="mb-2 font-semibold">¿Presenta cirugías en mamas?</p>
+                <div class="flex items-center space-x-4 mb-4">
+                    <label class="inline-flex items-center">
+                        <input type="radio" class="form-radio" name="cirugias_mamas" value="no" required>
+                        <span class="ml-2">No</span>
+                    </label>
+                    <label class="inline-flex items-center">
+                        <input type="radio" class="form-radio" name="cirugias_mamas" value="si">
+                        <span class="ml-2">Sí</span>
+                    </label>
+                </div>
+                <!-- Opciones de cirugías -->
+                <div id="additional-cirugias" class="hidden space-y-4">
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                        <div>
+                            <label class="block mb-2">
+                                <input type="checkbox" class="form-checkbox" name="cirugia_mastoplastia">
+                                <span class="ml-2">Mastoplastia</span>
+                            </label>
+                            <div class="pl-6 space-y-2">
+                                <label class="inline-flex items-center">
+                                    <input type="checkbox" class="form-checkbox" name="mastoplastia_reductora">
+                                    <span class="ml-2">Reductora</span>
+                                </label>
+                                <label class="inline-flex items-center">
+                                    <input type="checkbox" class="form-checkbox" name="mastoplastia_protesis">
+                                    <span class="ml-2">Prótesis</span>
+                                </label>
+                                <input type="date" class="form-input block w-full text-slate-600" name="fecha_mastoplastia">
+                            </div>
+                        </div>
+                        <div>
+                            <label class="block mb-2">
+                                <input type="checkbox" class="form-checkbox" name="cirugia_biopsia">
+                                <span class="ml-2">Biopsioa quirúrgica</span>
+                            </label>
+                            <input type="date" class="form-input block w-full text-slate-600" name="fecha_biopsia">
+                        </div>
+                        <div>
+                            <label class="block mb-2">
+                                <input type="checkbox" class="form-checkbox" name="cirugia_segmentectomia">
+                                <span class="ml-2">Segmentectomía</span>
+                            </label>
+                            <input type="date" class="form-input block w-full text-slate-600" name="fecha_segmentectomia">
+                        </div>
+                        <div>
+                            <label class="block mb-2">
+                                <input type="checkbox" class="form-checkbox" name="cirugia_mastectomia">
+                                <span class="ml-2">Mastectomía</span>
+                            </label>
+                            <input type="date" class="form-input block w-full text-slate-600" name="fecha_mastectomia">
+                        </div>
+                        <div>
+                            <label class="block mb-2">
+                                <input type="checkbox" class="form-checkbox" name="cirugia_reconstruccion">
+                                <span class="ml-2">Reconstrucción</span>
+                            </label>
+                            <div class="pl-6 space-y-2">
+                                <label class="inline-flex items-center">
+                                    <input type="checkbox" class="form-checkbox" name="reconstruccion_musculo_abdominal">
+                                    <span class="ml-2">Músculo abdominal</span>
+                                </label>
+                                <label class="inline-flex items-center">
+                                    <input type="checkbox" class="form-checkbox" name="reconstruccion_musculo_dorsal">
+                                    <span class="ml-2">Músculo dorsal</span>
+                                </label>
+                                <label class="inline-flex items-center">
+                                    <input type="checkbox" class="form-checkbox" name="reconstruccion_protesis">
+                                    <span class="ml-2">Prótesis</span>
+                                </label>
+                                <input type="date" class="form-input block w-full text-slate-600" name="fecha_reconstruccion">
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Sección para mastoplastia -->
+                    <div id="additional-mastoplastia" class="hidden mt-4">
+                        <p class="font-semibold mb-2">En caso de mastoplastia:</p>
+                        <div class="space-y-2">
+                            <div>
+                                <p class="mb-1">Sospecha de ruptura</p>
+                                <div class="flex items-center space-x-4">
+                                    <label class="inline-flex items-center">
+                                        <input type="radio" class="form-radio" name="sospecha_ruptura" value="no">
+                                        <span class="ml-2">No</span>
+                                    </label>
+                                    <label class="inline-flex items-center">
+                                        <input type="radio" class="form-radio" name="sospecha_ruptura" value="si">
+                                        <span class="ml-2">Sí</span>
+                                    </label>
+                                </div>
+                            </div>
+                            <div>
+                                <p class="mb-1">Dolor</p>
+                                <div class="flex items-center space-x-4">
+                                    <label class="inline-flex items-center">
+                                        <input type="radio" class="form-radio" name="dolor_mastoplastia" value="no">
+                                        <span class="ml-2">No</span>
+                                    </label>
+                                    <label class="inline-flex items-center">
+                                        <input type="radio" class="form-radio" name="dolor_mastoplastia" value="si">
+                                        <span class="ml-2">Sí</span>
+                                    </label>
+                                </div>
+                            </div>
+                            <div>
+                                <p class="mb-1">Cambio previo</p>
+                                <div class="flex items-center space-x-4">
+                                    <label class="inline-flex items-center">
+                                        <input type="radio" class="form-radio" name="cambio_previo" value="no">
+                                        <span class="ml-2">No</span>
+                                    </label>
+                                    <label class="inline-flex items-center">
+                                        <input type="radio" class="form-radio" name="cambio_previo" value="si">
+                                        <span class="ml-2">Sí</span>
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- Biopsio Percutánea -->
+            <div class="mb-6">
+                <p class="mb-2 font-semibold">¿Biopsia percutánea?</p>
+                <div class="flex items-center space-x-4 mb-4">
+                    <label class="inline-flex items-center">
+                        <input type="radio" class="form-radio" name="biopsia_percutanea" value="no" required>
+                        <span class="ml-2">No</span>
+                    </label>
+                    <label class="inline-flex items-center">
+                        <input type="radio" class="form-radio" name="biopsia_percutanea" value="si">
+                        <span class="ml-2">Sí</span>
+                    </label>
+                </div>
+                <!-- Información adicional de biopsia percutánea -->
+                <div id="additional-biopsia" class="hidden space-y-4">
+                    <div>
+                        <label class="block mb-2">
+                            <span class="">Fecha:</span>
+                        </label>
+                        <input type="date" class="form-input block w-full text-slate-600" name="fecha_biopsia_percutanea">
+                    </div>
+                    <div>
+                        <label class="block mb-2">
+                            <span class="">¿Cuál?</span>
+                        </label>
+                        <input type="text" class="form-input block w-full" name="tipo_biopsia_percutanea" placeholder="Especifique el tipo de biopsia">
+                    </div>
+                    <div>
+                        <label class="block mb-2">
+                            <span class="">Diagnóstico:</span>
+                        </label>
+                        <textarea class="form-textarea block w-full" name="diagnostico_biopsia_percutanea" rows="3" placeholder="Ingrese el diagnóstico"></textarea>
+                    </div>
+                </div>
+            </div>
+            <!-- Tratamiento de mama 
+             aca lo mismo debemos hacer la pregunta y definir si o no, encaso de si debe responder la fecha
+             y mostrar las opciones de radioterapia quimio toma tamoxifeno anticonceptivos terapia de reemplazo y las sub opciones de cada una-->
+        </form>
+    </div>
+    
+    <script>
+        // Función para mostrar/ocultar contenido adicional
+        function toggleAdditionalContent(radioName, contentId) {
+            document.querySelectorAll(`input[name="${radioName}"]`).forEach((elem) => {
+                elem.addEventListener('change', function(event) {
+                    const additionalContent = document.getElementById(contentId);
+                    if (event.target.value === 'si') {
+                        additionalContent.classList.remove('hidden');
+                        additionalContent.classList.add('block');
+                    } else {
+                        additionalContent.classList.remove('block');
+                        additionalContent.classList.add('hidden');
+                    }
+                });
+            });
+        }
+    
+        // Aplicar la función a los grupos de radio relevantes
+        toggleAdditionalContent('estudios_previos', 'additional-estudios');
+        toggleAdditionalContent('historia_familiar', 'additional-historia-familiar');
+        toggleAdditionalContent('cirugias_mamas', 'additional-cirugias');
+        toggleAdditionalContent('biopsia_percutanea', 'additional-biopsia');
+
+        // Manejar la visibilidad del campo "Otro familiar"
+        document.querySelector('input[name="familiar_afectado"][value="otra"]').addEventListener('change', function(event) {
+            const otroFamiliarInput = document.querySelector('input[name="otro_familiar"]');
+            otroFamiliarInput.style.display = this.checked ? 'block' : 'none';
+        });
+        // Mostrar/ocultar sección de mastoplastia
+        document.querySelector('input[name="cirugia_mastoplastia"]').addEventListener('change', function(event) {
+            const mastoplastiaContent = document.getElementById('additional-mastoplastia');
+            mastoplastiaContent.style.display = this.checked ? 'block' : 'none';
+        });
+    </script> 
+</body>
+</html>
+Informacion tecnica para desarrolar la estructura del form, pero devbes seguir las indicaciones comentadas, la fuente no va en mayusculas:
