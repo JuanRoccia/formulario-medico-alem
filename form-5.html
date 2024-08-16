@@ -1,0 +1,336 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Encuesta Abdomen</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400..700;1,400..700&display=swap" rel="stylesheet">
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon/favicon-16x16.png">
+    <link rel="manifest" href="/site.webmanifest">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body class="bg-gray-100">
+    <!-- Contenedor principal -->
+    <div class="container mx-auto px-4 py-8 flex justify-center">
+        <!-- Formulario -->
+        <form class="bg-white w-full max-w-screen-lg shadow-md rounded px-4 sm:px-8 pt-6 pb-8 mb-4">
+            <!-- Encabezado -->
+            <header class="header flex flex-col items-center py-4 px-2 mb-4">
+                <div class="flex flex-col sm:flex-row items-center w-full sm:w-auto mb-4">
+                    <img src="/images/imagenes-alem.webp" alt="Logo Imágenes Alem" class="w-auto h-20 sm:h-24 object-contain mb-4 sm:mb-0 sm:mr-4">
+                    <div class="title-container lora text-center">
+                        <h4 class="text-xs sm:text-sm">CENTRO DE DIAGNÓSTICO</h4>
+                        <h3 class="text-sm sm:text-base">POR IMÁGENES</h3>
+                        <h2 class="text-xl sm:text-2xl font-bold">ALEM</h2>
+                    </div>
+                </div>
+                <div class="w-full text-center lora">
+                    <h2 class="text-xl sm:text-2xl font-bold">ENCUESTA ABDOMEN</h2>
+                </div>
+            </header>
+            <!-- Síntomas abdominales -->
+            <div class="mb-6">
+                <p class="mb-2 font-semibold">¿Presenta síntomas abdominales?</p>
+                <div class="flex items-center space-x-4 mb-4">
+                    <label class="inline-flex items-center">
+                        <input type="radio" class="form-radio" name="sintomas_abdominales" value="no" required>
+                        <span class="ml-2">No</span>
+                    </label>
+                    <label class="inline-flex items-center">
+                        <input type="radio" class="form-radio" name="sintomas_abdominales" value="si">
+                        <span class="ml-2">Sí</span>
+                    </label>
+                </div>
+                <div id="sintomas-adicionales" class="hidden mt-4">
+                    <label class="block mb-2">
+                        <span class="font-semibold">¿Cuáles?</span>
+                        <input type="text" class="form-input mt-1 block w-full" name="cuales_sintomas" placeholder="Describa los síntomas">
+                    </label>
+                </div>
+            </div>
+            <!-- Infecciones recientes -->
+            <div class="mb-6">
+                <p class="mb-2 font-semibold">¿Infecciones recientes?</p>
+                <div class="flex items-center space-x-4 mb-4">
+                    <label class="inline-flex items-center">
+                        <input type="radio" class="form-radio" name="infecciones_recientes" value="no" required>
+                        <span class="ml-2">No</span>
+                    </label>
+                    <label class="inline-flex items-center">
+                        <input type="radio" class="form-radio" name="infecciones_recientes" value="si">
+                        <span class="ml-2">Sí</span>
+                    </label>
+                </div>
+                <div id="infecciones-adicionales" class="hidden mt-4">
+                    <label class="block mb-2">
+                        <span class="font-semibold">¿Cuáles?</span>
+                        <input type="text" class="form-input mt-1 block w-full" name="cuales_infecciones" placeholder="Describa las infecciones">
+                    </label>
+                </div>
+            </div>
+            <!-- Historia de otras enfermedades -->
+            <div class="mb-6">
+                <p class="mb-2 font-semibold">¿Tiene historia de otras enfermedades? En general, personales o familiares</p>
+                <div class="flex items-center space-x-4 mb-4">
+                    <label class="inline-flex items-center">
+                        <input type="radio" class="form-radio" name="otras_enfermedades" value="no" required>
+                        <span class="ml-2">No</span>
+                    </label>
+                    <label class="inline-flex items-center">
+                        <input type="radio" class="form-radio" name="otras_enfermedades" value="si">
+                        <span class="ml-2">Sí</span>
+                    </label>
+                </div>
+                <div id="enfermedades-adicionales" class="hidden mt-4">
+                    <label class="block mb-2">
+                        <span class="font-semibold">¿Cuáles?</span>
+                        <input type="text" class="form-input mt-1 block w-full" name="cuales_enfermedades" placeholder="Describa las enfermedades">
+                    </label>
+                </div>
+            </div>
+            <!-- Hospitalizaciones previas -->
+            <div class="mb-6">
+                <p class="mb-2 font-semibold">¿Ha estado hospitalizado antes?</p>
+                <div class="flex items-center space-x-4 mb-4">
+                    <label class="inline-flex items-center">
+                        <input type="radio" class="form-radio" name="hospitalizaciones_previas" value="no" required>
+                        <span class="ml-2">No</span>
+                    </label>
+                    <label class="inline-flex items-center">
+                        <input type="radio" class="form-radio" name="hospitalizaciones_previas" value="si">
+                        <span class="ml-2">Sí</span>
+                    </label>
+                </div>
+                <div id="hospitalizaciones-adicionales" class="hidden mt-4">
+                    <label class="block mb-2">
+                        <span class="font-semibold">¿Motivos?</span>
+                        <input type="text" class="form-input mt-1 block w-full" name="motivos_hospitalizaciones" placeholder="Describa los motivos">
+                    </label>
+                </div>
+            </div>
+            <!-- Cirugías anteriores -->
+            <div class="mb-6">
+                <p class="mb-2 font-semibold">¿Ha tenido cirugías anteriormente?</p>
+                <div class="flex items-center space-x-4 mb-4">
+                    <label class="inline-flex items-center">
+                        <input type="radio" class="form-radio" name="cirugias_anteriores" value="no" required>
+                        <span class="ml-2">No</span>
+                    </label>
+                    <label class="inline-flex items-center">
+                        <input type="radio" class="form-radio" name="cirugias_anteriores" value="si">
+                        <span class="ml-2">Sí</span>
+                    </label>
+                </div>
+                <div id="cirugias-adicionales" class="hidden mt-4">
+                    <label class="block mb-2">
+                        <span class="font-semibold">¿Cuáles?</span>
+                        <input type="text" class="form-input mt-1 block w-full" name="cuales_cirugias" placeholder="Describa las cirugías">
+                    </label>
+                    <label class="block mt-2">
+                        <span class="font-semibold">¿Hace cuánto tiempo?</span>
+                        <input type="text" class="form-input mt-1 block w-full" name="tiempo_cirugias" placeholder="Indique el tiempo aproximado">
+                    </label>
+                </div>
+            </div>
+            <!-- Enfermedades familiares -->
+            <div class="mb-6">
+                <p class="mb-2 font-semibold">¿Hay algún familiar cercano con enfermedades importantes (hermano(a), padres, otros)?</p>
+                <div class="flex items-center space-x-4 mb-4">
+                    <label class="inline-flex items-center">
+                        <input type="radio" class="form-radio" name="enfermedades_familiares" value="no" required>
+                        <span class="ml-2">No</span>
+                    </label>
+                    <label class="inline-flex items-center">
+                        <input type="radio" class="form-radio" name="enfermedades_familiares" value="si">
+                        <span class="ml-2">Sí</span>
+                    </label>
+                </div>
+                <div id="enfermedades-familiares-adicionales" class="hidden mt-4">
+                    <label class="block mb-2">
+                        <span class="font-semibold">¿Cuáles?</span>
+                        <input type="text" class="form-input mt-1 block w-full" name="cuales_enfermedades_familiares" placeholder="Describa las enfermedades familiares">
+                    </label>
+                </div>
+            </div>
+            <!-- Antecedentes Oncológicos -->
+            <div class="mb-6">
+                <h3 class="text-lg font-semibold mb-4">Antecedentes Oncológicos</h3>
+                <!-- Diagnóstico de cáncer -->
+                <div class="mb-4">
+                    <p class="mb-2 font-semibold">¿Tiene diagnóstico de cáncer?</p>
+                    <div class="flex items-center space-x-4 mb-2">
+                        <label class="inline-flex items-center">
+                            <input type="radio" class="form-radio" name="diagnostico_cancer" value="no" required>
+                            <span class="ml-2">No</span>
+                        </label>
+                        <label class="inline-flex items-center">
+                            <input type="radio" class="form-radio" name="diagnostico_cancer" value="si">
+                            <span class="ml-2">Sí</span>
+                        </label>
+                    </div>
+                    <div id="cancer-adicional" class="hidden mt-2 space-y-2">
+                        <label class="block">
+                            <span class="font-semibold">Tipo:</span>
+                            <input type="text" class="form-input mt-1 block w-full" name="tipo_cancer">
+                        </label>
+                        <label class="block">
+                            <span class="font-semibold">Fecha:</span>
+                            <input type="date" class="form-input mt-1 block w-full" name="fecha_cancer">
+                        </label>
+                    </div>
+                </div>
+                <!-- Cirugía del cáncer -->
+                <div class="mb-4">
+                    <p class="mb-2 font-semibold">¿Cirugía del cáncer?</p>
+                    <div class="flex items-center space-x-4 mb-2">
+                        <label class="inline-flex items-center">
+                            <input type="radio" class="form-radio" name="cirugia_cancer" value="no" required>
+                            <span class="ml-2">No</span>
+                        </label>
+                        <label class="inline-flex items-center">
+                            <input type="radio" class="form-radio" name="cirugia_cancer" value="si">
+                            <span class="ml-2">Sí</span>
+                        </label>
+                    </div>
+                    <div id="cirugia-cancer-adicional" class="hidden mt-2">
+                        <label class="block">
+                            <span class="font-semibold">Fecha:</span>
+                            <input type="date" class="form-input mt-1 block w-full" name="fecha_cirugia_cancer">
+                        </label>
+                    </div>
+                </div>
+                <!-- Quimioterapia -->
+                <div class="mb-4">
+                    <p class="mb-2 font-semibold">¿Ha recibido quimioterapia?</p>
+                    <div class="flex items-center space-x-4 mb-2">
+                        <label class="inline-flex items-center">
+                            <input type="radio" class="form-radio" name="quimioterapia" value="no" required>
+                            <span class="ml-2">No</span>
+                        </label>
+                        <label class="inline-flex items-center">
+                            <input type="radio" class="form-radio" name="quimioterapia" value="si">
+                            <span class="ml-2">Sí</span>
+                        </label>
+                    </div>
+                    <div id="quimioterapia-adicional" class="hidden mt-2">
+                        <label class="block">
+                            <span class="font-semibold">Fecha de finalización:</span>
+                            <input type="date" class="form-input mt-1 block w-full" name="fecha_fin_quimioterapia">
+                        </label>
+                    </div>
+                </div>
+                <!-- Radioterapia -->
+                <div class="mb-4">
+                    <p class="mb-2 font-semibold">¿Ha recibido radioterapia?</p>
+                    <div class="flex items-center space-x-4 mb-2">
+                        <label class="inline-flex items-center">
+                            <input type="radio" class="form-radio" name="radioterapia" value="no" required>
+                            <span class="ml-2">No</span>
+                        </label>
+                        <label class="inline-flex items-center">
+                            <input type="radio" class="form-radio" name="radioterapia" value="si">
+                            <span class="ml-2">Sí</span>
+                        </label>
+                    </div>
+                    <div id="radioterapia-adicional" class="hidden mt-2">
+                        <label class="block">
+                            <span class="font-semibold">Fecha de finalización:</span>
+                            <input type="date" class="form-input mt-1 block w-full" name="fecha_fin_radioterapia">
+                        </label>
+                    </div>
+                </div>
+                <!-- Biopsia reciente -->
+                <div class="mb-4">
+                    <p class="mb-2 font-semibold">Biopsia reciente:</p>
+                    <div class="flex items-center space-x-4 mb-2">
+                        <label class="inline-flex items-center">
+                            <input type="radio" class="form-radio" name="biopsia_reciente" value="no" required>
+                            <span class="ml-2">No</span>
+                        </label>
+                        <label class="inline-flex items-center">
+                            <input type="radio" class="form-radio" name="biopsia_reciente" value="si">
+                            <span class="ml-2">Sí</span>
+                        </label>
+                    </div>
+                    <div id="biopsia-adicional" class="hidden mt-2 space-y-2">
+                        <label class="block">
+                            <span class="font-semibold">Fecha:</span>
+                            <input type="date" class="form-input mt-1 block w-full" name="fecha_biopsia">
+                        </label>
+                        <label class="block">
+                            <span class="font-semibold">Lugar:</span>
+                            <input type="text" class="form-input mt-1 block w-full" name="lugar_biopsia">
+                        </label>
+                    </div>
+                </div>
+                <!-- Marcadores séricos elevados -->
+                <div class="mb-4">
+                    <p class="mb-2 font-semibold">¿Marcadores séricos elevados?</p>
+                    <div class="flex items-center space-x-4 mb-2">
+                        <label class="inline-flex items-center">
+                            <input type="radio" class="form-radio" name="marcadores_sericos" value="no" required>
+                            <span class="ml-2">No</span>
+                        </label>
+                        <label class="inline-flex items-center">
+                            <input type="radio" class="form-radio" name="marcadores_sericos" value="si">
+                            <span class="ml-2">Sí</span>
+                        </label>
+                    </div>
+                    <div id="marcadores-adicional" class="hidden mt-2">
+                        <label class="block">
+                            <span class="font-semibold">¿Cuál?</span>
+                            <input type="text" class="form-input mt-1 block w-full" name="tipo_marcador_serico">
+                        </label>
+                    </div>
+                </div>
+            </div>
+            <!-- Autorización -->
+            <div>
+                <p class="mb-2">Autorizo a utilizar las imágenes adquiridas de manera anónima con fines educativos</p> 
+                <div class="flex items-center space-x-4">
+                    <label class="inline-flex items-center">          
+                        <input type="radio" class="form-radio" name="autorizacion" value="no" required>            
+                        <span class="ml-2">No</span>            
+                    </label>
+                    <label class="inline-flex items-center">            
+                        <input type="radio" class="form-radio" name="autorizacion" value="si">            
+                        <span class="ml-2">Sí</span>            
+                    </label>  
+                </div>
+            </div>
+        </form>
+    </div>
+
+    <script>
+        function toggleAdditionalContent(radioName, contentId) {
+            document.querySelectorAll(`input[name="${radioName}"]`).forEach((elem) => {
+                elem.addEventListener('change', function(event) {
+                    const additionalContent = document.getElementById(contentId);
+                    if (event.target.value === 'si') {
+                        additionalContent.classList.remove('hidden');
+                    } else {
+                        additionalContent.classList.add('hidden');
+                    }
+                });
+            });
+        }
+        toggleAdditionalContent('sintomas_abdominales', 'sintomas-adicionales');
+        toggleAdditionalContent('infecciones_recientes', 'infecciones-adicionales');
+        toggleAdditionalContent('otras_enfermedades', 'enfermedades-adicionales');
+        toggleAdditionalContent('hospitalizaciones_previas', 'hospitalizaciones-adicionales');
+        toggleAdditionalContent('cirugias_anteriores', 'cirugias-adicionales');
+        toggleAdditionalContent('enfermedades_familiares', 'enfermedades-familiares-adicionales');
+        toggleAdditionalContent('diagnostico_cancer', 'cancer-adicional');
+        toggleAdditionalContent('cirugia_cancer', 'cirugia-cancer-adicional');
+        toggleAdditionalContent('quimioterapia', 'quimioterapia-adicional');
+        toggleAdditionalContent('radioterapia', 'radioterapia-adicional');
+        toggleAdditionalContent('biopsia_reciente', 'biopsia-adicional');
+        toggleAdditionalContent('marcadores_sericos', 'marcadores-adicional');
+    </script>
+</body>
+</html>

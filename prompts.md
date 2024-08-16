@@ -1,3 +1,4 @@
+Bien ahora tenemos que hacer un nuevo form-5.html que consiste basicamente en un formulario para el abdomen, siguiendo una logica estructura similar al siguiente usando tailwind:
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -281,9 +282,118 @@
                     </div>
                 </div>
             </div>
-            <!-- Tratamiento de mama 
-             aca lo mismo debemos hacer la pregunta y definir si o no, encaso de si debe responder la fecha
-             y mostrar las opciones de radioterapia quimio toma tamoxifeno anticonceptivos terapia de reemplazo y las sub opciones de cada una-->
+            <!-- Tratamiento de Cáncer de Mama -->
+            <div class="mb-6">
+                <p class="mb-2 font-semibold">¿Ha tenido tratamiento de cáncer de mama?</p>
+                <div class="flex items-center space-x-4 mb-4">
+                    <label class="inline-flex items-center">
+                        <input type="radio" class="form-radio" name="tratamiento_cancer" value="no" required>
+                        <span class="ml-2">No</span>
+                    </label>
+                    <label class="inline-flex items-center">
+                        <input type="radio" class="form-radio" name="tratamiento_cancer" value="si">
+                        <span class="ml-2">Sí</span>
+                    </label>
+                </div>
+                <!-- Información adicional de tratamiento de cáncer -->
+                <div id="additional-tratamiento" class="hidden space-y-4">
+                    <div>
+                        <label class="block mb-2">
+                            <span class="">Fecha:</span>
+                        </label>
+                        <input type="date" class="form-input block w-full text-slate-600" name="fecha_tratamiento_cancer">
+                    </div>
+                    <!-- Radioterapia -->
+                    <div>
+                        <p class="mb-2">¿Radioterapia?</p>
+                        <div class="flex items-center space-x-4 mb-2">
+                            <label class="inline-flex items-center">
+                                <input type="radio" class="form-radio" name="radioterapia" value="no">
+                                <span class="ml-2">No</span>
+                            </label>
+                            <label class="inline-flex items-center">
+                                <input type="radio" class="form-radio" name="radioterapia" value="si">
+                                <span class="ml-2">Sí</span>
+                            </label>
+                        </div>
+                        <input type="date" class="form-input block w-full text-slate-600" name="fecha_radioterapia">
+                    </div>
+                    <!-- Quimioterapia -->
+                    <div>
+                        <p class="mb-2">¿Quimioterapia?</p>
+                        <div class="flex items-center space-x-4 mb-2">
+                            <label class="inline-flex items-center">
+                                <input type="radio" class="form-radio" name="quimioterapia" value="no">
+                                <span class="ml-2">No</span>
+                            </label>
+                            <label class="inline-flex items-center">
+                                <input type="radio" class="form-radio" name="quimioterapia" value="si">
+                                <span class="ml-2">Sí</span>
+                            </label>
+                        </div>
+                        <input type="date" class="form-input block w-full text-slate-600" name="fecha_quimioterapia">
+                    </div>
+                    <!-- Tamoxifeno -->
+                    <div>
+                        <p class="mb-2">¿Toma tamoxifeno?</p>
+                        <div class="flex items-center space-x-4 mb-2">
+                            <label class="inline-flex items-center">
+                                <input type="radio" class="form-radio" name="tamoxifeno" value="no">
+                                <span class="ml-2">No</span>
+                            </label>
+                            <label class="inline-flex items-center">
+                                <input type="radio" class="form-radio" name="tamoxifeno" value="si">
+                                <span class="ml-2">Sí</span>
+                            </label>
+                        </div>
+                        <input type="text" class="form-input block w-full" name="tiempo_tamoxifeno" placeholder="¿Hace cuánto tiempo aproximadamente?">
+                    </div>
+                    <!-- Anticonceptivos -->
+                    <div>
+                        <p class="mb-2">¿Utilizó anticonceptivos?</p>
+                        <div class="flex items-center space-x-4 mb-2">
+                            <label class="inline-flex items-center">
+                                <input type="radio" class="form-radio" name="anticonceptivos" value="no">
+                                <span class="ml-2">No</span>
+                            </label>
+                            <label class="inline-flex items-center">
+                                <input type="radio" class="form-radio" name="anticonceptivos" value="si">
+                                <span class="ml-2">Sí</span>
+                            </label>
+                        </div>
+                        <input type="text" class="form-input block w-full" name="tiempo_anticonceptivos" placeholder="¿Hace cuánto tiempo aproximadamente?">
+                    </div>
+                    <!-- Terapia Hormonal de Reemplazo -->
+                    <div>
+                        <p class="mb-2">¿Utilizó terapia hormonal de reemplazo?</p>
+                        <div class="flex items-center space-x-4 mb-2">
+                            <label class="inline-flex items-center">
+                                <input type="radio" class="form-radio" name="terapia_hormonal" value="no">
+                                <span class="ml-2">No</span>
+                            </label>
+                            <label class="inline-flex items-center">
+                                <input type="radio" class="form-radio" name="terapia_hormonal" value="si">
+                                <span class="ml-2">Sí</span>
+                            </label>
+                        </div>
+                        <input type="text" class="form-input block w-full" name="tiempo_terapia_hormonal" placeholder="¿Hace cuánto tiempo aproximadamente?">
+                    </div>
+                </div>
+            </div>
+            <!-- Autorización -->
+            <div>
+                <p class="mb-2">Autorizo a utilizar las imágenes adquiridas de manera anónima con fines educativos</p> 
+                <div class="flex items-center space-x-4">
+                    <label class="inline-flex items-center">          
+                        <input type="radio" class="form-radio" name="autorizacion" value="no" required>            
+                        <span class="ml-2">No</span>            
+                    </label>
+                    <label class="inline-flex items-center">            
+                        <input type="radio" class="form-radio" name="autorizacion" value="si">            
+                        <span class="ml-2">Sí</span>            
+                    </label>  
+                </div>
+            </div>
         </form>
     </div>
     
@@ -309,7 +419,7 @@
         toggleAdditionalContent('historia_familiar', 'additional-historia-familiar');
         toggleAdditionalContent('cirugias_mamas', 'additional-cirugias');
         toggleAdditionalContent('biopsia_percutanea', 'additional-biopsia');
-
+        toggleAdditionalContent('tratamiento_cancer', 'additional-tratamiento');
         // Manejar la visibilidad del campo "Otro familiar"
         document.querySelector('input[name="familiar_afectado"][value="otra"]').addEventListener('change', function(event) {
             const otroFamiliarInput = document.querySelector('input[name="otro_familiar"]');
@@ -323,4 +433,8 @@
     </script> 
 </body>
 </html>
-Informacion tecnica para desarrolar la estructura del form, pero devbes seguir las indicaciones comentadas, la fuente no va en mayusculas:
+
+el titulo correspondinte al header seria ABDOMEN
+
+vamos a empezar por hacer algunas preguntas de Si o No y si la opcion es si, debemos mostrar las opciones que le correspondan, la primer seccion consiste en esto:
+
