@@ -129,6 +129,8 @@
                 return;
             }
 
+            addSignatureToLastForm(); // Llamar a la nueva función para agregar la firma al último formulario seleccionado
+
             const baseUrl = 'https://formulario-medico-alem.netlify.app/forms.html?'; // Change this URL to the actual URL
             const formParams = selectedForms.map(form => `form=${form.value}&name=${encodeURIComponent(form.name)}`).join('&');
             const fullLink = `${baseUrl}${formParams}`;
@@ -147,5 +149,7 @@
             }, 3000);
         }
     </script>
+    <!-- Agregar el script.js -->
+    <script src="script.js"></script>
 </body>
 </html>

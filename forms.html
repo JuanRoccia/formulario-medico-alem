@@ -253,6 +253,27 @@
             }
 
         });
+
+        // Funcion para asignar firma al ultimo formulario (script.js)
+        // function addSignaturePadToLastForm() {
+        //     const signatureForm = localStorage.getItem('signatureForm');
+        //     const signatureHtml = localStorage.getItem('signatureHtml');
+        //     console.log('signatureForm:', signatureForm);
+        //     console.log('signatureHtml:', signatureHtml);
+        //     if (signatureForm && signatureHtml) {
+        //         const formElement = document.querySelector(`[data-form="${signatureForm}"]`);
+        //         if (formElement) {
+        //             console.log('formElement:', formElement);
+        //             formElement.insertAdjacentHTML('beforeend', signatureHtml);
+        //             initSignaturePad();
+        //         }
+        //     }
+        // }
+
+        // Llamar a esta función cuando se cargue forms.html
+        // document.addEventListener('DOMContentLoaded', addSignaturePadToLastForm);
     </script>
+    <!-- Agregar el script.js -->
+    <script src="script.js"></script>
 </body>
 </html>
