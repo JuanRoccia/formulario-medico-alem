@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>NEURO-CABEZA Y CUELLO</title>
+    <!-- Estilos CSS -->
     <link rel="stylesheet" href="styles.css">
     <!-- Tailwind CDN -->
     <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.15/dist/tailwind.min.css" rel="stylesheet">
@@ -16,78 +17,6 @@
     <link rel="icon" type="image/png" sizes="32x32" href="/favicon/favicon-32x32.png">
     <link rel="icon" type="image/png" sizes="16x16" href="/favicon/favicon-16x16.png">
     <link rel="manifest" href="/site.webmanifest">
-    <!-- Estilos CSS -->
-    <!-- <style>
-      /*<uniquifier>: Use a unique and descriptive class name
-      <weight>: Use a value from 400 to 700*/
-      .lora {
-        font-family: "Lora", serif;
-        font-optical-sizing: auto;
-        font-weight: 500;
-        font-style: normal;
-      }
-      .header {
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        text-align: center;
-        padding: 20px; /* Color de fondo del encabezado */
-        max-width: 100%;
-        overflow: hidden;
-      }
-      .header img {
-        max-width: 100%;
-      }
-      .title-container h4,
-      .title-container h3,
-      .title-container h2 {
-        margin: 0;
-        line-height: 1.2;
-      }
-      .title-container h4 {
-        letter-spacing: 0.5px;
-      }
-      .title-container h3 {
-        letter-spacing: 2px;
-      }
-      .title-container h2 {
-        letter-spacing: 4px;
-      }
-      @media (min-width: 640px) {
-        .header {
-          align-items: center;
-        }
-        .title-container h4 {
-          letter-spacing: 1px;
-        }
-        .title-container h3 {
-          letter-spacing: 3px;
-        }
-        .title-container h2 {
-          letter-spacing: 6px;
-        }
-      }
-      input[type=number]::-webkit-inner-spin-button, 
-      input[type=number]::-webkit-outer-spin-button { 
-        -webkit-appearance: none; 
-        margin: 0; 
-      }
-      input[type=number] { -moz-appearance:textfield; }
-      .date-input {
-        width: auto;
-        padding: 5px;
-      }
-      #additional-content input, #additional-medicacion input, #additional-onc input , #additional-deporte input{
-        width: 70%;
-      }
-      .space-y-1>:not([hidden])~:not([hidden]) {
-        --tw-space-y-reverse: 0;
-        margin-top: 0;
-      }
-      #signature-pad-2{
-          max-width: 100%;
-      }
-    </style> -->
   </head>
   <body class="bg-gray-100">
     <!-- Contenedor Principal -->
@@ -112,6 +41,7 @@
         <div class="mb-6">
           <h3 class="mb-4">MARCAR LAS CORRECTAS:</h3>
           <div class="space-y-4">
+            <!-- Sintomas -->
             <div class="flex flex-col md:flex-row">
               <p class="pr-2">Síntomas por los cuales se realiza el estudio:</p>
               <div class="mb-4 md:mb-0 md:mr-4">
@@ -171,6 +101,7 @@
                 <input type="text" class="form-input block w-full" placeholder="Escriba aquí">
               </div>
             </div>
+            <!-- Fecha -->
             <div class="flex flex-col md:flex-row md:items-center">
               <p class="pr-4">Desde cuándo los presenta aprox:</p>
               <div class="mb-4 md:mb-0 md:mr-4">
@@ -179,6 +110,7 @@
                 </div>
               </div>
             </div>
+            <!-- Origen de los sintomas -->
             <div class="flex flex-col md:flex-row">
               <p class="pr-4">Los síntomas comenzaron de forma:</p>
               <div class="mb-4 md:mb-0 md:mr-4">
@@ -199,7 +131,7 @@
               </div>
             </div>
             
-            <div> 
+            <div class="mb-6"> 
               <p class="mb-2">¿Tuvo un traumatismo de cráneo/cara?</p>        
               <div class="flex items-center space-x-4">
                 <label class="inline-flex items-center">          
@@ -211,19 +143,19 @@
                   <span class="ml-2">Sí</span>            
                 </label>
               </div>
-              <div id="additional-traumatismo" class="hidden">
-                <div class="flex items-center space-x-2 mt-4">        
+              <div id="additional-traumatismo" class="hidden mb-4">
+                <div class="flex items-center space-x-2 mt-2">        
                   <p>¿Dónde?</p>        
                   <input type="text" class="form-input block" placeholder="Escriba aquí">
                 </div>
-                <div class="flex items-center space-x-2 mt-4">        
+                <div class="flex items-center space-x-2 mt-2">        
                   <p>¿Hace cuánto?</p>        
                   <input type="text" class="form-input block" placeholder="Escriba aquí">
                 </div>
               </div>
             </div>
 
-            <div>
+            <div class="mb-6">
               <p class="mb-2">Antecedentes de problemas al nacer o durante el parto:</p>        
               <div class="flex items-center space-x-4">  
                 <label class="inline-flex items-center">          
@@ -236,14 +168,14 @@
                 </label>  
               </div>
               <div id="additional-problemas" class="hidden">
-                <div class="flex items-center space-x-2 mt-4">        
+                <div class="flex items-center space-x-2 mt-2">        
                   <p>¿Cuáles?</p>        
                   <input type="text" class="form-input block" placeholder="Escriba aquí">
                 </div>
               </div>     
             </div>
             
-            <div>        
+            <div class="mb-6">        
               <p class="mb-2">Se ha realizado Cirugías/biopsias en el área de estudio:</p>        
               <div class="flex items-center space-x-4">
                 <label class="inline-flex items-center">          
@@ -256,22 +188,22 @@
                 </label>          
               </div>
               <div id="additional-cirugias" class="hidden">
-                <div class="flex items-center space-x-2 mt-4">       
+                <div class="flex items-center space-x-2 mt-2">       
                   <p>¿Qué le hicieron?</p>        
                   <input type="text" class="form-input block" placeholder="Escriba aquí">
                 </div>
-                <div class="flex items-center space-x-2 mt-4">       
+                <div class="flex items-center space-x-2 mt-2">       
                   <p>Fecha: </p>        
                   <input type="text" class="form-input block" placeholder="Escriba aquí">
                 </div>
-                <div class="flex items-center space-x-2 mt-4">       
+                <div class="flex items-center space-x-2 mt-2">       
                   <p>Resultados de la cirugía o biopsia</p>        
                   <input type="text" class="form-input block" placeholder="Escriba aquí">
                 </div>
               </div>        
             </div>
             
-            <div>
+            <div class="mb-6">
               <p class="mb-2">¿Presenta antecedentes odontológicos?</p>        
               <div class="flex items-center space-x-4">
                 <label class="inline-flex items-center">          
@@ -284,18 +216,18 @@
                 </label>          
               </div>
               <div id="additional-odontologica" class="hidden">
-                <div class="flex items-center space-x-2 mt-4">        
+                <div class="flex items-center space-x-2 mt-2">        
                   <p>¿Cuál?</p>        
                   <input type="text" class="form-input block" placeholder="Escriba aquí">
                 </div>
-                <div class="flex items-center space-x-2 mt-4">        
+                <div class="flex items-center space-x-2 mt-2">        
                   <p>Fecha: </p>        
                   <input type="text" class="form-input block" placeholder="Escriba aquí">
                 </div>
               </div>         
             </div>
 
-            <div>
+            <div class="mb-6">
               <p class="mb-2">¿Presenta antecedentes oncológicos personales?</p>        
               <div class="flex items-center space-x-4">
                 <label class="inline-flex items-center">          
@@ -308,14 +240,14 @@
                 </label>          
               </div>
               <div id="additional-oncologica" class="hidden">
-                <div class="flex items-center space-x-2 mt-4 mb-4">        
+                <div class="flex items-center space-x-2 mt-2 mb-4">        
                   <p>¿Cuál?</p>        
                   <input type="text" class="form-input block" placeholder="Escriba aquí">
                 </div>
                 <p class="mb-1">Radioterapia: </p>        
                 <div class="flex items-center space-x-4">
                   <label class="inline-flex items-center">          
-                    <input type="radio" class="form-radio" name="radioterapia" value="no" required>            
+                    <input type="radio" class="form-radio" name="radioterapia" value="no">            
                     <span class="ml-2">No</span>            
                   </label>          
                   <label class="inline-flex items-center">            
@@ -330,7 +262,7 @@
                 <p class="mb-1">Quimioterapia: </p>        
                 <div class="flex items-center space-x-4">
                   <label class="inline-flex items-center">          
-                    <input type="radio" class="form-radio" name="quimioterapia" value="no" required>            
+                    <input type="radio" class="form-radio" name="quimioterapia" value="no">            
                     <span class="ml-2">No</span>            
                   </label>          
                   <label class="inline-flex items-center">            
@@ -513,7 +445,7 @@
                 <p class="mb-2">Prolactina: </p>        
                 <div class="flex items-center space-x-4 mb-2">  
                   <label class="inline-flex items-center">          
-                    <input type="radio" class="form-radio" name="prolactinas" value="alta" required>            
+                    <input type="radio" class="form-radio" name="prolactinas" value="alta">            
                     <span class="ml-2">Alta</span>            
                   </label>
                   <label class="inline-flex items-center">            
@@ -528,7 +460,7 @@
                 <p class="mb-2">Hormonas tiroideas: </p>        
                 <div class="flex items-center space-x-4">  
                   <label class="inline-flex items-center">          
-                    <input type="radio" class="form-radio" name="hormonas" value="alta" required>            
+                    <input type="radio" class="form-radio" name="hormonas" value="alta">            
                     <span class="ml-2">Alta</span>            
                   </label>
                   <label class="inline-flex items-center">            
