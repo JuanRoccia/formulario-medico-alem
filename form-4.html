@@ -4,9 +4,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Encuesta Mama</title>
-    <script src="https://cdn.tailwindcss.com"></script>
     <!-- Tailwind CDN -->
-    <!-- <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.15/dist/tailwind.min.css" rel="stylesheet"> -->
+    <!-- <script src="https://cdn.tailwindcss.com"></script> -->
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.15/dist/tailwind.min.css" rel="stylesheet">
     <!-- Font CDN -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -40,7 +40,7 @@
             </header>
             <!-- Estudios Mamarios Previos -->
             <div class="mb-6">
-                <p class="mb-2 font-semibold">¿Se ha realizado estudios mamarios previos?</p>
+                <p class="mb-2">¿Se ha realizado estudios mamarios previos?</p>
                 <div class="flex items-center space-x-4 mb-4">
                     <label class="inline-flex items-center">
                         <input type="radio" class="form-radio" name="estudios_previos" value="no" required>
@@ -52,7 +52,7 @@
                     </label>
                 </div>
                 <!-- Si realizo estudios mamarios -->
-                <div id="additional-estudios" class="hidden space-y-4">
+                <div id="additional-estudios" class="hidden space-y-4 mb-4">
                     <div>
                         <label class="block mb-2">
                             <input type="checkbox" class="form-checkbox" name="estudio_mamografia">
@@ -76,14 +76,14 @@
                     </div>
                     <div class="mt-4">
                         <label class="block mb-2">
-                            <span class="font-semibold">Adjuntar o llevar estudios previos:</span>
+                            <span class="">Adjuntar o llevar estudios previos:</span>
                         </label>
                         <input type="file" class="form-input block w-full text-slate-600" name="archivo_estudios" multiple>
                     </div>
                 </div>
                 <!-- Historia Familiar -->
                 <div class="mt-6">
-                    <p class="mb-2 font-semibold">¿Presenta historia familiar de cáncer de mama u otras enfermedades oncológicas?</p>
+                    <p class="mb-2 ">¿Presenta historia familiar de cáncer de mama u otras enfermedades oncológicas?</p>
                     <div class="flex items-center space-x-4 mb-4">
                         <label class="inline-flex items-center">
                             <input type="radio" class="form-radio" name="historia_familiar" value="no" required>
@@ -95,8 +95,8 @@
                         </label>
                     </div>
                     <!-- Si presenta historial familiar -->
-                    <div id="additional-historia-familiar" class="hidden space-y-2">
-                        <p class="font-semibold">Seleccione el familiar afectado:</p>
+                    <div id="additional-historia-familiar" class="hidden space-y-2 mb-4">
+                        <p class="">Seleccione el familiar afectado:</p>
                         <div class="flex flex-wrap gap-4">
                             <label class="inline-flex items-center">
                                 <input type="checkbox" class="form-checkbox" name="familiar_afectado" value="madre">
@@ -125,7 +125,7 @@
             </div>
             <!-- Cirugías en Mamas -->
             <div class="mb-6">
-                <p class="mb-2 font-semibold">¿Presenta cirugías en mamas?</p>
+                <p class="mb-2">¿Presenta cirugías en mamas?</p>
                 <div class="flex items-center space-x-4 mb-4">
                     <label class="inline-flex items-center">
                         <input type="radio" class="form-radio" name="cirugias_mamas" value="no" required>
@@ -137,7 +137,7 @@
                     </label>
                 </div>
                 <!-- Opciones de cirugías -->
-                <div id="additional-cirugias" class="hidden space-y-4">
+                <div id="additional-cirugias" class="hidden space-y-4 mb-4">
                     <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
                         <div>
                             <label class="block mb-2">
@@ -200,7 +200,7 @@
                         </div>
                     </div>
                     <!-- Sección para mastoplastia -->
-                    <div id="additional-mastoplastia" class="hidden mt-4">
+                    <div id="additional-mastoplastia" class="hidden mb-4">
                         <p class="font-semibold mb-2">En caso de mastoplastia:</p>
                         <div class="space-y-2">
                             <div>
@@ -248,7 +248,7 @@
             </div>
             <!-- Biopsio Percutánea -->
             <div class="mb-6">
-                <p class="mb-2 font-semibold">¿Biopsia percutánea?</p>
+                <p class="mb-2">¿Biopsia percutánea?</p>
                 <div class="flex items-center space-x-4 mb-4">
                     <label class="inline-flex items-center">
                         <input type="radio" class="form-radio" name="biopsia_percutanea" value="no" required>
@@ -260,21 +260,21 @@
                     </label>
                 </div>
                 <!-- Información adicional de biopsia percutánea -->
-                <div id="additional-biopsia" class="hidden space-y-4">
+                <div id="additional-biopsia" class="hidden space-y-4 mb-4">
                     <div>
-                        <label class="block mb-2">
+                        <label class="block">
                             <span class="">Fecha:</span>
                         </label>
-                        <input type="date" class="form-input block w-full text-slate-600" name="fecha_biopsia_percutanea">
+                        <input type="date" class="form-input block w-full text-slate-500" name="fecha_biopsia_percutanea">
                     </div>
                     <div>
-                        <label class="block mb-2">
+                        <label class="block">
                             <span class="">¿Cuál?</span>
                         </label>
                         <input type="text" class="form-input block w-full" name="tipo_biopsia_percutanea" placeholder="Especifique el tipo de biopsia">
                     </div>
                     <div>
-                        <label class="block mb-2">
+                        <label class="block">
                             <span class="">Diagnóstico:</span>
                         </label>
                         <textarea class="form-textarea block w-full" name="diagnostico_biopsia_percutanea" rows="3" placeholder="Ingrese el diagnóstico"></textarea>
@@ -283,8 +283,8 @@
             </div>
             <!-- Tratamiento de Cáncer de Mama -->
             <div class="mb-6">
-                <p class="mb-2 font-semibold">¿Ha tenido tratamiento de cáncer de mama?</p>
-                <div class="flex items-center space-x-4 mb-4">
+                <p class="mb-2">¿Ha tenido tratamiento de cáncer de mama?</p>
+                <div class="flex items-center space-x-4 mb-2">
                     <label class="inline-flex items-center">
                         <input type="radio" class="form-radio" name="tratamiento_cancer" value="no" required>
                         <span class="ml-2">No</span>
@@ -295,12 +295,12 @@
                     </label>
                 </div>
                 <!-- Información adicional de tratamiento de cáncer -->
-                <div id="additional-tratamiento" class="hidden space-y-4">
+                <div id="additional-tratamiento" class="hidden space-y-4 mb-4">
                     <div>
                         <label class="block mb-2">
                             <span class="">Fecha:</span>
                         </label>
-                        <input type="date" class="form-input block w-full text-slate-600" name="fecha_tratamiento_cancer">
+                        <input type="date" class="form-input block w-full text-slate-500" name="fecha_tratamiento_cancer">
                     </div>
                     <!-- Radioterapia -->
                     <div>
@@ -315,7 +315,7 @@
                                 <span class="ml-2">Sí</span>
                             </label>
                         </div>
-                        <input type="date" class="form-input block w-full text-slate-600" name="fecha_radioterapia">
+                        <input type="date" class="form-input block w-full text-slate-500" name="fecha_radioterapia">
                     </div>
                     <!-- Quimioterapia -->
                     <div>
@@ -330,7 +330,7 @@
                                 <span class="ml-2">Sí</span>
                             </label>
                         </div>
-                        <input type="date" class="form-input block w-full text-slate-600" name="fecha_quimioterapia">
+                        <input type="date" class="form-input block w-full text-slate-500" name="fecha_quimioterapia">
                     </div>
                     <!-- Tamoxifeno -->
                     <div>
@@ -412,7 +412,6 @@
                 });
             });
         }
-    
         // Aplicar la función a los grupos de radio relevantes
         toggleAdditionalContent('estudios_previos', 'additional-estudios');
         toggleAdditionalContent('historia_familiar', 'additional-historia-familiar');
