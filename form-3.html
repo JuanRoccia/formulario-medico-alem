@@ -8,6 +8,7 @@
     <link rel="stylesheet" href="css/styles.css">
     <!-- Tailwind CDN -->
     <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.15/dist/tailwind.min.css" rel="stylesheet">
+    <!-- <script src="https://cdn.tailwindcss.com"></script> -->
     <!-- Font CDN -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -531,43 +532,42 @@
     <script src="https://cdn.jsdelivr.net/npm/html2canvas@1.4.1/dist/html2canvas.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/signature_pad@4.0.0/dist/signature_pad.umd.min.js"></script>
     <script>
-      const canvas = document.getElementById('signature-pad-2');
-      const signaturePad = new SignaturePad(canvas, {
-          backgroundColor: 'rgb(255, 255, 255)'
-      });
-      document.getElementById('clear-2').addEventListener('click', function() {
-          signaturePad.clear();
-      });
-      document.getElementById('myForm').addEventListener('submit', function(e) {
-          e.preventDefault();
-          if (signaturePad.isEmpty()) {
-              alert('Por favor, proporcione una firma.');
-          } else {
-              const signatureData = signaturePad.toDataURL();
-              console.log(signatureData); // Aquí puedes enviar la firma al servidor
-              // Continúa con el envío del formulario
-          }
-      });
+      const canvas = document.getElementById('signature-pad');
+      // const signaturePad = new SignaturePad(canvas, {
+      //     backgroundColor: 'rgb(255, 255, 255)'
+      // });
+      // document.getElementById('clear').addEventListener('click', function() {
+      //     signaturePad.clear();
+      // });
+      // document.getElementById('myForm').addEventListener('submit', function(e) {
+      //     e.preventDefault();
+      //     if (signaturePad.isEmpty()) {
+      //         alert('Por favor, proporcione una firma.');
+      //     } else {
+      //         const signatureData = signaturePad.toDataURL();
+      //         console.log(signatureData);
+      //     }
+      // });
       // Configurar el tamaño del canvas
-      function resizeCanvas() {
-        const ratio = Math.max(window.devicePixelRatio || 1, 1);
-        canvas.width = canvas.offsetWidth * ratio;
-        canvas.height = canvas.offsetHeight * ratio;
-        canvas.getContext("2d").scale(ratio, ratio);
+      // function resizeCanvas() {
+      //   const ratio = Math.max(window.devicePixelRatio || 1, 1);
+      //   canvas.width = canvas.offsetWidth * ratio;
+      //   canvas.height = canvas.offsetHeight * ratio;
+      //   canvas.getContext("2d").scale(ratio, ratio);
 
-        // Ajusta el tamaño del canvas en el CSS
-        canvas.style.width = canvas.offsetWidth + 'px';
-        canvas.style.height = canvas.offsetHeight + 'px';
+      //   // Ajusta el tamaño del canvas en el CSS
+      //   canvas.style.width = canvas.offsetWidth + 'px';
+      //   canvas.style.height = canvas.offsetHeight + 'px';
 
-        // Configurar el canvas para usar las coordenadas correctas
-        const ctx = canvas.getContext("2d");
-        ctx.scale(ratio, ratio);
+      //   // Configurar el canvas para usar las coordenadas correctas
+      //   const ctx = canvas.getContext("2d");
+      //   ctx.scale(ratio, ratio);
 
-        signaturePad.clear();
-      }
+      //   signaturePad.clear();
+      // }
       // Ajustar el tamaño del canvas al cargar la página y al cambiar el tamaño de la ventana
-      window.addEventListener('load', resizeCanvas);
-      window.addEventListener('resize', resizeCanvas);
+      // window.addEventListener('load', resizeCanvas);
+      // window.addEventListener('resize', resizeCanvas);
       // Función para ajustar las coordenadas del evento
       function getMousePos(canvas, evt) {
           const rect = canvas.getBoundingClientRect();
@@ -579,36 +579,36 @@
           };
       }
       // Sobrescribe los métodos de SignaturePad para usar las coordenadas ajustadas
-      const originalOnMouseDown = signaturePad._onMouseDown;
-      signaturePad._onMouseDown = function(event) {
-          const position = getMousePos(canvas, event);
-          originalOnMouseDown.call(this, { ...event, clientX: position.x, clientY: position.y });
-      };
-      const originalOnMouseMove = signaturePad._onMouseMove;
-      signaturePad._onMouseMove = function(event) {
-          const position = getMousePos(canvas, event);
-          originalOnMouseMove.call(this, { ...event, clientX: position.x, clientY: position.y });
-      };
-      canvas.addEventListener('touchstart', function(event) {
-          const touch = event.touches[0];
-          const mouseEvent = new MouseEvent("mousedown", {
-              clientX: touch.clientX,
-              clientY: touch.clientY
-          });
-          canvas.dispatchEvent(mouseEvent);
-      }, false);
-      canvas.addEventListener('touchmove', function(event) {
-          const touch = event.touches[0];
-          const mouseEvent = new MouseEvent("mousemove", {
-              clientX: touch.clientX,
-              clientY: touch.clientY
-          });
-          canvas.dispatchEvent(mouseEvent);
-      }, false);
-      canvas.addEventListener('touchend', function() {
-          const mouseEvent = new MouseEvent("mouseup", {});
-          canvas.dispatchEvent(mouseEvent);
-      }, false);
+      // const originalOnMouseDown = signaturePad._onMouseDown;
+      // signaturePad._onMouseDown = function(event) {
+      //     const position = getMousePos(canvas, event);
+      //     originalOnMouseDown.call(this, { ...event, clientX: position.x, clientY: position.y });
+      // };
+      // const originalOnMouseMove = signaturePad._onMouseMove;
+      // signaturePad._onMouseMove = function(event) {
+      //     const position = getMousePos(canvas, event);
+      //     originalOnMouseMove.call(this, { ...event, clientX: position.x, clientY: position.y });
+      // };
+      // canvas.addEventListener('touchstart', function(event) {
+      //     const touch = event.touches[0];
+      //     const mouseEvent = new MouseEvent("mousedown", {
+      //         clientX: touch.clientX,
+      //         clientY: touch.clientY
+      //     });
+      //     canvas.dispatchEvent(mouseEvent);
+      // }, false);
+      // canvas.addEventListener('touchmove', function(event) {
+      //     const touch = event.touches[0];
+      //     const mouseEvent = new MouseEvent("mousemove", {
+      //         clientX: touch.clientX,
+      //         clientY: touch.clientY
+      //     });
+      //     canvas.dispatchEvent(mouseEvent);
+      // }, false);
+      // canvas.addEventListener('touchend', function() {
+      //     const mouseEvent = new MouseEvent("mouseup", {});
+      //     canvas.dispatchEvent(mouseEvent);
+      // }, false);
     </script>
     <script>
       document.querySelector('form').addEventListener('submit', function(e) {
@@ -618,15 +618,15 @@
       });
     </script>
     <script>
-      document.addEventListener("DOMContentLoaded", function() {
-          var canvas = document.getElementById("signature-pad-2");
+      // document.addEventListener("DOMContentLoaded", function() {
+      //     var canvas = document.getElementById("signature-pad-2");
 
-          var container = canvas.parentElement;
-          canvas.width = container.clientWidth;
-          canvas.height = 200; 
-          var signaturePad = new SignaturePad(canvas, {
-          });
-      });
+      //     var container = canvas.parentElement;
+      //     canvas.width = container.clientWidth;
+      //     canvas.height = 200; 
+      //     var signaturePad = new SignaturePad(canvas, {
+      //     });
+      // });
     </script>
     <script>
       document.getElementById('fecha').addEventListener('input', function (e) {
