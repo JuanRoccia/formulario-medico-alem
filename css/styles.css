@@ -91,6 +91,6 @@ input[type=number] { -moz-appearance:textfield; }
 #signature-pad{
     max-width: 100%;
 }
-.h-ia-30{
-    
+#cuestionario-resonancia-magnetica li{
+    margin-bottom:0.6rem;
 }
