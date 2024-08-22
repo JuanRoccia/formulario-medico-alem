@@ -17,6 +17,26 @@
 .header img {
     max-width: 100%;
 }
+@media (min-width:374px){
+    .header img {
+        max-width: 90%;
+    }
+}
+@media (min-width:524px){
+    .header img {
+        max-width: 70%;
+    }
+}
+@media (min-width:650px){
+    .header img {
+        max-width: 60%;
+    }
+}
+@media (min-width:767px){
+    .header img {
+        max-width: 50%;
+    }
+}
 .title-container h4,
 .title-container h3,
 .title-container h2 {
@@ -65,4 +85,7 @@ input[type=number] { -moz-appearance:textfield; }
 }
 #signature-pad{
     max-width: 100%;
+}
+.h-ia-30{
+    
 }
