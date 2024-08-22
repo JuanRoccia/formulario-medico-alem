@@ -10,11 +10,11 @@
     <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
     <link rel="icon" type="image/png" sizes="32x32" href="/favicon/favicon-32x32.png">
     <link rel="icon" type="image/png" sizes="16x16" href="/favicon/favicon-16x16.png">
-    <link rel="manifest" href="/site.webmanifest">
+    <!-- <link rel="manifest" href="/site.webmanifest"> -->
     <link rel="stylesheet" href="css/styles.css">
     <!-- Tailwind CDN -->
-    <!-- <script src="https://cdn.tailwindcss.com"></script> -->
-    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.15/dist/tailwind.min.css" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.15/dist/tailwind.min.css" rel="stylesheet"> -->
 </head>
 <body class="bg-gray-100">
     <!-- Contenedor principal -->
@@ -307,32 +307,6 @@
             </div>
         </form>
     </div>
-
-    <script>
-        function toggleAdditionalContent(radioName, contentId) {
-            document.querySelectorAll(`input[name="${radioName}"]`).forEach((elem) => {
-                elem.addEventListener('change', function(event) {
-                    const additionalContent = document.getElementById(contentId);
-                    if (event.target.value === 'si') {
-                        additionalContent.classList.remove('hidden');
-                    } else {
-                        additionalContent.classList.add('hidden');
-                    }
-                });
-            });
-        }
-        toggleAdditionalContent('sintomas_abdominales', 'sintomas-adicionales');
-        toggleAdditionalContent('infecciones_recientes', 'infecciones-adicionales');
-        toggleAdditionalContent('otras_enfermedades', 'enfermedades-adicionales');
-        toggleAdditionalContent('hospitalizaciones_previas', 'hospitalizaciones-adicionales');
-        toggleAdditionalContent('cirugias_anteriores', 'cirugias-adicionales');
-        toggleAdditionalContent('enfermedades_familiares', 'enfermedades-familiares-adicionales');
-        toggleAdditionalContent('diagnostico_cancer', 'cancer-adicional');
-        toggleAdditionalContent('cirugia_cancer', 'cirugia-cancer-adicional');
-        toggleAdditionalContent('quimioterapia', 'quimioterapia-adicional');
-        toggleAdditionalContent('radioterapia', 'radioterapia-adicional');
-        toggleAdditionalContent('biopsia_reciente', 'biopsia-adicional');
-        toggleAdditionalContent('marcadores_sericos', 'marcadores-adicional');
-    </script>
+    <script src="script.js"></script>
 </body>
 </html>

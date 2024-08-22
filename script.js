@@ -95,3 +95,50 @@ function initSignaturePad(doc) {
 
 // Llamar a esta función cuando se cargue forms.html
 document.addEventListener('DOMContentLoaded', addSignaturePadToLastForm);
+
+// Funcion para el manejo de contenido adicional en formularios
+function toggleAdditionalContent(radioName, contentId) {
+    document.querySelectorAll(`input[name="${radioName}"]`).forEach((elem) => {
+        elem.addEventListener('change', function(event) {
+            const additionalContent = document.getElementById(contentId);
+            if (event.target.value === 'si') {
+                additionalContent.classList.remove('hidden');
+            } else {
+                additionalContent.classList.add('hidden');
+            }
+        });
+    });
+}
+// Formulario 5
+toggleAdditionalContent('sintomas_abdominales', 'sintomas-adicionales');
+toggleAdditionalContent('infecciones_recientes', 'infecciones-adicionales');
+toggleAdditionalContent('otras_enfermedades', 'enfermedades-adicionales');
+toggleAdditionalContent('hospitalizaciones_previas', 'hospitalizaciones-adicionales');
+toggleAdditionalContent('cirugias_anteriores', 'cirugias-adicionales');
+toggleAdditionalContent('enfermedades_familiares', 'enfermedades-familiares-adicionales');
+toggleAdditionalContent('diagnostico_cancer', 'cancer-adicional');
+toggleAdditionalContent('cirugia_cancer', 'cirugia-cancer-adicional');
+toggleAdditionalContent('quimioterapia', 'quimioterapia-adicional');
+toggleAdditionalContent('radioterapia', 'radioterapia-adicional');
+toggleAdditionalContent('biopsia_reciente', 'biopsia-adicional');
+toggleAdditionalContent('marcadores_sericos', 'marcadores-adicional');
+// Formulario 2
+toggleAdditionalContent('pregunta-cirugia', 'additional-content');
+toggleAdditionalContent('pregunta-medicacion', 'additional-medicacion');
+toggleAdditionalContent('pregunta-oncologica', 'additional-onc');
+toggleAdditionalContent('pregunta-deporte', 'additional-deporte');
+// Formulario 3
+toggleAdditionalContent('traumatismo', 'additional-traumatismo');
+toggleAdditionalContent('problemas al nacer', 'additional-problemas');
+toggleAdditionalContent('cirugias-biopsias', 'additional-cirugias');
+toggleAdditionalContent('pregunta-odontologica', 'additional-odontologica');
+toggleAdditionalContent('pregunta-oncologica', 'additional-oncologica');
+toggleAdditionalContent('medicacion-relacionada', 'medicacion-relacionada');
+toggleAdditionalContent('prolactina', 'prolactina');
+// Formulario 4
+toggleAdditionalContent('estudios_previos', 'additional-estudios');
+toggleAdditionalContent('historia_familiar', 'additional-historia-familiar');
+toggleAdditionalContent('cirugias_mamas', 'additional-cirugias');
+toggleAdditionalContent('biopsia_percutanea', 'additional-biopsia');
+toggleAdditionalContent('tratamiento_cancer', 'additional-tratamiento');
+toggleAdditionalContent('cirugia_mastoplastia', 'additional-mastoplastia')

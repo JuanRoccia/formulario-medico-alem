@@ -5,8 +5,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Encuesta Mama</title>
     <!-- Tailwind CDN -->
-    <!-- <script src="https://cdn.tailwindcss.com"></script> -->
-    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.15/dist/tailwind.min.css" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.15/dist/tailwind.min.css" rel="stylesheet"> -->
+    <!-- <link href="https://cdn.jsdelivr.net/npm/tailwindcss@latest/dist/tailwind.min.css" rel="stylesheet"> -->
     <!-- Font CDN -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -15,7 +16,7 @@
     <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
     <link rel="icon" type="image/png" sizes="32x32" href="/favicon/favicon-32x32.png">
     <link rel="icon" type="image/png" sizes="16x16" href="/favicon/favicon-16x16.png">
-    <link rel="manifest" href="/site.webmanifest">
+    <!-- <link rel="manifest" href="/site.webmanifest"> -->
     <!-- Estilos CSS -->
     <link rel="stylesheet" href="css/styles.css">
 </head>
@@ -59,6 +60,23 @@
                             <span class="ml-2">Mamografía</span>
                         </label>
                         <input type="date" class="form-input block w-full text-slate-600" name="fecha_mamografia" placeholder="DD/MM/AAAA" pattern="\d{2}/\d{2}/\d{4}">
+                        
+                        <!-- <input type="text" 
+                                class="form-input block w-full text-slate-600" 
+                                name="fecha_mamografia" 
+                                placeholder="DD/MM/AAAA"
+                                pattern="\d{2}/\d{2}/\d{4}"
+                                oninput="this.value = this.value.replace(/[^0-9\/]/g, '').replace(/(\..*)\./g, '$1');" 
+                                maxlength="10"> -->
+
+                        <!-- <input  type="text" 
+                                class="form-input block w-full text-slate-600 placeholder-slate-400" 
+                                name="fecha_mamografia" 
+                                placeholder="aca va la fecha" 
+                                pattern="\d{2}/\d{2}/\d{4}" 
+                                title="Formato: DD/MM/AAAA"> -->
+                         
+
                     </div>
                     <div>
                         <label class="block mb-2">
@@ -397,27 +415,6 @@
     </div>
     
     <script>
-        // Función para mostrar/ocultar contenido adicional
-        function toggleAdditionalContent(radioName, contentId) {
-            document.querySelectorAll(`input[name="${radioName}"]`).forEach((elem) => {
-                elem.addEventListener('change', function(event) {
-                    const additionalContent = document.getElementById(contentId);
-                    if (event.target.value === 'si') {
-                        additionalContent.classList.remove('hidden');
-                        additionalContent.classList.add('block');
-                    } else {
-                        additionalContent.classList.remove('block');
-                        additionalContent.classList.add('hidden');
-                    }
-                });
-            });
-        }
-        // Aplicar la función a los grupos de radio relevantes
-        toggleAdditionalContent('estudios_previos', 'additional-estudios');
-        toggleAdditionalContent('historia_familiar', 'additional-historia-familiar');
-        toggleAdditionalContent('cirugias_mamas', 'additional-cirugias');
-        toggleAdditionalContent('biopsia_percutanea', 'additional-biopsia');
-        toggleAdditionalContent('tratamiento_cancer', 'additional-tratamiento');
         // Manejar la visibilidad del campo "Otro familiar"
         document.querySelector('input[name="familiar_afectado"][value="otra"]').addEventListener('change', function(event) {
             const otroFamiliarInput = document.querySelector('input[name="otro_familiar"]');
@@ -428,6 +425,7 @@
             const mastoplastiaContent = document.getElementById('additional-mastoplastia');
             mastoplastiaContent.style.display = this.checked ? 'block' : 'none';
         });
-    </script> 
+    </script>
+    <script src="script.js"></script> 
 </body>
 </html>
