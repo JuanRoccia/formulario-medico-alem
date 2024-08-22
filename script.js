@@ -109,19 +109,6 @@ function toggleAdditionalContent(radioName, contentId) {
         });
     });
 }
-// Formulario 5
-toggleAdditionalContent('sintomas_abdominales', 'sintomas-adicionales');
-toggleAdditionalContent('infecciones_recientes', 'infecciones-adicionales');
-toggleAdditionalContent('otras_enfermedades', 'enfermedades-adicionales');
-toggleAdditionalContent('hospitalizaciones_previas', 'hospitalizaciones-adicionales');
-toggleAdditionalContent('cirugias_anteriores', 'cirugias-adicionales');
-toggleAdditionalContent('enfermedades_familiares', 'enfermedades-familiares-adicionales');
-toggleAdditionalContent('diagnostico_cancer', 'cancer-adicional');
-toggleAdditionalContent('cirugia_cancer', 'cirugia-cancer-adicional');
-toggleAdditionalContent('quimioterapia', 'quimioterapia-adicional');
-toggleAdditionalContent('radioterapia', 'radioterapia-adicional');
-toggleAdditionalContent('biopsia_reciente', 'biopsia-adicional');
-toggleAdditionalContent('marcadores_sericos', 'marcadores-adicional');
 // Formulario 2
 toggleAdditionalContent('pregunta-cirugia', 'additional-content');
 toggleAdditionalContent('pregunta-medicacion', 'additional-medicacion');
@@ -142,3 +129,40 @@ toggleAdditionalContent('cirugias_mamas', 'additional-cirugias');
 toggleAdditionalContent('biopsia_percutanea', 'additional-biopsia');
 toggleAdditionalContent('tratamiento_cancer', 'additional-tratamiento');
 toggleAdditionalContent('cirugia_mastoplastia', 'additional-mastoplastia')
+// Formulario 5
+toggleAdditionalContent('sintomas_abdominales', 'sintomas-adicionales');
+toggleAdditionalContent('infecciones_recientes', 'infecciones-adicionales');
+toggleAdditionalContent('otras_enfermedades', 'enfermedades-adicionales');
+toggleAdditionalContent('hospitalizaciones_previas', 'hospitalizaciones-adicionales');
+toggleAdditionalContent('cirugias_anteriores', 'cirugias-adicionales');
+toggleAdditionalContent('enfermedades_familiares', 'enfermedades-familiares-adicionales');
+toggleAdditionalContent('diagnostico_cancer', 'cancer-adicional');
+toggleAdditionalContent('cirugia_cancer', 'cirugia-cancer-adicional');
+toggleAdditionalContent('quimioterapia', 'quimioterapia-adicional');
+toggleAdditionalContent('radioterapia', 'radioterapia-adicional');
+toggleAdditionalContent('biopsia_reciente', 'biopsia-adicional');
+toggleAdditionalContent('marcadores_sericos', 'marcadores-adicional');
+//Form 6
+toggleAdditionalContent('pr-menst', 'pg-mns-adicional');
+toggleAdditionalContent('pr-menopausia', 'pg-mnp-adicional');
+toggleAdditionalContent('pr-metodo-anticonceptivo', 'pg-mntc-adicional');
+toggleAdditionalContent('pr-cesareas', 'pg-mcsa-adicional');
+toggleAdditionalContent('pr-intervencion-q-ginecologica', 'pg-mcsa-adicional');
+toggleAdditionalContent('pr-pg-antecendente-familiar', 'pg-afdc-adicional');
+toggleAdditionalContent('pr-pg-antecedente-personal', 'pg-apdc-adicional');
+toggleAdditionalContent('pr-pg-intervencion-cc', 'pg-iqdc-adicional');
+toggleAdditionalContent('pr-pg-tratamiento-cc', 'pr-pg-tratamiento-cc');
+//Form 7
+toggleAdditionalContent('pr-pm-ciguria-biopsia', 'pm-cbade-adicional');
+toggleAdditionalContent('pr-pm-cirugia-previa', 'pm-tacpe-adicional');
+toggleAdditionalContent('pr-pm-antecedente-familiar', 'pm-afdcm-adicional');
+toggleAdditionalContent('pr-pm-antecedente-personal', 'pm-apdcm-adicional');
+toggleAdditionalContent('pr-pm-intervencion-cc', 'pm-iqdcm-adicional');
+toggleAdditionalContent('pr-pm-tratamiento-cc', 'pm-tdcm-adicional');
+//Form 8
+toggleAdditionalContent('pr-fistula', 'rpfst-adicional');
+toggleAdditionalContent('pr-cirugia-biopsia', 'cbade-adicional');
+toggleAdditionalContent('pr-cirugia-zona', 'cpae-adicional');
+toggleAdditionalContent('pr-antecedente-familiar', 'afdcm-adicional');
+toggleAdditionalContent('pr-antecedente-personal', 'tapdc-adicional');
+toggleAdditionalContent('pr-tratamiento-cc', 'tdcm-adicional');
