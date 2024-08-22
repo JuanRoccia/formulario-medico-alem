@@ -6,6 +6,8 @@
     <title>Dashboard del Médico</title>
     <!-- <script src="https://cdn.tailwindcss.com"></script> -->
     <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.15/dist/tailwind.min.css" rel="stylesheet">
+    <!-- Agregar el script.js -->
+    <!-- <script src="script.js"></script> -->
 </head>
 <body class="bg-gray-100 font-sans">
     <div class="container mx-auto p-4 max-w-md">
@@ -59,10 +61,28 @@
                         <span class="ml-2 text-gray-700">Formulario 4</span>
                     </label>
                 </div>
-                <div class="mb-6">
+                <div class="mb-4">
                     <label class="inline-flex items-center">
                         <input type="checkbox" id="form5" value="form-5" class="form-checkbox h-5 w-5 text-blue-600">
                         <span class="ml-2 text-gray-700">Formulario 5</span>
+                    </label>
+                </div>
+                <div class="mb-4">
+                    <label class="inline-flex items-center">
+                        <input type="checkbox" id="form6" value="form-6" class="form-checkbox h-5 w-5 text-blue-600">
+                        <span class="ml-2 text-gray-700">Formulario 6</span>
+                    </label>
+                </div>
+                <div class="mb-4">
+                    <label class="inline-flex items-center">
+                        <input type="checkbox" id="form7" value="form-7" class="form-checkbox h-5 w-5 text-blue-600">
+                        <span class="ml-2 text-gray-700">Formulario 7</span>
+                    </label>
+                </div>
+                <div class="mb-6">
+                    <label class="inline-flex items-center">
+                        <input type="checkbox" id="form8" value="form-8" class="form-checkbox h-5 w-5 text-blue-600">
+                        <span class="ml-2 text-gray-700">Formulario 8</span>
                     </label>
                 </div>
                 <button id="generateButton" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline">
@@ -83,73 +103,6 @@
             </div>
         </div>
     </div>
-
-    <script>
-        const loginForm = document.getElementById('loginForm');
-        const dashboardContent = document.getElementById('dashboardContent');
-        const loginButton = document.getElementById('loginButton');
-        const usernameInput = document.getElementById('username');
-        const passwordInput = document.getElementById('password');
-        const generateButton = document.getElementById('generateButton');
-        const form1Checkbox = document.getElementById('form1');
-        const form2Checkbox = document.getElementById('form2');
-        const form3Checkbox = document.getElementById('form3');
-        const form4Checkbox = document.getElementById('form4');
-        const form5Checkbox = document.getElementById('form5');
-        const generatedLinkDiv = document.getElementById('generatedLink');
-        const linkInput = document.getElementById('linkInput');
-        const copyButton = document.getElementById('copyButton');
-        const alertMessage = document.getElementById('alertMessage');
-
-        loginButton.addEventListener('click', login);
-        generateButton.addEventListener('click', generateLink);
-        copyButton.addEventListener('click', copyToClipboard);
-
-        function login() {
-            const username = usernameInput.value;
-            const password = passwordInput.value;
-
-            if (username === 'admin' && password === 'admin') {
-                loginForm.classList.add('hidden');
-                dashboardContent.classList.remove('hidden');
-            } else {
-                alert('Credenciales incorrectas. Por favor, intente de nuevo.');
-            }
-        }
-
-        function generateLink() {
-            const selectedForms = [];
-            if (form1Checkbox.checked) selectedForms.push({value: form1Checkbox.value, name: 'Formulario 1'});
-            if (form2Checkbox.checked) selectedForms.push({value: form2Checkbox.value, name: 'Formulario 2'});
-            if (form3Checkbox.checked) selectedForms.push({value: form3Checkbox.value, name: 'Formulario 3'});
-            if (form4Checkbox.checked) selectedForms.push({value: form4Checkbox.value, name: 'Formulario 4'});
-            if (form5Checkbox.checked) selectedForms.push({value: form5Checkbox.value, name: 'Formulario 5'});
-
-            if (selectedForms.length === 0) {
-                alert('Por favor, seleccione al menos un formulario.');
-                return;
-            }
-
-            addSignatureToLastForm(); // Llamar a la nueva función para agregar la firma al último formulario seleccionado
-
-            const baseUrl = 'https://formulario-medico-alem.netlify.app/forms.html?'; // Change this URL to the actual URL
-            const formParams = selectedForms.map(form => `form=${form.value}&name=${encodeURIComponent(form.name)}`).join('&');
-            const fullLink = `${baseUrl}${formParams}`;
-
-            linkInput.value = fullLink;
-            generatedLinkDiv.classList.remove('hidden');
-        }
-
-        function copyToClipboard() {
-            linkInput.select();
-            document.execCommand('copy');
-            
-            alertMessage.classList.remove('hidden');
-            setTimeout(() => {
-                alertMessage.classList.add('hidden');
-            }, 3000);
-        }
-    </script>
     <!-- Agregar el script.js -->
     <script src="script.js"></script>
 </body>
