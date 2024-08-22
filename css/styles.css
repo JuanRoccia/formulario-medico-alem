@@ -37,6 +37,11 @@
         max-width: 50%;
     }
 }
+@media (min-width:991px){
+    .header img {
+        max-width: 45%;
+    }
+}
 .title-container h4,
 .title-container h3,
 .title-container h2 {
