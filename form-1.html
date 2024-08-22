@@ -3,27 +3,18 @@
   <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Formulario de Pacientes</title>
-    <link rel="stylesheet" href="css/styles.css">
+    <title>RESONANCIA MAGNÉTICA</title>
     <!-- Tailwind CDN -->
-    <!-- <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.15/dist/tailwind.min.css" rel="stylesheet"> -->
-    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.15/dist/tailwind.min.css" rel="stylesheet">
     <!-- Font CDN -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400..700;1,400..700&display=swap" rel="stylesheet">
-    <!-- Favicon -->
-    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
-    <link rel="icon" type="image/png" sizes="32x32" href="/favicon/favicon-32x32.png">
-    <link rel="icon" type="image/png" sizes="16x16" href="/favicon/favicon-16x16.png">
-    <!-- <link rel="manifest" href="/site.webmanifest"> -->
-    <!-- Estilos CSS -->
-     <link rel="stylesheet" href="css/styles.css">
+    <link href="css/styles.css" rel="stylesheet">
   </head>
   <body class="bg-gray-100">
     <div class="container mx-auto px-4 py-8 flex justify-center">
       <form class="bg-white w-full max-w-screen-lg shadow-md rounded px-4 px-10 sm:px-20 pt-6 pb-8 mb-4">
-        <!-- Encabezado -->
         <header class="header flex justify-center py-4 px-2">
           <div class="w-full sm:w-auto flex justify-center">
             <img src="images/logo-imagenes-alem-hrz.webp" 
@@ -31,284 +22,317 @@
               class="object-contain">
           </div>
         </header>
-        <!-- Datos Generales del Paciente -->
-        <div class="mb-6">
-          <h2 class="text-xl font-bold mb-4">Información del Paciente</h2>    
-          <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
-            <div>
-              <label class="block text-sm font-medium text-gray-900 mb-2" for="nombre">
-                Nombre
-              </label>
-              <input class="mt-2 block w-full rounded-md border-0 py-1.5 px-3 text-gray-900 ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6" id="nombre" type="text" required> 
-            </div> 
-            <div>       
-              <label class="block text-sm font-medium text-gray-900 mb-2" for="apellido">
-                Apellido
-              </label>
-              <input class="mt-2 block w-full rounded-md border-0 py-1.5 px-3 text-gray-900 ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6" id="apellido" type="text" required>        
-            </div> 
-            <div>
-                <label class="block text-sm font-medium text-gray-900 mb-2" for="dni">
-                    DNI
-                  </label>
-                  <input class="mt-2 block w-full rounded-md border-0 py-1.5 px-3 text-gray-900 ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6" id="dni" type="number" required>
-            </div>     
-          </div>
+        <div class="mb-6 text-center">
+          <h2 class="sm:text-md md:text-xl xl:text-2xl font-bold mb-4">CUESTIONARIO GENERAL<span>RESIONANCIA MAGNETICA</span></h2>    
         </div>
-        <!-- Cuestionario Principal -->
-        <div class="mb-6">
-          <h2 class="text-xl font-bold mb-4">Cuestionario de Seguridad para
-            Resonancia Magnética
-          </h2>
-          <h3 class="mb-4">La Resonancia Magnética Nuclear (RMN) es una técnica de imagen que combina la acción de un gran campo
-              magnético creado por un imán con la aplicación de ondas de radiofrecuencias. No emplea radiaciones ionizantes
-          </h3>
-          <h3 class="mb-4">
-            En RMN algunos objetos metálicos podrían suponer un inconveniente o una contraindicación
-            para realizarle la exploración solicitada, es por ello que debe leer atentamente esta encuesta y contestar todas las preguntas. Si necesita ayuda, consulte con nuestro personal.
-          </h3>
-          <h3 class="mb-4 text-1xl font-bold">
-            En caso de contestar afirmativamente alguna de las preguntas comuníqueselo al personal de RM
-          </h3>
+        <div class="mb-6 py-2 border border-black">
+          <h4 class="text-sm sm:text-base px-3">La Resonancia Magnética Nuclear (RMN) es una técnica de imagen que combina la acción de un gran campo
+            magnético creado por un imán con la aplicación de ondas de radiofrecuencias. No emplea radiaciones ionizantes
+          </h4>  
+        </div>
+        <div class="mb-6 py-2 border border-black">
+          <h4 class="text-sm sm:text-base px-3">EN RMN ALGUNOS OBJETOS METÁLICOS PODRÍAN SUPONER UN INCONVENIENTE O UNA CONTRAINDICACION
+            PARA REALIZARLE LA EXPLORACIÓN SOLICITADA. SI NECESITA AYUDA, CONSULTE CON NUESTRO PERSONAL            
+          </h4>  
+        </div>
+          
+        <!-- Cuestionario -->
+        <div class="mb-6" id="cuestionario-resonancia-magnetica">
           <div class="space-y-4">
-            <div>
-              <p class="mb-2">¿Es usted portador de marcapasos?</p>
-              <div class="flex items-center space-x-4">
-                <label class="inline-flex items-center"> 
-                  <input type="radio" class="form-radio" name="pregunta1" value="si" required>            
-                  <span class="ml-2">Sí</span>   
-                </label>            
-                <label class="inline-flex items-center">            
-                  <input type="radio" class="form-radio" name="pregunta1" value="no">            
-                  <span class="ml-2">No</span>            
-                </label>            
-              </div>        
-            </div>      
-            <div>        
-              <p class="mb-2">¿Es usted alérgico a alguna sustancia?</p>        
-              <div class="flex items-center space-x-4">          
-                <label class="inline-flex items-center">            
-                  <input type="radio" class="form-radio" name="pregunta2" value="si" required>            
-                  <span class="ml-2">Sí</span>            
-                </label>          
-                <label class="inline-flex items-center">          
-                  <input type="radio" class="form-radio" name="pregunta2" value="no">            
-                  <span class="ml-2">No</span>            
-                </label>          
-              </div>          
-            </div>
-            <div>        
-              <p class="mb-2">¿Se ha realizado con anterioridad esta prueba? (Resonancia en general)</p>        
-              <div class="flex items-center space-x-4">          
-                <label class="inline-flex items-center">            
-                  <input type="radio" class="form-radio" name="pregunta3" value="si" required>            
-                  <span class="ml-2">Sí</span>            
-                </label>          
-                <label class="inline-flex items-center">          
-                  <input type="radio" class="form-radio" name="pregunta3" value="no">            
-                  <span class="ml-2">No</span>            
-                </label>          
-              </div>          
-            </div>
-            <div>        
-              <p class="mb-2">¿Tiene algún tipo de intervención quirúrgica? (General) ¿Cuáles?</p>        
-              <div class="flex items-center space-x-4">          
-                <label class="inline-flex items-center">            
-                  <input type="radio" class="form-radio" name="pregunta4" value="si" required>            
-                  <span class="ml-2">Sí</span>            
-                </label>          
-                <label class="inline-flex items-center">          
-                  <input type="radio" class="form-radio" name="pregunta4" value="no">            
-                  <span class="ml-2">No</span>            
-                </label>          
-              </div>
-              <div class="">
-                <p class="">Indíquelas:</p>
-                <input type="text" class="form-input mt-1 block w-full" placeholder="Escriba aquí">
-              </div>        
-            </div>
-            <div>        
-              <p class="mb-2">¿Es usted portador de alguna prótesis de válvula metálica o prótesis cardíaca?</p>        
-              <div class="flex items-center space-x-4">          
-                <label class="inline-flex items-center">            
-                  <input type="radio" class="form-radio" name="pregunta5" value="si" required>            
-                  <span class="ml-2">Sí</span>            
-                </label>          
-                <label class="inline-flex items-center">          
-                  <input type="radio" class="form-radio" name="pregunta5" value="no">            
-                  <span class="ml-2">No</span>            
-                </label>          
-              </div>          
-            </div>
-            <div>        
-              <p class="mb-2">¿Está operado de aneurisma?</p>        
-              <div class="flex items-center space-x-4">          
-                <label class="inline-flex items-center">            
-                  <input type="radio" class="form-radio" name="pregunta6" value="si" required>            
-                  <span class="ml-2">Sí</span>            
-                </label>          
-                <label class="inline-flex items-center">          
-                  <input type="radio" class="form-radio" name="pregunta6" value="no">            
-                  <span class="ml-2">No</span>            
-                </label>          
-              </div>          
-            </div>
-            <div>        
-              <p class="mb-2">¿Tiene bomba de infusión de medicación implantada?</p>        
-              <div class="flex items-center space-x-4">          
-                <label class="inline-flex items-center">            
-                  <input type="radio" class="form-radio" name="pregunta7" value="si" required>            
-                  <span class="ml-2">Sí</span>            
-                </label>          
-                <label class="inline-flex items-center">          
-                  <input type="radio" class="form-radio" name="pregunta7" value="no">            
-                  <span class="ml-2">No</span>            
-                </label>          
-              </div>          
-            </div>
-            <div>        
-              <p class="mb-2">¿Es usted portador de filtros, stent vasculares o material similar?</p>        
-              <div class="flex items-center space-x-4">          
-                <label class="inline-flex items-center">            
-                  <input type="radio" class="form-radio" name="pregunta8" value="si" required>            
-                  <span class="ml-2">Sí</span>            
-                </label>          
-                <label class="inline-flex items-center">          
-                  <input type="radio" class="form-radio" name="pregunta8" value="no">            
-                  <span class="ml-2">No</span>            
-                </label>          
-              </div>          
-            </div>
-            <div>        
-              <p class="mb-2">¿Es usted portador de neuroestimulador?</p>        
-              <div class="flex items-center space-x-4">          
-                <label class="inline-flex items-center">            
-                  <input type="radio" class="form-radio" name="pregunta9" value="si" required>            
-                  <span class="ml-2">Sí</span>            
-                </label>          
-                <label class="inline-flex items-center">          
-                  <input type="radio" class="form-radio" name="pregunta9" value="no">            
-                  <span class="ml-2">No</span>            
-                </label>          
-              </div>          
-            </div>
-            <div>        
-              <p class="mb-2">¿Es usted portador de implante coclear, prótesis de oído/audífono implantado?</p>        
-              <div class="flex items-center space-x-4">          
-                <label class="inline-flex items-center">            
-                  <input type="radio" class="form-radio" name="pregunta10" value="si" required>            
-                  <span class="ml-2">Sí</span>            
-                </label>          
-                <label class="inline-flex items-center">          
-                  <input type="radio" class="form-radio" name="pregunta10" value="no">            
-                  <span class="ml-2">No</span>            
-                </label>          
-              </div>          
-            </div>
-            <div>        
-              <p class="mb-2">¿Tiene implantes dentales o dentadura postiza?</p>        
-              <div class="flex items-center space-x-4">          
-                <label class="inline-flex items-center">            
-                  <input type="radio" class="form-radio" name="pregunta11" value="si" required>            
-                  <span class="ml-2">Sí</span>            
-                </label>          
-                <label class="inline-flex items-center">          
-                  <input type="radio" class="form-radio" name="pregunta11" value="no">            
-                  <span class="ml-2">No</span>            
-                </label>          
-              </div>          
-            </div>
-            <div>        
-              <p class="mb-2">¿Tiene material de osteosíntesis implantado? (placas, clavos, tornillos, etc.)</p>        
-              <div class="flex items-center space-x-4">          
-                <label class="inline-flex items-center">            
-                  <input type="radio" class="form-radio" name="pregunta12" value="si" required>            
-                  <span class="ml-2">Sí</span>            
-                </label>          
-                <label class="inline-flex items-center">          
-                  <input type="radio" class="form-radio" name="pregunta12" value="no">            
-                  <span class="ml-2">No</span>            
-                </label>          
-              </div>          
-            </div>
-            <div>        
-              <p class="mb-2">¿Ha trabajado en lugares donde estuviese en contacto con metales? (soldadura)</p>        
-              <div class="flex items-center space-x-4">          
-                <label class="inline-flex items-center">            
-                  <input type="radio" class="form-radio" name="pregunta13" value="si" required>            
-                  <span class="ml-2">Sí</span>            
-                </label>          
-                <label class="inline-flex items-center">          
-                  <input type="radio" class="form-radio" name="pregunta13" value="no">            
-                  <span class="ml-2">No</span>            
-                </label>          
-              </div>          
-            </div>
-            <div>        
-              <p class="mb-2">¿Ha tenido algún accidente producido por objetos metálicos?</p>        
-              <div class="flex items-center space-x-4">          
-                <label class="inline-flex items-center">            
-                  <input type="radio" class="form-radio" name="pregunta14" value="si" required>            
-                  <span class="ml-2">Sí</span>            
-                </label>          
-                <label class="inline-flex items-center">          
-                  <input type="radio" class="form-radio" name="pregunta14" value="no">            
-                  <span class="ml-2">No</span>            
-                </label>          
-              </div>          
-            </div>
-            <div>        
-              <p class="mb-2">¿Lleva tatuajes, piercing u otros?</p>        
-              <div class="flex items-center space-x-4">          
-                <label class="inline-flex items-center">            
-                  <input type="radio" class="form-radio" name="pregunta15" value="si" required>            
-                  <span class="ml-2">Sí</span>            
-                </label>          
-                <label class="inline-flex items-center">          
-                  <input type="radio" class="form-radio" name="pregunta15" value="no">            
-                  <span class="ml-2">No</span>            
-                </label>          
-              </div>          
-            </div>
-            <div>        
-              <p class="mb-2">¿Tiene insuficiencia renal?</p>        
-              <div class="flex items-center space-x-4">          
-                <label class="inline-flex items-center">            
-                  <input type="radio" class="form-radio" name="pregunta16" value="si" required>            
-                  <span class="ml-2">Sí</span>            
-                </label>          
-                <label class="inline-flex items-center">          
-                  <input type="radio" class="form-radio" name="pregunta16" value="no">            
-                  <span class="ml-2">No</span>            
-                </label>          
-              </div>          
-            </div>
-            <div>        
-              <p class="mb-2">En caso de ser mujer, ¿está usted embarazada o sospecha estarlo?</p>        
-              <div class="flex items-center space-x-4">          
-                <label class="inline-flex items-center">            
-                  <input type="radio" class="form-radio" name="pregunta17" value="si">            
-                  <span class="ml-2">Sí</span>            
-                </label>          
-                <label class="inline-flex items-center">          
-                  <input type="radio" class="form-radio" name="pregunta17" value="no">            
-                  <span class="ml-2">No</span>            
-                </label>          
-              </div>     
-            </div>
-            <div>
-              <p class="mb-2">¿Quién lo derivó al centro?</p>
-              <div class="flex items-center space-x-4">
-                <input type="text" class="form-input mt-1 block w-full" placeholder="Escriba aquí" name="derivación" required>      
-              </div>
-            </div>
+            <ol class="custom-list">
+              <li>
+                <span class="number">1.</span>
+                ¿Cuál es su sexo biológico?
+                <div class="flex items-center space-x-4">
+                  <label class="inline-flex items-center w-full md:w-auto">
+                    <input type="radio" class="form-radio" name="pregunta1" value="hombre">
+                    <span class="ml-2">Hombre</span>
+                  </label>
+                  <label class="inline-flex items-center w-full md:w-auto">
+                    <input type="radio" class="form-radio" name="pregunta1" value="mujer">
+                    <span class="ml-2">Mujer</span>
+                  </label>
+                </div>
+                <div id="women-preg" class="flex items-center space-x-4 hidden">
+                  ¿Está usted embarazada o sospecha estarlo?
+                  <label class="inline-flex items-center condicional">
+                    <input type="radio" class="form-radio" name="pregunta2" value="si" required>
+                    <span class="ml-2">Si</span>
+                  </label>
+                  <label class="inline-flex items-center condicional">
+                    <input type="radio" class="form-radio" name="pregunta2" value="no" required>
+                    <span class="ml-2">No</span>
+                  </label>
+                </div>
+              </li>
+              <li>
+                <span class="number">2.</span>
+                ¿Es usted portador de marcapasos?
+                <div class="flex items-center space-x-4">
+                  <label class="inline-flex items-center">
+                    <input type="radio" class="form-radio" name="pregunta2" value="si">
+                    <span class="ml-2">Si</span>
+                  </label>
+                  <label class="inline-flex items-center">
+                    <input type="radio" class="form-radio" name="pregunta2" value="no" required>
+                    <span class="ml-2">No</span>
+                  </label>
+                </div>
+              </li>
+              <li>
+                <span class="number">3.</span>
+                ¿Es usted alérgico a alguna sustancia?
+                <div class="mb-4 md:mb-0 md:mr-4">
+                  <div class="flex flex-wrap items-center space-x-0 space-y-1 md:space-y-0"> <!--md:space-x-4-->
+                    <label class="inline-flex items-center w-full md:w-auto">
+                      <input type="checkbox" class="form-checkbox ml-3" name="movimiento" value="option1">
+                      <span class="ml-2">IODO</span>
+                    </label>
+                    <label class="inline-flex items-center w-full md:w-auto">
+                      <input type="checkbox" class="form-checkbox ml-3" name="reposo" value="option2">
+                      <span class="ml-1">GADOLINEO</span>
+                    </label>
+                    <label class="inline-flex items-center w-full md:w-auto">
+                      <input type="checkbox" class="form-checkbox ml-3" name="tumefacción" value="option3">
+                      <span class="ml-1">PENICILINA</span>
+                    </label>
+                    <label class="inline-flex items-center w-full md:w-auto">
+                      <input type="checkbox" class="form-checkbox ml-3" name="calambres" value="option4">
+                      <span class="ml-1">BUSCAPINA</span>
+                    </label>
+                    <label class="inline-flex items-center w-full md:w-auto">
+                      <input type="checkbox" class="form-checkbox ml-3" name="inestabilidad" value="option5">
+                      <span class="ml-1">ANESTESIA</span>
+                    </label>
+                    <label class="inline-flex items-center w-full md:w-auto">
+                      <input type="checkbox" class="form-checkbox ml-3" name="bloqueo articular" value="option6">
+                      <span class="ml-1">ANESTESIA</span>
+                    </label>
+                  </div>
+                  <div class="flex items-center space-x-2 ml-3">        
+                    <p>Otros:</p>        
+                    <input type="text" class="form-input block w-full" placeholder="Escriba aquí">
+                  </div>
+                </div>
+              </li>
+              <li>
+                <span class="number">4.</span>
+                ¿Tiene insuficiencia renal?
+                <div class="flex items-center space-x-4">
+                  <label class="inline-flex items-center">
+                    <input type="radio" class="form-radio" name="pregunta4" value="si">
+                    <span class="ml-2">Si</span>
+                  </label>
+                  <label class="inline-flex items-center">
+                    <input type="radio" class="form-radio" name="pregunta4" value="no" required>
+                    <span class="ml-2">No</span>
+                  </label>
+                </div>
+              </li>
+              <li>
+                <span class="number">5.</span>
+                ¿Posee elementos metálicos en el cuerpo? (ej. implantes, prótesis, audífonos, clips cerebrales, etc.)
+                <div class="flex items-center space-x-4">
+                  <label class="inline-flex items-center">
+                    <input type="radio" class="form-radio" name="pregunta5" value="si">
+                    <span class="ml-2">Si</span>
+                  </label>
+                  <label class="inline-flex items-center">
+                    <input type="radio" class="form-radio" name="pregunta5" value="no" required>
+                    <span class="ml-2">No</span>
+                  </label>
+                </div>
+              </li>
+              <li>
+                <span class="number">6.</span>
+                ¿Es usted portador de alguna prótesis de válvula metálica o prótesis cardíaca?
+                <div class="flex items-center space-x-4">
+                  <label class="inline-flex items-center">
+                    <input type="radio" class="form-radio" name="pregunta6" value="si">
+                    <span class="ml-2">Si</span>
+                  </label>
+                  <label class="inline-flex items-center">
+                    <input type="radio" class="form-radio" name="pregunta6" value="no" required>
+                    <span class="ml-2">No</span>
+                  </label>
+                </div>
+              </li>
+              <li>
+                <span class="number">7.</span>
+                ¿Está operado de aneurisma?
+                <div class="flex items-center space-x-4">
+                  <label class="inline-flex items-center">
+                    <input type="radio" class="form-radio" name="pregunta7" value="si">
+                    <span class="ml-2">Si</span>
+                  </label>
+                  <label class="inline-flex items-center">
+                    <input type="radio" class="form-radio" name="pregunta7" value="no" required>
+                    <span class="ml-2">No</span>
+                  </label>
+                </div>
+              </li> 
+              <li>
+                <span class="number">8.</span>
+                ¿Tiene bomba de infusión de medicación implantada?
+                <div class="flex items-center space-x-4">
+                  <label class="inline-flex items-center">
+                    <input type="radio" class="form-radio" name="pregunta8" value="si">
+                    <span class="ml-2">Si</span>
+                  </label>
+                  <label class="inline-flex items-center">
+                    <input type="radio" class="form-radio" name="pregunta8" value="no" required>
+                    <span class="ml-2">No</span>
+                  </label>
+                </div>
+              </li> 
+              <li>
+                <span class="number">8.</span>
+                ¿Tiene bomba de infusión de medicación implantada?
+                <div class="flex items-center space-x-4">
+                  <label class="inline-flex items-center">
+                    <input type="radio" class="form-radio" name="pregunta8" value="si">
+                    <span class="ml-2">Si</span>
+                  </label>
+                  <label class="inline-flex items-center">
+                    <input type="radio" class="form-radio" name="pregunta8" value="no" required>
+                    <span class="ml-2">No</span>
+                  </label>
+                </div>
+              </li>
+              <li>
+                <span class="number">9.</span>
+                ¿Es usted portador de filtros, stent vasculares o material similar?
+                <div class="flex items-center space-x-4">
+                  <label class="inline-flex items-center">
+                    <input type="radio" class="form-radio" name="pregunta9" value="si">
+                    <span class="ml-2">Si</span>
+                  </label>
+                  <label class="inline-flex items-center">
+                    <input type="radio" class="form-radio" name="pregunta9" value="no" required>
+                    <span class="ml-2">No</span>
+                  </label>
+                </div>
+              </li>
+              <li>
+                <span class="number">10.</span>
+                ¿Es usted portador de neuroestimulador?
+                <div class="flex items-center space-x-4">
+                  <label class="inline-flex items-center">
+                    <input type="radio" class="form-radio" name="pregunta10" value="si">
+                    <span class="ml-2">Si</span>
+                  </label>
+                  <label class="inline-flex items-center">
+                    <input type="radio" class="form-radio" name="pregunta10" value="no" required>
+                    <span class="ml-2">No</span>
+                  </label>
+                </div>
+              </li>
+              <li>
+                <span class="number">11.</span>
+                ¿Es usted portador de implante coclear, prótesis de oído/audífono implantado?
+                <div class="flex items-center space-x-4">
+                  <label class="inline-flex items-center">
+                    <input type="radio" class="form-radio" name="pregunta11" value="si">
+                    <span class="ml-2">Si</span>
+                  </label>
+                  <label class="inline-flex items-center">
+                    <input type="radio" class="form-radio" name="pregunta11" value="no" required>
+                    <span class="ml-2">No</span>
+                  </label>
+                </div>
+              </li>
+              <li>
+                <span class="number">12.</span>
+                ¿Tiene implantes dentales o dentadura postiza?
+                <div class="flex items-center space-x-4">
+                  <label class="inline-flex items-center">
+                    <input type="radio" class="form-radio" name="pregunta12" value="si">
+                    <span class="ml-2">Si</span>
+                  </label>
+                  <label class="inline-flex items-center">
+                    <input type="radio" class="form-radio" name="pregunta12" value="no" required>
+                    <span class="ml-2">No</span>
+                  </label>
+                </div>
+              </li>
+              <li>
+                <span class="number">13.</span>
+                ¿Tiene material de osteosíntesis implantado en su cuerpo? (placas, clavos, tornillos, etc.)
+                <div class="flex items-center space-x-4">
+                  <label class="inline-flex items-center">
+                    <input type="radio" class="form-radio" name="pregunta13" value="si">
+                    <span class="ml-2">Si</span>
+                  </label>
+                  <label class="inline-flex items-center">
+                    <input type="radio" class="form-radio" name="pregunta13" value="no" required>
+                    <span class="ml-2">No</span>
+                  </label>
+                </div>
+              </li>
+              <li>
+                <span class="number">14.</span>
+                ¿Lleva tatuajes, piercing u otros?
+                <div class="flex items-center space-x-4">
+                  <label class="inline-flex items-center">
+                    <input type="radio" class="form-radio" name="pregunta14" value="si">
+                    <span class="ml-2">Si</span>
+                  </label>
+                  <label class="inline-flex items-center">
+                    <input type="radio" class="form-radio" name="pregunta14" value="no" required>
+                    <span class="ml-2">No</span>
+                  </label>
+                </div>
+              </li>
+              <li>
+                <span class="number">15.</span>
+                ¿Es usted Fumador?
+                <div class="flex items-center space-x-4">
+                  <label class="inline-flex items-center">
+                    <input type="radio" class="form-radio" name="pregunta15" value="si">
+                    <span class="ml-2">Si</span>
+                  </label>
+                  <label class="inline-flex items-center">
+                    <input type="radio" class="form-radio" name="pregunta15" value="no" required>
+                    <span class="ml-2">No</span>
+                  </label>
+                </div>
+              </li>
+              <li>
+                <p>A los fines de saber si existe la posibilidad de que tenga una esquirla metálica en el cuerpo.</p>
+              </li>
+              <li>
+                <span class="number">16.</span>
+                ¿Ha trabajado en lugares donde estuviese en contacto con metales? (por ejemplo, soldadura)
+                <div class="flex items-center space-x-4">
+                  <label class="inline-flex items-center">
+                    <input type="radio" class="form-radio" name="pregunta16" value="si">
+                    <span class="ml-2">Si</span>
+                  </label>
+                  <label class="inline-flex items-center">
+                    <input type="radio" class="form-radio" name="pregunta16" value="no" required>
+                    <span class="ml-2">No</span>
+                  </label>
+                </div>
+              </li>
+              <li>
+                <span class="number">17.</span>
+                ¿Ha tenido algún accidente producido por objetos metálicos?
+                <div class="flex items-center space-x-4">
+                  <label class="inline-flex items-center">
+                    <input type="radio" class="form-radio" name="pregunta17" value="si">
+                    <span class="ml-2">Si</span>
+                  </label>
+                  <label class="inline-flex items-center">
+                    <input type="radio" class="form-radio" name="pregunta17" value="no" required>
+                    <span class="ml-2">No</span>
+                  </label>
+                </div>
+              </li>
+            </ol>
           </div>      
         </div>
-      </form>
-    </div>
-    <script src="https://cdn.jsdelivr.net/npm/html2canvas@1.4.1/dist/html2canvas.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/signature_pad@4.0.0/dist/signature_pad.umd.min.js"></script>
-    <!-- Agregar el script.js -->
-    <script src="script.js"></script>
+        </form>
+      </div>
+      <script src="script.js"></script>
   </body> 
 </html>
