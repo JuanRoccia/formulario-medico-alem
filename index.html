@@ -4,105 +4,176 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Dashboard del Médico</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <!-- <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.15/dist/tailwind.min.css" rel="stylesheet"> -->
-    <!-- Agregar el script.js -->
-    <!-- <script src="script.js"></script> -->
+    <!-- <script src="https://cdn.tailwindcss.com"></script> -->
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.15/dist/tailwind.min.css" rel="stylesheet">
 </head>
-<body class="bg-gray-100 font-sans">
-    <div class="container mx-auto p-4 max-w-md">
-        <!-- Login Form -->
-        <div id="loginForm" class="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4">
-            <h1 class="text-2xl font-bold mb-6 text-gray-800">Iniciar Sesión</h1>
-            <div class="mb-4">
-                <label class="block text-gray-700 text-sm font-bold mb-2" for="username">
-                    Usuario
-                </label>
-                <input class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="username" type="text" placeholder="Usuario">
-            </div>
-            <div class="mb-6">
-                <label class="block text-gray-700 text-sm font-bold mb-2" for="password">
-                    Contraseña
-                </label>
-                <input class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 mb-3 leading-tight focus:outline-none focus:shadow-outline" id="password" type="password" placeholder="******************">
-            </div>
-            <div class="flex items-center justify-between">
-                <button id="loginButton" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline" type="button">
-                    Iniciar Sesión
-                </button>
-            </div>
-        </div>
-
-        <!-- Dashboard Content (initially hidden) -->
-        <div id="dashboardContent" class="hidden">
-            <div class="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4">
-                <h1 class="text-2xl font-bold mb-6 text-gray-800">Dashboard del Médico</h1>
-                <div class="mb-4">
-                    <label class="inline-flex items-center">
-                        <input type="checkbox" id="form1" value="form-1" class="form-checkbox h-5 w-5 text-blue-600">
-                        <span class="ml-2 text-gray-700">Formulario 1</span>
-                    </label>
-                </div>
-                <div class="mb-4">
-                    <label class="inline-flex items-center">
-                        <input type="checkbox" id="form2" value="form-2" class="form-checkbox h-5 w-5 text-blue-600">
-                        <span class="ml-2 text-gray-700">Formulario 2</span>
-                    </label>
-                </div>
-                <div class="mb-4">
-                    <label class="inline-flex items-center">
-                        <input type="checkbox" id="form3" value="form-3" class="form-checkbox h-5 w-5 text-blue-600">
-                        <span class="ml-2 text-gray-700">Formulario 3</span>
-                    </label>
-                </div>
-                <div class="mb-4">
-                    <label class="inline-flex items-center">
-                        <input type="checkbox" id="form4" value="form-4" class="form-checkbox h-5 w-5 text-blue-600">
-                        <span class="ml-2 text-gray-700">Formulario 4</span>
-                    </label>
-                </div>
-                <div class="mb-4">
-                    <label class="inline-flex items-center">
-                        <input type="checkbox" id="form5" value="form-5" class="form-checkbox h-5 w-5 text-blue-600">
-                        <span class="ml-2 text-gray-700">Formulario 5</span>
-                    </label>
-                </div>
-                <div class="mb-4">
-                    <label class="inline-flex items-center">
-                        <input type="checkbox" id="form6" value="form-6" class="form-checkbox h-5 w-5 text-blue-600">
-                        <span class="ml-2 text-gray-700">Formulario 6</span>
-                    </label>
-                </div>
-                <div class="mb-4">
-                    <label class="inline-flex items-center">
-                        <input type="checkbox" id="form7" value="form-7" class="form-checkbox h-5 w-5 text-blue-600">
-                        <span class="ml-2 text-gray-700">Formulario 7</span>
-                    </label>
-                </div>
-                <div class="mb-6">
-                    <label class="inline-flex items-center">
-                        <input type="checkbox" id="form8" value="form-8" class="form-checkbox h-5 w-5 text-blue-600">
-                        <span class="ml-2 text-gray-700">Formulario 8</span>
-                    </label>
-                </div>
-                <button id="generateButton" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline">
-                    Generar Enlace
-                </button>
-                <div id="generatedLink" class="mt-6 hidden">
-                    <p class="text-gray-700 mb-2">Enlace generado:</p>
-                    <div class="flex">
-                        <input type="text" id="linkInput" readonly class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
-                        <button id="copyButton" class="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded ml-2 focus:outline-none focus:shadow-outline">
-                            Copiar
-                        </button>
+<body class="bg-black font-sans max-h">
+    <div class="relative min-h-screen bg-cover bg-center" style="background-image: url('images/centrodediagnostico3.webp');">
+        <div class="absolute inset-0 bg-black opacity-50"></div> <!-- Capa de opacidad -->
+    
+        <div class="relative container mx-auto p-4 max-w-md">
+            <!-- Login Form -->
+            <div class="flex min-h-full flex-col justify-center px-6 py-12 lg:px-8">
+                <div id="loginForm" class="mt-10 sm:mx-auto sm:w-full sm:max-w-sm">
+                    <div class="sm:mx-auto sm:w-full sm:max-w-sm">
+                        <img class="mx-auto w-40 mb-4" src="C:\Users\ericd\OneDrive\Documentos\images alem\Logo/image.webp" alt="Your Company">
+                    </div>
+                    <div class="bg-white shadow rounded-lg">
+                        <div class="sm:mx-auto sm:w-full sm:max-w-sm">
+                            <h2 class="pt-8 text-center text-2xl font-bold leading-9 tracking-tight text-gray-900">Iniciar sesión</h2>
+                        </div>
+                        <div class="py-8 px-6 sm:px-10">
+                            <form class="space-y-6" action="#" method="POST">
+                                <div>
+                                    <label for="user" class="block text-sm font-medium leading-6 text-gray-900">Usuario</label>
+                                    <div class="mt-2">
+                                        <input id="username" name="user" type="text" required="true" class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6">
+                                    </div>
+                                </div>
+                                
+                                <div>
+                                    <div class="flex items-center justify-between">
+                                        <label for="password" class="block text-sm font-medium leading-6 text-gray-900">Contraseña</label>
+                                    <div class="text-sm">
+                                        <a href="#" class="font-semibold text-indigo-600 hover:text-indigo-500">Olvidaste tu contrsaeña?</a>
+                                    </div>
+                                    </div>
+                                    <div class="mt-2">
+                                        <input id="password" name="password" type="password" autocomplete="current-password" required="true" class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6">
+                                    </div>
+                                </div>
+                        
+                                <div>
+                                    <button id="loginButton" type="button" class="flex w-full justify-center rounded-md bg-black px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-gray-800 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-black">
+                                        Ingresar
+                                      </button>
+                                </div>
+                            </form>
+                        </div>
                     </div>
                 </div>
-                <div id="alertMessage" class="mt-4 hidden bg-green-100 border border-green-400 text-green-700 px-4 py-3 rounded relative" role="alert">
-                    <span class="block sm:inline">Enlace copiado al portapapeles</span>
+            </div>
+    
+            <!-- Dashboard Content (initially hidden) -->
+            <div id="dashboardContent" class="hidden">
+                <div class="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4">
+                    <h1 class="text-2xl font-bold mb-6 text-gray-800">Dashboard del Médico</h1>
+                    <div class="mb-4">
+                        <label class="inline-flex items-center">
+                            <input type="checkbox" id="form1" value="form-1" class="form-checkbox h-5 w-5 text-blue-600">
+                            <span class="ml-2 text-gray-700">Formulario 1</span>
+                        </label>
+                    </div>
+                    <div class="mb-4">
+                        <label class="inline-flex items-center">
+                            <input type="checkbox" id="form2" value="form-2" class="form-checkbox h-5 w-5 text-blue-600">
+                            <span class="ml-2 text-gray-700">Formulario 2</span>
+                        </label>
+                    </div>
+                    <div class="mb-4">
+                        <label class="inline-flex items-center">
+                            <input type="checkbox" id="form3" value="form-3" class="form-checkbox h-5 w-5 text-blue-600">
+                            <span class="ml-2 text-gray-700">Formulario 3</span>
+                        </label>
+                    </div>
+                    <div class="mb-4">
+                        <label class="inline-flex items-center">
+                            <input type="checkbox" id="form4" value="form-4" class="form-checkbox h-5 w-5 text-blue-600">
+                            <span class="ml-2 text-gray-700">Formulario 4</span>
+                        </label>
+                    </div>
+                    <div class="mb-6">
+                        <label class="inline-flex items-center">
+                            <input type="checkbox" id="form5" value="form-5" class="form-checkbox h-5 w-5 text-blue-600">
+                            <span class="ml-2 text-gray-700">Formulario 5</span>
+                        </label>
+                    </div>
+                    <button id="generateButton" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline">
+                        Generar Enlace
+                    </button>
+                    <div id="generatedLink" class="mt-6 hidden">
+                        <p class="text-gray-700 mb-2">Enlace generado:</p>
+                        <div class="flex">
+                            <input type="text" id="linkInput" readonly class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
+                            <button id="copyButton" class="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded ml-2 focus:outline-none focus:shadow-outline">
+                                Copiar
+                            </button>
+                        </div>
+                    </div>
+                    <div id="alertMessage" class="mt-4 hidden bg-green-100 border border-green-400 text-green-700 px-4 py-3 rounded relative" role="alert">
+                        <span class="block sm:inline">Enlace copiado al portapapeles</span>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
+
+    <script>
+        const loginForm = document.getElementById('loginForm');
+        const dashboardContent = document.getElementById('dashboardContent');
+        const loginButton = document.getElementById('loginButton');
+        const usernameInput = document.getElementById('username');
+        const passwordInput = document.getElementById('password');
+        const generateButton = document.getElementById('generateButton');
+        const form1Checkbox = document.getElementById('form1');
+        const form2Checkbox = document.getElementById('form2');
+        const form3Checkbox = document.getElementById('form3');
+        const form4Checkbox = document.getElementById('form4');
+        const form5Checkbox = document.getElementById('form5');
+        const generatedLinkDiv = document.getElementById('generatedLink');
+        const linkInput = document.getElementById('linkInput');
+        const copyButton = document.getElementById('copyButton');
+        const alertMessage = document.getElementById('alertMessage');
+
+        loginButton.addEventListener('click', login);
+        generateButton.addEventListener('click', generateLink);
+        copyButton.addEventListener('click', copyToClipboard);
+
+        function login() {
+            const username = usernameInput.value;
+            const password = passwordInput.value;
+
+            if (username === 'admin' && password === 'admin') {
+                loginForm.classList.add('hidden');
+                dashboardContent.classList.remove('hidden');
+            } else {
+                alert('Credenciales incorrectas. Por favor, intente de nuevo.');
+            }
+        }
+
+        function generateLink() {
+            const selectedForms = [];
+            if (form1Checkbox.checked) selectedForms.push({value: form1Checkbox.value, name: 'Formulario 1'});
+            if (form2Checkbox.checked) selectedForms.push({value: form2Checkbox.value, name: 'Formulario 2'});
+            if (form3Checkbox.checked) selectedForms.push({value: form3Checkbox.value, name: 'Formulario 3'});
+            if (form4Checkbox.checked) selectedForms.push({value: form4Checkbox.value, name: 'Formulario 4'});
+            if (form5Checkbox.checked) selectedForms.push({value: form5Checkbox.value, name: 'Formulario 5'});
+
+            if (selectedForms.length === 0) {
+                alert('Por favor, seleccione al menos un formulario.');
+                return;
+            }
+
+            addSignatureToLastForm(); // Llamar a la nueva función para agregar la firma al último formulario seleccionado
+
+            const baseUrl = 'https://formulario-medico-alem.netlify.app/forms.html?'; // Change this URL to the actual URL
+            const formParams = selectedForms.map(form => `form=${form.value}&name=${encodeURIComponent(form.name)}`).join('&');
+            const fullLink = `${baseUrl}${formParams}`;
+
+            linkInput.value = fullLink;
+            generatedLinkDiv.classList.remove('hidden');
+        }
+
+        function copyToClipboard() {
+            linkInput.select();
+            document.execCommand('copy');
+            
+            alertMessage.classList.remove('hidden');
+            setTimeout(() => {
+                alertMessage.classList.add('hidden');
+            }, 3000);
+        }
+    </script>
     <!-- Agregar el script.js -->
     <script src="script.js"></script>
 </body>
