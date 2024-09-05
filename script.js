@@ -408,6 +408,7 @@ toggleAdditionalContent('pr-intervencion-q-ginecologica', 'pg-mcsa-adicional');
 toggleAdditionalContent('enfermedades_familiares', 'enfermedades-familiares-adicionales');
 toggleAdditionalContent('diagnostico_cancer', 'cancer-adicional');
 toggleAdditionalContent('cirugia_cancer', 'cirugia-cancer-adicional');
+toggleAdditionalContent('pr-pga-tratamiento-cc', 'pr-pga-tratamiento-cc');
 toggleAdditionalContent('quimioterapia', 'quimioterapia-adicional');
 toggleAdditionalContent('radioterapia', 'radioterapia-adicional');
 toggleAdditionalContent('biopsia_reciente', 'biopsia-adicional');
