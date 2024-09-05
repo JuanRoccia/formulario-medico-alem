@@ -373,6 +373,7 @@ function toggleAdditionalContent(radioName, contentId) {
     });
 }
 // Formulario 2
+toggleAdditionalContent('pregunta-dolor', 'additional-dolor');
 toggleAdditionalContent('pregunta-cirugia', 'additional-content');
 toggleAdditionalContent('pregunta-medicacion', 'additional-medicacion');
 toggleAdditionalContent('pregunta-oncologica', 'additional-onc');
