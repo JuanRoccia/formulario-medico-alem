@@ -393,6 +393,7 @@ toggleAdditionalContent('cirugias_mamas', 'additional-cirugias');
 toggleAdditionalContent('biopsia_percutanea', 'additional-biopsia');
 toggleAdditionalContent('tratamiento_cancer', 'additional-tratamiento');
 toggleAdditionalContent('cirugia_mastoplastia', 'additional-mastoplastia')
+toggleAdditionalContent('marcadores_sericos', 'additional-marcadores-sericos')
 // Formulario 5
 toggleAdditionalContent('sintomas_abdominales', 'sintomas-adicionales');
 toggleAdditionalContent('infecciones_recientes', 'infecciones-adicionales');
