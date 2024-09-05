@@ -38,15 +38,15 @@
             </div>
             <!-- Estudios Mamarios Previos -->
             <div class="mb-6">
-                <p class="mb-2">¿Se ha realizado estudios mamarios previos?</p>
+                <p class="mb-2">¿Tiene estuidios previos de la zona a estudiar?</p>
                 <div class="flex items-center space-x-4 mb-4">
-                    <label class="inline-flex items-center">
-                        <input type="radio" class="form-radio" name="estudios_previos" value="no" required>
-                        <span class="ml-2">No</span>
-                    </label>
                     <label class="inline-flex items-center">
                         <input type="radio" class="form-radio" name="estudios_previos" value="si">
                         <span class="ml-2">Sí</span>
+                    </label>
+                    <label class="inline-flex items-center">
+                        <input type="radio" class="form-radio" name="estudios_previos" value="no" required>
+                        <span class="ml-2">No</span>
                     </label>
                 </div>
                 <!-- Si realizo estudios mamarios -->
@@ -101,17 +101,17 @@
                     <p class="mb-2 ">¿Presenta historia familiar de cáncer de mama u otras enfermedades oncológicas?</p>
                     <div class="flex items-center space-x-4 mb-4">
                         <label class="inline-flex items-center">
-                            <input type="radio" class="form-radio" name="historia_familiar" value="no" required>
-                            <span class="ml-2">No</span>
-                        </label>
-                        <label class="inline-flex items-center">
                             <input type="radio" class="form-radio" name="historia_familiar" value="si">
                             <span class="ml-2">Sí</span>
+                        </label>
+                        <label class="inline-flex items-center">
+                            <input type="radio" class="form-radio" name="historia_familiar" value="no" required>
+                            <span class="ml-2">No</span>
                         </label>
                     </div>
                     <!-- Si presenta historial familiar -->
                     <div id="additional-historia-familiar" class="hidden space-y-2 mb-4">
-                        <p class="">Seleccione el familiar afectado:</p>
+                        <p class="">¿Quién?</p>
                         <div class="flex flex-wrap gap-4">
                             <label class="inline-flex items-center">
                                 <input type="checkbox" class="form-checkbox" name="familiar_afectado" value="madre">
@@ -143,12 +143,12 @@
                 <p class="mb-2">¿Presenta cirugías en mamas?</p>
                 <div class="flex items-center space-x-4 mb-4">
                     <label class="inline-flex items-center">
-                        <input type="radio" class="form-radio" name="cirugias_mamas" value="no" required>
-                        <span class="ml-2">No</span>
-                    </label>
-                    <label class="inline-flex items-center">
                         <input type="radio" class="form-radio" name="cirugias_mamas" value="si">
                         <span class="ml-2">Sí</span>
+                    </label>
+                    <label class="inline-flex items-center">
+                        <input type="radio" class="form-radio" name="cirugias_mamas" value="no" required>
+                        <span class="ml-2">No</span>
                     </label>
                 </div>
                 <!-- Opciones de cirugías -->
@@ -222,12 +222,12 @@
                                 <p class="mb-1">Sospecha de ruptura</p>
                                 <div class="flex items-center space-x-4">
                                     <label class="inline-flex items-center">
-                                        <input type="radio" class="form-radio" name="sospecha_ruptura" value="no">
-                                        <span class="ml-2">No</span>
-                                    </label>
-                                    <label class="inline-flex items-center">
                                         <input type="radio" class="form-radio" name="sospecha_ruptura" value="si">
                                         <span class="ml-2">Sí</span>
+                                    </label>
+                                    <label class="inline-flex items-center">
+                                        <input type="radio" class="form-radio" name="sospecha_ruptura" value="no">
+                                        <span class="ml-2">No</span>
                                     </label>
                                 </div>
                             </div>
@@ -235,12 +235,12 @@
                                 <p class="mb-1">Dolor</p>
                                 <div class="flex items-center space-x-4">
                                     <label class="inline-flex items-center">
-                                        <input type="radio" class="form-radio" name="dolor_mastoplastia" value="no">
-                                        <span class="ml-2">No</span>
-                                    </label>
-                                    <label class="inline-flex items-center">
                                         <input type="radio" class="form-radio" name="dolor_mastoplastia" value="si">
                                         <span class="ml-2">Sí</span>
+                                    </label>
+                                    <label class="inline-flex items-center">
+                                        <input type="radio" class="form-radio" name="dolor_mastoplastia" value="no">
+                                        <span class="ml-2">No</span>
                                     </label>
                                 </div>
                             </div>
@@ -248,51 +248,16 @@
                                 <p class="mb-1">Cambio previo</p>
                                 <div class="flex items-center space-x-4">
                                     <label class="inline-flex items-center">
-                                        <input type="radio" class="form-radio" name="cambio_previo" value="no">
-                                        <span class="ml-2">No</span>
-                                    </label>
-                                    <label class="inline-flex items-center">
                                         <input type="radio" class="form-radio" name="cambio_previo" value="si">
                                         <span class="ml-2">Sí</span>
+                                    </label>
+                                    <label class="inline-flex items-center">
+                                        <input type="radio" class="form-radio" name="cambio_previo" value="no">
+                                        <span class="ml-2">No</span>
                                     </label>
                                 </div>
                             </div>
                         </div>
-                    </div>
-                </div>
-            </div>
-            <!-- Biopsio Percutánea -->
-            <div class="mb-6">
-                <p class="mb-2">¿Biopsia percutánea?</p>
-                <div class="flex items-center space-x-4 mb-4">
-                    <label class="inline-flex items-center">
-                        <input type="radio" class="form-radio" name="biopsia_percutanea" value="no" required>
-                        <span class="ml-2">No</span>
-                    </label>
-                    <label class="inline-flex items-center">
-                        <input type="radio" class="form-radio" name="biopsia_percutanea" value="si">
-                        <span class="ml-2">Sí</span>
-                    </label>
-                </div>
-                <!-- Información adicional de biopsia percutánea -->
-                <div id="additional-biopsia" class="hidden space-y-4 mb-4">
-                    <div>
-                        <label class="block">
-                            <span class="">Fecha:</span>
-                        </label>
-                        <input type="date" class="form-input block w-full text-slate-500" name="fecha_biopsia_percutanea">
-                    </div>
-                    <div>
-                        <label class="block">
-                            <span class="">¿Cuál?</span>
-                        </label>
-                        <input type="text" class="form-input block w-full" name="tipo_biopsia_percutanea" placeholder="Especifique el tipo de biopsia">
-                    </div>
-                    <div>
-                        <label class="block">
-                            <span class="">Diagnóstico:</span>
-                        </label>
-                        <textarea class="form-textarea block w-full" name="diagnostico_biopsia_percutanea" rows="3" placeholder="Ingrese el diagnóstico"></textarea>
                     </div>
                 </div>
             </div>
@@ -301,12 +266,12 @@
                 <p class="mb-2">¿Ha tenido tratamiento de cáncer de mama?</p>
                 <div class="flex items-center space-x-4 mb-2">
                     <label class="inline-flex items-center">
-                        <input type="radio" class="form-radio" name="tratamiento_cancer" value="no" required>
-                        <span class="ml-2">No</span>
-                    </label>
-                    <label class="inline-flex items-center">
                         <input type="radio" class="form-radio" name="tratamiento_cancer" value="si">
                         <span class="ml-2">Sí</span>
+                    </label>
+                    <label class="inline-flex items-center">
+                        <input type="radio" class="form-radio" name="tratamiento_cancer" value="no">
+                        <span class="ml-2">No</span>
                     </label>
                 </div>
                 <!-- Información adicional de tratamiento de cáncer -->
@@ -317,47 +282,47 @@
                         </label>
                         <input type="date" class="form-input block w-full text-slate-500" name="fecha_tratamiento_cancer">
                     </div>
-                    <!-- Radioterapia -->
-                    <div>
-                        <p class="mb-2">¿Radioterapia?</p>
-                        <div class="flex items-center space-x-4 mb-2">
-                            <label class="inline-flex items-center">
-                                <input type="radio" class="form-radio" name="radioterapia" value="no">
-                                <span class="ml-2">No</span>
-                            </label>
-                            <label class="inline-flex items-center">
-                                <input type="radio" class="form-radio" name="radioterapia" value="si">
-                                <span class="ml-2">Sí</span>
-                            </label>
-                        </div>
-                        <input type="date" class="form-input block w-full text-slate-500" name="fecha_radioterapia">
-                    </div>
                     <!-- Quimioterapia -->
                     <div>
                         <p class="mb-2">¿Quimioterapia?</p>
                         <div class="flex items-center space-x-4 mb-2">
                             <label class="inline-flex items-center">
-                                <input type="radio" class="form-radio" name="quimioterapia" value="no">
-                                <span class="ml-2">No</span>
-                            </label>
-                            <label class="inline-flex items-center">
                                 <input type="radio" class="form-radio" name="quimioterapia" value="si">
                                 <span class="ml-2">Sí</span>
                             </label>
+                            <label class="inline-flex items-center">
+                                <input type="radio" class="form-radio" name="quimioterapia" value="no">
+                                <span class="ml-2">No</span>
+                            </label>
                         </div>
                         <input type="date" class="form-input block w-full text-slate-500" name="fecha_quimioterapia">
+                    </div>
+                    <!-- Radioterapia -->
+                    <div>
+                        <p class="mb-2">¿Radioterapia?</p>
+                        <div class="flex items-center space-x-4 mb-2">
+                            <label class="inline-flex items-center">
+                                <input type="radio" class="form-radio" name="radioterapia" value="si">
+                                <span class="ml-2">Sí</span>
+                            </label>
+                            <label class="inline-flex items-center">
+                                <input type="radio" class="form-radio" name="radioterapia" value="no">
+                                <span class="ml-2">No</span>
+                            </label>
+                        </div>
+                        <input type="date" class="form-input block w-full text-slate-500" name="fecha_radioterapia">
                     </div>
                     <!-- Tamoxifeno -->
                     <div>
                         <p class="mb-2">¿Toma tamoxifeno?</p>
                         <div class="flex items-center space-x-4 mb-2">
                             <label class="inline-flex items-center">
-                                <input type="radio" class="form-radio" name="tamoxifeno" value="no">
-                                <span class="ml-2">No</span>
-                            </label>
-                            <label class="inline-flex items-center">
                                 <input type="radio" class="form-radio" name="tamoxifeno" value="si">
                                 <span class="ml-2">Sí</span>
+                            </label>
+                            <label class="inline-flex items-center">
+                                <input type="radio" class="form-radio" name="tamoxifeno" value="no">
+                                <span class="ml-2">No</span>
                             </label>
                         </div>
                         <input type="text" class="form-input block w-full" name="tiempo_tamoxifeno" placeholder="¿Hace cuánto tiempo aproximadamente?">
@@ -367,12 +332,12 @@
                         <p class="mb-2">¿Utilizó anticonceptivos?</p>
                         <div class="flex items-center space-x-4 mb-2">
                             <label class="inline-flex items-center">
-                                <input type="radio" class="form-radio" name="anticonceptivos" value="no">
-                                <span class="ml-2">No</span>
-                            </label>
-                            <label class="inline-flex items-center">
                                 <input type="radio" class="form-radio" name="anticonceptivos" value="si">
                                 <span class="ml-2">Sí</span>
+                            </label>
+                            <label class="inline-flex items-center">
+                                <input type="radio" class="form-radio" name="anticonceptivos" value="no">
+                                <span class="ml-2">No</span>
                             </label>
                         </div>
                         <input type="text" class="form-input block w-full" name="tiempo_anticonceptivos" placeholder="¿Hace cuánto tiempo aproximadamente?">
@@ -382,20 +347,77 @@
                         <p class="mb-2">¿Utilizó terapia hormonal de reemplazo?</p>
                         <div class="flex items-center space-x-4 mb-2">
                             <label class="inline-flex items-center">
-                                <input type="radio" class="form-radio" name="terapia_hormonal" value="no">
-                                <span class="ml-2">No</span>
-                            </label>
-                            <label class="inline-flex items-center">
                                 <input type="radio" class="form-radio" name="terapia_hormonal" value="si">
                                 <span class="ml-2">Sí</span>
+                            </label>
+                            <label class="inline-flex items-center">
+                                <input type="radio" class="form-radio" name="terapia_hormonal" value="no">
+                                <span class="ml-2">No</span>
                             </label>
                         </div>
                         <input type="text" class="form-input block w-full" name="tiempo_terapia_hormonal" placeholder="¿Hace cuánto tiempo aproximadamente?">
                     </div>
                 </div>
             </div>
+            <!-- Biopsio Percutánea -->
+            <div class="mb-6">
+                <p class="mb-2">¿Se ha realizado cirugías o biopsias en el área de estudio? </p>
+                <div class="flex items-center space-x-4 mb-4">
+                    <label class="inline-flex items-center">
+                        <input type="radio" class="form-radio" name="biopsia_percutanea" value="si">
+                        <span class="ml-2">Sí</span>
+                    </label>
+                    <label class="inline-flex items-center">
+                        <input type="radio" class="form-radio" name="biopsia_percutanea" value="no" required>
+                        <span class="ml-2">No</span>
+                    </label>
+                </div>
+                <!-- Información adicional de biopsia percutánea -->
+                <div id="additional-biopsia" class="hidden space-y-4 mb-4">
+                    <div>
+                        <label class="block">
+                            <span class="">¿Cuál o cuáles?</span>
+                        </label>
+                        <input type="text" class="form-input block w-full" name="tipo_biopsia_percutanea" placeholder="Especifique el tipo de biopsia">
+                    </div>
+                    <div>
+                        <label class="block">
+                            <span class="">Fecha:</span>
+                        </label>
+                        <input type="date" class="form-input block w-full text-slate-500" name="fecha_biopsia_percutanea">
+                    </div>
+                    <div>
+                        <label class="block">
+                            <span class="">Resultado de la cirugías o biopsias:</span>
+                        </label>
+                        <textarea class="form-textarea block w-full" name="diagnostico_biopsia_percutanea" rows="3" placeholder="Ingrese el diagnóstico"></textarea>
+                    </div>
+                </div>
+            </div>
+            <div class="mb-6">
+                <p class="mb-2">¿Presenta marcadores séricos elevados? (elevación de marcadores tumorales)</p>
+                <div class="flex items-center space-x-4 mb-4">
+                    <label class="inline-flex items-center">
+                        <input type="radio" class="form-radio" name="marcadores_sericos" value="si">
+                        <span class="ml-2">Sí</span>
+                    </label>
+                    <label class="inline-flex items-center">
+                        <input type="radio" class="form-radio" name="marcadores_sericos" value="no">
+                        <span class="ml-2">No</span>
+                    </label>
+                </div>
+                <!-- Información adicional de marcadores sericos -->
+                <div id="additional-marcadores-sericos" class="hidden space-y-4 mb-4">
+                    <div>
+                        <label class="block">
+                            <span class="">¿Cuál?</span>
+                        </label>
+                        <input type="text" class="form-input block w-full" name="txt_marcadores_sericos" placeholder="">
+                    </div>
+                </div>
+            </div>
             <!-- Autorización -->
-            <div>
+            <!--<div>
                 <p class="mb-2">Autorizo a utilizar las imágenes adquiridas de manera anónima con fines educativos</p> 
                 <div class="flex items-center space-x-4">
                     <label class="inline-flex items-center">          
@@ -407,7 +429,7 @@
                         <span class="ml-2">Sí</span>            
                     </label>  
                 </div>
-            </div>
+            </div>-->
         </form>
     </div>
     
