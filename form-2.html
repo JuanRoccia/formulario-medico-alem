@@ -82,9 +82,21 @@
               <img src="/images/espalda.webp" alt="Imagen 2" class="body-img w-24 h-auto object-contain">
             </div>
           </div>
-          <h3 class="mb-4"><span class="underline">MARCAR</span> LA CORRECTA:</h3>
           <div class="space-y-4">
-            <div class="flex flex-col md:flex-row">
+            <div>      
+              <p class="mb-2">¿Presenta o presentó dolor y/o molestias en la zona a estudiar?</p>        
+              <div class="flex items-center space-x-4">
+                <label class="inline-flex items-center">          
+                  <input type="radio" class="form-radio" name="pregunta-dolor" value="si" required>            
+                  <span class="ml-2">Si</span>            
+                </label>           
+                <label class="inline-flex items-center">            
+                  <input type="radio" class="form-radio" name="pregunta-dolor" value="no">            
+                  <span class="ml-2">No</span>            
+                </label>
+              </div>          
+            </div>
+            <div class="flex flex-col md:flex-row hidden" id="additional-dolor">
               <p class="pr-2">Dolor:</p>
               <div class="mb-4 md:mb-0 md:mr-4">
                 <div class="flex flex-wrap items-center space-x-0 space-y-1 md:space-y-0"> <!--md:space-x-4-->
@@ -127,51 +139,16 @@
                 </div>
               </div>
             </div>
-            <div class="flex items-center space-x-2">   
-              <p>Otros:</p>        
-              <input type="text" class="form-input block w-full" placeholder="Escriba aquí">
-            </div>
-            <div class="flex flex-col md:flex-row">
-              <p class="pr-4">Ubicación:</p>
-              <div class="mb-4 md:mb-0 md:mr-4">
-                <div class="flex flex-wrap md:flex-nowrap items-center space-x-0 md:space-x-4 space-y-1">
-                  <label class="inline-flex items-center w-full md:w-auto">
-                    <input type="checkbox" class="form-checkbox ml-3 md:ml-0" name="interno" value="option1" required>
-                    <span class="ml-1">Interno</span>
-                  </label>
-                  <label class="inline-flex items-center w-full md:w-auto md:ml-2">
-                    <input type="checkbox" class="form-checkbox ml-3 md:ml-0" name="externo" value="option2">
-                    <span class="ml-1">Externo</span>
-                  </label>
-                  <label class="inline-flex items-center w-full md:w-auto md:ml-2">
-                    <input type="checkbox" class="form-checkbox ml-3 md:ml-0" name="anterior" value="option3">
-                    <span class="ml-1">Anterior</span>
-                  </label>
-                  <label class="inline-flex items-center w-full md:w-auto md:ml-2">
-                    <input type="checkbox" class="form-checkbox ml-3 md:ml-0" name="posterior" value="option4">
-                    <span class="ml-1">Posterior</span>
-                  </label>
-                  <label class="inline-flex items-center w-full md:w-auto md:ml-2">
-                    <input type="checkbox" class="form-checkbox ml-3 md:ml-0" name="derecha" value="option5">
-                    <span class="ml-1">Derecha</span>
-                  </label>
-                  <label class="inline-flex items-center w-full md:w-auto md:ml-2">
-                    <input type="checkbox" class="form-checkbox ml-3 md:ml-0" name="izquierda" value="option6">
-                    <span class="ml-1">Izquierda</span>
-                  </label>
-                </div>
-              </div>
-            </div>
-            <div class="flex flex-col md:flex-row md:items-center">
-              <p class="pr-4">Desde cuándo los presenta:</p>
+            <div class="md:flex-row md:items-center">
+              <p class="pr-4">¿Desde cuándo los presenta? (Fecha Exacta o aproximada):</p>
               <div class="mb-4 md:mb-0 md:mr-4">
                 <div class="flex flex-wrap items-center">
                   <input type="text" id="fecha" name="fecha" class="date-input w-full sm:w-auto" placeholder="DD/MM/AAAA" pattern="\d{2}/\d{2}/\d{4}" required>
                 </div>
               </div>
             </div>
-            <div class="flex flex-col md:flex-row">
-              <p class="pr-4">Estudios previos:</p>
+            <div class="md:flex-row">
+              <p class="pr-4">¿Se ha realizado estudios previos? (relacionados a la zona a estudiar):</p>
               <div class="mb-4 md:mb-0 md:mr-4">
                 <div class="flex flex-wrap md:flex-nowrap items-center space-x-0 md:space-x-4 space-y-1">
                   <label class="inline-flex items-center w-full md:w-auto">
@@ -196,27 +173,27 @@
             <div>      
               <p class="mb-2">¿Tuvo un traumatismo?</p>        
               <div class="flex items-center space-x-4">
-                <label class="inline-flex items-center">          
-                  <input type="radio" class="form-radio" name="pregunta2" value="no" required>            
-                  <span class="ml-2">No</span>            
-                </label>           
                 <label class="inline-flex items-center">            
-                  <input type="radio" class="form-radio" name="pregunta2" value="si">            
+                  <input type="radio" class="form-radio" name="pregunta-traumatismo" value="si">            
                   <span class="ml-2">Sí</span>            
+                </label>
+                <label class="inline-flex items-center">          
+                  <input type="radio" class="form-radio" name="pregunta-traumatismo" value="no">            
+                  <span class="ml-2">No</span>            
                 </label>
               </div>          
             </div>
             <div>
-              <p class="mb-2">¿Le han realizado cirugía/s del sitio problema?</p>        
-              <div class="flex items-center space-x-4">  
+              <p class="mb-2">¿Le han realizado cirugía/s de la zona a estudiar?</p>        
+              <div class="flex items-center space-x-4">
+                <label class="inline-flex items-center">            
+                  <input type="radio" class="form-radio" name="pregunta-cirugia" value="si">            
+                  <span class="ml-2">Sí</span>            
+                </label>
                 <label class="inline-flex items-center">          
                   <input type="radio" class="form-radio" name="pregunta-cirugia" value="no" required>            
                   <span class="ml-2">No</span>            
                 </label>
-                <label class="inline-flex items-center">            
-                  <input type="radio" class="form-radio" name="pregunta-cirugia" value="si">            
-                  <span class="ml-2">Sí</span>            
-                </label>  
               </div>      
             </div>
             <div id="additional-content" class="hidden">
@@ -230,15 +207,15 @@
               </div>
             </div>
             <div>        
-              <p class="mb-2">¿Toma Alguna medicion?</p>        
+              <p class="mb-2">¿Toma Alguna medicion relacionada al estudio que se tiene que realizar?</p>        
               <div class="flex items-center space-x-4">
-                <label class="inline-flex items-center">          
-                  <input type="radio" class="form-radio" name="pregunta-medicacion" value="no" required>            
-                  <span class="ml-2">No</span>            
-                </label>          
                 <label class="inline-flex items-center">            
                   <input type="radio" class="form-radio" name="pregunta-medicacion" value="si">            
                   <span class="ml-2">Sí</span>            
+                </label>
+                <label class="inline-flex items-center">          
+                  <input type="radio" class="form-radio" name="pregunta-medicacion" value="no" required>            
+                  <span class="ml-2">No</span>            
                 </label>          
               </div>          
             </div>
@@ -249,15 +226,15 @@
               </div>
             </div>
             <div>
-              <p class="mb-2">¿Presenta antecedentes oncológicos?</p>        
+              <p class="mb-2">¿Presenta antecedentes oncológicos personales?</p>        
               <div class="flex items-center space-x-4">
-                <label class="inline-flex items-center">          
-                  <input type="radio" class="form-radio" name="pregunta-oncologica" value="no" required>            
-                  <span class="ml-2">No</span>            
-                </label>          
                 <label class="inline-flex items-center">            
                   <input type="radio" class="form-radio" name="pregunta-oncologica" value="si">            
                   <span class="ml-2">Sí</span>            
+                </label>
+                <label class="inline-flex items-center">          
+                  <input type="radio" class="form-radio" name="pregunta-oncologica" value="no" required>            
+                  <span class="ml-2">No</span>            
                 </label>          
               </div>          
             </div>
@@ -270,14 +247,14 @@
             <div>
               <p class="mb-2">¿Realiza algún deporte?</p>        
               <div class="flex items-center space-x-4">
-                <label class="inline-flex items-center">          
-                  <input type="radio" class="form-radio" name="pregunta-deporte" value="no" required>            
-                  <span class="ml-2">No</span>            
-                </label>          
                 <label class="inline-flex items-center">            
                   <input type="radio" class="form-radio" name="pregunta-deporte" value="si">            
                   <span class="ml-2">Sí</span>            
-                </label>          
+                </label>   
+                <label class="inline-flex items-center">          
+                  <input type="radio" class="form-radio" name="pregunta-deporte" value="no" required>            
+                  <span class="ml-2">No</span>            
+                </label>  
               </div>       
             </div>
             <div id="additional-deporte" class="hidden">
@@ -286,7 +263,7 @@
                 <input type="text" class="form-input block" placeholder="Escriba aquí">
               </div>
             </div>
-            <div>
+            <!--<div>
               <p class="mb-2">Autorizo a utilizar las imágenes adquiridas de manera anónima con fines educativos</p> 
             </div>
             <div class="flex flex-wrap items-center gap-2 mt-4">
@@ -296,21 +273,21 @@
               <input type="text" class="form-input w-24 text-sm" placeholder="Mes" required>
               <p class="text-sm">De 20</p>
               <input type="number" class="form-input w-16 text-sm" placeholder="Año" required>
-            </div> 
+            </div>-->
           </div>
         </div>
         <!-- Sección Datos del Firmante -->
-        <div class="flex flex-col sm:flex-row md:items-center space-y-2 sm:space-y-0 sm:space-x-2 mt-4">
+        <!--<div class="flex flex-col sm:flex-row md:items-center space-y-2 sm:space-y-0 sm:space-x-2 mt-4">
           <label class="block text-sm font-medium text-gray-900" for="dni">
             DNI
           </label>
           <input class="block w-full sm:w-auto rounded-md border-0 text-gray-900 ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6" id="dni" type="text" required> 
-        </div>
+        </div>-->
         <!-- Dato del responsable -->
-        <div class="flex flex-col sm:flex-row items-center space-y-2 sm:space-y-0 sm:space-x-2 mt-4">
+        <!--<div class="flex flex-col sm:flex-row items-center space-y-2 sm:space-y-0 sm:space-x-2 mt-4">
           <p>Parentesco (en caso de no firmar el paciente)</p>        
           <input type="text" class="form-input block w-full sm:w-auto" placeholder="parentesco">
-        </div>
+        </div>-->
       </form>
     </div>
     <script src="https://cdn.jsdelivr.net/npm/html2canvas@1.4.1/dist/html2canvas.min.js"></script>
