@@ -413,12 +413,13 @@ toggleAdditionalContent('quimioterapia', 'quimioterapia-adicional');
 toggleAdditionalContent('radioterapia', 'radioterapia-adicional');
 toggleAdditionalContent('biopsia_reciente', 'biopsia-adicional');
 toggleAdditionalContent('pga_marcadores_sericos', 'pga-marcadores-adicional');
-//Form 6
+//Form 6 Descartado
 toggleAdditionalContent('pr-pg-antecendente-familiar', 'pg-afdc-adicional');
 toggleAdditionalContent('pr-pg-antecedente-personal', 'pg-apdc-adicional');
 toggleAdditionalContent('pr-pg-intervencion-cc', 'pg-iqdc-adicional');
 toggleAdditionalContent('pr-pg-tratamiento-cc', 'pr-pg-tratamiento-cc');
 //Form 7
+toggleAdditionalContent('pr-rpfst', 'rpfst-adicional');
 toggleAdditionalContent('pr-pm-ciguria-biopsia', 'pm-cbade-adicional');
 toggleAdditionalContent('pr-pm-cirugia-previa', 'pm-tacpe-adicional');
 toggleAdditionalContent('pr-pm-antecedente-familiar', 'pm-afdcm-adicional');
