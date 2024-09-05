@@ -400,6 +400,7 @@ toggleAdditionalContent('infecciones_recientes', 'infecciones-adicionales');
 toggleAdditionalContent('otras_enfermedades', 'enfermedades-adicionales');
 toggleAdditionalContent('hospitalizaciones_previas', 'hospitalizaciones-adicionales');
 toggleAdditionalContent('cirugias_anteriores', 'cirugias-adicionales');
+toggleAdditionalContent('pga-pr-menst', 'pga-mns-adicional');
 toggleAdditionalContent('enfermedades_familiares', 'enfermedades-familiares-adicionales');
 toggleAdditionalContent('diagnostico_cancer', 'cancer-adicional');
 toggleAdditionalContent('cirugia_cancer', 'cirugia-cancer-adicional');
