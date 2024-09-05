@@ -426,6 +426,9 @@ toggleAdditionalContent('pr-pm-antecedente-familiar', 'pm-afdcm-adicional');
 toggleAdditionalContent('pr-pm-antecedente-personal', 'pm-apdcm-adicional');
 toggleAdditionalContent('pr-pm-intervencion-cc', 'pm-iqdcm-adicional');
 toggleAdditionalContent('pr-pm-tratamiento-cc', 'pm-tdcm-adicional');
+toggleAdditionalContent('pmr-quimioterapia', 'pmr-quimioterapia-adicional');
+toggleAdditionalContent('pmr-radioterapia', 'pmr-radioterapia-adicional');
+toggleAdditionalContent('pmr_marcadores_sericos', 'pmr-marcadores-adicional');
 //Form 8
 toggleAdditionalContent('pr-fistula', 'rpfst-adicional');
 toggleAdditionalContent('pr-cirugia-biopsia', 'cbade-adicional');
