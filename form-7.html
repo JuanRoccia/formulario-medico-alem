@@ -29,26 +29,22 @@
         <!-- Cuestionario -->
         <div class="mb-6">
           <div class="space-y-4">
-              <div>        
-                <p class="mb-2">¿Se ha realizado Cirugías/biopsias en el área de estudio?</p>        
-                <div class="flex items-center space-x-4">
+              <div>       
+                <p class="mb-2">¿Se ha realizado pruebas de PSA? </p>
+                <div class="flex items-center space-x-4 mb-2">  
                   <label class="inline-flex items-center">            
-                    <input type="radio" class="form-radio" name="pr-pm-ciguria-biopsia" value="si">            
+                    <input type="radio" class="form-radio" name="pr-rpfst" value="si">            
                     <span class="ml-2">Sí</span>            
                   </label>
                   <label class="inline-flex items-center">          
-                    <input type="radio" class="form-radio" name="pr-pm-ciguria-biopsia" value="no">            
+                    <input type="radio" class="form-radio" name="pr-rpfst" value="no">            
                     <span class="ml-2">No</span>            
                   </label>
-                </div>          
-              </div>
-              <div id="pm-cbade-adicional" class="hidden">
-                <div class="flex items-center space-x-2">        
-                  <p>¿Qué le hicieron?</p>        
-                  <input type="text" class="form-input block w-full" placeholder="Escriba aquí">
                 </div>
+              </div>
+              <div id="rpfst-adicional" class="hidden">
                 <div class="flex items-center space-x-2">        
-                  <p>Fecha:</p>        
+                  <p>Indique su valor de PSA:</p>        
                   <input type="text" class="form-input block w-full" placeholder="Escriba aquí">
                 </div>
               </div>
@@ -76,10 +72,6 @@
                 </div>
               </div>
           </div>      
-        </div>
-        <!-- Titulo Cuestionario Oncológico -->
-        <div class="mb-6">
-          <h2 class="text-xl font-bold mb-4">ANTECEDENTES ONCOLÓGICOS</h2>    
         </div>
         <!-- Cuestionario Oncológico -->
         <div class="mb-6">
@@ -164,8 +156,95 @@
                   <input type="text" class="form-input block w-full" placeholder="Escriba aquí">
                 </div>
               </div>
+              <!-- Quimioterapia -->
+              <div class="mb-6">
+                <p class="mb-2">¿Ha recibido quimioterapia?</p>
+                <div class="flex items-center space-x-4 mb-2">
+                    <label class="inline-flex items-center">
+                        <input type="radio" class="form-radio" name="pmr-quimioterapia" value="si">
+                        <span class="ml-2">Sí</span>
+                    </label>
+                    <label class="inline-flex items-center">
+                        <input type="radio" class="form-radio" name="pmr-quimioterapia" value="no" required>
+                        <span class="ml-2">No</span>
+                    </label>
+                </div>
+                <div id="pmr-quimioterapia-adicional" class="hidden mb-4">
+                    <label class="block">
+                        <span class="">Fecha de finalización:</span>
+                        <input type="date" class="form-input mt-1 block w-full text-slate-500" name="fecha_fin_quimioterapia">
+                    </label>
+                </div>
+              </div>
+              <!-- Radioterapia -->
+              <div class="mb-6">
+                  <p class="mb-2">¿Ha recibido radioterapia?</p>
+                  <div class="flex items-center space-x-4 mb-2">
+                      <label class="inline-flex items-center">
+                          <input type="radio" class="form-radio" name="pmr-radioterapia" value="si">
+                          <span class="ml-2">Sí</span>
+                      </label>
+                      <label class="inline-flex items-center">
+                          <input type="radio" class="form-radio" name="pmr-radioterapia" value="no" required>
+                          <span class="ml-2">No</span>
+                      </label>
+                  </div>
+                  <div id="pmr-radioterapia-adicional" class="hidden mb-4">
+                      <label class="block">
+                          <span class="">Fecha de finalización:</span>
+                          <input type="date" class="form-input mt-1 block w-full text-slate-500" name="fecha_fin_radioterapia">
+                      </label>
+                  </div>
+              </div>
           </div>      
         </div>
+        <div>        
+          <p class="mb-2">¿Se ha realizado cirugías o biopsias en el área de estudio?</p>        
+          <div class="flex items-center space-x-4">
+            <label class="inline-flex items-center">            
+              <input type="radio" class="form-radio" name="pr-pm-ciguria-biopsia" value="si">            
+              <span class="ml-2">Sí</span>            
+            </label>
+            <label class="inline-flex items-center">          
+              <input type="radio" class="form-radio" name="pr-pm-ciguria-biopsia" value="no">            
+              <span class="ml-2">No</span>            
+            </label>
+          </div>          
+        </div>
+        <div id="pm-cbade-adicional" class="hidden">
+          <div class="flex items-center space-x-2">        
+            <p>¿Cuál o cuáles?</p>        
+            <input type="text" class="form-input block w-full" placeholder="Escriba aquí">
+          </div>
+          <div class="flex items-center space-x-2">        
+            <p>Fecha:</p>        
+            <input type="text" class="form-input block w-full" placeholder="Escriba aquí">
+          </div>
+          <div class="flex items-center space-x-2">        
+            <p>Resultado de la cirugías o biopsias: </p>        
+            <input type="text" class="form-input block w-full" placeholder="Escriba aquí">
+          </div>
+        </div>
+        <!-- Marcadores séricos elevados -->
+        <div class="mb-4">
+          <p class="mb-2">¿Marcadores séricos elevados?</p>
+          <div class="flex items-center space-x-4 mb-2">
+              <label class="inline-flex items-center">
+                  <input type="radio" class="form-radio" name="pmr_marcadores_sericos" value="si">
+                  <span class="ml-2">Sí</span>
+              </label>
+              <label class="inline-flex items-center">
+                  <input type="radio" class="form-radio" name="pmr_marcadores_sericos" value="no" required>
+                  <span class="ml-2">No</span>
+              </label>
+          </div>
+          <div id="pmr-marcadores-adicional" class="hidden">
+              <label class="block">
+                  <span class="">¿Cuál?</span>
+                  <input type="text" class="form-input mt-1 block w-full" name="tipo_marcador_serico" placeholder="Escriba aqui">
+              </label>
+          </div>
+      </div>
       </form>
       </div>
       <script src="script.js"></script>
