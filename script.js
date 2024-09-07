@@ -430,9 +430,7 @@ toggleAdditionalContent('pmr-quimioterapia', 'pmr-quimioterapia-adicional');
 toggleAdditionalContent('pmr-radioterapia', 'pmr-radioterapia-adicional');
 toggleAdditionalContent('pmr_marcadores_sericos', 'pmr-marcadores-adicional');
 //Form 8
-toggleAdditionalContent('pr-fistula', 'rpfst-adicional');
-toggleAdditionalContent('pr-cirugia-biopsia', 'cbade-adicional');
-toggleAdditionalContent('pr-cirugia-zona', 'cpae-adicional');
-toggleAdditionalContent('pr-antecedente-familiar', 'afdcm-adicional');
-toggleAdditionalContent('pr-antecedente-personal', 'tapdc-adicional');
-toggleAdditionalContent('pr-tratamiento-cc', 'tdcm-adicional');
+toggleAdditionalContent('pr-odontologicos', 'odontologicos-adicional');
+toggleAdditionalContent('pr-mandibula', 'mandibula-adicional');
+toggleAdditionalContent('pr-atm-cirugia-zona', 'atm-cpae-adicional');
+toggleAdditionalContent('pr-atm-antecedente-personal', 'atm-tapdc-adicional');
