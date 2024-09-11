@@ -36,7 +36,38 @@
             PARA REALIZARLE LA EXPLORACIÓN SOLICITADA. SI NECESITA AYUDA, CONSULTE CON NUESTRO PERSONAL            
           </h4>  
         </div>
-          
+        <!-- Datos Generales del Paciente -->
+        <div class="mb-6">
+          <h2 class="text-xl font-bold mb-4">Información del Paciente</h2>
+          <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
+            <div>
+              <label class="block text-sm font-medium text-gray-900 mb-2" for="nombre">
+                Nombre
+              </label>
+              <input class="mt-2 block w-full rounded-md border-0 py-1.5 px-3 text-gray-900 ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6" id="nombre" type="text" required>
+            </div> 
+            <div>    
+              <label class="block text-sm font-medium text-gray-900 mb-2" for="apellido">
+                Apellido
+              </label>
+              <input class="mt-2 block w-full rounded-md border-0 py-1.5 px-3 text-gray-900 ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6" id="apellido" type="text" required>        
+            </div>
+            <div>     
+              <label class="block text-sm font-medium text-gray-900 mb-2" for="edad">
+                  Edad
+              </label>
+              <input class="mt-2 block w-full rounded-md border-0 py-1.5 px-3 text-gray-900 ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6" id="edad" type="number" required>
+            </div>  
+          </div>
+          <div class="grid grid-cols-1 gap-4 mt-4">
+            <div>
+              <label class="block text-sm font-medium text-gray-900 mb-2" for="ocupacion">
+                Ocupación
+              </label>
+              <input class="mt-2 block w-full rounded-md border-0 py-1.5 px-3 text-gray-900 ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6" id="ocupacion" type="text" required>    
+            </div> 
+          </div>
+        </div>
         <!-- Cuestionario -->
         <div class="mb-6" id="cuestionario-resonancia-magnetica">
           <div class="space-y-4">
