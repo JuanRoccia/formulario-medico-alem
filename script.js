@@ -221,7 +221,11 @@ const alertMessage = document.getElementById('alertMessage');
 // Verificar si los elementos están presentes en la página
 if (document.getElementById('loginButton')) {
     const loginButton = document.getElementById('loginButton');
-    loginButton.addEventListener('click', login);
+    loginButton.addEventListener('click', function() {
+        const username = document.getElementById('username').value;
+        const password = document.getElementById('password').value;
+        login(username, password);
+    });
 }
 if (document.getElementById('generateButton')) {
     const generateButton = document.getElementById('generateButton');
@@ -231,18 +235,30 @@ if (document.getElementById('copyButton')) {
     const copyButton = document.getElementById('copyButton');
     copyButton.addEventListener('click', copyToClipboard);
 }
+if (dashboardContent) {
+    checkAuthentication();
+}
 
-function login() {
-    const username = usernameInput.value;
-    const password = passwordInput.value;
-
-    if (username === 'admin' && password === 'admin') {
-        loginForm.classList.add('hidden');
-        dashboardContent.classList.remove('hidden');
-    } else {
-        alert('Credenciales incorrectas. Por favor, intente de nuevo.');
+function checkAuthentication() {
+    if (localStorage.getItem('loggedIn') !== 'true') {
+        window.location.href = 'index.html';
     }
 }
+
+function login(username, password) {
+    if (username === "admin" && password === "admin") {
+        localStorage.setItem('loggedIn', 'true');
+        window.location.href = 'dashboard.html';
+    } else {
+        alert('Usuario o contraseña incorrectos');
+    }
+}
+
+function logout() {
+    localStorage.removeItem('loggedIn');
+    window.location.href = 'index.html';
+}
+
 // Determina cuál es el último formulario seleccionado 
 // y prepara el HTML de la firma para ser agregado a dicho form.
 function addSignatureToLastForm() {
