@@ -160,6 +160,7 @@ document.addEventListener('DOMContentLoaded', function() {
         downloadForms().then(() => {
             prepareWhatsAppShare();
         });
+        captureFormScreenshots();
     }
 
     async function downloadForms() {
@@ -168,16 +169,44 @@ document.addEventListener('DOMContentLoaded', function() {
             const iframeContent = iframe.contentWindow.document.body;
 
             // Convert to PDF
-            await html2pdf().from(iframeContent).save(`form_${index + 1}.pdf`);
+            // await html2pdf().from(iframeContent).save(`form_${index + 1}.pdf`);
+            
+            // Clonar estilos CSS al iframe (verificar funcionamineto con console.log)
+            const styles = document.querySelectorAll("link[rel='stylesheet'], style");
+            styles.forEach(style => {
+                try {
+                    iframeContent.appendChild(style.cloneNode(true));
+                    console.log('Estilos:', style);
+                } catch (error) {  
+                    console.error('Error al clonar estilos:', error);
+                }
+            });
+
+            // Espera para cargar estilos y fuentes
+            await new Promise(resolve => setTimeout(resolve, 1000)); // 1 segundo
+
+            // Verificar que las fuentes estén cargadas
+            document.fonts.ready.then(async () => {
+                // Convertir a JPG con mayor resolución
+                const canvas = await html2canvas(iframeContent, { scale: 2 });
+                const link = document.createElement('a');
+                link.download = `form_${index + 1}.jpg`;
+                link.href = canvas.toDataURL('image/jpeg');
+                link.click();
+            });
 
             // Convert to JPG
-            const canvas = await html2canvas(iframeContent);
-            const link = document.createElement('a');
-            link.download = `form_${index + 1}.jpg`;
-            link.href = canvas.toDataURL('image/jpeg');
-            link.click();
+            // const canvas = await html2canvas(iframeContent, { scale: 2 });
+            // const link = document.createElement('a');
+            // link.download = `form_${index + 1}.jpg`;
+            // link.href = canvas.toDataURL('image/jpeg');
+            // link.click();
         }
     }
+
+    window.onload = async function () {
+        await downloadForms();
+    };
 
     function prepareWhatsAppShare() {
         // Aquí puedes implementar la lógica para compartir por WhatsApp
