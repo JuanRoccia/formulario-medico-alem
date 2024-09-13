@@ -1,4 +1,4 @@
-// Funcionalidades de forms.html
+// Funcionalidades de index.html
 document.addEventListener('DOMContentLoaded', function() {
     const urlParams = new URLSearchParams(window.location.search);
     const forms = urlParams.getAll('form');
@@ -160,52 +160,159 @@ document.addEventListener('DOMContentLoaded', function() {
         downloadForms().then(() => {
             prepareWhatsAppShare();
         });
-        captureFormScreenshots();
     }
 
-    async function downloadForms() {
-        for (let index = 0; index < forms.length; index++) {
-            const iframe = formContainer.getElementsByTagName('iframe')[index];
-            const iframeContent = iframe.contentWindow.document.body;
+    // async function downloadForms() {
+    //     for (let index = 0; index < forms.length; index++) {
+    //         const iframe = formContainer.getElementsByTagName('iframe')[index];
+    //         const iframeContent = iframe.contentWindow.document.body;
 
-            // Convert to PDF
-            // await html2pdf().from(iframeContent).save(`form_${index + 1}.pdf`);
+    //         // Convert to PDF
+    //         // await html2pdf().from(iframeContent).save(`form_${index + 1}.pdf`);
             
-            // Clonar estilos CSS al iframe (verificar funcionamineto con console.log)
-            const styles = document.querySelectorAll("link[rel='stylesheet'], style");
-            styles.forEach(style => {
-                try {
-                    iframeContent.appendChild(style.cloneNode(true));
-                    console.log('Estilos:', style);
-                } catch (error) {  
-                    console.error('Error al clonar estilos:', error);
+    //         // Clonar estilos CSS al iframe (verificar funcionamineto con console.log)
+    //         const styles = document.querySelectorAll("link[rel='stylesheet'], style");
+    //         styles.forEach(style => {
+    //             try {
+    //                 iframeContent.appendChild(style.cloneNode(true));
+    //                 console.log('Estilos:', style);
+    //             } catch (error) {  
+    //                 console.error('Error al clonar estilos:', error);
+    //             }
+    //         });
+
+    //         // Espera para cargar estilos y fuentes
+    //         await new Promise(resolve => setTimeout(resolve, 1000)); // 1 segundo
+
+    //         // Verificar que las fuentes estén cargadas
+    //         document.fonts.ready.then(async () => {
+    //             // Convertir a JPG con mayor resolución
+    //             const canvas = await html2canvas(iframeContent, { scale: 2 });
+    //             const link = document.createElement('a');
+    //             link.download = `form_${index + 1}.jpg`;
+    //             link.href = canvas.toDataURL('image/jpeg');
+    //             link.click();
+    //         });
+
+    //         // Convertir a PDF
+    //         try {
+    //             await html2pdf().from(iframeContent).save(`form_${index + 1}.pdf`);
+    //             console.log(`PDF generado: form_${index + 1}.pdf`);
+    //         } catch (error) {
+    //             console.error('Error al generar PDF:', error);
+    //         }
+    //     }
+    // }
+
+    // window.onload = async function () {
+    //     await downloadForms();
+    // };
+
+    async function convertFormToPdfOrJpg(form, index, format = 'pdf') {
+        const iframe = formContainer.getElementsByTagName('iframe')[index];
+        const iframeContent = iframe.contentWindow.document.body;
+    
+        // Clonar estilos CSS al iframe
+        const styles = document.querySelectorAll("link[rel='stylesheet'], style");
+        styles.forEach(style => {
+            try {
+                const clonedStyle = style.cloneNode(true);
+                iframeContent.appendChild(clonedStyle);
+            } catch (error) {
+                console.error('Error al clonar estilos:', error);
+            }
+        });
+    
+        // Esperar a que se carguen las fuentes y los estilos
+        await document.fonts.ready;
+        await new Promise(resolve => setTimeout(resolve, 1000));
+    
+        // Aplicar estilos inline para mayor compatibilidad
+        const elements = iframeContent.querySelectorAll('*');
+        elements.forEach(el => {
+            const styles = window.getComputedStyle(el);
+            el.style.cssText = Object.values(styles).reduce((str, property) => {
+                // Eliminar margenes y paddings
+                if (property.startsWith('margin') || property.startsWith('padding')) {
+                    return str;
                 }
-            });
+                return `${str}${property}:${styles.getPropertyValue(property)};`;
+            }, '');
+        });
 
-            // Espera para cargar estilos y fuentes
-            await new Promise(resolve => setTimeout(resolve, 1000)); // 1 segundo
-
-            // Verificar que las fuentes estén cargadas
-            document.fonts.ready.then(async () => {
-                // Convertir a JPG con mayor resolución
-                const canvas = await html2canvas(iframeContent, { scale: 2 });
+        // Ajustar el estilo del body del iframe
+        iframeContent.style.margin = '0';
+        iframeContent.style.padding = '0';
+        iframeContent.style.width = '100%';
+        iframeContent.style.height = '100%';
+    
+        if (format === 'pdf') {
+            try {
+                const pdf = await html2pdf().set({
+                    margin: [0, 0, 0, 0],
+                    filename: `form_${index + 1}.pdf`,
+                    image: { type: 'jpeg', quality: 0.98 },
+                    html2canvas: { 
+                        scale: 2, 
+                        useCORS: true,
+                        logging: true,
+                        onclone: (clonedDoc) => {
+                            const clonedContent = clonedDoc.body;
+                            clonedContent.style.margin = '0';
+                            clonedContent.style.padding = '0';
+                            clonedContent.style.width = '100%';
+                            clonedContent.style.height = '100%';
+                        },
+                    },
+                    jsPDF: { 
+                        unit: 'mm', 
+                        format: 'a4', 
+                        orientation: 'portrait',
+                        compress: true,
+                        precision: 16
+                    },
+                    pagebreak: { mode: ['avoid-all', 'css', 'legacy'] }
+                }).from(iframeContent).save();
+                console.log(`PDF generado: form_${index + 1}.pdf`);
+                return pdf;
+            } catch (error) {
+                console.error('Error al generar PDF:', error);
+                throw error;
+            }
+        } else if (format === 'jpg') {
+            try {
+                const canvas = await html2canvas(iframeContent, { 
+                    scale: 2, 
+                    useCORS: true,
+                    logging: true,
+                    onclone: (clonedDoc) => {
+                        const clonedStyles = clonedDoc.querySelectorAll("link[rel='stylesheet'], style");
+                        clonedStyles.forEach(style => iframeContent.appendChild(style.cloneNode(true)));
+                    }
+                });
                 const link = document.createElement('a');
                 link.download = `form_${index + 1}.jpg`;
-                link.href = canvas.toDataURL('image/jpeg');
+                link.href = canvas.toDataURL('image/jpeg', 0.95);
                 link.click();
-            });
-
-            // Convert to JPG
-            // const canvas = await html2canvas(iframeContent, { scale: 2 });
-            // const link = document.createElement('a');
-            // link.download = `form_${index + 1}.jpg`;
-            // link.href = canvas.toDataURL('image/jpeg');
-            // link.click();
+                console.log(`JPG generado: form_${index + 1}.jpg`);
+                return link.href;
+            } catch (error) {
+                console.error('Error al generar JPG:', error);
+                throw error;
+            }
+        } else {
+            throw new Error('Formato no soportado');
         }
     }
-
+    
+    async function downloadForms(format = 'pdf') {
+        for (let index = 0; index < forms.length; index++) {
+            await convertFormToPdfOrJpg(forms[index], index, format);
+        }
+    }
+    
     window.onload = async function () {
-        await downloadForms();
+        await downloadForms('pdf'); // 'pdf' o 'jpg' segun corresponda
     };
 
     function prepareWhatsAppShare() {
@@ -226,7 +333,7 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 
 });
-// FIN Funcionalidades de forms.html
+// FIN Funcionalidades de index.html
 
 const loginForm = document.getElementById('loginForm');
 const dashboardContent = document.getElementById('dashboardContent');
@@ -270,7 +377,7 @@ if (dashboardContent) {
 
 function checkAuthentication() {
     if (localStorage.getItem('loggedIn') !== 'true') {
-        window.location.href = 'index.html';
+        window.location.href = 'login.html';
     }
 }
 
@@ -285,7 +392,7 @@ function login(username, password) {
 
 function logout() {
     localStorage.removeItem('loggedIn');
-    window.location.href = 'index.html';
+    window.location.href = 'login.html';
 }
 
 // Determina cuál es el último formulario seleccionado 
@@ -345,7 +452,7 @@ function generateLink() {
 
     // addSignatureToLastForm();
 
-    const baseUrl = 'https://formulario-medico-alem.netlify.app/forms.html?';
+    const baseUrl = 'https://formulario-medico-alem.netlify.app/index.html?';
     const formParams = selectedForms.map(form => `form=${form.value}&name=${encodeURIComponent(form.name)}`).join('&');
     const fullLink = `${baseUrl}${formParams}`;
 
@@ -365,7 +472,7 @@ function copyToClipboard() {
 }
 
 // Agrega el pad de firma al último formulario seleccionado
-// Agregar la función addSignaturePadToLastForm() al script en forms.html
+// Agregar la función addSignaturePadToLastForm() al script en index.html
 function addSignaturePadToLastForm() {
     const signatureForm = localStorage.getItem('signatureForm');
     const signatureHtml = localStorage.getItem('signatureHtml');
@@ -401,7 +508,7 @@ function initSignaturePad(doc) {
     });
 }
 
-// Llamar a esta función cuando se cargue forms.html
+// Llamar a esta función cuando se cargue index.html
 document.addEventListener('DOMContentLoaded', addSignaturePadToLastForm);
 
 // Funcion para el manejo de contenido adicional en formularios

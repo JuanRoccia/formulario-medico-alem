@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <!-- login.html -->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Iniciar Sesión</title>
+    <!-- <script src="https://cdn.tailwindcss.com"></script> -->
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.15/dist/tailwind.min.css" rel="stylesheet">
+</head>
+<body class="bg-black font-sans max-h">
+    <div class="relative min-h-screen bg-cover bg-center" style="background-image: url('images/centrodediagnostico3.webp');">
+        <div class="absolute inset-0 bg-black opacity-50"></div> <!-- Capa de opacidad -->
+    
+        <div class="relative container mx-auto p-4 max-w-md">
+            <!-- Login Form -->
+            <div class="flex min-h-full flex-col justify-center px-6 py-12 lg:px-8">
+                <div id="loginForm" class="mt-10 sm:mx-auto sm:w-full sm:max-w-sm">
+                    <div class="sm:mx-auto sm:w-full sm:max-w-sm">
+                        <img class="mx-auto w-40 mb-4" src="images/image-logo-white.webp" alt="Your Company">
+                    </div>
+                    <div class="bg-white shadow rounded-lg">
+                        <div class="sm:mx-auto sm:w-full sm:max-w-sm">
+                            <h2 class="pt-8 text-center text-2xl font-bold leading-9 tracking-tight text-gray-900">Iniciar sesión</h2>
+                        </div>
+                        <div class="py-8 px-6 sm:px-10">
+                            <form class="space-y-6" action="#" method="POST">
+                                <div>
+                                    <label for="user" class="block text-sm font-medium leading-6 text-gray-900">Usuario</label>
+                                    <div class="mt-2">
+                                        <input id="username" name="user" type="text" required="true" class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6 p-3">
+                                    </div>
+                                </div>
+                                
+                                <div>
+                                    <div class="flex items-center justify-between">
+                                        <label for="password" class="block text-sm font-medium leading-6 text-gray-900">Contraseña</label>
+                                    <div class="text-sm">
+                                        <a href="#" class="font-semibold text-indigo-600 hover:text-indigo-500">Olvidaste tu contrsaeña?</a>
+                                    </div>
+                                    </div>
+                                    <div class="mt-2">
+                                        <input id="password" name="password" type="password" autocomplete="current-password" required="true" class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6 p-3">
+                                    </div>
+                                </div>
+                        
+                                <div>
+                                    <button id="loginButton" type="button" class="flex w-full justify-center rounded-md bg-black px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-gray-800 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-black">
+                                        Ingresar
+                                      </button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Agregar el script.js -->
+    <script src="script.js"></script>
+</body>
+</html>
