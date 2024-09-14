@@ -135,12 +135,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 showForm(currentFormIndex + 1);
             } else {
                 finalizeProcess();
-                // alert('Has completado todos los formularios.');
-                // downloadForms();
-                // Descarga los formularios en formato PDF y jpg
-                // prepareWhatsAppShare();
-                // Enviar los formularios por whatsapp
-
+                // Ejecuciones de la funcion
             }
         } else {
             let incompleteFields = [];
@@ -155,62 +150,58 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     });
 
-    function finalizeProcess() {
-        alert('Has completado todos los formularios.');
-        downloadForms().then(() => {
-            prepareWhatsAppShare();
-        });
+    function showLoadingIndicator() {
+        console.log('Mostrando indicador de carga...');
+        const loadingIndicator = document.getElementById('loadingIndicator');
+        if (loadingIndicator) {
+            loadingIndicator.style.display = 'flex';
+        } else {
+            console.error('Elemento loadingIndicator no encontrado');
+        }
+    }
+    
+    function hideLoadingIndicator() {
+        console.log('Ocultando indicador de carga...');
+        const loadingIndicator = document.getElementById('loadingIndicator');
+        if (loadingIndicator) {
+            loadingIndicator.style.display = 'none';
+        } else {
+            console.error('Elemento loadingIndicator no encontrado');
+        }
     }
 
-    // async function downloadForms() {
-    //     for (let index = 0; index < forms.length; index++) {
-    //         const iframe = formContainer.getElementsByTagName('iframe')[index];
-    //         const iframeContent = iframe.contentWindow.document.body;
+    function areAllFormsComplete() {
+        for (let i = 0; i < forms.length; i++) {
+            const iframe = formContainer.getElementsByTagName('iframe')[i];
+            if (!checkFormCompleteness(iframe)) {
+                return false;
+            }
+        }
+        return true;
+    }
 
-    //         // Convert to PDF
-    //         // await html2pdf().from(iframeContent).save(`form_${index + 1}.pdf`);
-            
-    //         // Clonar estilos CSS al iframe (verificar funcionamineto con console.log)
-    //         const styles = document.querySelectorAll("link[rel='stylesheet'], style");
-    //         styles.forEach(style => {
-    //             try {
-    //                 iframeContent.appendChild(style.cloneNode(true));
-    //                 console.log('Estilos:', style);
-    //             } catch (error) {  
-    //                 console.error('Error al clonar estilos:', error);
-    //             }
-    //         });
-
-    //         // Espera para cargar estilos y fuentes
-    //         await new Promise(resolve => setTimeout(resolve, 1000)); // 1 segundo
-
-    //         // Verificar que las fuentes estén cargadas
-    //         document.fonts.ready.then(async () => {
-    //             // Convertir a JPG con mayor resolución
-    //             const canvas = await html2canvas(iframeContent, { scale: 2 });
-    //             const link = document.createElement('a');
-    //             link.download = `form_${index + 1}.jpg`;
-    //             link.href = canvas.toDataURL('image/jpeg');
-    //             link.click();
-    //         });
-
-    //         // Convertir a PDF
-    //         try {
-    //             await html2pdf().from(iframeContent).save(`form_${index + 1}.pdf`);
-    //             console.log(`PDF generado: form_${index + 1}.pdf`);
-    //         } catch (error) {
-    //             console.error('Error al generar PDF:', error);
-    //         }
-    //     }
-    // }
-
-    // window.onload = async function () {
-    //     await downloadForms();
-    // };
+    async function finalizeProcess() {
+        if (areAllFormsComplete()) {
+            showLoadingIndicator();
+            try {
+                await downloadForms('pdf');
+                hideLoadingIndicator();
+                alert('Has completado todos los formularios.');
+                prepareWhatsAppShare();
+            } catch (error) {
+                hideLoadingIndicator();
+                alert('Hubo un error al generar los PDFs. Por favor, intenta de nuevo.');
+                console.error(error);
+            }
+        } else {
+            alert('Por favor, completa todos los formularios antes de finalizar.');
+        }
+    }
 
     async function convertFormToPdfOrJpg(form, index, format = 'pdf') {
         const iframe = formContainer.getElementsByTagName('iframe')[index];
         const iframeContent = iframe.contentWindow.document.body;
+        const iframeDocument = iframe.contentWindow.document;
     
         // Clonar estilos CSS al iframe
         const styles = document.querySelectorAll("link[rel='stylesheet'], style");
@@ -222,47 +213,81 @@ document.addEventListener('DOMContentLoaded', function() {
                 console.error('Error al clonar estilos:', error);
             }
         });
-    
-        // Esperar a que se carguen las fuentes y los estilos
-        await document.fonts.ready;
-        await new Promise(resolve => setTimeout(resolve, 1000));
+
+        // Agregar estilos especificos para PDF
+        const pdfStyles = `
+            @page {
+                size: A4;
+                margin: 0;
+            }
+            body {
+                margin: 5mm;
+                padding: 0;
+                font-family: Arial, sans-serif;
+                font-size: 10pt;
+            }
+            h1 { font-size: 14pt; }
+            p { font-size: 10pt; line-height: 1.3; }
+        `;
+
+        const styleElement = iframeDocument.createElement('style');
+        styleElement.textContent = pdfStyles;
+        iframeContent.appendChild(styleElement);
+
+        // Ajustar el estilo del body del iframe
+        iframeContent.style.width = '210mm'; // Ancho de página A4
+        iframeContent.style.minHeight = '297mm'; // Altura mínima de página A4
+        iframeContent.style.margin = '0';
+        iframeContent.style.padding = '5mm';
+        iframeContent.style.fontSize = '12pt';
+        iframeContent.style.boxSizing = 'border-box';
     
         // Aplicar estilos inline para mayor compatibilidad
         const elements = iframeContent.querySelectorAll('*');
         elements.forEach(el => {
+            el.style.maxWidth = '100%';
+            el.style.boxSizing = 'border-box';
+            // Remover márgenes y paddings excesivos
+            el.style.margin = '0';
+            el.style.padding = '0';
+            // Mantener otros estilos importantes
             const styles = window.getComputedStyle(el);
-            el.style.cssText = Object.values(styles).reduce((str, property) => {
-                // Eliminar margenes y paddings
-                if (property.startsWith('margin') || property.startsWith('padding')) {
-                    return str;
-                }
-                return `${str}${property}:${styles.getPropertyValue(property)};`;
-            }, '');
+            ['font-size', 'font-weight', 'color', 'background-color'].forEach(prop => {
+                el.style[prop] = styles.getPropertyValue(prop);
+            });
         });
 
-        // Ajustar el estilo del body del iframe
-        iframeContent.style.margin = '0';
-        iframeContent.style.padding = '0';
-        iframeContent.style.width = '100%';
-        iframeContent.style.height = '100%';
-    
+        // Ajusta las imágenes
+        const images = iframeContent.querySelectorAll('img');
+        images.forEach(img => {
+            img.style.maxWidth = '100%';
+            img.style.height = 'auto';
+        });
+
+        // Ajusta el tamaño del logo
+        const logo = iframeContent.querySelector('#logo');
+        if (logo) {
+            logo.style.width = '100px';
+            logo.style.height = 'auto';
+            logo.style.marginBottom = '10px';
+        }
+
+        // Esperar a que se carguen las fuentes y los estilos
+        await document.fonts.ready;
+        await new Promise(resolve => setTimeout(resolve, 1000));
+
+        // Generar PDF o JPG
         if (format === 'pdf') {
             try {
                 const pdf = await html2pdf().set({
-                    margin: [0, 0, 0, 0],
+                    margin: [5, 5, 5, 5],
                     filename: `form_${index + 1}.pdf`,
                     image: { type: 'jpeg', quality: 0.98 },
                     html2canvas: { 
                         scale: 2, 
                         useCORS: true,
                         logging: true,
-                        onclone: (clonedDoc) => {
-                            const clonedContent = clonedDoc.body;
-                            clonedContent.style.margin = '0';
-                            clonedContent.style.padding = '0';
-                            clonedContent.style.width = '100%';
-                            clonedContent.style.height = '100%';
-                        },
+                        letterRendering: true
                     },
                     jsPDF: { 
                         unit: 'mm', 
@@ -304,16 +329,16 @@ document.addEventListener('DOMContentLoaded', function() {
             throw new Error('Formato no soportado');
         }
     }
-    
+
     async function downloadForms(format = 'pdf') {
         for (let index = 0; index < forms.length; index++) {
             await convertFormToPdfOrJpg(forms[index], index, format);
         }
     }
     
-    window.onload = async function () {
-        await downloadForms('pdf'); // 'pdf' o 'jpg' segun corresponda
-    };
+    // window.onload = async function () {
+    //     await downloadForms('pdf');
+    // };
 
     function prepareWhatsAppShare() {
         // Aquí puedes implementar la lógica para compartir por WhatsApp
