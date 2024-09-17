@@ -198,12 +198,20 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     }
 
-    async function convertFormToPdfOrJpg(form, index, format = 'pdf') {
+    async function convertFormToPdf(form, index) {
+        // iframeContent formContainer
         const iframe = formContainer.getElementsByTagName('iframe')[index];
         const iframeContent = iframe.contentWindow.document.body;
         const iframeDocument = iframe.contentWindow.document;
+
+        // Reset styles
+        // iframeContent.style.margin = '0';
+        // iframeContent.style.padding = '0';
+        // iframeContent.style = '';
+        // iframeContent.innerHTML = `<div id="pdf-content">${iframeContent.innerHTML}</div>`;
+        // const contentDiv = iframeDocument.getElementById('pdf-content');
     
-        // Clonar estilos CSS al iframe
+        // Clone CSS styles into iframe
         const styles = document.querySelectorAll("link[rel='stylesheet'], style");
         styles.forEach(style => {
             try {
@@ -214,131 +222,248 @@ document.addEventListener('DOMContentLoaded', function() {
             }
         });
 
-        // Agregar estilos especificos para PDF
+        // PDF specific styles
         const pdfStyles = `
             @page {
                 size: A4;
                 margin: 0;
             }
             body {
-                margin: 5mm;
-                padding: 0;
                 font-family: Arial, sans-serif;
-                font-size: 10pt;
+                font-size: 12pt;
+                line-height: 1.5;
+                color: #333;
+                margin: 0;
+                padding: 20mm;
+                box-sizing: border-box;
             }
-            h1 { font-size: 14pt; }
-            p { font-size: 10pt; line-height: 1.3; }
+            #content-wrapper {
+                max-width: 180mm;
+                margin: 0 auto;
+            }
+            body, html {
+                margin: 0;
+                padding: 0;
+                height: 100%;
+            }
+            img {
+                max-width: 100%;
+                height: auto;
+            }
+            h1, h2, h3, h4, h5, h6 {
+                margin-top: 0;
+                padding-top: 0;
+            }
         `;
 
         const styleElement = iframeDocument.createElement('style');
         styleElement.textContent = pdfStyles;
         iframeContent.appendChild(styleElement);
 
-        // Ajustar el estilo del body del iframe
-        iframeContent.style.width = '210mm'; // Ancho de página A4
-        iframeContent.style.minHeight = '297mm'; // Altura mínima de página A4
-        iframeContent.style.margin = '0';
-        iframeContent.style.padding = '5mm';
-        iframeContent.style.fontSize = '12pt';
-        iframeContent.style.boxSizing = 'border-box';
+        // Wrap content in a div for scaling and layout
+        const contentWrapper = iframeDocument.createElement('div');
+        contentWrapper.id = 'content-wrapper';
+        while (iframeContent.firstChild) {
+            contentWrapper.appendChild(iframeContent.firstChild);
+        }
+        iframeContent.appendChild(contentWrapper);
+
+        // Adjust iframe body styles for PDF
+        // iframeContent.style.width = '210mm';
+        // iframeContent.style.minHeight = '297mm';
+        // iframeContent.style.boxSizing = 'border-box';
+        // iframeContent.style.padding = '10mm 15mm';
     
-        // Aplicar estilos inline para mayor compatibilidad
+        // Adjust inline styles for better scaling
         const elements = iframeContent.querySelectorAll('*');
         elements.forEach(el => {
             el.style.maxWidth = '100%';
             el.style.boxSizing = 'border-box';
-            // Remover márgenes y paddings excesivos
-            el.style.margin = '0';
-            el.style.padding = '0';
-            // Mantener otros estilos importantes
-            const styles = window.getComputedStyle(el);
-            ['font-size', 'font-weight', 'color', 'background-color'].forEach(prop => {
-                el.style[prop] = styles.getPropertyValue(prop);
-            });
+            el.style.pageBreakInside = 'avoid';
+            // if (el.tagName !== 'H1' && el.tagName !== 'H2') {
+            //     el.style.margin = '0 0 8pt 0';
+            // }
+            // el.style.marginTop = '0';
+            // el.style.paddingTop = '0';
         });
 
-        // Ajusta las imágenes
+        // Adjust images
         const images = iframeContent.querySelectorAll('img');
         images.forEach(img => {
             img.style.maxWidth = '100%';
             img.style.height = 'auto';
+            // img.style.marginBottom = '10pt';
         });
 
-        // Ajusta el tamaño del logo
+        // Adjust logo size
         const logo = iframeContent.querySelector('#logo');
         if (logo) {
             logo.style.width = '100px';
             logo.style.height = 'auto';
-            logo.style.marginBottom = '10px';
+            // logo.style.marginBottom = '15pt';
         }
 
-        // Esperar a que se carguen las fuentes y los estilos
+        // wait for fonts and styles to load
         await document.fonts.ready;
-        await new Promise(resolve => setTimeout(resolve, 1000));
+        // await new Promise(resolve => setTimeout(resolve, 1000));
 
-        // Generar PDF o JPG
-        if (format === 'pdf') {
-            try {
-                const pdf = await html2pdf().set({
-                    margin: [5, 5, 5, 5],
-                    filename: `form_${index + 1}.pdf`,
-                    image: { type: 'jpeg', quality: 0.98 },
-                    html2canvas: { 
-                        scale: 2, 
-                        useCORS: true,
-                        logging: true,
-                        letterRendering: true
-                    },
-                    jsPDF: { 
-                        unit: 'mm', 
-                        format: 'a4', 
-                        orientation: 'portrait',
-                        compress: true,
-                        precision: 16
-                    },
-                    pagebreak: { mode: ['avoid-all', 'css', 'legacy'] }
-                }).from(iframeContent).save();
-                console.log(`PDF generado: form_${index + 1}.pdf`);
-                return pdf;
-            } catch (error) {
-                console.error('Error al generar PDF:', error);
-                throw error;
-            }
-        } else if (format === 'jpg') {
-            try {
-                const canvas = await html2canvas(iframeContent, { 
+        // Generate PDF
+        try {
+            const pdf = await html2pdf().set({
+                margin: 0,
+                filename: `form_${index + 1}.pdf`,
+                image: { type: 'pdf', quality: 0.98 },
+                html2canvas: { 
                     scale: 2, 
                     useCORS: true,
                     logging: true,
-                    onclone: (clonedDoc) => {
-                        const clonedStyles = clonedDoc.querySelectorAll("link[rel='stylesheet'], style");
-                        clonedStyles.forEach(style => iframeContent.appendChild(style.cloneNode(true)));
-                    }
-                });
-                const link = document.createElement('a');
-                link.download = `form_${index + 1}.jpg`;
-                link.href = canvas.toDataURL('image/jpeg', 0.95);
-                link.click();
-                console.log(`JPG generado: form_${index + 1}.jpg`);
-                return link.href;
-            } catch (error) {
-                console.error('Error al generar JPG:', error);
-                throw error;
-            }
-        } else {
-            throw new Error('Formato no soportado');
+                    letterRendering: true,
+                },
+                jsPDF: { 
+                    unit: 'mm', 
+                    format: 'a4', 
+                    orientation: 'portrait',
+                    compress: true,
+                    precision: 16
+                },
+                pagebreak: { mode: ['avoid-all', 'css', 'legacy'] }
+            }).from(iframeContent).save();
+            console.log(`PDF generated: form_${index + 1}.pdf`);
+            return pdf;
+        } catch (error) {
+            console.error('Error generating PDF:', error);
+            throw error;
         }
     }
 
-    async function downloadForms(format = 'pdf') {
+    async function downloadForms() {
         for (let index = 0; index < forms.length; index++) {
-            await convertFormToPdfOrJpg(forms[index], index, format);
+            await convertFormToPdf(forms[index], index);
         }
     }
+
+    // async function convertFormToJpg(form, index) {
+    //     const iframe = formContainer.getElementsByTagName('iframe')[index];
+    //     const iframeContent = iframe.contentWindow.document.body;
+    //     const iframeDocument = iframe.contentWindow.document;
     
-    // window.onload = async function () {
-    //     await downloadForms('pdf');
-    // };
+    //     // Resetear estilos del iframe y su contenido
+    //     // iframeContent.style = '';
+    //     // iframeContent.innerHTML = `<div id="jpg-content">${iframeContent.innerHTML}</div>`;
+    //     // const contentDiv = iframeDocument.getElementById('jpg-content');
+    
+    //     // Clonar estilos CSS al iframe
+    //     const styles = document.querySelectorAll("link[rel='stylesheet'], style");
+    //     styles.forEach(style => {
+    //         try {
+    //             const clonedStyle = style.cloneNode(true);
+    //             iframeContent.appendChild(clonedStyle);
+    //         } catch (error) {
+    //             console.error('Error al clonar estilos:', error);
+    //         }
+    //     });
+    
+    //     // Agregar estilos específicos para JPG
+    //     const jpgStyles = `
+    //         body, html {
+    //             margin: 0 !important;
+    //             padding: 0 !important;
+    //             height: auto !important;
+    //             overflow: visible !important;
+    //         }
+    //         #jpg-content {
+    //             font-family: Arial, sans-serif;
+    //             font-size: 12pt;
+    //             line-height: 1.3;
+    //             color: #333;
+    //             box-sizing: border-box;
+    //             padding: 20px;
+    //             width: 100%;
+    //             max-width: 800px;
+    //             margin: 0 auto !important;
+    //         }
+    //         h1, h2, h3, h4, h5, h6 {
+    //             margin-top: 10px !important;
+    //             margin-bottom: 10px !important;
+    //         }
+    //         p { margin-bottom: 8pt; }
+    //         img { max-width: 100%; height: auto; display: block; margin: 10pt auto; }
+    //         input, textarea, select {
+    //             display: block;
+    //             width: 100%;
+    //             padding: 5px;
+    //             margin-bottom: 10px;
+    //             border: 1px solid #ccc;
+    //             font-size: 12pt;
+    //         }
+    //     `;
+    
+    //     const styleElement = iframeDocument.createElement('style');
+    //     styleElement.textContent = jpgStyles;
+    //     iframeContent.appendChild(styleElement);
+    
+    //     // Ajustar el estilo del body del iframe
+    //     iframeContent.style.width = '100%';
+    //     iframeContent.style.height = 'auto';
+    //     iframeContent.style.overflow = 'visible';
+    
+    //     // Aplicar estilos inline para mayor compatibilidad
+    //     const elements = iframeContent.querySelectorAll('*');
+    //     elements.forEach(el => {
+    //         el.style.maxWidth = '100%';
+    //         el.style.boxSizing = 'border-box';
+    //         if (el.tagName !== 'H1' && el.tagName !== 'H2') {
+    //             el.style.margin = '0 0 8pt 0';
+    //         }
+    //     });
+    
+    //     // Ajustar las imágenes
+    //     const images = iframeContent.querySelectorAll('img');
+    //     images.forEach(img => {
+    //         img.style.maxWidth = '100%';
+    //         img.style.height = 'auto';
+    //         img.style.marginBottom = '10pt';
+    //     });
+    
+    //     // Ajustar el tamaño del logo
+    //     const logo = iframeContent.querySelector('#logo');
+    //     if (logo) {
+    //         logo.style.width = '100px';
+    //         logo.style.height = 'auto';
+    //         logo.style.marginBottom = '15pt';
+    //     }
+    
+    //     // Esperar a que se carguen las fuentes y los estilos
+    //     await document.fonts.ready;
+    //     await new Promise(resolve => setTimeout(resolve, 1000));
+    
+    //     try {
+    //         const canvas = await html2canvas(iframeContent, { 
+    //             scale: 2, 
+    //             useCORS: true,
+    //             logging: true,
+    //             onclone: (clonedDoc) => {
+    //                 const clonedStyles = clonedDoc.querySelectorAll("link[rel='stylesheet'], style");
+    //                 clonedStyles.forEach(style => iframeContent.appendChild(style.cloneNode(true)));
+    //             }
+    //         });
+    //         const link = document.createElement('a');
+    //         link.download = `form_${index + 1}.jpg`;
+    //         link.href = canvas.toDataURL('image/jpeg', 0.95);
+    //         link.click();
+    //         console.log(`JPG generado: form_${index + 1}.jpg`);
+    //         return link.href;
+    //     } catch (error) {
+    //         console.error('Error al generar JPG:', error);
+    //         throw error;
+    //     }
+    // }
+    
+    // async function downloadForms() {
+    //     for (let index = 0; index < forms.length; index++) {
+    //         await convertFormToJpg(forms[index], index);
+    //     }
+    // }
 
     function prepareWhatsAppShare() {
         // Aquí puedes implementar la lógica para compartir por WhatsApp
