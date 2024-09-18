@@ -198,103 +198,257 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     }
 
-    async function convertFormToPdf(form, index) {
-        const iframe = formContainer.getElementsByTagName('iframe')[index];
-        const iframeContent = iframe.contentWindow.document.body;
-        const iframeDocument = iframe.contentWindow.document;
+    // async function convertFormToPdf(form, index) {
+    //     const iframe = formContainer.getElementsByTagName('iframe')[index];
+    //     const iframeContent = iframe.contentWindow.document.body;
+    //     const iframeDocument = iframe.contentWindow.document;
     
-        // Clonar estilos CSS en el iframe
-        const styles = document.querySelectorAll("link[rel='stylesheet'], style");
-        styles.forEach(style => {
-            try {
-                const clonedStyle = style.cloneNode(true);
-                iframeContent.appendChild(clonedStyle);
-            } catch (error) {
-                console.error('Error al clonar estilos:', error);
-            }
-        });
+    //     // Clonar estilos CSS en el iframe
+    //     const styles = document.querySelectorAll("link[rel='stylesheet'], style");
+    //     styles.forEach(style => {
+    //         try {
+    //             const clonedStyle = style.cloneNode(true);
+    //             iframeContent.appendChild(clonedStyle);
+    //         } catch (error) {
+    //             console.error('Error al clonar estilos:', error);
+    //         }
+    //     });
     
-        // Estilos específicos para PDF
-        const pdfStyles = `
-            @page { size: A4; margin: 0; }
-            body {
-                font-family: Arial, sans-serif;
-                font-size: 12pt;
-                line-height: 1.5;
-                color: #333;
-                margin: 0;
-                padding: 20mm;
-                box-sizing: border-box;
-            }
-            #content-wrapper {
-                max-width: 180mm;
-                margin: 0 auto;
-            }
-            img { max-width: 100%; height: auto; }
-        `;
+    //     // Estilos específicos para PDF
+    //     const pdfStyles = `
+    //         @page { size: A4; margin: 0; }
+    //         body {
+    //             font-family: Arial, sans-serif;
+    //             font-size: 12pt;
+    //             line-height: 1.5;
+    //             color: #333;
+    //             margin: 0;
+    //             padding: 20mm;
+    //             box-sizing: border-box;
+    //             img: { max-width: 100%; height: auto; }
+    //         }
+    //         #content-wrapper {
+    //             max-width: 180mm;
+    //             margin: 0 auto;
+    //         }
+    //         img { max-width: 100%; height: auto; }
+    //     `;
     
-        const styleElement = iframeDocument.createElement('style');
-        styleElement.textContent = pdfStyles;
-        iframeContent.appendChild(styleElement);
+    //     const styleElement = iframeDocument.createElement('style');
+    //     styleElement.textContent = pdfStyles;
+    //     iframeContent.appendChild(styleElement);
     
-        // Envolver contenido en un div para escalar y diseñar
-        const contentWrapper = iframeDocument.createElement('div');
-        contentWrapper.id = 'content-wrapper';
-        while (iframeContent.firstChild) {
-            contentWrapper.appendChild(iframeContent.firstChild);
-        }
-        iframeContent.appendChild(contentWrapper);
+    //     // Envolver contenido en un div para escalar y diseñar
+    //     const contentWrapper = iframeDocument.createElement('div');
+    //     contentWrapper.id = 'content-wrapper';
+    //     while (iframeContent.firstChild) {
+    //         contentWrapper.appendChild(iframeContent.firstChild);
+    //     }
+    //     iframeContent.appendChild(contentWrapper);
     
-        // Ajustar estilos inline para mejor escalado
-        const elements = iframeContent.querySelectorAll('*');
-        elements.forEach(el => {
-            el.style.maxWidth = '100%';
-            el.style.boxSizing = 'border-box';
-            el.style.pageBreakInside = 'avoid';
-        });
+    //     // Ajustar estilos inline para mejor escalado
+    //     const elements = iframeContent.querySelectorAll('*');
+    //     elements.forEach(el => {
+    //         el.style.maxWidth = '100%';
+    //         el.style.boxSizing = 'border-box';
+    //         el.style.pageBreakInside = 'avoid';
+    //     });
     
-        // Esperar a que las fuentes y estilos se carguen
-        await document.fonts.ready;
+    //     // Esperar a que las fuentes y estilos se carguen
+    //     await document.fonts.ready;
     
-        // Generar PDF
-        try {
-            const canvas = await html2canvas(iframeContent, {
-                scale: 2,
-                useCORS: true,
-                logging: true,
-                letterRendering: true
-            });
+    //     // Generar PDF
+    //     try {
+    //         const canvas = await html2canvas(iframeContent, {
+    //             scale: 2,
+    //             useCORS: true,
+    //             logging: true,
+    //             letterRendering: true
+    //         });
     
-            const imgData = canvas.toDataURL('image/jpeg', 0.98);
+    //         const imgData = canvas.toDataURL('image/jpeg', 0.98);
     
 
-            const { jsPDF } = window.jspdf;
-            const pdf = new jsPDF('p', 'mm', 'a4');
-            const pdfWidth = pdf.internal.pageSize.getWidth();
-            const pdfHeight = pdf.internal.pageSize.getHeight();
+    //         const { jsPDF } = window.jspdf;
+    //         const pdf = new jsPDF('p', 'mm', 'a4');
+    //         const pdfWidth = pdf.internal.pageSize.getWidth();
+    //         const pdfHeight = pdf.internal.pageSize.getHeight();
             
-            pdf.addImage(imgData, 'JPEG', 0, 0, pdfWidth, pdfHeight);
-            pdf.save(`form_${index + 1}.pdf`);
+    //         pdf.addImage(imgData, 'JPEG', 0, 0, pdfWidth, pdfHeight);
+    //         pdf.save(`form_${index + 1}.pdf`);
     
-            console.log(`PDF generado: form_${index + 1}.pdf`);
-            return pdf;
-        } catch (error) {
-            console.error('Error generando PDF:', error);
-            throw error;
+    //         console.log(`PDF generado: form_${index + 1}.pdf`);
+    //         return pdf;
+    //     } catch (error) {
+    //         console.error('Error generando PDF:', error);
+    //         throw error;
+    //     }
+    // }
+
+    // async function downloadForms() {
+    //     for (let index = 0; index < forms.length; index++) {
+    //         await convertFormToPdf(forms[index], index);
+    //     }
+    // }
+
+    // async function downloadForms(format) {
+    //     if (format === 'pdf') {
+    //         const { jsPDF } = window.jspdf;
+    //         const pdf = new jsPDF();
+    //         const formIframes = formContainer.getElementsByTagName('iframe');
+    
+    //         for (let i = 0; i < formIframes.length; i++) {
+    //             const iframe = formIframes[i];
+    //             const iframeDocument = iframe.contentDocument || iframe.contentWindow.document;
+    
+    //             try {
+    //                 // Asegurar que el contenido del iframe esté completamente cargado
+    //                 await new Promise((resolve, reject) => {
+    //                     if (iframeDocument.readyState === 'complete') {
+    //                         resolve();
+    //                     } else {
+    //                         iframe.onload = resolve;
+    //                         iframe.onerror = reject;
+    //                     }
+    //                 });
+    
+    //                 // Aplicar estilos para mejorar la captura
+    //                 const styleElement = iframeDocument.createElement('style');
+    //                 styleElement.textContent = `
+    //                     body { font-family: Arial, sans-serif; }
+    //                     * { max-width: 100%; box-sizing: border-box; }
+    //                 `;
+    //                 iframeDocument.head.appendChild(styleElement);
+    
+    //                 // Usar html2canvas para capturar el contenido del iframe
+    //                 const canvas = await html2canvas(iframeDocument.body, {
+    //                     scale: 2,
+    //                     useCORS: true,
+    //                     logging: false
+    //                 });
+    //                 const imgData = canvas.toDataURL('image/jpeg', 1.0);
+    
+    //                 // Añadir el contenido capturado al PDF
+    //                 if (i > 0) {
+    //                     pdf.addPage();
+    //                 }
+    //                 const pdfWidth = pdf.internal.pageSize.getWidth();
+    //                 const pdfHeight = pdf.internal.pageSize.getHeight();
+    //                 pdf.addImage(imgData, 'JPEG', 0, 0, pdfWidth, pdfHeight);
+    
+    //             } catch (error) {
+    //                 console.error('Error al capturar el contenido del iframe:', error);
+    //                 throw new Error('Error al capturar el contenido del formulario. Por favor, intente de nuevo.');
+    //             }
+    //         }
+    
+    //         // Guardar el PDF combinado
+    //         pdf.save('formularios_completos.pdf');
+    //     } else {
+    //         throw new Error('Formato no soportado');
+    //     }
+    // }
+
+    async function downloadForms(format) {
+        if (format === 'pdf') {
+            const { jsPDF } = window.jspdf;
+            const pdf = new jsPDF();
+            const formIframes = formContainer.getElementsByTagName('iframe');
+    
+            for (let i = 0; i < formIframes.length; i++) {
+                const iframe = formIframes[i];
+                
+                try {
+                    // Guardar el estado original de visibilidad
+                    const originalDisplay = iframe.style.display;
+                    const originalVisibility = iframe.style.visibility;
+    
+                    // Hacer el iframe visible temporalmente
+                    iframe.style.display = 'block';
+                    iframe.style.visibility = 'visible';
+    
+                    // Asegurar que el iframe está cargado y visible
+                    await ensureIframeLoaded(iframe);
+    
+                    // Aplicar estilos para mejorar la captura
+                    const iframeDocument = iframe.contentDocument || iframe.contentWindow.document;
+                    const styleElement = iframeDocument.createElement('style');
+                    styleElement.textContent = `
+                        body { 
+                            font-family: Arial, sans-serif;
+                            display: block !important;
+                            opacity: 1 !important;
+                            visibility: visible !important;
+                        }
+                        * { max-width: 100%; box-sizing: border-box; }
+                    `;
+                    iframeDocument.head.appendChild(styleElement);
+    
+                    // Forzar la visibilidad del contenido del iframe
+                    iframeDocument.body.style.display = 'block';
+                    iframeDocument.body.style.opacity = '1';
+                    iframeDocument.body.style.visibility = 'visible';
+    
+                    // Esperar un momento para que los estilos se apliquen
+                    await new Promise(resolve => setTimeout(resolve, 500));
+    
+                    // Usar html2canvas para capturar el contenido del iframe
+                    const canvas = await html2canvas(iframeDocument.body, {
+                        scale: 2,
+                        useCORS: true,
+                        logging: false,
+                        windowWidth: iframe.clientWidth || 1000, // Valor por defecto si clientWidth es 0
+                        windowHeight: iframe.clientHeight || 1414 // Valor por defecto si clientHeight es 0 (aproximadamente A4)
+                    });
+                    const imgData = canvas.toDataURL('image/jpeg', 1.0);
+    
+                    // Añadir el contenido capturado al PDF
+                    if (i > 0) {
+                        pdf.addPage();
+                    }
+                    const pdfWidth = pdf.internal.pageSize.getWidth();
+                    const pdfHeight = pdf.internal.pageSize.getHeight();
+                    pdf.addImage(imgData, 'JPEG', 0, 0, pdfWidth, pdfHeight);
+    
+                    // Restaurar el estado original de visibilidad
+                    iframe.style.display = originalDisplay;
+                    iframe.style.visibility = originalVisibility;
+    
+                } catch (error) {
+                    console.error(`Error al capturar el contenido del formulario ${i + 1}:`, error);
+                    throw new Error(`Error al capturar el contenido del formulario ${i + 1}. Por favor, intente de nuevo.`);
+                }
+            }
+    
+            // Guardar el PDF combinado
+            pdf.save('formularios_completos.pdf');
+        } else {
+            throw new Error('Formato no soportado');
         }
     }
-
-    async function downloadForms() {
-        for (let index = 0; index < forms.length; index++) {
-            await convertFormToPdf(forms[index], index);
-        }
+    
+    // Función auxiliar para asegurar que el iframe está cargado y visible
+    function ensureIframeLoaded(iframe) {
+        return new Promise((resolve, reject) => {
+            if (iframe.contentDocument && iframe.contentDocument.readyState === 'complete') {
+                resolve();
+            } else {
+                iframe.onload = resolve;
+                iframe.onerror = reject;
+                
+                // Forzar la recarga del iframe si no está visible o no está cargado
+                if (iframe.style.display === 'none' || iframe.style.visibility === 'hidden' || !iframe.contentDocument || iframe.contentDocument.readyState !== 'complete') {
+                    iframe.src = iframe.src;
+                }
+            }
+        });
     }
 
     function prepareWhatsAppShare() {
         // Aquí puedes implementar la lógica para compartir por WhatsApp
         // Por ejemplo, abrir un nuevo enlace de WhatsApp con un mensaje predefinido
-        const message = encodeURIComponent('He completado los formularios. Aquí están adjuntos los archivos PDF y JPG.');
-        const whatsappLink = `https://wa.me/?text=${message}`;
+        const message = encodeURIComponent('He completado los formularios. Aquí están adjuntos los archivos PDF.');
+        const whatsappLink = `https://wa.me/542915278412?text=${message}`;
         window.open(whatsappLink, '_blank');
     }
 
