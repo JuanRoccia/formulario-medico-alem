@@ -94,3 +94,39 @@ input[type=number] { -moz-appearance:textfield; }
 #cuestionario-resonancia-magnetica li{
     margin-bottom:0.6rem;
 }
+
+/* Estilos temporales para el downloadForms */
+.mt-4 {
+    margin-top: 1rem;
+}
+.text-center {
+    text-align: center;
+}
+.btn {
+    display: inline-block;
+    padding: 0.5rem 1rem;
+    font-size: 1rem;
+    text-align: center;
+    text-decoration: none;
+    border-radius: 0.25rem;
+    cursor: pointer;
+}
+.btn-primary {
+    color: #fff;
+    background-color: #007bff;
+    border: 1px solid #007bff;
+}
+.btn-success {
+    color: #fff;
+    background-color: #28a745;
+    border: 1px solid #28a745;
+}
+.mr-2 {
+    margin-right: 0.5rem;
+}
+.pdf-options {
+    margin-top: 1rem;
+    padding: 1rem;
+    border: 1px solid #ddd;
+    border-radius: 0.25rem;
+}

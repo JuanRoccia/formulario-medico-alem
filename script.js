@@ -186,11 +186,11 @@ document.addEventListener('DOMContentLoaded', function() {
             try {
                 await downloadForms('pdf');
                 hideLoadingIndicator();
-                alert('Has completado todos los formularios.');
-                prepareWhatsAppShare();
+                // alert('Has completado todos los formularios.');
+                // prepareWhatsAppShare();
             } catch (error) {
                 hideLoadingIndicator();
-                alert('Hubo un error al generar los PDFs. Por favor, intenta de nuevo.');
+                alert('Hubo un error al generar los PDFs: ' + error.message);
                 console.error(error);
             }
         } else {
@@ -421,10 +421,70 @@ document.addEventListener('DOMContentLoaded', function() {
             }
     
             // Guardar el PDF combinado
-            pdf.save('formularios_completos.pdf');
+        //     pdf.save('formularios_completos.pdf');
+        // } else {
+        //     throw new Error('Formato no soportado');
+        // }
+        
+            // Enviar el PDF al usuario
+            const pdfBlob = pdf.output('blob');
+            const fileName = 'formularios_completos.pdf';
+            const pdfUrl = URL.createObjectURL(pdfBlob);
+
+            // Limpiar opciones anteriores si existen
+            const existingOptions = formContainer.querySelector('.pdf-options');
+            if (existingOptions) {
+                existingOptions.remove();
+            }
+
+            const optionsContainer = document.createElement('div');
+            optionsContainer.className = 'pdf-options mt-4 text-center';
+
+            // Crear botones para las opciones
+            const downloadButton = document.createElement('a');
+            downloadButton.href = pdfUrl;
+            downloadButton.download = fileName;
+            downloadButton.textContent = 'Descargar PDF';
+            downloadButton.className = 'btn btn-primary mr-2';
+
+            const shareButton = document.createElement('button');
+            shareButton.textContent = 'Compartir por WhatsApp';
+            shareButton.className = 'btn btn-success';
+            shareButton.onclick = () => shareViaWhatsApp(pdfBlob, fileName);
+
+            // Mostrar opciones al usuario
+            // const optionsContainer = document.createElement('div');
+            optionsContainer.className = 'mt-4 text-center';
+            optionsContainer.appendChild(downloadButton);
+            optionsContainer.appendChild(shareButton);
+            formContainer.appendChild(optionsContainer); 
         } else {
             throw new Error('Formato no soportado');
         }
+    }
+
+    function shareViaWhatsApp(pdfBlob, fileName) {
+        // Verificar si el navegador soporta la API de compartir
+        if (navigator.share) {
+            navigator.share({
+                files: [new File([pdfBlob], fileName, { type: 'application/pdf' })],
+                title: 'Formularios completados',
+                text: 'Aquí están los formularios completados en formato PDF.'
+            }).then(() => {
+                console.log('Compartido exitosamente');
+            }).catch((error) => {
+                console.error('Error al compartir', error);
+                fallbackWhatsAppShare();
+            });
+        } else {
+            fallbackWhatsAppShare();
+        }
+    }
+    
+    function fallbackWhatsAppShare() {
+        const message = encodeURIComponent('He completado los formularios. Por favor, solicita que te envíe el archivo PDF.');
+        const whatsappLink = `https://wa.me/542915278412?text=${message}`;
+        window.open(whatsappLink, '_blank');
     }
     
     // Función auxiliar para asegurar que el iframe está cargado y visible
@@ -444,13 +504,13 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
 
-    function prepareWhatsAppShare() {
-        // Aquí puedes implementar la lógica para compartir por WhatsApp
-        // Por ejemplo, abrir un nuevo enlace de WhatsApp con un mensaje predefinido
-        const message = encodeURIComponent('He completado los formularios. Aquí están adjuntos los archivos PDF.');
-        const whatsappLink = `https://wa.me/542915278412?text=${message}`;
-        window.open(whatsappLink, '_blank');
-    }
+    // function prepareWhatsAppShare() {
+    //     // Aquí puedes implementar la lógica para compartir por WhatsApp
+    //     // Por ejemplo, abrir un nuevo enlace de WhatsApp con un mensaje predefinido
+    //     const message = encodeURIComponent('He completado los formularios. Aquí están adjuntos los archivos PDF.');
+    //     const whatsappLink = `https://wa.me/542915278412?text=${message}`;
+    //     window.open(whatsappLink, '_blank');
+    // }
 
     if (forms.length === 0) {
         formContainer.innerHTML = '<p class="text-red-500">No se han seleccionado formularios.</p>';
