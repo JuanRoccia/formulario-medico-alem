@@ -198,157 +198,6 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     }
 
-    // async function convertFormToPdf(form, index) {
-    //     const iframe = formContainer.getElementsByTagName('iframe')[index];
-    //     const iframeContent = iframe.contentWindow.document.body;
-    //     const iframeDocument = iframe.contentWindow.document;
-    
-    //     // Clonar estilos CSS en el iframe
-    //     const styles = document.querySelectorAll("link[rel='stylesheet'], style");
-    //     styles.forEach(style => {
-    //         try {
-    //             const clonedStyle = style.cloneNode(true);
-    //             iframeContent.appendChild(clonedStyle);
-    //         } catch (error) {
-    //             console.error('Error al clonar estilos:', error);
-    //         }
-    //     });
-    
-    //     // Estilos específicos para PDF
-    //     const pdfStyles = `
-    //         @page { size: A4; margin: 0; }
-    //         body {
-    //             font-family: Arial, sans-serif;
-    //             font-size: 12pt;
-    //             line-height: 1.5;
-    //             color: #333;
-    //             margin: 0;
-    //             padding: 20mm;
-    //             box-sizing: border-box;
-    //             img: { max-width: 100%; height: auto; }
-    //         }
-    //         #content-wrapper {
-    //             max-width: 180mm;
-    //             margin: 0 auto;
-    //         }
-    //         img { max-width: 100%; height: auto; }
-    //     `;
-    
-    //     const styleElement = iframeDocument.createElement('style');
-    //     styleElement.textContent = pdfStyles;
-    //     iframeContent.appendChild(styleElement);
-    
-    //     // Envolver contenido en un div para escalar y diseñar
-    //     const contentWrapper = iframeDocument.createElement('div');
-    //     contentWrapper.id = 'content-wrapper';
-    //     while (iframeContent.firstChild) {
-    //         contentWrapper.appendChild(iframeContent.firstChild);
-    //     }
-    //     iframeContent.appendChild(contentWrapper);
-    
-    //     // Ajustar estilos inline para mejor escalado
-    //     const elements = iframeContent.querySelectorAll('*');
-    //     elements.forEach(el => {
-    //         el.style.maxWidth = '100%';
-    //         el.style.boxSizing = 'border-box';
-    //         el.style.pageBreakInside = 'avoid';
-    //     });
-    
-    //     // Esperar a que las fuentes y estilos se carguen
-    //     await document.fonts.ready;
-    
-    //     // Generar PDF
-    //     try {
-    //         const canvas = await html2canvas(iframeContent, {
-    //             scale: 2,
-    //             useCORS: true,
-    //             logging: true,
-    //             letterRendering: true
-    //         });
-    
-    //         const imgData = canvas.toDataURL('image/jpeg', 0.98);
-    
-
-    //         const { jsPDF } = window.jspdf;
-    //         const pdf = new jsPDF('p', 'mm', 'a4');
-    //         const pdfWidth = pdf.internal.pageSize.getWidth();
-    //         const pdfHeight = pdf.internal.pageSize.getHeight();
-            
-    //         pdf.addImage(imgData, 'JPEG', 0, 0, pdfWidth, pdfHeight);
-    //         pdf.save(`form_${index + 1}.pdf`);
-    
-    //         console.log(`PDF generado: form_${index + 1}.pdf`);
-    //         return pdf;
-    //     } catch (error) {
-    //         console.error('Error generando PDF:', error);
-    //         throw error;
-    //     }
-    // }
-
-    // async function downloadForms() {
-    //     for (let index = 0; index < forms.length; index++) {
-    //         await convertFormToPdf(forms[index], index);
-    //     }
-    // }
-
-    // async function downloadForms(format) {
-    //     if (format === 'pdf') {
-    //         const { jsPDF } = window.jspdf;
-    //         const pdf = new jsPDF();
-    //         const formIframes = formContainer.getElementsByTagName('iframe');
-    
-    //         for (let i = 0; i < formIframes.length; i++) {
-    //             const iframe = formIframes[i];
-    //             const iframeDocument = iframe.contentDocument || iframe.contentWindow.document;
-    
-    //             try {
-    //                 // Asegurar que el contenido del iframe esté completamente cargado
-    //                 await new Promise((resolve, reject) => {
-    //                     if (iframeDocument.readyState === 'complete') {
-    //                         resolve();
-    //                     } else {
-    //                         iframe.onload = resolve;
-    //                         iframe.onerror = reject;
-    //                     }
-    //                 });
-    
-    //                 // Aplicar estilos para mejorar la captura
-    //                 const styleElement = iframeDocument.createElement('style');
-    //                 styleElement.textContent = `
-    //                     body { font-family: Arial, sans-serif; }
-    //                     * { max-width: 100%; box-sizing: border-box; }
-    //                 `;
-    //                 iframeDocument.head.appendChild(styleElement);
-    
-    //                 // Usar html2canvas para capturar el contenido del iframe
-    //                 const canvas = await html2canvas(iframeDocument.body, {
-    //                     scale: 2,
-    //                     useCORS: true,
-    //                     logging: false
-    //                 });
-    //                 const imgData = canvas.toDataURL('image/jpeg', 1.0);
-    
-    //                 // Añadir el contenido capturado al PDF
-    //                 if (i > 0) {
-    //                     pdf.addPage();
-    //                 }
-    //                 const pdfWidth = pdf.internal.pageSize.getWidth();
-    //                 const pdfHeight = pdf.internal.pageSize.getHeight();
-    //                 pdf.addImage(imgData, 'JPEG', 0, 0, pdfWidth, pdfHeight);
-    
-    //             } catch (error) {
-    //                 console.error('Error al capturar el contenido del iframe:', error);
-    //                 throw new Error('Error al capturar el contenido del formulario. Por favor, intente de nuevo.');
-    //             }
-    //         }
-    
-    //         // Guardar el PDF combinado
-    //         pdf.save('formularios_completos.pdf');
-    //     } else {
-    //         throw new Error('Formato no soportado');
-    //     }
-    // }
-
     async function downloadForms(format) {
         if (format === 'pdf') {
             const { jsPDF } = window.jspdf;
@@ -419,72 +268,74 @@ document.addEventListener('DOMContentLoaded', function() {
                     throw new Error(`Error al capturar el contenido del formulario ${i + 1}. Por favor, intente de nuevo.`);
                 }
             }
-    
-            // Guardar el PDF combinado
-        //     pdf.save('formularios_completos.pdf');
-        // } else {
-        //     throw new Error('Formato no soportado');
-        // }
-        
-            // Enviar el PDF al usuario
+
             const pdfBlob = pdf.output('blob');
             const fileName = 'formularios_completos.pdf';
             const pdfUrl = URL.createObjectURL(pdfBlob);
 
-            // Limpiar opciones anteriores si existen
-            const existingOptions = formContainer.querySelector('.pdf-options');
-            if (existingOptions) {
-                existingOptions.remove();
-            }
-
-            const optionsContainer = document.createElement('div');
-            optionsContainer.className = 'pdf-options mt-4 text-center';
-
-            // Crear botones para las opciones
-            const downloadButton = document.createElement('a');
-            downloadButton.href = pdfUrl;
-            downloadButton.download = fileName;
-            downloadButton.textContent = 'Descargar PDF';
-            downloadButton.className = 'btn btn-primary mr-2';
-
-            const shareButton = document.createElement('button');
-            shareButton.textContent = 'Compartir por WhatsApp';
-            shareButton.className = 'btn btn-success';
-            shareButton.onclick = () => shareViaWhatsApp(pdfBlob, fileName);
-
-            // Mostrar opciones al usuario
-            // const optionsContainer = document.createElement('div');
-            optionsContainer.className = 'mt-4 text-center';
-            optionsContainer.appendChild(downloadButton);
-            optionsContainer.appendChild(shareButton);
-            formContainer.appendChild(optionsContainer); 
+            showPdfModal(pdfUrl, fileName, pdfBlob);
         } else {
             throw new Error('Formato no soportado');
         }
     }
 
-    function shareViaWhatsApp(pdfBlob, fileName) {
-        // Verificar si el navegador soporta la API de compartir
+    function showPdfModal(pdfUrl, fileName, pdfBlob) {
+        const modalHtml = `
+            <div id="pdfModal" class="fixed inset-0 bg-gray-600 bg-opacity-50 overflow-y-auto h-full w-full flex items-center justify-center">
+                <div class="bg-white p-5 rounded-lg shadow-xl">
+                    <h2 class="text-xl font-bold mb-4">PDF Generado</h2>
+                    <p class="mb-4">Tu PDF ha sido generado exitosamente. ¿Qué deseas hacer?</p>
+                    <div class="flex justify-center space-x-4">
+                        <a href="${pdfUrl}" download="${fileName}" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
+                            Descargar PDF
+                        </a>
+                        <button onclick="shareViaWhatsApp('${pdfUrl}', '${fileName}')" class="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded">
+                            Compartir por WhatsApp
+                        </button>
+                    </div>
+                    <button onclick="closeModal()" class="mt-4 text-sm text-gray-500 hover:text-gray-700">Cerrar</button>
+                </div>
+            </div>
+        `;
+    
+        document.body.insertAdjacentHTML('beforeend', modalHtml);
+    }
+
+    window.closeModal = function() {
+        const modal = document.getElementById('pdfModal');
+        if (modal) {
+            modal.remove();
+        }
+    }
+
+    window.shareViaWhatsApp = function(pdfUrl, fileName) {
         if (navigator.share) {
-            navigator.share({
-                files: [new File([pdfBlob], fileName, { type: 'application/pdf' })],
-                title: 'Formularios completados',
-                text: 'Aquí están los formularios completados en formato PDF.'
-            }).then(() => {
-                console.log('Compartido exitosamente');
-            }).catch((error) => {
-                console.error('Error al compartir', error);
-                fallbackWhatsAppShare();
-            });
+            fetch(pdfUrl)
+                .then(res => res.blob())
+                .then(blob => {
+                    const file = new File([blob], fileName, { type: 'application/pdf' });
+                    navigator.share({
+                        files: [file],
+                        title: 'Formularios completados',
+                        text: 'Aquí están los formularios completados en formato PDF.'
+                    }).then(() => {
+                        console.log('Compartido exitosamente');
+                        window.closeModal();
+                    }).catch((error) => {
+                        console.error('Error al compartir', error);
+                        window.fallbackWhatsAppShare();
+                    });
+                });
         } else {
-            fallbackWhatsAppShare();
+            window.fallbackWhatsAppShare();
         }
     }
     
-    function fallbackWhatsAppShare() {
+    window.fallbackWhatsAppShare = function() {
         const message = encodeURIComponent('He completado los formularios. Por favor, solicita que te envíe el archivo PDF.');
         const whatsappLink = `https://wa.me/542915278412?text=${message}`;
         window.open(whatsappLink, '_blank');
+        window.closeModal();
     }
     
     // Función auxiliar para asegurar que el iframe está cargado y visible
@@ -503,14 +354,6 @@ document.addEventListener('DOMContentLoaded', function() {
             }
         });
     }
-
-    // function prepareWhatsAppShare() {
-    //     // Aquí puedes implementar la lógica para compartir por WhatsApp
-    //     // Por ejemplo, abrir un nuevo enlace de WhatsApp con un mensaje predefinido
-    //     const message = encodeURIComponent('He completado los formularios. Aquí están adjuntos los archivos PDF.');
-    //     const whatsappLink = `https://wa.me/542915278412?text=${message}`;
-    //     window.open(whatsappLink, '_blank');
-    // }
 
     if (forms.length === 0) {
         formContainer.innerHTML = '<p class="text-red-500">No se han seleccionado formularios.</p>';
