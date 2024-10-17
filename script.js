@@ -378,7 +378,7 @@ const form2Checkbox = document.getElementById('form2');
 const form3Checkbox = document.getElementById('form3');
 const form4Checkbox = document.getElementById('form4');
 const form5Checkbox = document.getElementById('form5');
-const form6Checkbox = document.getElementById('form6');
+// const form6Checkbox = document.getElementById('form6');
 const form7Checkbox = document.getElementById('form7');
 const form8Checkbox = document.getElementById('form8');
 const generatedLinkDiv = document.getElementById('generatedLink');
@@ -436,7 +436,7 @@ function addSignatureToLastForm() {
     if (form3Checkbox.checked) selectedForms.push(form3Checkbox.value);
     if (form4Checkbox.checked) selectedForms.push(form4Checkbox.value);
     if (form5Checkbox.checked) selectedForms.push(form5Checkbox.value);
-    if (form6Checkbox.checked) selectedForms.push(form6Checkbox.value);
+    // if (form6Checkbox.checked) selectedForms.push(form6Checkbox.value);
     if (form7Checkbox.checked) selectedForms.push(form7Checkbox.value);
     if (form8Checkbox.checked) selectedForms.push(form8Checkbox.value);
 
@@ -473,7 +473,7 @@ function generateLink() {
     if (form3Checkbox.checked) selectedForms.push({value: form3Checkbox.value, name: 'Formulario 3'});
     if (form4Checkbox.checked) selectedForms.push({value: form4Checkbox.value, name: 'Formulario 4'});
     if (form5Checkbox.checked) selectedForms.push({value: form5Checkbox.value, name: 'Formulario 5'});
-    if (form6Checkbox.checked) selectedForms.push({value: form6Checkbox.value, name: 'Formulario 6'});
+    // if (form6Checkbox.checked) selectedForms.push({value: form6Checkbox.value, name: 'Formulario 6'});
     if (form7Checkbox.checked) selectedForms.push({value: form7Checkbox.value, name: 'Formulario 7'});
     if (form8Checkbox.checked) selectedForms.push({value: form8Checkbox.value, name: 'Formulario 8'});
 
@@ -484,7 +484,8 @@ function generateLink() {
 
     // addSignatureToLastForm();
 
-    const baseUrl = 'https://imagenesalem.netlify.app/index.html?';
+    // const baseUrl = 'https://imagenesalem.netlify.app/index.html?';
+    const baseUrl = 'https://www.imagenesalem.com/dashboard?';
     const formParams = selectedForms.map(form => `form=${form.value}&name=${encodeURIComponent(form.name)}`).join('&');
     const fullLink = `${baseUrl}${formParams}`;
 
