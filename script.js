@@ -25,7 +25,8 @@ document.addEventListener('DOMContentLoaded', function() {
     function createIframes() {
         forms.forEach((form, index) => {
             const iframe = document.createElement('iframe');
-            iframe.src = `${form}.html`;
+            // iframe.src = `${form}.html`;
+            iframe.src = `https://www.imagenesalem.com/${form}`;
             iframe.className = 'w-full h-full border-0 top-0 left-0 transition-opacity duration-300';
             iframe.style.display = index === 0 ? 'block' : 'none';
             iframe.style.opacity = index === 0 ? '1' : '0';
