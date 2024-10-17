@@ -484,8 +484,8 @@ function generateLink() {
 
     // addSignatureToLastForm();
 
-    const baseUrl = 'https://imagenesalem.netlify.app/index.html?';
-    // const baseUrl = 'https://www.imagenesalem.com/index.html?';
+    // const baseUrl = 'https://imagenesalem.netlify.app/index.html?';
+    const baseUrl = 'https://www.imagenesalem.com/index?';
     // const baseUrl = 'https://www.imagenesalem.com/dashboard/index.html?';
     const formParams = selectedForms.map(form => `form=${form.value}&name=${encodeURIComponent(form.name)}`).join('&');
     const fullLink = `${baseUrl}${formParams}`;
