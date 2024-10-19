@@ -416,7 +416,7 @@ function checkAuthentication() {
 }
 
 function login(username, password) {
-    if (username === "admin" && password === "admin") {
+    if (username === "imagenesalem" && password === "esCiUmawlm899NRlq") {
         localStorage.setItem('loggedIn', 'true');
         window.location.href = 'dashboard.html';
     } else {
