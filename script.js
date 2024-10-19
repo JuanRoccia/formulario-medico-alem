@@ -470,14 +470,14 @@ function addSignatureToLastForm() {
 // Función generateLink con la llamda a addSignatureToLastForm
 function generateLink() {
     const selectedForms = [];
-    if (form1Checkbox.checked) selectedForms.push({value: form1Checkbox.value, name: 'Formulario 1'});
-    if (form2Checkbox.checked) selectedForms.push({value: form2Checkbox.value, name: 'Formulario 2'});
-    if (form3Checkbox.checked) selectedForms.push({value: form3Checkbox.value, name: 'Formulario 3'});
-    if (form4Checkbox.checked) selectedForms.push({value: form4Checkbox.value, name: 'Formulario 4'});
-    if (form5Checkbox.checked) selectedForms.push({value: form5Checkbox.value, name: 'Formulario 5'});
+    if (form1Checkbox.checked) selectedForms.push({value: form1Checkbox.value, name: 'Formulario General'});
+    if (form2Checkbox.checked) selectedForms.push({value: form2Checkbox.value, name: 'Formulario Músculo Esquelético'});
+    if (form3Checkbox.checked) selectedForms.push({value: form3Checkbox.value, name: 'Formulario Formulario Neuro-Cabeza y Cuello'});
+    if (form4Checkbox.checked) selectedForms.push({value: form4Checkbox.value, name: 'Formulario Mama'});
+    if (form5Checkbox.checked) selectedForms.push({value: form5Checkbox.value, name: 'Formulario Pelvis Gineco y Abdomen'});
     // if (form6Checkbox.checked) selectedForms.push({value: form6Checkbox.value, name: 'Formulario 6'});
-    if (form7Checkbox.checked) selectedForms.push({value: form7Checkbox.value, name: 'Formulario 7'});
-    if (form8Checkbox.checked) selectedForms.push({value: form8Checkbox.value, name: 'Formulario 8'});
+    if (form7Checkbox.checked) selectedForms.push({value: form7Checkbox.value, name: 'Formulario Pelvis Masculina y Recto'});
+    if (form8Checkbox.checked) selectedForms.push({value: form8Checkbox.value, name: 'Formulario ATM'});
 
     if (selectedForms.length === 0) {
         alert('Por favor, seleccione al menos un formulario.');
