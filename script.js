@@ -484,7 +484,7 @@ function generateLink() {
         return;
     }
 
-    // addSignatureToLastForm();
+    addSignatureToLastForm();
 
     const baseUrl = 'https://imagenesalem.netlify.app/index.html?';
     // const baseUrl = 'https://www.imagenesalem.com/index?';
