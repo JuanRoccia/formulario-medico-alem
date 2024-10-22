@@ -1,3 +1,6 @@
+
+import { signaturePadManager } from './signaturePad.js';
+
 // Primero, asegurémonos de que todas las funciones estén definidas antes de usarlas
 let signaturePadInstance = null;
 
@@ -52,17 +55,9 @@ function initializeSignaturePad(iframeDocument) {
     }
 }
 
-// Función para agregar el pad de firma al último formulario
-function addSignaturePadToLastForm() {
+// Modificar la función addSignaturePadToLastForm
+async function addSignaturePadToLastForm() {
     try {
-        const signatureForm = sessionStorage.getItem('signatureForm');
-        const signatureHtml = sessionStorage.getItem('signatureHtml');
-        
-        if (!signatureForm || !signatureHtml) {
-            console.log('No hay información de firma para agregar');
-            return;
-        }
-
         const formContainer = document.getElementById('formContainer');
         if (!formContainer) {
             console.log('Contenedor de formularios no encontrado');
@@ -76,48 +71,7 @@ function addSignaturePadToLastForm() {
         }
 
         const lastIframe = iframes[iframes.length - 1];
-        
-        // Función para agregar firma al iframe
-        async function addSignatureToIframe() {
-            const iframeDocument = lastIframe.contentWindow.document;
-            const formElement = iframeDocument.querySelector('form') || iframeDocument.body;
-            
-            if (!formElement) {
-                console.log('No se encontró elemento form en el iframe');
-                return;
-            }
-
-            // Verificar si ya existe un signature pad
-            if (!iframeDocument.getElementById('signature-pad')) {
-                // Insertar HTML del signature pad
-                formElement.insertAdjacentHTML('beforeend', signatureHtml);
-                
-                // Cargar script de SignaturePad
-                await new Promise((resolve, reject) => {
-                    const script = iframeDocument.createElement('script');
-                    script.src = 'https://cdn.jsdelivr.net/npm/signature_pad@4.1.5/dist/signature_pad.umd.min.js';
-                    script.onload = resolve;
-                    script.onerror = reject;
-                    iframeDocument.head.appendChild(script);
-                });
-
-                // Inicializar SignaturePad después de un breve delay
-                setTimeout(() => {
-                    const pad = initializeSignaturePad(iframeDocument);
-                    if (pad) {
-                        console.log('SignaturePad inicializado en iframe');
-                        signaturePadInstance = pad;
-                    }
-                }, 500);
-            }
-        }
-
-        // Agregar firma cuando el iframe esté listo
-        if (lastIframe.contentDocument && lastIframe.contentDocument.readyState === 'complete') {
-            addSignatureToIframe();
-        } else {
-            lastIframe.addEventListener('load', addSignatureToIframe);
-        }
+        await signaturePadManager.initializeInIframe(lastIframe);
 
     } catch (error) {
         console.error('Error al agregar el signature pad:', error);
@@ -256,23 +210,16 @@ document.addEventListener('DOMContentLoaded', function() {
         checkFormCompleteness(iframe);
     }
 
+    // Modificar la función checkFormCompleteness para incluir la verificación de firma
     function checkFormCompleteness(iframe) {
         if (!iframe) return false;
 
         const iframeDocument = iframe.contentWindow.document;
         const requiredInputs = iframeDocument.querySelectorAll('input[required], select[required], textarea[required]');
-        console.log('requiredInputs:', requiredInputs);
-
         let isComplete = true;
+
         requiredInputs.forEach(input => {
-            if (input.type === 'checkbox' || input.type === 'radio') {
-                const name = input.name;
-                const checkedInputs = iframeDocument.querySelectorAll(`input[name="${name}"]:checked`);
-                if (checkedInputs.length === 0) {
-                    console.log(`Campo no completado: ${input.name}`);
-                    isComplete = false;
-                }
-            } else if (!input.value.trim()) {
+            if (!input.value.trim()) {
                 console.log(`Campo no completado: ${input.name || input.id}`);
                 isComplete = false;
             }
@@ -280,9 +227,8 @@ document.addEventListener('DOMContentLoaded', function() {
 
         // Verificar la firma si es el último formulario
         const signaturePad = iframeDocument.getElementById('signature-pad');
-        if (signaturePad) {
-            const pad = SignaturePad.getInstance(signaturePad);
-            if (pad && pad.isEmpty()) {
+        if (signaturePad && signaturePadManager.initialized) {
+            if (signaturePadManager.isEmpty()) {
                 console.log('Firma requerida');
                 isComplete = false;
             }
