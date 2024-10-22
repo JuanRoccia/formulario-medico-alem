@@ -1,3 +1,164 @@
+// Primero, asegurémonos de que todas las funciones estén definidas antes de usarlas
+let signaturePadInstance = null;
+
+// Función para inicializar el signature pad
+function initializeSignaturePad(iframeDocument) {
+    if (!iframeDocument) return null;
+    
+    const canvas = iframeDocument.getElementById('signature-pad');
+    if (!canvas) return null;
+    
+    // Asegurarse de que el canvas tenga las dimensiones correctas
+    canvas.width = canvas.offsetWidth;
+    canvas.height = canvas.offsetHeight;
+    
+    try {
+        signaturePadInstance = new SignaturePad(canvas, {
+            backgroundColor: 'rgb(255, 255, 255)',
+            penColor: 'rgb(0, 0, 0)'
+        });
+        
+        const clearButton = iframeDocument.getElementById('clear');
+        if (clearButton) {
+            clearButton.addEventListener('click', () => {
+                signaturePadInstance.clear();
+            });
+        }
+        
+        return signaturePadInstance;
+    } catch (error) {
+        console.error('Error al inicializar SignaturePad:', error);
+        return null;
+    }
+}
+
+// Función para determinar el último formulario y agregar la firma
+function addSignatureToLastForm() {
+    const selectedForms = [];
+    const checkboxes = [
+        { checkbox: document.getElementById('form1'), value: 'form-1' },
+        { checkbox: document.getElementById('form2'), value: 'form-2' },
+        { checkbox: document.getElementById('form3'), value: 'form-3' },
+        { checkbox: document.getElementById('form4'), value: 'form-4' },
+        { checkbox: document.getElementById('form5'), value: 'form-5' },
+        { checkbox: document.getElementById('form7'), value: 'form-7' },
+        { checkbox: document.getElementById('form8'), value: 'form-8' }
+    ];
+
+    checkboxes.forEach(({ checkbox, value }) => {
+        if (checkbox && checkbox.checked) {
+            selectedForms.push(value);
+        }
+    });
+
+    if (selectedForms.length === 0) return;
+
+    const lastForm = selectedForms[selectedForms.length - 1];
+    const signatureHtml = `
+        <div class="mb-6 border-t border-gray-900/10 pt-6">
+            <h2 class="text-lg font-semibold mb-4">Firma del Paciente</h2>
+            <div class="signature-container">
+                <canvas id="signature-pad" class="border rounded-md" width="600" height="200"></canvas>
+                <button type="button" id="clear" class="mt-2 rounded-md bg-red-500 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-red-400">
+                    Limpiar Firma
+                </button>
+            </div>
+        </div>
+    `;
+
+    try {
+        sessionStorage.setItem('signatureForm', lastForm);
+        sessionStorage.setItem('signatureHtml', signatureHtml);
+        console.log('Firma guardada para el formulario:', lastForm);
+    } catch (error) {
+        console.error('Error al guardar la firma:', error);
+    }
+}
+
+// Función para agregar el pad de firma al último formulario
+function addSignaturePadToLastForm() {
+    try {
+        const signatureForm = sessionStorage.getItem('signatureForm');
+        const signatureHtml = sessionStorage.getItem('signatureHtml');
+        
+        if (!signatureForm || !signatureHtml) {
+            console.log('No hay información de firma para agregar');
+            return;
+        }
+
+        const formContainer = document.getElementById('formContainer');
+        if (!formContainer) {
+            console.log('Contenedor de formularios no encontrado');
+            return;
+        }
+
+        const iframes = Array.from(formContainer.getElementsByTagName('iframe'));
+        if (iframes.length === 0) {
+            console.log('No se encontraron iframes');
+            return;
+        }
+
+        const lastIframe = iframes[iframes.length - 1];
+        
+        function addSignatureToIframe() {
+            const iframeDocument = lastIframe.contentWindow.document;
+            const formElement = iframeDocument.querySelector('form') || iframeDocument.body;
+            
+            if (formElement) {
+                if (!iframeDocument.getElementById('signature-pad')) {
+                    formElement.insertAdjacentHTML('beforeend', signatureHtml);
+                    
+                    // Asegurarse de que el script de SignaturePad esté cargado
+                    const scriptElement = iframeDocument.createElement('script');
+                    scriptElement.src = 'https://cdn.jsdelivr.net/npm/signature_pad@4.1.5/dist/signature_pad.umd.min.js';
+                    scriptElement.onload = () => {
+                        setTimeout(() => {
+                            const pad = initializeSignaturePad(iframeDocument);
+                            if (pad) {
+                                console.log('Signature pad inicializado correctamente');
+                                signaturePadInstance = pad;
+                            }
+                        }, 100);
+                    };
+                    iframeDocument.head.appendChild(scriptElement);
+                }
+            }
+        }
+
+        if (lastIframe.contentDocument && lastIframe.contentDocument.readyState === 'complete') {
+            addSignatureToIframe();
+        } else {
+            lastIframe.addEventListener('load', addSignatureToIframe);
+        }
+    } catch (error) {
+        console.error('Error al agregar el signature pad:', error);
+    }
+}
+
+// Asegurarse de que las funciones estén disponibles globalmente
+window.addSignatureToLastForm = addSignatureToLastForm;
+window.addSignaturePadToLastForm = addSignaturePadToLastForm;
+window.initializeSignaturePad = initializeSignaturePad;
+
+// Event listeners
+document.addEventListener('DOMContentLoaded', () => {
+    const formContainer = document.getElementById('formContainer');
+    if (formContainer) {
+        const observer = new MutationObserver((mutations) => {
+            mutations.forEach((mutation) => {
+                if (mutation.addedNodes.length) {
+                    addSignaturePadToLastForm();
+                }
+            });
+        });
+
+        observer.observe(formContainer, { childList: true });
+        
+        // Intentar inicializar después de un breve retraso
+        setTimeout(addSignaturePadToLastForm, 1000);
+    }
+});
+
 // Funcionalidades de index.html
 document.addEventListener('DOMContentLoaded', function() {
     const urlParams = new URLSearchParams(window.location.search);
@@ -9,32 +170,6 @@ document.addEventListener('DOMContentLoaded', function() {
     const nextBtn = document.getElementById('nextBtn');
     const pageIndicator = document.getElementById('pageIndicator');
     let currentFormIndex = 0;
-
-    // Función para inicializar el signature pad
-    function initializeSignaturePad(iframeDocument) {
-        if (!iframeDocument) return;
-        
-        const canvas = iframeDocument.getElementById('signature-pad');
-        if (!canvas) return;
-        
-        // Asegurarse de que el canvas tenga las dimensiones correctas
-        canvas.width = canvas.offsetWidth;
-        canvas.height = canvas.offsetHeight;
-        
-        const signaturePad = new SignaturePad(canvas, {
-            backgroundColor: 'rgb(255, 255, 255)',
-            penColor: 'rgb(0, 0, 0)'
-        });
-        
-        const clearButton = iframeDocument.getElementById('clear');
-        if (clearButton) {
-            clearButton.addEventListener('click', () => {
-                signaturePad.clear();
-            });
-        }
-        
-        return signaturePad;
-    }
 
     function createFormList() {
         const list = document.createElement('ul');
@@ -127,94 +262,6 @@ document.addEventListener('DOMContentLoaded', function() {
         }
 
         return isComplete;
-    }
-
-    // Determina cuál es el último formulario seleccionado 
-    // y prepara el HTML de la firma para ser agregado a dicho form.
-    function addSignatureToLastForm() {
-        const selectedForms = [];
-        const checkboxes = [
-            { checkbox: form1Checkbox, value: 'form-1' },
-            { checkbox: form2Checkbox, value: 'form-2' },
-            { checkbox: form3Checkbox, value: 'form-3' },
-            { checkbox: form4Checkbox, value: 'form-4' },
-            { checkbox: form5Checkbox, value: 'form-5' },
-            { checkbox: form7Checkbox, value: 'form-7' },
-            { checkbox: form8Checkbox, value: 'form-8' }
-        ];
-
-        checkboxes.forEach(({ checkbox, value }) => {
-            if (checkbox && checkbox.checked) {
-                selectedForms.push(value);
-            }
-        });
-
-        if (selectedForms.length === 0) return;
-
-        const lastForm = selectedForms[selectedForms.length - 1];
-        const signatureHtml = `
-            <div class="mb-6 border-t border-gray-900/10 pt-6">
-                <h2 class="text-lg font-semibold mb-4">Firma del Paciente</h2>
-                <div class="signature-container">
-                    <canvas id="signature-pad" class="border rounded-md" style="width: 100%; height: 200px;"></canvas>
-                    <button type="button" id="clear" class="mt-2 rounded-md bg-red-500 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-red-400">
-                        Limpiar Firma
-                    </button>
-                </div>
-            </div>
-        `;
-
-        try {
-            sessionStorage.setItem('signatureForm', lastForm);
-            sessionStorage.setItem('signatureHtml', signatureHtml);
-            console.log('Firma guardada para el formulario:', lastForm);
-        } catch (error) {
-            console.error('Error al guardar la firma:', error);
-        }
-    }
-
-    // Agrega el pad de firma al último formulario seleccionado
-    // Agregar la función addSignaturePadToLastForm() al script en index.html
-    function addSignaturePadToLastForm() {
-        try {
-            const signatureForm = sessionStorage.getItem('signatureForm');
-            const signatureHtml = sessionStorage.getItem('signatureHtml');
-            
-            if (!signatureForm || !signatureHtml) {
-                console.log('No hay información de firma para agregar');
-                return;
-            }
-
-            const iframes = Array.from(document.getElementsByTagName('iframe'));
-            if (iframes.length === 0) return;
-
-            const lastIframe = iframes[iframes.length - 1];
-            
-            function addSignatureToIframe() {
-                const iframeDocument = lastIframe.contentWindow.document;
-                const formElement = iframeDocument.querySelector('form') || iframeDocument.body;
-                
-                if (formElement) {
-                    if (!iframeDocument.getElementById('signature-pad')) {
-                        formElement.insertAdjacentHTML('beforeend', signatureHtml);
-                        setTimeout(() => {
-                            const signaturePad = initializeSignaturePad(iframeDocument);
-                            if (signaturePad) {
-                                console.log('Signature pad inicializado correctamente');
-                            }
-                        }, 100);
-                    }
-                }
-            }
-
-            if (lastIframe.contentDocument && lastIframe.contentDocument.readyState === 'complete') {
-                addSignatureToIframe();
-            } else {
-                lastIframe.addEventListener('load', addSignatureToIframe);
-            }
-        } catch (error) {
-            console.error('Error al agregar el signature pad:', error);
-        }
     }
 
     function updatePageIndicator() {
@@ -704,3 +751,8 @@ toggleAdditionalContent('pr-odontologicos', 'odontologicos-adicional');
 toggleAdditionalContent('pr-mandibula', 'mandibula-adicional');
 toggleAdditionalContent('pr-atm-cirugia-zona', 'atm-cpae-adicional');
 toggleAdditionalContent('pr-atm-antecedente-personal', 'atm-tapdc-adicional');
+
+// Verificar signature pad
+console.log('SignaturePad disponible:', typeof SignaturePad !== 'undefined');
+console.log('Canvas encontrado:', !!document.getElementById('signature-pad'));
+console.log('Dimensiones del canvas:', canvas.width, canvas.height);
