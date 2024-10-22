@@ -10,6 +10,32 @@ document.addEventListener('DOMContentLoaded', function() {
     const pageIndicator = document.getElementById('pageIndicator');
     let currentFormIndex = 0;
 
+    // Función para inicializar el signature pad
+    function initializeSignaturePad(iframeDocument) {
+        if (!iframeDocument) return;
+        
+        const canvas = iframeDocument.getElementById('signature-pad');
+        if (!canvas) return;
+        
+        // Asegurarse de que el canvas tenga las dimensiones correctas
+        canvas.width = canvas.offsetWidth;
+        canvas.height = canvas.offsetHeight;
+        
+        const signaturePad = new SignaturePad(canvas, {
+            backgroundColor: 'rgb(255, 255, 255)',
+            penColor: 'rgb(0, 0, 0)'
+        });
+        
+        const clearButton = iframeDocument.getElementById('clear');
+        if (clearButton) {
+            clearButton.addEventListener('click', () => {
+                signaturePad.clear();
+            });
+        }
+        
+        return signaturePad;
+    }
+
     function createFormList() {
         const list = document.createElement('ul');
         list.className = 'list-disc pl-5 mb-4';
@@ -26,8 +52,6 @@ document.addEventListener('DOMContentLoaded', function() {
         forms.forEach((form, index) => {
             const iframe = document.createElement('iframe');
             iframe.src = `${form}.html`;
-            // iframe.src = `${form}`;
-            // iframe.src = `https://www.imagenesalem.com/${form}`;
             iframe.className = 'w-full h-full border-0 top-0 left-0 transition-opacity duration-300';
             iframe.style.display = index === 0 ? 'block' : 'none';
             iframe.style.opacity = index === 0 ? '1' : '0';
@@ -71,6 +95,8 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 
     function checkFormCompleteness(iframe) {
+        if (!iframe) return false;
+
         const iframeDocument = iframe.contentWindow.document;
         const requiredInputs = iframeDocument.querySelectorAll('input[required], select[required], textarea[required]');
         console.log('requiredInputs:', requiredInputs);
@@ -90,8 +116,105 @@ document.addEventListener('DOMContentLoaded', function() {
             }
         });
 
-        // nextBtn.disabled = !isComplete;
+        // Verificar la firma si es el último formulario
+        const signaturePad = iframeDocument.getElementById('signature-pad');
+        if (signaturePad) {
+            const pad = SignaturePad.getInstance(signaturePad);
+            if (pad && pad.isEmpty()) {
+                console.log('Firma requerida');
+                isComplete = false;
+            }
+        }
+
         return isComplete;
+    }
+
+    // Determina cuál es el último formulario seleccionado 
+    // y prepara el HTML de la firma para ser agregado a dicho form.
+    function addSignatureToLastForm() {
+        const selectedForms = [];
+        const checkboxes = [
+            { checkbox: form1Checkbox, value: 'form-1' },
+            { checkbox: form2Checkbox, value: 'form-2' },
+            { checkbox: form3Checkbox, value: 'form-3' },
+            { checkbox: form4Checkbox, value: 'form-4' },
+            { checkbox: form5Checkbox, value: 'form-5' },
+            { checkbox: form7Checkbox, value: 'form-7' },
+            { checkbox: form8Checkbox, value: 'form-8' }
+        ];
+
+        checkboxes.forEach(({ checkbox, value }) => {
+            if (checkbox && checkbox.checked) {
+                selectedForms.push(value);
+            }
+        });
+
+        if (selectedForms.length === 0) return;
+
+        const lastForm = selectedForms[selectedForms.length - 1];
+        const signatureHtml = `
+            <div class="mb-6 border-t border-gray-900/10 pt-6">
+                <h2 class="text-lg font-semibold mb-4">Firma del Paciente</h2>
+                <div class="signature-container">
+                    <canvas id="signature-pad" class="border rounded-md" style="width: 100%; height: 200px;"></canvas>
+                    <button type="button" id="clear" class="mt-2 rounded-md bg-red-500 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-red-400">
+                        Limpiar Firma
+                    </button>
+                </div>
+            </div>
+        `;
+
+        try {
+            sessionStorage.setItem('signatureForm', lastForm);
+            sessionStorage.setItem('signatureHtml', signatureHtml);
+            console.log('Firma guardada para el formulario:', lastForm);
+        } catch (error) {
+            console.error('Error al guardar la firma:', error);
+        }
+    }
+
+    // Agrega el pad de firma al último formulario seleccionado
+    // Agregar la función addSignaturePadToLastForm() al script en index.html
+    function addSignaturePadToLastForm() {
+        try {
+            const signatureForm = sessionStorage.getItem('signatureForm');
+            const signatureHtml = sessionStorage.getItem('signatureHtml');
+            
+            if (!signatureForm || !signatureHtml) {
+                console.log('No hay información de firma para agregar');
+                return;
+            }
+
+            const iframes = Array.from(document.getElementsByTagName('iframe'));
+            if (iframes.length === 0) return;
+
+            const lastIframe = iframes[iframes.length - 1];
+            
+            function addSignatureToIframe() {
+                const iframeDocument = lastIframe.contentWindow.document;
+                const formElement = iframeDocument.querySelector('form') || iframeDocument.body;
+                
+                if (formElement) {
+                    if (!iframeDocument.getElementById('signature-pad')) {
+                        formElement.insertAdjacentHTML('beforeend', signatureHtml);
+                        setTimeout(() => {
+                            const signaturePad = initializeSignaturePad(iframeDocument);
+                            if (signaturePad) {
+                                console.log('Signature pad inicializado correctamente');
+                            }
+                        }, 100);
+                    }
+                }
+            }
+
+            if (lastIframe.contentDocument && lastIframe.contentDocument.readyState === 'complete') {
+                addSignatureToIframe();
+            } else {
+                lastIframe.addEventListener('load', addSignatureToIframe);
+            }
+        } catch (error) {
+            console.error('Error al agregar el signature pad:', error);
+        }
     }
 
     function updatePageIndicator() {
@@ -120,38 +243,6 @@ document.addEventListener('DOMContentLoaded', function() {
         updateButtonText();
     }
 
-    prevBtn.addEventListener('click', () => {
-        if (currentFormIndex > 0) {
-            showForm(currentFormIndex - 1);
-        }
-    });
-
-    nextBtn.addEventListener('click', () => {
-        // alert('Estas tocando el boton siguiente');
-        const currentIframe = formContainer.getElementsByTagName('iframe')[currentFormIndex];
-        const iframeDocument = currentIframe.contentWindow.document;
-        const requiredInputs = iframeDocument.querySelectorAll('input[required], select[required], textarea[required]');
-        
-        if (currentIframe && checkFormCompleteness(currentIframe)) {
-            if (currentFormIndex < forms.length - 1) {
-                showForm(currentFormIndex + 1);
-            } else {
-                finalizeProcess();
-                // Ejecuciones de la funcion
-            }
-        } else {
-            let incompleteFields = [];
-            requiredInputs.forEach(input => {
-                if ((input.type === 'checkbox' || input.type === 'radio') && !iframeDocument.querySelector(`input[name="${input.name}"]:checked`)) {
-                    incompleteFields.push(input.name);
-                } else if (!input.value.trim()) {
-                    incompleteFields.push(input.name || input.id);
-                }
-            });
-            alert(`Por favor, completa los siguientes campos antes de continuar: ${incompleteFields.join(', ')}`);
-        }
-    });
-
     function showLoadingIndicator() {
         console.log('Mostrando indicador de carga...');
         const loadingIndicator = document.getElementById('loadingIndicator');
@@ -161,7 +252,7 @@ document.addEventListener('DOMContentLoaded', function() {
             console.error('Elemento loadingIndicator no encontrado');
         }
     }
-    
+
     function hideLoadingIndicator() {
         console.log('Ocultando indicador de carga...');
         const loadingIndicator = document.getElementById('loadingIndicator');
@@ -188,8 +279,6 @@ document.addEventListener('DOMContentLoaded', function() {
             try {
                 await downloadForms('pdf');
                 hideLoadingIndicator();
-                // alert('Has completado todos los formularios.');
-                // prepareWhatsAppShare();
             } catch (error) {
                 hideLoadingIndicator();
                 alert('Hubo un error al generar los PDFs: ' + error.message);
@@ -199,6 +288,62 @@ document.addEventListener('DOMContentLoaded', function() {
             alert('Por favor, completa todos los formularios antes de finalizar.');
         }
     }
+
+    // Event Listeners
+    if (formContainer) {
+        const observer = new MutationObserver(function(mutations) {
+            mutations.forEach(function(mutation) {
+                if (mutation.addedNodes.length) {
+                    addSignaturePadToLastForm();
+                }
+            });
+        });
+
+        observer.observe(formContainer, { childList: true });
+        setTimeout(addSignaturePadToLastForm, 500);
+    }
+
+    prevBtn.addEventListener('click', () => {
+        if (currentFormIndex > 0) {
+            showForm(currentFormIndex - 1);
+        }
+    });
+
+    nextBtn.addEventListener('click', () => {
+        const currentIframe = formContainer.getElementsByTagName('iframe')[currentFormIndex];
+        
+        if (currentIframe && checkFormCompleteness(currentIframe)) {
+            if (currentFormIndex < forms.length - 1) {
+                showForm(currentFormIndex + 1);
+            } else {
+                finalizeProcess();
+            }
+        } else {
+            const iframeDocument = currentIframe.contentWindow.document;
+            const requiredInputs = iframeDocument.querySelectorAll('input[required], select[required], textarea[required]');
+            let incompleteFields = [];
+            
+            requiredInputs.forEach(input => {
+                if ((input.type === 'checkbox' || input.type === 'radio') && !iframeDocument.querySelector(`input[name="${input.name}"]:checked`)) {
+                    incompleteFields.push(input.name);
+                } else if (!input.value.trim()) {
+                    incompleteFields.push(input.name || input.id);
+                }
+            });
+            
+            alert(`Por favor, completa los siguientes campos antes de continuar: ${incompleteFields.join(', ')}`);
+        }
+    });
+
+    // Initialization
+    // if (forms.length === 0) {
+    //     formContainer.innerHTML = '<p class="text-red-500">No se han seleccionado formularios.</p>';
+    // } else {
+    //     createFormList();
+    //     createIframes();
+    //     updatePageIndicator();
+    //     updateButtonText();
+    // }
 
     async function downloadForms(format) {
         if (format === 'pdf') {
@@ -429,44 +574,6 @@ function logout() {
     window.location.href = 'login.html';
 }
 
-// Determina cuál es el último formulario seleccionado 
-// y prepara el HTML de la firma para ser agregado a dicho form.
-function addSignatureToLastForm() {
-    const selectedForms = [];
-    if (form1Checkbox.checked) selectedForms.push(form1Checkbox.value);
-    if (form2Checkbox.checked) selectedForms.push(form2Checkbox.value);
-    if (form3Checkbox.checked) selectedForms.push(form3Checkbox.value);
-    if (form4Checkbox.checked) selectedForms.push(form4Checkbox.value);
-    if (form5Checkbox.checked) selectedForms.push(form5Checkbox.value);
-    // if (form6Checkbox.checked) selectedForms.push(form6Checkbox.value);
-    if (form7Checkbox.checked) selectedForms.push(form7Checkbox.value);
-    if (form8Checkbox.checked) selectedForms.push(form8Checkbox.value);
-
-    if (selectedForms.length === 0) {
-        alert('Por favor, seleccione al menos un formulario antes de generar el enlace.');
-        return;
-    }
-
-    const lastForm = selectedForms[selectedForms.length - 1];
-    const signatureHtml = `
-        <!-- Sección de Firma -->
-        <div class="mb-6 border-b border-gray-900/10 pb-12">
-          <h2 class="text-2xl font-bold mb-4 text-base font-semibold leading-7 text-gray-900">Firma</h2>
-          <div class="mt-10">
-            <label for="signature-pad" class="block text-sm font-medium leading-6 text-gray-900">Firma del paciente</label>
-            <div class="mt-2">
-              <canvas id="signature-pad" class="border rounded-md w-full h-32"></canvas>
-            </div>
-            <button type="button" id="clear" class="mt-2 rounded-md bg-red-500 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-red-400">Limpiar</button>
-          </div>
-        </div>
-    `;
-
-    // Almacenar la información de la firma en localStorage
-    localStorage.setItem('signatureForm', lastForm);
-    localStorage.setItem('signatureHtml', signatureHtml);
-}
-
 // Función generateLink con la llamda a addSignatureToLastForm
 function generateLink() {
     const selectedForms = [];
@@ -484,7 +591,7 @@ function generateLink() {
         return;
     }
 
-    //addSignatureToLastForm();
+    addSignatureToLastForm();
 
     const baseUrl = 'https://imagenesalem.netlify.app/index.html?';
     // const baseUrl = 'https://www.imagenesalem.com/index?';
@@ -505,32 +612,6 @@ function copyToClipboard() {
     setTimeout(() => {
         alertMessage.classList.add('hidden');
     }, 3000);
-}
-
-// Agrega el pad de firma al último formulario seleccionado
-// Agregar la función addSignaturePadToLastForm() al script en index.html
-function addSignaturePadToLastForm() {
-    const signatureForm = localStorage.getItem('signatureForm');
-    const signatureHtml = localStorage.getItem('signatureHtml');
-    console.log('signatureForm:', signatureForm);
-    console.log('signatureHtml:', signatureHtml);
-    if (signatureForm && signatureHtml) {
-        const iframes = document.getElementsByTagName('iframe');
-        const lastIframe = iframes[iframes.length - 1];
-        console.log('Iframes:', iframes);
-        if (lastIframe) {
-            lastIframe.addEventListener('load', function() {
-                const iframeDocument = lastIframe.contentWindow.document;
-                const formElement = iframeDocument.querySelector('form') || iframeDocument.body;
-                
-                if (formElement) {
-                    formElement.insertAdjacentHTML('beforeend', signatureHtml);
-                    initSignaturePad(iframeDocument);
-                    console.log('Firma agregada al formulario:', signatureForm);
-                }
-            });
-        }
-    }
 }
 
 // Función para inicializar el pad de firma (script.js)
@@ -560,6 +641,7 @@ function toggleAdditionalContent(radioName, contentId) {
         });
     });
 }
+
 // Formulario 2
 toggleAdditionalContent('pregunta-dolor', 'additional-dolor');
 toggleAdditionalContent('pregunta-cirugia', 'additional-content');
