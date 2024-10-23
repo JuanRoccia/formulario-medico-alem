@@ -1,3 +1,4 @@
+// script.js
 
 import { signaturePadManager } from './signaturePad.js';
 
