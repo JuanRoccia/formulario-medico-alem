@@ -356,16 +356,6 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     });
 
-    // Initialization
-    // if (forms.length === 0) {
-    //     formContainer.innerHTML = '<p class="text-red-500">No se han seleccionado formularios.</p>';
-    // } else {
-    //     createFormList();
-    //     createIframes();
-    //     updatePageIndicator();
-    //     updateButtonText();
-    // }
-
     async function downloadForms(format) {
         if (format === 'pdf') {
             const { jsPDF } = window.jspdf;
@@ -447,6 +437,122 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     }
 
+    // Configuración de WhatsApp Business API
+    const WHATSAPP_CONFIG = {
+        phoneNumberId: '454721044397297',
+        recipientPhone: '+542915278412', // Número de Imágenes Alem
+        // Token permanente (System User Access Token)
+        token: 'EAB6PZAiZCUJ9oBOZCVa8T2DX5sZAjoYLkfHVya1IaZAxRzvyRd7sFFbhbAK8Jq8qu4R47YqFLaA67G4yQw2DL0IgNmHDm8YIu5kxoNAoY9NpFAm0vpJGxZBZCd0ZAmsHleZBea82FBwwAE1y64RgiTqCjwdhJXBEHR83BMEr9S0UpVOR3NFA4pP0cRlsnLhMMZAdwJ6QZDZD'
+    };
+
+    async function sendPdfViaWhatsApp(pdfBlob, fileName) {
+        try {
+            // Validar el tamaño del archivo (máximo 16MB para WhatsApp Business API)
+            const MAX_FILE_SIZE = 16 * 1024 * 1024; // 16MB en bytes
+            if (pdfBlob.size > MAX_FILE_SIZE) {
+                throw new Error('El archivo PDF es demasiado grande. El tamaño máximo permitido es 16MB.');
+            }
+    
+            // Crear un FormData para enviar el archivo
+            const formData = new FormData();
+            formData.append('messaging_product', 'whatsapp');
+            formData.append('file', pdfBlob, fileName);
+            formData.append('type', 'application/pdf');
+    
+            // Subir el documento a la Media API de WhatsApp
+            console.log('Subiendo archivo a WhatsApp Media API...');
+            const mediaUploadResponse = await fetch(`https://graph.facebook.com/v21.0/${WHATSAPP_CONFIG.phoneNumberId}/media`, {
+                method: 'POST',
+                headers: {
+                    'Authorization': `Bearer ${WHATSAPP_CONFIG.token}`
+                    // No incluir Content-Type, dejar que el navegador lo establezca con el boundary correcto
+                },
+                body: formData
+            });
+    
+            const mediaResponseText = await mediaUploadResponse.text();
+    
+            if (!mediaUploadResponse.ok) {
+                let errorMessage = 'Error al subir el archivo';
+                try {
+                    const errorData = JSON.parse(mediaResponseText);
+                    errorMessage = errorData.error?.message || errorMessage;
+                } catch (e) {
+                    console.error('Error parsing media response:', e);
+                }
+                throw new Error(`${errorMessage} (Status: ${mediaUploadResponse.status})`);
+            }
+    
+            const mediaData = JSON.parse(mediaResponseText);
+            console.log('Media ID:', mediaData.id);
+            
+            if (!mediaData.id) {
+                throw new Error('No se recibió ID del archivo subido');
+            }
+    
+            // Enviar el mensaje con el documento adjunto
+            console.log('Enviando mensaje con documento adjunto...');
+            const messageResponse = await fetch(`https://graph.facebook.com/v21.0/${WHATSAPP_CONFIG.phoneNumberId}/messages`, {
+                method: 'POST',
+                headers: {
+                    'Authorization': `Bearer ${WHATSAPP_CONFIG.token}`,
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({
+                    messaging_product: 'whatsapp',
+                    to: WHATSAPP_CONFIG.recipientPhone,
+                    type: 'document',
+                    document: {
+                        id: mediaData.id,
+                        filename: fileName,
+                        caption: 'Formularios completados'
+                    }
+                })
+            });
+    
+            const messageResponseText = await messageResponse.text();
+            console.log('Message API Response:', messageResponseText);
+    
+            if (!messageResponse.ok) {
+                let errorMessage = 'Error al enviar el mensaje';
+                try {
+                    const errorData = JSON.parse(messageResponseText);
+                    errorMessage = errorData.error?.message || errorMessage;
+                } catch (e) {
+                    console.error('Error parsing message response:', e);
+                }
+                throw new Error(`${errorMessage} (Status: ${messageResponse.status})`);
+            }
+    
+            const messageData = JSON.parse(messageResponseText);
+            
+            if (!messageData.messages?.[0]?.id) {
+                throw new Error('No se recibió confirmación del mensaje enviado');
+            }
+    
+            return true;
+        } catch (error) {
+            console.error('Error al enviar el PDF por WhatsApp:', error);
+            
+            // Determinar un mensaje de error más específico basado en el tipo de error
+            let userMessage = 'Error al enviar el PDF. ';
+            
+            if (error.message.includes('401')) {
+                userMessage += 'El token de acceso no es válido o ha expirado. Por favor, contacte al administrador.';
+            } else if (error.message.includes('403')) {
+                userMessage += 'No hay permisos suficientes para realizar esta acción. Por favor, contacte al administrador.';
+            } else if (error.message.includes('429')) {
+                userMessage += 'Se ha excedido el límite de mensajes. Por favor, intente más tarde.';
+            } else if (error.message.includes('tamaño')) {
+                userMessage += 'El archivo es demasiado grande. Intente reducir su tamaño.';
+            } else {
+                userMessage += error.message;
+            }
+            
+            throw new Error(userMessage);
+        }
+    }
+
     function showPdfModal(pdfUrl, fileName, pdfBlob) {
         const modalHtml = `
             <div id="pdfModal" class="fixed inset-0 bg-gray-600 bg-opacity-50 overflow-y-auto h-full w-full flex items-center justify-center">
@@ -457,8 +563,11 @@ document.addEventListener('DOMContentLoaded', function() {
                         <a href="${pdfUrl}" download="${fileName}" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
                             Descargar PDF
                         </a>
-                        <button onclick="shareViaWhatsApp('${pdfUrl}', '${fileName}')" class="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded">
-                            Compartir por WhatsApp
+                        <button onclick="sendToWhatsApp('${fileName}', '${pdfUrl}')" class="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded flex items-center">
+                            <span>Enviar a Imágenes Alem</span>
+                            <div id="whatsappSpinner" class="hidden ml-2">
+                                <div class="animate-spin rounded-full h-4 w-4 border-b-2 border-white"></div>
+                            </div>
                         </button>
                     </div>
                     <button onclick="closeModal()" class="mt-4 text-sm text-gray-500 hover:text-gray-700">Cerrar</button>
@@ -476,34 +585,24 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     }
 
-    window.shareViaWhatsApp = function(pdfUrl, fileName) {
-        if (navigator.share) {
-            fetch(pdfUrl)
-                .then(res => res.blob())
-                .then(blob => {
-                    const file = new File([blob], fileName, { type: 'application/pdf' });
-                    navigator.share({
-                        files: [file],
-                        title: 'Formularios completados',
-                        text: 'Aquí están los formularios completados en formato PDF.'
-                    }).then(() => {
-                        console.log('Compartido exitosamente');
-                        window.closeModal();
-                    }).catch((error) => {
-                        console.error('Error al compartir', error);
-                        window.fallbackWhatsAppShare();
-                    });
-                });
-        } else {
-            window.fallbackWhatsAppShare();
+    // Función para mostrar el modal y manejar el envío
+    window.sendToWhatsApp = async function(fileName, pdfUrl) {
+        const spinner = document.getElementById('whatsappSpinner');
+        
+        try {
+            spinner.classList.remove('hidden');
+            console.log('Iniciando proceso de envío de PDF...');
+            const pdfBlob = await fetch(pdfUrl).then(res => res.blob());
+            console.log('PDF obtenido, tamaño:', pdfBlob.size);
+            await sendPdfViaWhatsApp(pdfBlob, fileName);
+            alert('PDF enviado exitosamente a Imágenes Alem');
+            closeModal();
+        } catch (error) {
+            console.error('Error en el proceso de envío:', error);
+            alert(error.message);
+        } finally {
+            spinner.classList.add('hidden');
         }
-    }
-    
-    window.fallbackWhatsAppShare = function() {
-        const message = encodeURIComponent('He completado los formularios. Por favor, solicita que te envíe el archivo PDF.');
-        const whatsappLink = `https://wa.me/542915278412?text=${message}`;
-        window.open(whatsappLink, '_blank');
-        window.closeModal();
     }
     
     // Función auxiliar para asegurar que el iframe está cargado y visible
