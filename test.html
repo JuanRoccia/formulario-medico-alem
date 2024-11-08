@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Signature Pad to PDF</title>
+    <style>
+        .signature-container {
+            width: 100%;
+            max-width: 600px;
+            margin: 0 auto;
+            text-align: center;
+        }
+        canvas {
+            width: 100%;
+            height: 200px;
+            border: 1px solid #000;
+        }
+        button {
+            margin-top: 10px;
+            padding: 10px 20px;
+            font-size: 16px;
+        }
+    </style>
+</head>
+<body>
+
+<div class="signature-container">
+    <h2>Firma del Paciente</h2>
+    <canvas id="signature-pad"></canvas>
+    <button id="clear">Limpiar Firma</button>
+    <button id="save-pdf">Descargar PDF</button>
+</div>
+
+<!-- Scripts necesarios -->
+<script src="https://cdn.jsdelivr.net/npm/signature_pad@4.1.5/dist/signature_pad.umd.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+<script>
+    // Inicializar el SignaturePad
+    const canvas = document.getElementById('signature-pad');
+    const signaturePad = new SignaturePad(canvas, {
+        backgroundColor: 'rgb(255, 255, 255)', // Fondo blanco
+        penColor: 'rgb(0, 0, 0)' // Color del lápiz
+    });
+
+    // Ajustar dimensiones del canvas
+    function resizeCanvas() {
+        const ratio = Math.max(window.devicePixelRatio || 1, 1);
+        canvas.width = canvas.offsetWidth * ratio;
+        canvas.height = canvas.offsetHeight * ratio;
+        canvas.getContext('2d').scale(ratio, ratio);
+    }
+
+    window.addEventListener('resize', resizeCanvas);
+    resizeCanvas(); // Llamar para ajustar el tamaño al cargar
+
+    // Botón para limpiar la firma
+    document.getElementById('clear').addEventListener('click', () => {
+        signaturePad.clear();
+    });
+
+    // Botón para descargar la firma como PDF
+    document.getElementById('save-pdf').addEventListener('click', () => {
+        if (signaturePad.isEmpty()) {
+            alert("Por favor, firma antes de descargar el PDF.");
+            return;
+        }
+
+        const { jsPDF } = window.jspdf;
+        const pdf = new jsPDF();
+
+        // Convertir el canvas de la firma a una imagen
+        const imgData = signaturePad.toDataURL('image/png');
+
+        // Añadir la imagen al PDF
+        pdf.addImage(imgData, 'JPEG', 15, 40, 180, 160); // Ajustar dimensiones según sea necesario
+
+        // Descargar el PDF
+        pdf.save("firma.pdf");
+    });
+</script>
+
+</body>
+</html>

@@ -366,19 +366,58 @@ document.addEventListener('DOMContentLoaded', function() {
                 const iframe = formIframes[i];
                 
                 try {
-                    // Guardar el estado original de visibilidad
-                    const originalDisplay = iframe.style.display;
-                    const originalVisibility = iframe.style.visibility;
-    
-                    // Hacer el iframe visible temporalmente
+                    // Mostrar iframe temporalmente para capturarlo
                     iframe.style.display = 'block';
                     iframe.style.visibility = 'visible';
     
                     // Asegurar que el iframe está cargado y visible
                     await ensureIframeLoaded(iframe);
     
-                    // Aplicar estilos para mejorar la captura
                     const iframeDocument = iframe.contentDocument || iframe.contentWindow.document;
+                    const signaturePad = iframeDocument.getElementById('signature-pad');
+                    let signatureDataUrl = null;
+
+                    // Capturar la firma si el signaturePad esta presente
+                    if (signaturePad) {
+                        const padInstance = signaturePadManager.padInstance;
+                        // Verificar que el pad sea visible y que la firma haya sido realizada
+                        console.log('Pad Instance:', padInstance);
+                        // Usando el metodo isEmpty()
+                        console.log('Pad Instance isEmpty:', padInstance.isEmpty());
+                        
+                        if (padInstance && !padInstance.isEmpty()) {
+                            // Obtener la firma como DataURL
+                            signatureDataUrl = padInstance.toDataURL();
+                            // Asegurar que la imagen de la firma se obtuvo correctamente
+                            console.log('Signature Data URL:', signatureDataUrl);
+                            
+                            const tempCanvas = iframeDocument.createElement('canvas');
+                            tempCanvas.width = signaturePad.width;
+                            tempCanvas.height = signaturePad.height;
+                            const tempCtx = tempCanvas.getContext('2d');
+                            
+                            // Asegurar fondo blanco
+                            tempCtx.fillStyle = 'white';
+                            tempCtx.fillRect(0, 0, tempCanvas.width, tempCanvas.height);
+                            
+                            // Dibujar la firma en el canvas temporal
+                            const img = new Image();
+                            await new Promise((resolve) => {
+                                img.onload = () => {
+                                    tempCtx.drawImage(img, 0, 0);
+                                    resolve();
+                                };
+                                img.src = signatureDataUrl;
+                            });
+
+                            // Reemplazar el canvas original con el canvas temporal (opcional)
+                            const originalCtx = signaturePad.getContext('2d');
+                            originalCtx.clearRect(0, 0, signaturePad.width, signaturePad.height);
+                            originalCtx.drawImage(tempCanvas, 0, 0);
+                        }
+                    }
+
+                    // Aplicar estilos para mejorar la captura
                     const styleElement = iframeDocument.createElement('style');
                     styleElement.textContent = `
                         body { 
@@ -388,6 +427,19 @@ document.addEventListener('DOMContentLoaded', function() {
                             visibility: visible !important;
                         }
                         * { max-width: 100%; box-sizing: border-box; }
+                        #signature-pad {
+                            display: block !important;
+                            visibility: visible !important;
+                            opacity: 1 !important;
+                            background-color: white !important;
+                        }
+                        .signature-container {
+                            display: block !important;
+                            visibility: visible !important;
+                            opacity: 1 !important;
+                            position: relative !important;
+                            background-color: white !important;
+                        }
                     `;
                     iframeDocument.head.appendChild(styleElement);
     
@@ -397,16 +449,30 @@ document.addEventListener('DOMContentLoaded', function() {
                     iframeDocument.body.style.visibility = 'visible';
     
                     // Esperar un momento para que los estilos se apliquen
-                    await new Promise(resolve => setTimeout(resolve, 500));
+                    await new Promise(resolve => setTimeout(resolve, 1000));
     
                     // Usar html2canvas para capturar el contenido del iframe
                     const canvas = await html2canvas(iframeDocument.body, {
                         scale: 2,
                         useCORS: true,
                         logging: false,
-                        windowWidth: iframe.clientWidth || 1000, // Valor por defecto si clientWidth es 0
-                        windowHeight: iframe.clientHeight || 1414 // Valor por defecto si clientHeight es 0 (aproximadamente A4)
+                        backgroundColor: '#ffffff',
+                        windowWidth: iframe.clientWidth || 1000,
+                        windowHeight: iframe.clientHeight || 1414,
+                        onclone: function(clonedDoc) {
+                            // Restaurar la firma en el documento clonado
+                            if (signatureDataUrl) {
+                                const clonedSignature = clonedDoc.getElementById('signature-pad');
+                                if (clonedSignature) {
+                                    const ctx = clonedSignature.getContext('2d');
+                                    const img = new Image();
+                                    img.src = signatureDataUrl;
+                                    ctx.drawImage(img, 0, 0);
+                                }
+                            }
+                        }
                     });
+
                     const imgData = canvas.toDataURL('image/jpeg', 1.0);
     
                     // Añadir el contenido capturado al PDF
@@ -416,10 +482,21 @@ document.addEventListener('DOMContentLoaded', function() {
                     const pdfWidth = pdf.internal.pageSize.getWidth();
                     const pdfHeight = pdf.internal.pageSize.getHeight();
                     pdf.addImage(imgData, 'JPEG', 0, 0, pdfWidth, pdfHeight);
+                    // pdf.addImage(imgData, 'PNG', 15, 40, 180, 160);
+
     
-                    // Restaurar el estado original de visibilidad
-                    iframe.style.display = originalDisplay;
-                    iframe.style.visibility = originalVisibility;
+                    // Restaurar el iframe a su estado original
+                    iframe.style.display = 'none';
+                    iframe.style.visibility = 'hidden';
+
+                    // Restaurar la firma en el canvas
+                    if (signatureDataUrl && signaturePad) {
+                        const img = new Image();
+                        img.src = signatureDataUrl;
+                        const ctx = signaturePad.getContext('2d');
+                        ctx.clearRect(0, 0, signaturePad.width, signaturePad.height);
+                        ctx.drawImage(img, 0, 0);
+                    }
     
                 } catch (error) {
                     console.error(`Error al capturar el contenido del formulario ${i + 1}:`, error);
