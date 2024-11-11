@@ -1,6 +1,6 @@
 // script.js
 
-import { signaturePadManager } from './signaturePad.js';
+import { signaturePadManager } from './js/signaturePadManager.js';
 
 // Primero, asegurémonos de que todas las funciones estén definidas antes de usarlas
 let signaturePadInstance = null;
@@ -311,18 +311,18 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 
     // Event Listeners
-    if (formContainer) {
-        const observer = new MutationObserver(function(mutations) {
-            mutations.forEach(function(mutation) {
-                if (mutation.addedNodes.length) {
-                    addSignaturePadToLastForm();
-                }
-            });
-        });
+    // if (formContainer) {
+    //     const observer = new MutationObserver(function(mutations) {
+    //         mutations.forEach(function(mutation) {
+    //             if (mutation.addedNodes.length) {
+    //                 addSignaturePadToLastForm();
+    //             }
+    //         });
+    //     });
 
-        observer.observe(formContainer, { childList: true });
-        setTimeout(addSignaturePadToLastForm, 500);
-    }
+    //     observer.observe(formContainer, { childList: true });
+    //     setTimeout(addSignaturePadToLastForm, 500);
+    // }
 
     prevBtn.addEventListener('click', () => {
         if (currentFormIndex > 0) {
@@ -788,7 +788,7 @@ function generateLink() {
         return;
     }
 
-    addSignatureToLastForm();
+    // addSignatureToLastForm();
 
     const baseUrl = 'https://imagenesalem.netlify.app/index.html?';
     // const baseUrl = 'https://www.imagenesalem.com/index?';
@@ -823,7 +823,7 @@ function initSignaturePad(doc) {
 }
 
 // Llamar a esta función cuando se cargue index.html
-document.addEventListener('DOMContentLoaded', addSignaturePadToLastForm);
+// document.addEventListener('DOMContentLoaded', addSignaturePadToLastForm);
 
 // Funcion para el manejo de contenido adicional en formularios
 function toggleAdditionalContent(radioName, contentId) {
