@@ -38,18 +38,7 @@
         <!-- Cuestionario -->
         <div class="mb-6">
           <h3 class="text-xl font-bold underline mb-4">Marque el sitio de dolor o problema:</h3>
-          <div class="flex flex-col sm:flex-row items-center justify-center gap-4 my-10 px-4">
-            <!-- Primer imagen y texto -->
-            <div class="flex flex-col sm:flex-row items-center gap-2 w-full sm:w-auto">
-              <span class="border border-black px-2 py-1 mb-2 sm:mb-0 text-sm">DERECHA</span>
-              <img src="/images/frontal.webp" alt="Imagen 1" class="body-img w-24 h-auto object-contain">
-            </div>
-            <!-- Segunda imagen y texto -->
-            <div class="flex flex-col sm:flex-row items-center gap-2 w-full sm:w-auto">
-              <span class="border border-black px-2 py-1 mb-2 sm:mb-0 text-sm">IZQUIERDA</span>
-              <img src="/images/espalda.webp" alt="Imagen 2" class="body-img w-24 h-auto object-contain">
-            </div>
-          </div>
+          <div id="body-drawing-container"></div>
           <div class="space-y-4">
             <div>      
               <p class="mb-2">¿Presenta o presentó dolor y/o molestias en la zona a estudiar?</p>        
@@ -275,6 +264,14 @@
       });
     </script>
     <script src="script.js"></script>
+    <script src="bodyDrawing.js"></script>
+    <script>
+      document.addEventListener('DOMContentLoaded', function() {
+          const container = document.getElementById('body-drawing-container');
+          const bodyDrawing = new BodyDrawing(container);
+          bodyDrawing.initialize();
+      });
+    </script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js" integrity="sha512-BNaRQnYJYiPSqHHDb58B0yaPfCu+Wgds8Gp/gU33kqBtgNS4tSPHuGibyoeqMV/TJlSKda6FXzoEyYGjTe+vXA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
   </body> 
