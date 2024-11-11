@@ -7,7 +7,7 @@ const template = `
     <div class="flex flex-col sm:flex-row items-center gap-2 w-full sm:w-auto">
       <span class="border border-black px-2 py-1 mb-2 sm:mb-0 text-sm">DERECHA</span>
       <div class="relative">
-        <img src="http://127.0.0.1:5500/formulario-medico-alem-main/images/frontal.webp" alt="Imagen 1" class="body-img w-52 h-auto object-contain">
+        <img src="images/frontal.webp" alt="Imagen 1" class="body-img w-52 h-auto object-contain">
         <canvas id="canvasFrontal" class="absolute top-0 left-0 z-10"></canvas>
       </div>
     </div>
@@ -15,7 +15,7 @@ const template = `
     <div class="flex flex-col sm:flex-row items-center gap-2 w-full sm:w-auto">
       <span class="border border-black px-2 py-1 mb-2 sm:mb-0 text-sm">IZQUIERDA</span>
       <div class="relative">
-        <img src="http://127.0.0.1:5500/formulario-medico-alem-main/images/espalda.webp" alt="Imagen 2" class="body-img w-52 h-auto object-contain">
+        <img src="images/espalda.webp" alt="Imagen 2" class="body-img w-52 h-auto object-contain">
         <canvas id="canvasEspalda" class="absolute top-0 left-0 z-10"></canvas>
       </div>
     </div>
