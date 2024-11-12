@@ -29,9 +29,10 @@ function initializeSignaturePad(iframeDocument) {
     }
 
     // Establecer dimensiones del canvas
-    const container = canvas.parentElement;
-    canvas.width = container.clientWidth || 600;
-    canvas.height = container.clientHeight || 200;
+    // const container = canvas.parentElement;
+    // canvas.width = container.clientWidth || 600;
+    // canvas.height = container.clientHeight || 200;
+    // this.setupCanvasDimensions(canvas);
 
     try {
         // Crear nueva instancia de SignaturePad

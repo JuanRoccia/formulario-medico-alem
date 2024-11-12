@@ -89,6 +89,8 @@ export class SignaturePadManager {
             return null;
         }
 
+        this.setupCanvasDimensions(canvas);
+
         try {
             const SignaturePad = iframeDocument.defaultView.SignaturePad;
             
@@ -111,6 +113,22 @@ export class SignaturePadManager {
             console.error('Error al inicializar SignaturePad:', error);
             return null;
         }
+    }
+
+    setupCanvasDimensions(canvas) {
+        const container = canvas.parentElement;
+        const ratio = Math.max(window.devicePixelRatio || 1, 1);
+        
+        // Obtener dimensiones reales del contenedor
+        const rect = container.getBoundingClientRect();
+        
+        canvas.width = rect.width * ratio;
+        canvas.height = rect.height * ratio;
+        canvas.style.width = `${rect.width}px`;
+        canvas.style.height = `${rect.height}px`;
+        
+        const ctx = canvas.getContext('2d');
+        ctx.scale(ratio, ratio);
     }
 
     getSignatureImage() {
