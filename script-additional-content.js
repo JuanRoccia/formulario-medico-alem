@@ -87,9 +87,4 @@ document.addEventListener('DOMContentLoaded', () => {
     toggleAdditionalContent('pr-mandibula', 'mandibula-adicional');
     toggleAdditionalContent('pr-atm-cirugia-zona', 'atm-cpae-adicional');
     toggleAdditionalContent('pr-atm-antecedente-personal', 'atm-tapdc-adicional');
-
-    // Verificar signature pad
-    console.log('SignaturePad disponible:', typeof SignaturePad !== 'undefined');
-    console.log('Canvas encontrado:', !!document.getElementById('signature-pad'));
-    console.log('Dimensiones del canvas:', canvas.width, canvas.height);
 });
