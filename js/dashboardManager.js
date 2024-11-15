@@ -1,4 +1,5 @@
 import { linkGenerator } from './linkGenerator.js';
+import { formManager } from './formManager.js';
 
 export class DashboardManager {
     constructor() {
@@ -37,6 +38,9 @@ export class DashboardManager {
             if (this.generatedLinkDiv) {
                 this.generatedLinkDiv.classList.remove('hidden');
             }
+
+            // Agregar el signature pad al último formulario
+            formManager.addSignaturePadToLastForm(); // Llama a la función aquí
         }
     }
 
