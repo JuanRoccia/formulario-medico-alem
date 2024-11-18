@@ -28,7 +28,7 @@ window.addEventListener('load', function() { // Wait for the DOM to fully load b
     hideIframesExceptFirst(mainIframes);
     hideIframesExceptFirst(formIframes);
 
-    // Quitar el hidden al ultimo formulario pero cuando se encuentre en el mismo, una referencia de esto puede ser cual el boton de siguiente pasa ser de finalizar
+    // Quitar el hidden al ultimo formulario solo cuando se encuentre en el mismo
     // Obtener el último formulario seleccionado
     const lastSelectedForm = sessionStorage.getItem('lastSelectedForm');
     if (lastSelectedForm) {
