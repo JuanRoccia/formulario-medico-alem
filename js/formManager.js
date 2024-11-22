@@ -154,5 +154,5 @@ export class FormManager {
 }
 
 // Añade esta línea donde quieras pausar la ejecución
-debugger;
+// debugger;
 export const formManager = new FormManager();

@@ -1,0 +1,26 @@
+{
+    "messaging_product": "whatsapp",
+    "recipient_type": "individual",
+    "to": "{{Recipient-Phone-Number}}",
+    "type": "template",
+    "template": {
+        "name": "formulario",
+        "language": {
+            "code": "en"
+        },
+        "components": [
+            {
+                "type": "header",
+                "parameters": [
+                    {
+                        "type": "document",
+                        "document": {
+                            "link": "{{MEDIA_URL}}",
+                            "filename": "formularios_completos.pdf"
+                        }
+                    }
+                ]
+            }
+        ]
+    }
+}

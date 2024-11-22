@@ -549,15 +549,14 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     }
 
-    // Configuración de WhatsApp Business API
-    const WHATSAPP_CONFIG = {
-        phoneNumberId: '454721044397297',
-        recipientPhone: '+542915278412', // Número de Imágenes Alem
-        // Token permanente (System User Access Token)
-        token: 'EAB6PZAiZCUJ9oBOZCVa8T2DX5sZAjoYLkfHVya1IaZAxRzvyRd7sFFbhbAK8Jq8qu4R47YqFLaA67G4yQw2DL0IgNmHDm8YIu5kxoNAoY9NpFAm0vpJGxZBZCd0ZAmsHleZBea82FBwwAE1y64RgiTqCjwdhJXBEHR83BMEr9S0UpVOR3NFA4pP0cRlsnLhMMZAdwJ6QZDZD'
-    };
-
     async function sendPdfViaWhatsApp(pdfBlob, fileName) {
+        const WHATSAPP_CONFIG = {
+            phoneNumberId: '140509369155603',
+            recipientPhone: '542914054585', // Número de Imágenes Alem
+            version: 'v21.0',
+            token: 'EAATNyuEEXiIBO9uiguryrC0jMlaDa5KYhmIZAl2tdOCGrPW2K3X822RzRT2Qfj4XegOZADXsqZBDHmaNQwhoDpxRn68SzxnwVgP5ZA57lItqdwGQu5j20QZCuZApZAetKbOz62MHxe4wcIKhnQTgCjUY3WiGbIXBqjePKTvKDbDsJ3mCbDrKQQvxBPisCZAvBNXyZBbxLw17Gab0jGv7tWtp4zfRjBwZDZD'
+        };
+
         try {
             // Validar el tamaño del archivo (máximo 16MB para WhatsApp Business API)
             const MAX_FILE_SIZE = 16 * 1024 * 1024; // 16MB en bytes
@@ -565,23 +564,29 @@ document.addEventListener('DOMContentLoaded', function() {
                 throw new Error('El archivo PDF es demasiado grande. El tamaño máximo permitido es 16MB.');
             }
     
-            // Crear un FormData para enviar el archivo
+            // 1. Subir el PDF a la Media API
             const formData = new FormData();
-            formData.append('messaging_product', 'whatsapp');
             formData.append('file', pdfBlob, fileName);
+            formData.append('messaging_product', 'whatsapp');
             formData.append('type', 'application/pdf');
     
             // Subir el documento a la Media API de WhatsApp
             console.log('Subiendo archivo a WhatsApp Media API...');
-            const mediaUploadResponse = await fetch(`https://graph.facebook.com/v21.0/${WHATSAPP_CONFIG.phoneNumberId}/media`, {
-                method: 'POST',
-                headers: {
-                    'Authorization': `Bearer ${WHATSAPP_CONFIG.token}`
-                    // No incluir Content-Type, dejar que el navegador lo establezca con el boundary correcto
-                },
-                body: formData
-            });
+            const mediaUploadResponse = await fetch(
+                `https://graph.facebook.com/${WHATSAPP_CONFIG.version}/${WHATSAPP_CONFIG.phoneNumberId}/media`, 
+                {
+                    method: 'POST',
+                    headers: {
+                        'Authorization': `Bearer ${WHATSAPP_CONFIG.token}`
+                    },
+                    body: formData
+                }
+            );
     
+            // if (!mediaUploadResponse.ok) {
+            //     throw new Error(`Error al subir el archivo: ${await mediaUploadResponse.text()}`);
+            // }    
+
             const mediaResponseText = await mediaUploadResponse.text();
     
             if (!mediaUploadResponse.ok) {
@@ -594,33 +599,73 @@ document.addEventListener('DOMContentLoaded', function() {
                 }
                 throw new Error(`${errorMessage} (Status: ${mediaUploadResponse.status})`);
             }
-    
-            const mediaData = JSON.parse(mediaResponseText);
-            console.log('Media ID:', mediaData.id);
+
+            let mediaData;
+            try {
+                mediaData = JSON.parse(mediaResponseText);
+            } catch (e) {
+                console.error('Error parsing media response:', e);
+                throw new Error('Error al analizar la respuesta de la Media API');
+            
+            }
+            // const mediaData = JSON.parse(mediaResponseText);
+            // console.log('Media ID:', mediaData.id);
             
             if (!mediaData.id) {
                 throw new Error('No se recibió ID del archivo subido');
             }
+            console.log('Media ID:', mediaData.id);
+
+            // 2. Enviar el mensaje usando el ID del media
+            const messagePayload = {
+                messaging_product: "whatsapp",
+                recipient_type: "individual",
+                to: WHATSAPP_CONFIG.recipientPhone,
+                type: "template",
+                template: {
+                    name: "formulario",
+                    language: {
+                        code: "es"
+                    },
+                    components: [
+                        {
+                            type: "header",
+                            parameters: [
+                                {
+                                    type: "document",
+                                    document: {
+                                        id: mediaData.id,
+                                        filename: fileName
+                                    }
+                                }
+                            ]
+                        },
+                        {
+                            type: "body",
+                            parameters: [
+                                {
+                                    type: "text",
+                                    text: "la_variable_de_texto"
+                                }
+                            ]
+                        }
+                    ]
+                }
+            };
     
             // Enviar el mensaje con el documento adjunto
             console.log('Enviando mensaje con documento adjunto...');
-            const messageResponse = await fetch(`https://graph.facebook.com/v21.0/${WHATSAPP_CONFIG.phoneNumberId}/messages`, {
-                method: 'POST',
-                headers: {
-                    'Authorization': `Bearer ${WHATSAPP_CONFIG.token}`,
-                    'Content-Type': 'application/json',
-                },
-                body: JSON.stringify({
-                    messaging_product: 'whatsapp',
-                    to: WHATSAPP_CONFIG.recipientPhone,
-                    type: 'document',
-                    document: {
-                        id: mediaData.id,
-                        filename: fileName,
-                        caption: 'Formularios completados'
-                    }
-                })
-            });
+            const messageResponse = await fetch(
+                `https://graph.facebook.com/${WHATSAPP_CONFIG.version}/${WHATSAPP_CONFIG.phoneNumberId}/messages`, 
+                {
+                    method: 'POST',
+                    headers: {
+                        'Authorization': `Bearer ${WHATSAPP_CONFIG.token}`,
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify(messagePayload)
+                }
+            );
     
             const messageResponseText = await messageResponse.text();
             console.log('Message API Response:', messageResponseText);
@@ -636,8 +681,16 @@ document.addEventListener('DOMContentLoaded', function() {
                 throw new Error(`${errorMessage} (Status: ${messageResponse.status})`);
             }
     
-            const messageData = JSON.parse(messageResponseText);
+            // const messageData = JSON.parse(messageResponseText);
             
+            let messageData;
+            try {
+                messageData = JSON.parse(messageResponseText);
+            } catch (e) {
+                console.error('Error parsing message response:', e);
+                throw new Error('Error al analizar la respuesta del mensaje');
+            }
+
             if (!messageData.messages?.[0]?.id) {
                 throw new Error('No se recibió confirmación del mensaje enviado');
             }
@@ -863,4 +916,4 @@ function initSignaturePad(doc) {
 // Verificar signature pad
 console.log('SignaturePad disponible:', typeof SignaturePad !== 'undefined');
 console.log('Canvas encontrado:', !!document.getElementById('signature-pad'));
-console.log('Dimensiones del canvas:', canvas.width, canvas.height);
+// console.log('Dimensiones del canvas:', canvas.width, canvas.height);

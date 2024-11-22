@@ -1,0 +1,26 @@
+{
+    "messaging_product": "whatsapp",
+    "recipient_type": "individual",
+    "to": "{{Recipient-Phone-Number}}",
+    "type": "template",
+    "template": {
+        "name": "mensaje_link",
+        "language": {
+            "code": "en"},
+        "components": [
+            {
+                "type": "body",
+                "parameters": [
+                    {
+                        "type": "text",
+                        "text": "Tu primer parámetro"
+                    },
+                    {
+                        "type": "text",
+                        "text": "https://www.tulink.com"
+                    }
+                ]
+            }
+        ]
+    }
+}
