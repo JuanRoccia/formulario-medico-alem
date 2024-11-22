@@ -552,9 +552,9 @@ document.addEventListener('DOMContentLoaded', function() {
     async function sendPdfViaWhatsApp(pdfBlob, fileName) {
         const WHATSAPP_CONFIG = {
             phoneNumberId: '140509369155603',
-            recipientPhone: '542914640556', // Número de Imágenes Alem
+            recipientPhone: '542914054585', // Número de Imágenes Alem
             version: 'v21.0',
-            token: 'EAATNyuEEXiIBOwoPspIbwAEVlBtpBq6wyRxK15O9kt5lmRCHZBM2g7r3matJhnnkYzsBGjxAAbKXSUCYy2b78q4FWKzXDNwiovTO1eMosZB4GGonGSIPnY4JhEhjkh4Ucy3fR1ZAP7fi1sT4S5oDB1qm1OJzrorSRAyPrl6fPrr45FoX20dYQfodC5WancZA0RG3aft6nIvjcBTpAZBccBN8ZA'
+            token: 'EAATNyuEEXiIBO2IReMInnIVSmubkiCxF7WcUjSSSyTtBDlHFZCgShsJCZCTMR6quNYhrxrXNwdDkG0Xv5Lg5rP7hMxWKJvhUjNZA7M5lZBMeIgxNBEZCIk125qQNVTTRzAlb8WWckWZBCZB5Q7t3iRVfql1JgtZAuZAZB2tgKZAZBvvHH0pjLgZC8ZCuGE9nzqvnnqKzBTuwZDZD'
         };
 
         try {
