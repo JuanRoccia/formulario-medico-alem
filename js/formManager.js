@@ -5,7 +5,40 @@ export class FormManager {
     constructor() {
         this.forms = [];
         this.currentFormIndex = 0;
+        // nuevo
+        this.debugSessionStorage();
         console.log("FormManager inicializado");
+    }
+
+    debugSessionStorage() {
+        try {
+            // Check sessionStorage availability and browser context
+            console.group('SessionStorage Diagnostic');
+            console.log('Window Origin:', window.location.origin);
+            console.log('SessionStorage Available:', typeof(Storage) !== 'undefined');
+            
+            // Check specific storage access
+            const testKey = 'signatureForm';
+            const testValue = sessionStorage.getItem(testKey);
+            
+            console.log('Raw SessionStorage Value:', {
+                key: testKey,
+                value: testValue,
+                type: typeof testValue
+            });
+
+            // Additional context about storage
+            console.log('All SessionStorage Keys:', Object.keys(sessionStorage));
+            console.log('SessionStorage Length:', sessionStorage.length);
+        } catch (error) {
+            console.error('SessionStorage Access Error:', {
+                message: error.message,
+                name: error.name,
+                stack: error.stack
+            });
+        } finally {
+            console.groupEnd();
+        }
     }
 
     async initializeForms(formContainer) {
@@ -79,6 +112,17 @@ export class FormManager {
     async addSignaturePadToLastForm() {
         try {
             console.log('Iniciando proceso de agregar SignaturePad al último formulario...');
+            
+            // nuevo
+            // Enhanced storage retrieval with fallbacks
+            const lastFormValue = 
+                sessionStorage.getItem('signatureForm') || 
+                localStorage.getItem('signatureForm') || 
+                null;
+            console.group('Form Detection Debug');
+            console.log('Retrieved Form Value:', lastFormValue);
+            
+            // Resto del codigo original
             const formContainer = document.getElementById('formContainer');
             if (!formContainer) {
                 console.log('Contenedor de formularios no encontrado');
@@ -101,7 +145,8 @@ export class FormManager {
                 console.log(`Restableciendo iframe: ${iframe.id || 'sin id'}`);
             });
 
-            const lastFormValue = sessionStorage.getItem('signatureForm');
+            // descomentar
+            // const lastFormValue = sessionStorage.getItem('signatureForm');
             console.log(`Valor del form en sessionStorage: ${lastFormValue}`);
             
             const lastIframe = iframes.find(iframe => {
@@ -146,7 +191,14 @@ export class FormManager {
                 console.log('No se encontró el iframe correspondiente al último formulario marcado para firma.');
             }
 
+            // nuevo
+            console.groupEnd();
         } catch (error) {
+            // nuevo
+            console.error('Error completo al agregar SignaturePad:', {
+                message: error.message,
+                stack: error.stack
+            });
             console.error('Error al agregar el signature pad:', error);
             console.error('Stack trace:', error.stack);
         }
