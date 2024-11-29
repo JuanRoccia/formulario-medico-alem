@@ -848,7 +848,7 @@ function checkAuthentication() {
 function login(username, password) {
     if (username === "imagenesalem" && password === "esCiUmawlm899NRlq") {
         localStorage.setItem('loggedIn', 'true');
-        window.location.href = 'dashboard.html';
+        window.open('dashboard.html', '_blank');
     } else {
         alert('Usuario o contraseña incorrectos');
     }
