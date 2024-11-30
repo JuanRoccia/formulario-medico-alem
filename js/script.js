@@ -58,61 +58,6 @@ function initializeSignaturePad(iframeDocument) {
     }
 }
 
-// Modificar la función addSignaturePadToLastForm
-// async function addSignaturePadToLastForm() {
-//     try {
-//         const formContainer = document.getElementById('formContainer');
-//         if (!formContainer) {
-//             console.log('Contenedor de formularios no encontrado');
-//             return;
-//         }
-
-//         const iframes = Array.from(formContainer.getElementsByTagName('iframe'));
-//         if (iframes.length === 0) {
-//             console.log('No se encontraron iframes');
-//             return;
-//         }
-
-//         const lastIframe = iframes[iframes.length - 1];
-//         await signaturePadManager.initializeInIframe(lastIframe);
-
-//     } catch (error) {
-//         console.error('Error al agregar el signature pad:', error);
-//     }
-// }
-
-// async function addSignaturePadToLastForm() {
-//     try {
-//         const formContainer = document.getElementById('formContainer');
-//         if (!formContainer) {
-//             console.log('Contenedor de formularios no encontrado');
-//             return;
-//         }
-
-//         const iframes = Array.from(formContainer.getElementsByTagName('iframe'));
-//         if (iframes.length === 0) {
-//             console.log('No se encontraron iframes');
-//             return;
-//         }
-
-//         // Obtener el último formulario marcado para firma
-//         const lastFormValue = sessionStorage.getItem('signatureForm');
-//         const lastIframe = iframes.find(iframe => {
-//             const currentFormValue = signaturePadManager.getCurrentFormValue(iframe);
-//             return currentFormValue === lastFormValue;
-//         });
-
-//         if (lastIframe) {
-//             await signaturePadManager.initializeInIframe(lastIframe);
-//         } else {
-//             console.log('No se encontró el iframe correspondiente al último formulario marcado para firma.');
-//         }
-
-//     } catch (error) {
-//         console.error('Error al agregar el signature pad:', error);
-//     }
-// }
-
 // Función para determinar el último formulario y agregar la firma
 function addSignatureToLastForm() {
     const selectedForms = [];
@@ -345,20 +290,6 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     }
 
-    // Event Listeners
-    // if (formContainer) {
-    //     const observer = new MutationObserver(function(mutations) {
-    //         mutations.forEach(function(mutation) {
-    //             if (mutation.addedNodes.length) {
-    //                 addSignaturePadToLastForm();
-    //             }
-    //         });
-    //     });
-
-    //     observer.observe(formContainer, { childList: true });
-    //     setTimeout(addSignaturePadToLastForm, 500);
-    // }
-
     prevBtn.addEventListener('click', () => {
         if (currentFormIndex > 0) {
             showForm(currentFormIndex - 1);
@@ -552,7 +483,7 @@ document.addEventListener('DOMContentLoaded', function() {
     async function sendPdfViaWhatsApp(pdfBlob, fileName) {
         const WHATSAPP_CONFIG = {
             phoneNumberId: '140509369155603',
-            recipientPhone: '542914054585', // Número de Imágenes Alem
+            recipientPhone: '542915278412', // Número de Imágenes Alem
             version: 'v21.0',
             token: 'EAATNyuEEXiIBO2IReMInnIVSmubkiCxF7WcUjSSSyTtBDlHFZCgShsJCZCTMR6quNYhrxrXNwdDkG0Xv5Lg5rP7hMxWKJvhUjNZA7M5lZBMeIgxNBEZCIk125qQNVTTRzAlb8WWckWZBCZB5Q7t3iRVfql1JgtZAuZAZB2tgKZAZBvvHH0pjLgZC8ZCuGE9nzqvnnqKzBTuwZDZD'
         };
