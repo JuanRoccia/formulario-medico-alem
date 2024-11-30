@@ -475,6 +475,13 @@ document.addEventListener('DOMContentLoaded', function() {
                             position: relative !important;
                             background-color: white !important;
                         }
+                        input, textarea {
+                            line-height: 2rem!important;
+                            margin-top: 1rem!important;
+                        }
+                        .ial-ot{
+                            margin-top:0.4rem;
+                        }
                     `;
                     iframeDocument.head.appendChild(styleElement);
     
@@ -493,7 +500,7 @@ document.addEventListener('DOMContentLoaded', function() {
                         logging: false,
                         backgroundColor: '#ffffff',
                         windowWidth: iframe.clientWidth || 1000,
-                        windowHeight: iframe.clientHeight || 1414,
+                        windowHeight: iframe.clientHeight * 1.2 || 1414,
                         onclone: function(clonedDoc) {
                             // Restaurar la firma en el documento clonado
                             if (signatureDataUrl) {
