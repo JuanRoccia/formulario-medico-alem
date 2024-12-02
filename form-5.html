@@ -130,15 +130,9 @@
                 </div>          
             </div>
             <div id="pga-mns-adicional" class="mb-4 hidden">
-                <div class="flex items-center space-x-2">        
+                <div class="space-x-2">        
                     <p>Fecha de su última menstruacion:</p>        
-                    <input type="text" class="form-input block w-full" placeholder="Escriba aquí">
-                </div>
-            </div>
-            <div id="pg-mns-adicional" class="mb-4 hidden">
-                <div class="flex items-center space-x-2">        
-                    <p>Fecha de su última menstruacion:</p>        
-                    <input type="text" class="form-input block w-full" placeholder="Escriba aquí">
+                    <input type="date" class="form-input block w-auto text-slate-600 mt-1" name="fecha_mens_form5" placeholder="DD/MM/AAAA" pattern="\d{2}/\d{2}/\d{4}">
                 </div>
             </div>
             <div class="mb-4">        
@@ -155,9 +149,9 @@
                 </div>          
             </div>
             <div id="pg-mnp-adicional" class="mb-4 hidden">
-                <div class="flex items-center space-x-2">        
+                <div class="space-x-2">        
                     <p>Indique desde que fecha aproximada:</p>        
-                    <input type="text" class="form-input block w-full" placeholder="Escriba aquí">
+                    <input type="date" class="form-input block w-auto text-slate-600 mt-1" name="fecha_menopausia" placeholder="DD/MM/AAAA" pattern="\d{2}/\d{2}/\d{4}">
                 </div>
             </div>
             <div class="mb-4">        
@@ -174,7 +168,7 @@
                 </div>          
             </div>
             <div id="pg-mntc-adicional" class="mb-4 hidden">
-                <div class="flex items-center space-x-2">        
+                <div class="space-x-2">        
                     <p>Indique cual:</p>        
                     <input type="text" class="form-input block w-full" placeholder="Escriba aquí">
                 </div>
@@ -246,7 +240,7 @@
             </div>
             <div class="mb-4">        
                 <p class="mb-2">¿Tuvo cesáreas?</p>        
-                <div class="flex items-center space-x-4">
+                <div class="space-x-4">
                     <label class="inline-flex items-center">            
                     <input type="radio" class="form-radio" name="pr-cesareas" value="si">            
                     <span class="ml-2">Sí</span>            
@@ -258,9 +252,9 @@
                 </div>          
             </div>
             <div id="pg-mcsa-adicional" class="mb-4 hidden">
-                <div class="flex items-center space-x-2">        
+                <div class="space-x-2">        
                     <p>Indique cuantas:</p>        
-                    <input type="text" class="form-input block w-full" placeholder="Escriba aquí">
+                    <input type="text" class="form-input block w-full mt-2" placeholder="Escriba aquí">
                 </div>
             </div>
             <div class="mb-4">        
@@ -276,10 +270,10 @@
                     </label>
                 </div>          
             </div>
-            <div id="pg-mcsa-adicional" class="mb-4 hidden">
-                <div class="flex items-center space-x-2">        
+            <div id="pg-intva-adicional" class="mb-4 hidden">
+                <div class="space-x-2">        
                     <p>Indique cuales:</p>        
-                    <input type="text" class="form-input block w-full" placeholder="Escriba aquí">
+                    <input type="text" class="form-input block w-full mt-2" placeholder="Escriba aquí">
                 </div>
             </div>
             <!-- Antecedentes familiares -->
@@ -296,8 +290,8 @@
                     </label>
                 </div>
                 <div id="enfermedades-familiares-adicionales" class="hidden mb-4">
-                    <label class="block mb-2">
-                        <span class="">Indique cuales:</span>
+                    <label class="space-x-2 mb-2">
+                        <span>Indique cuales:</span>
                         <input type="text" class="form-input mt-1 block w-full" name="cuales_enfermedades_familiares" placeholder="Describa las enfermedades familiares">
                     </label>
                 </div>
@@ -318,9 +312,9 @@
                         </label>
                     </div>
                     <div id="cancer-adicional" class="hidden mb-4">
-                        <label class="block">
-                            <span class="">Indique cuales:</span>
-                            <input type="text" class="form-input mt-1 block w-full" name="tipo_cancer" placeholder="Escriba aqui">
+                        <label class="space-x-2">
+                            <span>Indique cuales:</span>
+                            <input type="text" class="form-input mt-1 block w-full mt-2" name="tipo_cancer" placeholder="Escriba aqui">
                         </label>
                     </div>
                 </div>
@@ -338,9 +332,9 @@
                         </label>
                     </div>
                     <div id="cirugia-cancer-adicional" class="hidden mb-4">
-                        <label class="block">
-                            <span class="">Fecha:</span>
-                            <input type="date" class="form-input mt-1 block w-full text-slate-500" name="fecha_cirugia_cancer">
+                        <label class="space-x-2">
+                            <span>Fecha:</span>
+                            <input type="date" class="form-input block w-full text-slate-600 mt-1" name="fecha_cirugia_cancer" placeholder="DD/MM/AAAA" pattern="\d{2}/\d{2}/\d{4}">
                         </label>
                     </div>
                 </div>
@@ -358,13 +352,13 @@
                     </div>          
                 </div>
                 <div id="pga-tdc-adicional" class="mb-4 hidden">
-                    <div class="flex items-center space-x-2">        
+                    <div class="space-x-2">        
                       <p>Inicio del tratamiento:</p>        
-                      <input type="text" class="form-input block w-full" placeholder="Escriba aquí">
+                      <input type="date" class="form-input block w-full text-slate-600 mt-1" name="fecha_inicio_tratamiento_cancer" placeholder="DD/MM/AAAA" pattern="\d{2}/\d{2}/\d{4}">
                     </div>
-                    <div class="flex items-center space-x-2">        
+                    <div class="space-x-2 mt-2">        
                       <p>Si lo finalizó indique cuando:</p>        
-                      <input type="text" class="form-input block w-full" placeholder="Escriba aquí">
+                      <input type="date" class="form-input block w-full text-slate-600 mt-1" name="fecha_fin_tratamiento_cancer" placeholder="DD/MM/AAAA" pattern="\d{2}/\d{2}/\d{4}">
                     </div>
                 </div>
                 <!-- Quimioterapia -->
@@ -381,9 +375,9 @@
                         </label>
                     </div>
                     <div id="quimioterapia-adicional" class="hidden mb-4">
-                        <label class="block">
+                        <label class="space-x-2">
                             <span class="">Fecha de finalización:</span>
-                            <input type="date" class="form-input mt-1 block w-full text-slate-500" name="fecha_fin_quimioterapia">
+                            <input type="date" class="form-input block w-full text-slate-600 mt-1" name="fecha_fin_quimioterapia" placeholder="DD/MM/AAAA" pattern="\d{2}/\d{2}/\d{4}">
                         </label>
                     </div>
                 </div>
@@ -401,9 +395,9 @@
                         </label>
                     </div>
                     <div id="radioterapia-adicional" class="hidden mb-4">
-                        <label class="block">
+                        <label class="space-x-2">
                             <span class="">Fecha de finalización:</span>
-                            <input type="date" class="form-input mt-1 block w-full text-slate-500" name="fecha_fin_radioterapia">
+                            <input type="date" class="form-input block w-full text-slate-600 mt-1" name="fecha_fin_radioterapia" placeholder="DD/MM/AAAA" pattern="\d{2}/\d{2}/\d{4}">
                         </label>
                     </div>
                 </div>
@@ -421,13 +415,13 @@
                         </label>
                     </div>
                     <div id="biopsia-adicional" class="hidden mb-4">
-                        <label class="block">
+                        <label class="space-x-2">
                             <span class="">Fecha:</span>
-                            <input type="date" class="form-input mt-1 block w-full text-slate-500" name="fecha_biopsia">
+                            <input type="date" class="form-input block w-full text-slate-600 mt-1" name="fecha_biopsia" placeholder="DD/MM/AAAA" pattern="\d{2}/\d{2}/\d{4}">
                         </label>
-                        <label class="block">
+                        <label class="space-x-2">
                             <span class="">Lugar:</span>
-                            <input type="text" class="form-input mt-1 block w-full" name="lugar_biopsia" placeholder="Escriba aqui">
+                            <input type="text" class="form-input mt-1 block w-full mt-1" name="lugar_biopsia" placeholder="Escriba aqui">
                         </label>
                     </div>
                 </div>
@@ -445,27 +439,13 @@
                         </label>
                     </div>
                     <div id="pga-marcadores-adicional" class="hidden mb-4">
-                        <label class="block">
-                            <span class="">¿Cuál?</span>
-                            <input type="text" class="form-input mt-1 block w-full" name="tipo_marcador_serico" placeholder="Escriba aqui">
+                        <label class="space-x-2">
+                            <span>¿Cuál?</span>
+                            <input type="text" class="form-input mt-1 block w-full mt-2" name="tipo_marcador_serico" placeholder="Escriba aqui">
                         </label>
                     </div>
                 </div>
             </div>
-            <!-- Autorización -->
-            <!--<div class="mb-6">
-                <p class="mb-2">Autorizo a utilizar las imágenes adquiridas de manera anónima con fines educativos</p> 
-                <div class="flex items-center space-x-4">
-                    <label class="inline-flex items-center">            
-                        <input type="radio" class="form-radio" name="autorizacion" value="si">            
-                        <span class="ml-2">Sí</span>            
-                    </label>
-                    <label class="inline-flex items-center">          
-                        <input type="radio" class="form-radio" name="autorizacion" value="no">            
-                        <span class="ml-2">No</span>            
-                    </label>  
-                </div>
-            </div>-->
         </form>
     </div>
     <script src="script-additional-content.js"></script>
