@@ -18,6 +18,9 @@ document.addEventListener('DOMContentLoaded', () => {
                 // Verificamos si el valor del radio seleccionado es 'si'
                 if (event.target.value === 'si') {
                     additionalContent.classList.remove('hidden');
+                }
+                else if (event.target.checked && event.target.value == 'on'){
+                    additionalContent.classList.remove('hidden');
                 } else {
                     additionalContent.classList.add('hidden');
                 }
@@ -37,16 +40,31 @@ document.addEventListener('DOMContentLoaded', () => {
     toggleAdditionalContent('cirugias-biopsias', 'additional-cirugias');
     toggleAdditionalContent('pregunta-odontologica', 'additional-odontologica');
     toggleAdditionalContent('pregunta-oncologica', 'additional-oncologica');
+    toggleAdditionalContent('radioterapia-f3', 'additional-radioterapia-f3');
+    toggleAdditionalContent('quimioterapia-f3', 'additional-quimioterapia-f3');
     toggleAdditionalContent('medicacion-relacionada', 'medicacion-relacionada');
     toggleAdditionalContent('prolactina', 'prolactina');
     // Formulario 4
     toggleAdditionalContent('estudios_previos', 'additional-estudios');
+    toggleAdditionalContent('estudio_mamografia_f4', 'fecha_mamografia_f4');
+    toggleAdditionalContent('estudio_ecografia_f4', 'fecha_ecografia_f4');
+    toggleAdditionalContent('estudio_resonancia_f4', 'fecha_resonancia_f4');
     toggleAdditionalContent('historia_familiar', 'additional-historia-familiar');
     toggleAdditionalContent('cirugias_mamas', 'additional-cirugias');
     toggleAdditionalContent('biopsia_percutanea', 'additional-biopsia');
     toggleAdditionalContent('tratamiento_cancer', 'additional-tratamiento');
-    toggleAdditionalContent('cirugia_mastoplastia', 'additional-mastoplastia')
-    toggleAdditionalContent('marcadores_sericos', 'additional-marcadores-sericos')
+    toggleAdditionalContent('cirugia_mastoplastia', 'cirugia_mastoplastia_f4');
+    toggleAdditionalContent('cirugia_biopsia', 'fecha_biopsia_f4');
+    toggleAdditionalContent('cirugia_segmentectomia', 'fecha_segmentectomia_f4');
+    toggleAdditionalContent('cirugia_mastectomia', 'fecha_mastectomia_f4');
+    toggleAdditionalContent('cirugia_reconstruccion', 'reconstrucción_f4');
+    toggleAdditionalContent('quimioterapia_f4', 'additional-quimioterapia-f4');
+    toggleAdditionalContent('radioterapia_f4', 'additional-radioterapia-f4');
+    toggleAdditionalContent('tamoxifeno_f4', 'addition_tamoxifeno_f4');
+    toggleAdditionalContent('anticonceptivos_f4', 'addition_anticonceptivos_f4');
+    toggleAdditionalContent('terapia_hormonal_f4', 'additional_terapia_hormonal_f4');
+    toggleAdditionalContent('cirugia_mastoplastia', 'additional-mastoplastia');
+    toggleAdditionalContent('marcadores_sericos', 'additional-marcadores-sericos');
     // Formulario 5
     toggleAdditionalContent('sintomas_abdominales', 'sintomas-adicionales');
     toggleAdditionalContent('infecciones_recientes', 'infecciones-adicionales');
@@ -57,11 +75,11 @@ document.addEventListener('DOMContentLoaded', () => {
     toggleAdditionalContent('pr-menopausia', 'pg-mnp-adicional');
     toggleAdditionalContent('pr-metodo-anticonceptivo', 'pg-mntc-adicional');
     toggleAdditionalContent('pr-cesareas', 'pg-mcsa-adicional');
-    toggleAdditionalContent('pr-intervencion-q-ginecologica', 'pg-mcsa-adicional');
+    toggleAdditionalContent('pr-intervencion-q-ginecologica', 'pg-intva-adicional');
     toggleAdditionalContent('enfermedades_familiares', 'enfermedades-familiares-adicionales');
     toggleAdditionalContent('diagnostico_cancer', 'cancer-adicional');
     toggleAdditionalContent('cirugia_cancer', 'cirugia-cancer-adicional');
-    toggleAdditionalContent('pr-pga-tratamiento-cc', 'pr-pga-tratamiento-cc');
+    toggleAdditionalContent('pr-pga-tratamiento-cc', 'pga-tdc-adicional');
     toggleAdditionalContent('quimioterapia', 'quimioterapia-adicional');
     toggleAdditionalContent('radioterapia', 'radioterapia-adicional');
     toggleAdditionalContent('biopsia_reciente', 'biopsia-adicional');

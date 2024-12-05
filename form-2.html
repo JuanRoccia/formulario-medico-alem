@@ -53,11 +53,11 @@
                 </label>
               </div>     
             </div>
-            <div class="hidden" id="additional-dolor">
-              <div class="flex flex-col md:flex-row">
+            <div class="hidden space-x-2" id="additional-dolor">
+              <div class="flex flex-col md:flex-row ml-2">
               <p class="pr-2">Dolor:</p>
                 <div class="mb-4 md:mb-0 md:mr-4">
-                  <div class="flex flex-wrap items-center space-x-0 md:space-x-4 space-y-1"> <!--md:space-x-4-->
+                  <div class="flex flex-wrap items-center space-x-0 md:space-x-4 space-y-1">
                     <label class="inline-flex items-center w-full md:w-auto">
                       <input type="checkbox" class="form-checkbox ml-3" name="movimiento" value="option1">
                       <span class="ml-2">Ante movimiento</span>
@@ -97,11 +97,11 @@
                   </div>
                 </div>
               </div>
-              <div class="flex flex-wrap items-center space-x-0 md:space-x-4 space-y-1 mt-4">
-                <p class="pr-4">¿Desde cuándo los presenta? (Fecha Exacta o aproximada):</p>
-                <div class="mb-4 md:mb-0 md:mr-4">
+              <div class="space-x-0 md:space-x-4 space-y-1 mt-4">
+                <p class="pr-4 mb-1">¿Desde cuándo los presenta? (Fecha Exacta o aproximada):</p>
+                <div class="mb-4 md:mb-0 md:mr-4 mb-1">
                   <div class="flex flex-wrap items-center">
-                    <input type="text" id="fecha" name="fecha" class="date-input w-full sm:w-auto" placeholder="DD/MM/AAAA" pattern="\d{2}/\d{2}/\d{4}">
+                    <input type="date" class="form-input block w-full text-slate-600 sm:w-auto" name="fecha_sintomas_form2" placeholder="DD/MM/AAAA" pattern="\d{2}/\d{2}/\d{4}">                  
                   </div>
                 </div>
               </div>
@@ -155,14 +155,14 @@
                 </label>
               </div>      
             </div>
-            <div id="additional-content" class="hidden">
-              <div class="flex items-center space-x-2 mt-4">        
+            <div id="additional-content" class="hidden space-x-2">
+              <div class="space-x-2 mt-4 ml-2">        
                 <p>¿Qué tipo de cirugía?</p>        
-                <input type="text" class="form-input block" placeholder="Escriba aquí">
+                <input type="text" class="form-input mt-1" placeholder="Escriba aquí">
               </div>
-              <div class="flex items-center space-x-2 mt-4">        
+              <div class="space-x-2 mt-4">        
                 <p>¿Hace cuánto tiempo?</p>        
-                <input type="text" class="form-input block" placeholder="Escriba aquí">
+                <input type="text" class="form-input mt-1" placeholder="Escriba aquí">
               </div>
             </div>
             <div>        
@@ -179,9 +179,9 @@
               </div>          
             </div>
             <div id="additional-medicacion" class="hidden">
-              <div class="flex items-center space-x-2 mt-4">       
+              <div class="mt-4 ml-2">       
                 <p>Indique cuales:</p>        
-                <input type="text" class="form-input block" placeholder="Escriba aquí">
+                <input type="text" class="form-input mt-1" placeholder="Escriba aquí">
               </div>
             </div>
             <div>
@@ -198,9 +198,9 @@
               </div>          
             </div>
             <div id="additional-onc" class="hidden">
-              <div class="flex items-center space-x-2 mt-4">        
+              <div class="ml-2 mt-4">        
                 <p>Indique cuales:</p>        
-                <input type="text" class="form-input block" placeholder="Escriba aquí">
+                <input type="text" class="form-input mt-1" placeholder="Escriba aquí">
               </div>
             </div>
             <div>
@@ -217,53 +217,17 @@
               </div>       
             </div>
             <div id="additional-deporte" class="hidden">
-              <div class="flex items-center space-x-2 mt-4">        
+              <div class="ml-2 mt-4">        
                 <p>Indique cuales:</p>
-                <input type="text" class="form-input block" placeholder="Escriba aquí">
+                <input type="text" class="form-input mt-1" placeholder="Escriba aquí">
               </div>
             </div>
-            <!--<div>
-              <p class="mb-2">Autorizo a utilizar las imágenes adquiridas de manera anónima con fines educativos</p> 
-            </div>
-            <div class="flex flex-wrap items-center gap-2 mt-4">
-              <p class="text-sm">Bahía Blanca</p>
-              <input type="number" class="form-input w-16 text-sm" placeholder="Día" required>
-              <p class="text-sm">De</p>
-              <input type="text" class="form-input w-24 text-sm" placeholder="Mes" required>
-              <p class="text-sm">De 20</p>
-              <input type="number" class="form-input w-16 text-sm" placeholder="Año" required>
-            </div>-->
           </div>
         </div>
-        <!-- Sección Datos del Firmante -->
-        <!--<div class="flex flex-col sm:flex-row md:items-center space-y-2 sm:space-y-0 sm:space-x-2 mt-4">
-          <label class="block text-sm font-medium text-gray-900" for="dni">
-            DNI
-          </label>
-          <input class="block w-full sm:w-auto rounded-md border-0 text-gray-900 ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6" id="dni" type="text"> 
-        </div>-->
-        <!-- Dato del responsable -->
-        <!--<div class="flex flex-col sm:flex-row items-center space-y-2 sm:space-y-0 sm:space-x-2 mt-4">
-          <p>Parentesco (en caso de no firmar el paciente)</p>        
-          <input type="text" class="form-input block w-full sm:w-auto" placeholder="parentesco">
-        </div>-->
       </form>
     </div>
     <script src="https://cdn.jsdelivr.net/npm/html2canvas@1.4.1/dist/html2canvas.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/signature_pad@4.0.0/dist/signature_pad.umd.min.js"></script>
-    </script>
-    <script>
-      document.getElementById('fecha').addEventListener('input', function (e) {
-        let value = this.value.replace(/[^0-9]/g, '');
-        if (value.length > 2) {
-          value = value.slice(0, 2) + '/' + value.slice(2);
-        }
-        if (value.length > 5) {
-          value = value.slice(0, 5) + '/' + value.slice(5);
-        }
-        this.value = value;
-      });
-    </script>
     <script src="script-additional-content.js"></script>
     <script src="js/script.js"></script>
     <script src="bodyDrawing.js"></script>

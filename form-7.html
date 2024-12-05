@@ -99,11 +99,11 @@
                 <p class="mb-2">¿Tiene antecedentes personales de cáncer?</p>        
                 <div class="flex items-center space-x-4">
                   <label class="inline-flex items-center">            
-                    <input type="radio" class="form-radio" name="pr-pm-antecendente-personal-cc" value="si">            
+                    <input type="radio" class="form-radio" name="pr-pm-antecedente-personal" value="si">            
                     <span class="ml-2">Sí</span>            
                   </label>
                   <label class="inline-flex items-center">          
-                    <input type="radio" class="form-radio" name="pr-pm-antecendente-personal-cc" value="no">            
+                    <input type="radio" class="form-radio" name="pr-pm-antecedente-personal" value="no">            
                     <span class="ml-2">No</span>            
                   </label>
                 </div>          
@@ -130,7 +130,7 @@
               <div id="pm-iqdcm-adicional" class="hidden">
                 <div class="items-center space-x-2">        
                   <p>Indique cuando:</p>        
-                  <input type="text" class="form-input block w-full" placeholder="Escriba aquí">
+                  <input type="date" class="form-input block w-full text-slate-600 sm:w-auto mt-1" name="fecha_intervencion_cc_form7" placeholder="DD/MM/AAAA" pattern="\d{2}/\d{2}/\d{4}">
                 </div>
               </div>
               <div>        
@@ -149,11 +149,11 @@
               <div id="pm-tdcm-adicional" class="hidden">
                 <div class="items-center space-x-2 mt-2">        
                   <p>Inicio del tratamiento:</p>        
-                  <input type="text" class="form-input block w-full" placeholder="Escriba aquí">
+                  <input type="date" class="form-input block w-full text-slate-600 sm:w-auto mt-1" name="fecha_inicio_tt_form7" placeholder="DD/MM/AAAA" pattern="\d{2}/\d{2}/\d{4}">
                 </div>
                 <div class="items-center space-x-2 mt-2">        
                   <p>Si lo finalizó indique cuando:</p>        
-                  <input type="text" class="form-input block w-full" placeholder="Escriba aquí">
+                  <input type="date" class="form-input block w-full text-slate-600 sm:w-auto mt-1" name="fecha_fin_tt_form7" placeholder="DD/MM/AAAA" pattern="\d{2}/\d{2}/\d{4}">
                 </div>
               </div>
               <!-- Quimioterapia -->
@@ -170,9 +170,9 @@
                     </label>
                 </div>
                 <div id="pmr-quimioterapia-adicional" class="hidden mb-4">
-                    <label class="block">
-                        <span class="">Fecha de finalización:</span>
-                        <input type="date" class="form-input mt-1 block w-full text-slate-500" name="fecha_fin_quimioterapia">
+                    <label class="space-x-2">
+                        <span>Fecha de finalización:</span>
+                        <input type="date" class="form-input block w-auto text-slate-600 mt-1" name="fecha_fin_quimioterapia_form7" placeholder="DD/MM/AAAA" pattern="\d{2}/\d{2}/\d{4}">
                     </label>
                 </div>
               </div>
@@ -190,9 +190,9 @@
                       </label>
                   </div>
                   <div id="pmr-radioterapia-adicional" class="hidden mb-4">
-                      <label class="block">
-                          <span class="">Fecha de finalización:</span>
-                          <input type="date" class="form-input mt-1 block w-full text-slate-500" name="fecha_fin_radioterapia">
+                      <label class="space-x-2">
+                          <span>Fecha de finalización:</span>
+                          <input type="date" class="form-input block w-auto text-slate-600 mt-1" name="fecha_fin_radioterapia_form7" placeholder="DD/MM/AAAA" pattern="\d{2}/\d{2}/\d{4}">
                       </label>
                   </div>
               </div>
@@ -218,7 +218,7 @@
           </div>
           <div class="items-center space-x-2 mt-2">        
             <p>Fecha:</p>        
-            <input type="text" class="form-input block w-full" placeholder="Escriba aquí">
+            <input type="date" class="form-input block w-auto text-slate-600 mt-1" name="fecha_biopsia_form7" placeholder="DD/MM/AAAA" pattern="\d{2}/\d{2}/\d{4}">
           </div>
           <div class="items-center space-x-2 mt-2">        
             <p>Resultado de la cirugías o biopsias: </p>        
@@ -239,8 +239,8 @@
               </label>
           </div>
           <div id="pmr-marcadores-adicional" class="hidden mt-2">
-              <label class="block">
-                  <span class="">¿Cuál?</span>
+              <label class="space-x-2">
+                  <span>¿Cuál?</span>
                   <input type="text" class="form-input mt-1 block w-full" name="tipo_marcador_serico" placeholder="Escriba aqui">
               </label>
           </div>

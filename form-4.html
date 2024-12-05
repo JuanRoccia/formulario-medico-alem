@@ -50,50 +50,33 @@
                     </label>
                 </div>
                 <!-- Si realizo estudios mamarios -->
-                <div id="additional-estudios" class="hidden space-y-4 mb-4">
-                    <div>
-                        <label class="block mb-2">
-                            <input type="checkbox" class="form-checkbox" name="estudio_mamografia">
+                <div id="additional-estudios" class="hidden space-y-4 ml-2 mb-4">
+                    <div class="space-x-2 space-y-2">
+                        <label>
+                            <input type="checkbox" class="form-checkbox" name="estudio_mamografia_f4">
                             <span class="ml-2">Mamografía</span>
                         </label>
-                        <input type="date" class="form-input block w-full text-slate-600" name="fecha_mamografia" placeholder="DD/MM/AAAA" pattern="\d{2}/\d{2}/\d{4}">
-                        
-                        <!-- <input type="text" 
-                                class="form-input block w-full text-slate-600" 
-                                name="fecha_mamografia" 
-                                placeholder="DD/MM/AAAA"
-                                pattern="\d{2}/\d{2}/\d{4}"
-                                oninput="this.value = this.value.replace(/[^0-9\/]/g, '').replace(/(\..*)\./g, '$1');" 
-                                maxlength="10"> -->
-
-                        <!-- <input  type="text" 
-                                class="form-input block w-full text-slate-600 placeholder-slate-400" 
-                                name="fecha_mamografia" 
-                                placeholder="aca va la fecha" 
-                                pattern="\d{2}/\d{2}/\d{4}" 
-                                title="Formato: DD/MM/AAAA"> -->
-                         
-
+                        <input type="date" class="form-input block w-auto text-slate-600 hidden" id="fecha_mamografia_f4" name="fecha_mamografia_form4" placeholder="DD/MM/AAAA" pattern="\d{2}/\d{2}/\d{4}">
                     </div>
-                    <div>
-                        <label class="block mb-2">
-                            <input type="checkbox" class="form-checkbox" name="estudio_ecografia">
+                    <div class="space-x-2 space-y-2">
+                        <label>
+                            <input type="checkbox" class="form-checkbox" name="estudio_ecografia_f4">
                             <span class="ml-2">Ecografía</span>
                         </label>
-                        <input type="date" class="form-input block w-full text-slate-600" name="fecha_ecografia">
+                        <input type="date" class="form-input block w-auto text-slate-600 hidden" id="fecha_ecografia_f4" name="fecha_ecografia_form4" placeholder="DD/MM/AAAA" pattern="\d{2}/\d{2}/\d{4}">
                     </div>
-                    <div>
-                        <label class="block mb-2">
-                            <input type="checkbox" class="form-checkbox" name="estudio_resonancia">
+                    <div class="space-x-2 space-y-2">
+                        <label>
+                            <input type="checkbox" class="form-checkbox" name="estudio_resonancia_f4">
                             <span class="ml-2">Resonancia</span>
                         </label>
-                        <input type="date" class="form-input block w-full text-slate-600" name="fecha_resonancia">
+                        <input type="date" class="form-input block w-auto text-slate-600 hidden" id="fecha_resonancia_f4" name="fecha_resonancia_form4" placeholder="DD/MM/AAAA" pattern="\d{2}/\d{2}/\d{4}">
                     </div>
-                    <div class="mt-4">
-                        <label class="block mb-2">
-                            <span class="">Adjuntar o llevar estudios previos:</span>
+                    <div class="mt-4 space-y-2">
+                        <label>
+                            <span>Adjuntar o llevar estudios previos:</span>
                         </label>
-                        <input type="file" class="form-input block w-full text-slate-600" name="archivo_estudios" multiple>
+                        <input type="file" class="form-input w-full text-slate-600" name="archivo_estudios" multiple>
                     </div>
                 </div>
                 <!-- Historia Familiar -->
@@ -110,8 +93,8 @@
                         </label>
                     </div>
                     <!-- Si presenta historial familiar -->
-                    <div id="additional-historia-familiar" class="hidden space-y-2 mb-4">
-                        <p class="">¿Quién?</p>
+                    <div id="additional-historia-familiar" class="hidden space-y-2 ml-2 mb-4">
+                        <p>¿Quién?</p>
                         <div class="flex flex-wrap gap-4">
                             <label class="inline-flex items-center">
                                 <input type="checkbox" class="form-checkbox" name="familiar_afectado" value="madre">
@@ -152,14 +135,14 @@
                     </label>
                 </div>
                 <!-- Opciones de cirugías -->
-                <div id="additional-cirugias" class="hidden space-y-4 mb-4">
+                <div id="additional-cirugias" class="hidden space-y-4 ml-2 mb-4">
                     <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
                         <div>
                             <label class="block mb-2">
                                 <input type="checkbox" class="form-checkbox" name="cirugia_mastoplastia">
                                 <span class="ml-2">Mastoplastia</span>
                             </label>
-                            <div class="pl-6 space-y-2">
+                            <div class="pl-6 space-y-2 hidden" id="cirugia_mastoplastia_f4">
                                 <label class="inline-flex items-center">
                                     <input type="checkbox" class="form-checkbox" name="mastoplastia_reductora">
                                     <span class="ml-2">Reductora</span>
@@ -168,36 +151,34 @@
                                     <input type="checkbox" class="form-checkbox" name="mastoplastia_protesis">
                                     <span class="ml-2">Prótesis</span>
                                 </label>
-                                <input type="date" class="form-input block w-full text-slate-600" name="fecha_mastoplastia">
-                            </div>
+                                <input type="date" class="form-input block w-auto text-slate-600 ml-2" name="fecha_mastoplastia" placeholder="DD/MM/AAAA" pattern="\d{2}/\d{2}/\d{4}">                            </div>
                         </div>
                         <div>
                             <label class="block mb-2">
                                 <input type="checkbox" class="form-checkbox" name="cirugia_biopsia">
                                 <span class="ml-2">Biopsioa quirúrgica</span>
                             </label>
-                            <input type="date" class="form-input block w-full text-slate-600" name="fecha_biopsia">
-                        </div>
+                            <input type="date" class="form-input block w-auto text-slate-600 ml-2 hidden" id="fecha_biopsia_f4" name="fecha_biopsia" placeholder="DD/MM/AAAA" pattern="\d{2}/\d{2}/\d{4}">                        </div>
                         <div>
                             <label class="block mb-2">
                                 <input type="checkbox" class="form-checkbox" name="cirugia_segmentectomia">
                                 <span class="ml-2">Segmentectomía</span>
                             </label>
-                            <input type="date" class="form-input block w-full text-slate-600" name="fecha_segmentectomia">
+                            <input type="date" class="form-input block w-auto text-slate-600 ml-2 hidden" id="fecha_segmentectomia_f4" name="fecha_segmentectomia" placeholder="DD/MM/AAAA" pattern="\d{2}/\d{2}/\d{4}">
                         </div>
                         <div>
                             <label class="block mb-2">
                                 <input type="checkbox" class="form-checkbox" name="cirugia_mastectomia">
                                 <span class="ml-2">Mastectomía</span>
                             </label>
-                            <input type="date" class="form-input block w-full text-slate-600" name="fecha_mastectomia">
+                            <input type="date" class="form-input block w-auto text-slate-600 ml-2 hidden" id="fecha_mastectomia_f4" name="fecha_mastectomia" placeholder="DD/MM/AAAA" pattern="\d{2}/\d{2}/\d{4}">
                         </div>
                         <div>
                             <label class="block mb-2">
                                 <input type="checkbox" class="form-checkbox" name="cirugia_reconstruccion">
                                 <span class="ml-2">Reconstrucción</span>
                             </label>
-                            <div class="pl-6 space-y-2">
+                            <div class="pl-6 space-y-2 hidden" id="reconstrucción_f4">
                                 <label class="inline-flex items-center">
                                     <input type="checkbox" class="form-checkbox" name="reconstruccion_musculo_abdominal">
                                     <span class="ml-2">Músculo abdominal</span>
@@ -210,14 +191,14 @@
                                     <input type="checkbox" class="form-checkbox" name="reconstruccion_protesis">
                                     <span class="ml-2">Prótesis</span>
                                 </label>
-                                <input type="date" class="form-input block w-full text-slate-600" name="fecha_reconstruccion">
+                                <input type="date" class="form-input block w-auto text-slate-600 ml-2" name="fecha_reconstruccion" placeholder="DD/MM/AAAA" pattern="\d{2}/\d{2}/\d{4}">
                             </div>
                         </div>
                     </div>
                     <!-- Sección para mastoplastia -->
                     <div id="additional-mastoplastia" class="hidden mb-4">
                         <p class="font-semibold mb-2">En caso de mastoplastia:</p>
-                        <div class="space-y-2">
+                        <div class="space-y-2 ml-2">
                             <div>
                                 <p class="mb-1">Sospecha de ruptura</p>
                                 <div class="flex items-center space-x-4">
@@ -275,87 +256,87 @@
                     </label>
                 </div>
                 <!-- Información adicional de tratamiento de cáncer -->
-                <div id="additional-tratamiento" class="hidden space-y-4 mb-4">
+                <div id="additional-tratamiento" class="hidden space-y-4 ml-2 mb-4">
                     <div>
-                        <label class="block mb-2">
-                            <span class="">Fecha:</span>
+                        <label>
+                            <span>Fecha:</span>
                         </label>
-                        <input type="date" class="form-input block w-full text-slate-500" name="fecha_tratamiento_cancer">
+                        <input type="date" class="form-input block w-auto text-slate-600 ml-2 mt-1" name="fecha_tratamiento_cancer" placeholder="DD/MM/AAAA" pattern="\d{2}/\d{2}/\d{4}">
                     </div>
                     <!-- Quimioterapia -->
                     <div>
                         <p class="mb-2">¿Quimioterapia?</p>
                         <div class="flex items-center space-x-4 mb-2">
                             <label class="inline-flex items-center">
-                                <input type="radio" class="form-radio" name="quimioterapia" value="si">
+                                <input type="radio" class="form-radio" name="quimioterapia_f4" value="si">
                                 <span class="ml-2">Sí</span>
                             </label>
                             <label class="inline-flex items-center">
-                                <input type="radio" class="form-radio" name="quimioterapia" value="no">
+                                <input type="radio" class="form-radio" name="quimioterapia_f4" value="no">
                                 <span class="ml-2">No</span>
                             </label>
                         </div>
-                        <input type="date" class="form-input block w-full text-slate-500" name="fecha_quimioterapia">
+                        <input type="date" class="form-input w-auto text-slate-600 ml-2 hidden" id="additional-quimioterapia-f4" name="fecha_quimioterapia" placeholder="DD/MM/AAAA" pattern="\d{2}/\d{2}/\d{4}">
                     </div>
                     <!-- Radioterapia -->
                     <div>
                         <p class="mb-2">¿Radioterapia?</p>
                         <div class="flex items-center space-x-4 mb-2">
                             <label class="inline-flex items-center">
-                                <input type="radio" class="form-radio" name="radioterapia" value="si">
+                                <input type="radio" class="form-radio" name="radioterapia_f4" value="si">
                                 <span class="ml-2">Sí</span>
                             </label>
                             <label class="inline-flex items-center">
-                                <input type="radio" class="form-radio" name="radioterapia" value="no">
+                                <input type="radio" class="form-radio" name="radioterapia_f4" value="no">
                                 <span class="ml-2">No</span>
                             </label>
                         </div>
-                        <input type="date" class="form-input block w-full text-slate-500" name="fecha_radioterapia">
+                        <input type="date" class="form-input w-auto text-slate-600 ml-2 hidden" id="additional-radioterapia-f4" name="fecha_radioterapia" placeholder="DD/MM/AAAA" pattern="\d{2}/\d{2}/\d{4}">
                     </div>
                     <!-- Tamoxifeno -->
                     <div>
                         <p class="mb-2">¿Toma tamoxifeno?</p>
                         <div class="flex items-center space-x-4 mb-2">
                             <label class="inline-flex items-center">
-                                <input type="radio" class="form-radio" name="tamoxifeno" value="si">
+                                <input type="radio" class="form-radio" name="tamoxifeno_f4" value="si">
                                 <span class="ml-2">Sí</span>
                             </label>
                             <label class="inline-flex items-center">
-                                <input type="radio" class="form-radio" name="tamoxifeno" value="no">
+                                <input type="radio" class="form-radio" name="tamoxifeno_f4" value="no">
                                 <span class="ml-2">No</span>
                             </label>
                         </div>
-                        <input type="text" class="form-input block w-full" name="tiempo_tamoxifeno" placeholder="¿Hace cuánto tiempo aproximadamente?">
+                        <input type="text" class="form-input w-full ml-2 hidden" id="addition_tamoxifeno_f4" name="tiempo_tamoxifeno" placeholder="¿Hace cuánto tiempo aproximadamente?">
                     </div>
                     <!-- Anticonceptivos -->
                     <div>
                         <p class="mb-2">¿Utilizó anticonceptivos?</p>
                         <div class="flex items-center space-x-4 mb-2">
                             <label class="inline-flex items-center">
-                                <input type="radio" class="form-radio" name="anticonceptivos" value="si">
+                                <input type="radio" class="form-radio" name="anticonceptivos_f4" value="si">
                                 <span class="ml-2">Sí</span>
                             </label>
                             <label class="inline-flex items-center">
-                                <input type="radio" class="form-radio" name="anticonceptivos" value="no">
+                                <input type="radio" class="form-radio" name="anticonceptivos_f4" value="no">
                                 <span class="ml-2">No</span>
                             </label>
                         </div>
-                        <input type="text" class="form-input block w-full" name="tiempo_anticonceptivos" placeholder="¿Hace cuánto tiempo aproximadamente?">
+                        <input type="text" class="form-input w-full ml-2 hidden" id="addition_anticonceptivos_f4" name="tiempo_anticonceptivos" placeholder="¿Hace cuánto tiempo aproximadamente?">
                     </div>
                     <!-- Terapia Hormonal de Reemplazo -->
                     <div>
                         <p class="mb-2">¿Utilizó terapia hormonal de reemplazo?</p>
                         <div class="flex items-center space-x-4 mb-2">
                             <label class="inline-flex items-center">
-                                <input type="radio" class="form-radio" name="terapia_hormonal" value="si">
+                                <input type="radio" class="form-radio" name="terapia_hormonal_f4" value="si">
                                 <span class="ml-2">Sí</span>
                             </label>
                             <label class="inline-flex items-center">
-                                <input type="radio" class="form-radio" name="terapia_hormonal" value="no">
+                                <input type="radio" class="form-radio" name="terapia_hormonal_f4" value="no">
                                 <span class="ml-2">No</span>
                             </label>
                         </div>
-                        <input type="text" class="form-input block w-full" name="tiempo_terapia_hormonal" placeholder="¿Hace cuánto tiempo aproximadamente?">
+                        <input type="text" class="form-input w-full ml-2 hidden" id="additional_terapia_hormonal_f4" name="tiempo_terapia_hormonal" placeholder="¿Hace cuánto tiempo aproximadamente?">
                     </div>
                 </div>
             </div>
@@ -373,24 +354,24 @@
                     </label>
                 </div>
                 <!-- Información adicional de biopsia percutánea -->
-                <div id="additional-biopsia" class="hidden space-y-4 mb-4">
+                <div id="additional-biopsia" class="hidden space-y-4 ml-2 mb-4">
                     <div>
-                        <label class="block">
-                            <span class="">Indique cuales:</span>
+                        <label>
+                            <span>Indique cuales:</span>
                         </label>
-                        <input type="text" class="form-input block w-full" name="tipo_biopsia_percutanea" placeholder="Especifique el tipo de biopsia">
+                        <input type="text" class="form-input w-full mt-1" name="tipo_biopsia_percutanea" placeholder="Especifique el tipo de biopsia">
                     </div>
                     <div>
-                        <label class="block">
-                            <span class="">Fecha:</span>
+                        <label>
+                            <span>Fecha:</span>
                         </label>
-                        <input type="date" class="form-input block w-full text-slate-500" name="fecha_biopsia_percutanea">
+                        <input type="date" class="form-input w-auto text-slate-600 mt-1" name="fecha_biopsia_percutanea" placeholder="DD/MM/AAAA" pattern="\d{2}/\d{2}/\d{4}">
                     </div>
                     <div>
-                        <label class="block">
-                            <span class="">Resultado de la cirugías o biopsias:</span>
+                        <label>
+                            <span>Resultado de la cirugías o biopsias:</span>
                         </label>
-                        <textarea class="form-textarea block w-full" name="diagnostico_biopsia_percutanea" rows="3" placeholder="Ingrese el diagnóstico"></textarea>
+                        <textarea class="form-textarea w-full mt-1" name="diagnostico_biopsia_percutanea" rows="3" placeholder="Ingrese el diagnóstico"></textarea>
                     </div>
                 </div>
             </div>
@@ -407,29 +388,15 @@
                     </label>
                 </div>
                 <!-- Información adicional de marcadores sericos -->
-                <div id="additional-marcadores-sericos" class="hidden space-y-4 mb-4">
+                <div id="additional-marcadores-sericos" class="hidden space-y-4 ml-2 mb-4">
                     <div>
-                        <label class="block">
-                            <span class="">¿Cuál?</span>
+                        <label>
+                            <span>¿Cuál?</span>
                         </label>
-                        <input type="text" class="form-input block w-full" name="txt_marcadores_sericos" placeholder="">
+                        <input type="text" class="form-input w-full mt-1" name="txt_marcadores_sericos" placeholder="Escriba aquí">
                     </div>
                 </div>
             </div>
-            <!-- Autorización -->
-            <!--<div>
-                <p class="mb-2">Autorizo a utilizar las imágenes adquiridas de manera anónima con fines educativos</p> 
-                <div class="flex items-center space-x-4">
-                    <label class="inline-flex items-center">          
-                        <input type="radio" class="form-radio" name="autorizacion" value="no">            
-                        <span class="ml-2">No</span>            
-                    </label>
-                    <label class="inline-flex items-center">            
-                        <input type="radio" class="form-radio" name="autorizacion" value="si">            
-                        <span class="ml-2">Sí</span>            
-                    </label>  
-                </div>
-            </div>-->
         </form>
     </div>
     
