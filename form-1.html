@@ -267,5 +267,47 @@
       <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js" integrity="sha512-BNaRQnYJYiPSqHHDb58B0yaPfCu+Wgds8Gp/gU33kqBtgNS4tSPHuGibyoeqMV/TJlSKda6FXzoEyYGjTe+vXA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
       <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
       <script src="https://cdn.jsdelivr.net/npm/signature_pad@4.1.5/dist/signature_pad.umd.min.js"></script>
-  </body> 
+  </body>
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+        const canvas = document.getElementById('signature-pad');
+        const clearButton = document.getElementById('clear');
+
+        if (!canvas || !clearButton) {
+            console.error('Signature pad elements not found');
+            return;
+        }
+
+        // Configure canvas for high-resolution displays
+        const ctx = canvas.getContext('2d');
+        const ratio = Math.max(window.devicePixelRatio || 1, 1);
+        const rect = canvas.parentElement.getBoundingClientRect();
+
+        canvas.width = rect.width * ratio;
+        canvas.height = rect.height * ratio;
+        canvas.style.width = `${rect.width}px`;
+        canvas.style.height = `${rect.height}px`;
+        ctx.scale(ratio, ratio);
+
+        // Initialize SignaturePad
+        const signaturePad = new SignaturePad(canvas, {
+            backgroundColor: 'rgb(255, 255, 255)',
+            penColor: 'rgb(0, 0, 0)'
+        });
+
+        // Clear button functionality
+        clearButton.addEventListener('click', function() {
+            signaturePad.clear();
+        });
+
+        // Touch support
+        function preventScrolling(e) {
+            e.preventDefault();
+        }
+
+        canvas.addEventListener('touchstart', preventScrolling, { passive: false });
+        canvas.addEventListener('touchmove', preventScrolling, { passive: false });
+        canvas.addEventListener('touchend', preventScrolling, { passive: false });
+    });
+  </script>
 </html>
