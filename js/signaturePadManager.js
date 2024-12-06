@@ -16,12 +16,12 @@ export class SignaturePadManager {
         const iframeDocument = iframe.contentDocument || iframe.contentWindow.document;
 
         // Verificar si es el formulario correcto para agregar signature pad
-        const signatureForm = sessionStorage.getItem('signatureForm');
-        const currentFormValue = this.getCurrentFormValue(iframe);
+        // const signatureForm = sessionStorage.getItem('signatureForm');
+        // const currentFormValue = this.getCurrentFormValue(iframe);
 
-        if (signatureForm !== currentFormValue) {
-            return null;
-        }
+        // if (signatureForm !== currentFormValue) {
+        //     return null;
+        // }
 
         // Verificar si el documento está completamente cargado
         if (iframeDocument.readyState !== 'complete') {

@@ -249,6 +249,16 @@
             </ol>
           </div>      
         </div>
+        <!-- Signature Pad Section -->
+        <div class="mb-6 border-t border-gray-900/10 pt-6">
+          <h2 class="text-lg font-semibold mb-4">Firma del Paciente</h2>
+          <div class="signature-container" style="width: 100%; height: 200px; position: relative;">
+            <canvas id="signature-pad" class="border rounded-md" style="position: absolute; left: 0; top: 0; width: 100%; height: 100%;"></canvas>
+            <button type="button" id="clear" class="mt-2 rounded-md bg-red-500 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-red-400" style="position: absolute; bottom: 10px; left: 10px;">
+              Limpiar Firma
+            </button>
+          </div>
+        </div>
         </form>
       </div>
       <script src="script-additional-content.js"></script>
@@ -256,5 +266,6 @@
       <script src="js/iframeVisibilityManager.js"></script>
       <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js" integrity="sha512-BNaRQnYJYiPSqHHDb58B0yaPfCu+Wgds8Gp/gU33kqBtgNS4tSPHuGibyoeqMV/TJlSKda6FXzoEyYGjTe+vXA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
       <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+      <script src="https://cdn.jsdelivr.net/npm/signature_pad@4.1.5/dist/signature_pad.umd.min.js"></script>
   </body> 
 </html>

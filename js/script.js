@@ -3,121 +3,183 @@
 import { signaturePadManager } from './signaturePadManager.js';
 import { formManager } from './formManager.js';
 
+function loadSignaturePadLibrary(iframeDocument) {
+    return new Promise((resolve, reject) => {
+        // Verificar si SignaturePad ya está cargado
+        if (iframeDocument.defaultView.SignaturePad) {
+            return resolve(iframeDocument.defaultView.SignaturePad);
+        }
+
+        const script = iframeDocument.createElement('script');
+        script.src = 'https://cdn.jsdelivr.net/npm/signature_pad@4.1.5/dist/signature_pad.umd.min.js';
+        script.onload = () => {
+            // Hacer SignaturePad disponible en el contexto del iframe
+            iframeDocument.defaultView.SignaturePad = window.SignaturePad;
+            resolve(window.SignaturePad);
+        };
+        script.onerror = reject;
+        iframeDocument.head.appendChild(script);
+    });
+}
+
 // Primero, asegurémonos de que todas las funciones estén definidas antes de usarlas
 let signaturePadInstance = null;
 
 // Función para inicializar el signature pad
-function initializeSignaturePad(iframeDocument) {
-    if (!iframeDocument) {
-        console.log('No se proporcionó documento iframe');
-        return null;
+function initializeSignaturePad(iframe) {
+    if (!iframe) {
+        console.error('No se proporcionó iframe');
+        return;
     }
 
-    // Esperar a que el DOM esté completamente cargado
+    const iframeDocument = iframe.contentDocument || iframe.contentWindow.document;
+
+    // Esperar a que el documento esté completamente cargado
     if (iframeDocument.readyState !== 'complete') {
-        console.log('Documento no está completamente cargado, esperando...');
-        return new Promise((resolve) => {
-            iframeDocument.addEventListener('DOMContentLoaded', () => {
-                resolve(initializeSignaturePad(iframeDocument));
+        iframe.addEventListener('load', () => initializeSignaturePad(iframe));
+        return;
+    }
+
+    // Cargar la librería SignaturePad
+    loadSignaturePadLibrary(iframeDocument)
+        .then((SignaturePad) => {
+            const canvas = iframeDocument.getElementById('signature-pad');
+            if (!canvas) {
+                console.error('Canvas no encontrado');
+                return;
+            }
+
+            // Configurar dimensiones del canvas
+            const container = canvas.parentElement;
+            const ratio = Math.max(window.devicePixelRatio || 1, 1);
+            const rect = container.getBoundingClientRect();
+            
+            canvas.width = rect.width * ratio;
+            canvas.height = rect.height * ratio;
+            canvas.style.width = `${rect.width}px`;
+            canvas.style.height = `${rect.height}px`;
+
+            const ctx = canvas.getContext('2d');
+            ctx.scale(ratio, ratio);
+
+            // Inicializar SignaturePad
+            const signaturePadInstance = new SignaturePad(canvas, {
+                backgroundColor: 'rgb(255, 255, 255)',
+                penColor: 'rgb(0, 0, 0)'
             });
+
+            // Configurar botón de limpieza
+            const clearButton = iframeDocument.getElementById('clear');
+            if (clearButton) {
+                clearButton.addEventListener('click', () => {
+                    signaturePadInstance.clear();
+                });
+            }
+
+            // Añadir soporte táctil
+            addTouchSupport(canvas);
+
+            console.log('SignaturePad inicializado correctamente');
+        })
+        .catch((error) => {
+            console.error('Error al inicializar SignaturePad:', error);
         });
-    }
+}
 
-    const canvas = iframeDocument.getElementById('signature-pad');
-    if (!canvas) {
-        console.log('Canvas no encontrado en el iframe');
-        return null;
-    }
-
-    // Establecer dimensiones del canvas
-    // const container = canvas.parentElement;
-    // canvas.width = container.clientWidth || 600;
-    // canvas.height = container.clientHeight || 200;
-    // this.setupCanvasDimensions(canvas);
-
-    try {
-        // Crear nueva instancia de SignaturePad
-        signaturePadInstance = new SignaturePad(canvas, {
-            backgroundColor: 'rgb(255, 255, 255)',
-            penColor: 'rgb(0, 0, 0)'
+function addTouchSupport(canvas) {
+    canvas.addEventListener('touchstart', (event) => {
+        event.preventDefault();
+        const touch = event.touches[0];
+        const mouseEvent = new MouseEvent('mousedown', {
+            clientX: touch.clientX,
+            clientY: touch.clientY
         });
+        canvas.dispatchEvent(mouseEvent);
+    }, false);
 
-        // Configurar botón de limpieza
-        const clearButton = iframeDocument.getElementById('clear');
-        if (clearButton) {
-            clearButton.addEventListener('click', () => {
-                signaturePadInstance.clear();
-            });
-        }
+    canvas.addEventListener('touchmove', (event) => {
+        event.preventDefault();
+        const touch = event.touches[0];
+        const mouseEvent = new MouseEvent('mousemove', {
+            clientX: touch.clientX,
+            clientY: touch.clientY
+        });
+        canvas.dispatchEvent(mouseEvent);
+    }, false);
 
-        console.log('SignaturePad inicializado correctamente');
-        return signaturePadInstance;
-    } catch (error) {
-        console.error('Error al inicializar SignaturePad:', error);
-        return null;
-    }
+    canvas.addEventListener('touchend', (event) => {
+        event.preventDefault();
+        const mouseEvent = new MouseEvent('mouseup', {});
+        canvas.dispatchEvent(mouseEvent);
+    }, false);
 }
 
 // Función para determinar el último formulario y agregar la firma
-function addSignatureToLastForm() {
-    const selectedForms = [];
-    const checkboxes = [
-        { checkbox: document.getElementById('form1'), value: 'form-1' },
-        { checkbox: document.getElementById('form2'), value: 'form-2' },
-        { checkbox: document.getElementById('form3'), value: 'form-3' },
-        { checkbox: document.getElementById('form4'), value: 'form-4' },
-        { checkbox: document.getElementById('form5'), value: 'form-5' },
-        { checkbox: document.getElementById('form7'), value: 'form-7' },
-        { checkbox: document.getElementById('form8'), value: 'form-8' }
-    ];
+// function addSignatureToLastForm() {
+//     const selectedForms = [];
+//     const checkboxes = [
+//         { checkbox: document.getElementById('form1'), value: 'form-1' },
+//         { checkbox: document.getElementById('form2'), value: 'form-2' },
+//         { checkbox: document.getElementById('form3'), value: 'form-3' },
+//         { checkbox: document.getElementById('form4'), value: 'form-4' },
+//         { checkbox: document.getElementById('form5'), value: 'form-5' },
+//         { checkbox: document.getElementById('form7'), value: 'form-7' },
+//         { checkbox: document.getElementById('form8'), value: 'form-8' }
+//     ];
 
-    checkboxes.forEach(({ checkbox, value }) => {
-        if (checkbox && checkbox.checked) {
-            selectedForms.push(value);
-        }
-    });
+//     checkboxes.forEach(({ checkbox, value }) => {
+//         if (checkbox && checkbox.checked) {
+//             selectedForms.push(value);
+//         }
+//     });
 
-    if (selectedForms.length === 0) return;
+//     if (selectedForms.length === 0) return;
 
-    const lastForm = selectedForms[selectedForms.length - 1];
-    const signatureHtml = `
-        <div class="mb-6 border-t border-gray-900/10 pt-6">
-            <h2 class="text-lg font-semibold mb-4">Firma del Paciente</h2>
-            <div class="signature-container" style="width: 100%; height: 200px;">
-                <canvas id="signature-pad" class="border rounded-md" style="width: 100%; height: 100%;"></canvas>
-                <button type="button" id="clear" class="mt-2 rounded-md bg-red-500 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-red-400">
-                    Limpiar Firma
-                </button>
-            </div>
-        </div>
-    `;
+//     const lastForm = selectedForms[selectedForms.length - 1];
+//     const signatureHtml = `
+//         <div class="mb-6 border-t border-gray-900/10 pt-6">
+//             <h2 class="text-lg font-semibold mb-4">Firma del Paciente</h2>
+//             <div class="signature-container" style="width: 100%; height: 200px;">
+//                 <canvas id="signature-pad" class="border rounded-md" style="width: 100%; height: 100%;"></canvas>
+//                 <button type="button" id="clear" class="mt-2 rounded-md bg-red-500 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-red-400">
+//                     Limpiar Firma
+//                 </button>
+//             </div>
+//         </div>
+//     `;
 
-    try {
-        sessionStorage.setItem('signatureForm', lastForm);
-        sessionStorage.setItem('signatureHtml', signatureHtml);
-        console.log('Firma guardada para el formulario:', lastForm);
-    } catch (error) {
-        console.error('Error al guardar la firma:', error);
-    }
-}
+//     try {
+//         sessionStorage.setItem('signatureForm', lastForm);
+//         sessionStorage.setItem('signatureHtml', signatureHtml);
+//         console.log('Firma guardada para el formulario:', lastForm);
+//     } catch (error) {
+//         console.error('Error al guardar la firma:', error);
+//     }
+// }
 
 // Event listeners
 document.addEventListener('DOMContentLoaded', () => {
     const formContainer = document.getElementById('formContainer');
     if (formContainer) {
+        const iframes = formContainer.getElementsByTagName('iframe');
+        if (iframes.length > 0) {
+            // Inicializar el primer iframe
+            initializeSignaturePad(iframes[0]);
+        }
+
+        // Observador para iframes adicionales
         const observer = new MutationObserver((mutations) => {
             mutations.forEach((mutation) => {
                 if (mutation.addedNodes.length) {
-                    formManager.addSignaturePadToLastForm();
-                    // addSignaturePadToLastForm();
+                    const iframe = mutation.addedNodes[0];
+                    if (iframe.tagName === 'IFRAME') {
+                        initializeSignaturePad(iframe);
+                    }
                 }
             });
         });
 
         observer.observe(formContainer, { childList: true });
-        
-        // Intentar inicializar después de un breve retraso
-        setTimeout(formManager.addSignaturePadToLastForm, 1000);
     }
 });
 
@@ -325,7 +387,11 @@ document.addEventListener('DOMContentLoaded', function() {
     async function downloadForms(format) {
         if (format === 'pdf') {
             const { jsPDF } = window.jspdf;
-            const pdf = new jsPDF();
+            const pdf = new jsPDF({
+                orientation: 'portrait',
+                unit: 'pt',
+                format: 'a4'
+            });
             const formIframes = formContainer.getElementsByTagName('iframe');
     
             for (let i = 0; i < formIframes.length; i++) {
@@ -414,7 +480,7 @@ document.addEventListener('DOMContentLoaded', function() {
                             margin-top:0.4rem;
                         }
                     `;
-                    iframeDocument.head.appendChild(styleElement);
+                    // iframeDocument.head.appendChild(styleElement);
     
                     // Forzar la visibilidad del contenido del iframe
                     iframeDocument.body.style.display = 'block';
@@ -426,13 +492,30 @@ document.addEventListener('DOMContentLoaded', function() {
     
                     // Usar html2canvas para capturar el contenido del iframe
                     const canvas = await html2canvas(iframeDocument.body, {
-                        scale: 2,
+                        scale: 3,
                         useCORS: true,
                         logging: false,
                         backgroundColor: '#ffffff',
-                        windowWidth: iframe.clientWidth || 1000,
-                        windowHeight: iframe.clientHeight * 1.2 || 1414,
+                        windowWidth: iframeDocument.body.scrollWidth, // Usar scrollWidth en lugar de clientWidth
+                        windowHeight: iframeDocument.body.scrollHeight * 1.05, // Usar scrollHeight y dar un poco de margen extra
+                        width: iframeDocument.body.scrollWidth, // Especificar ancho explícitamente
+                        height: iframeDocument.body.scrollHeight, // Especificar altura explícitamente
+                        x: 0, // Comenzar desde el inicio
+                        y: 0, // Comenzar desde el inicio
+                        scrollX: 0,
+                        scrollY: 0,
+                        allowTaint: true, // Permitir captura de contenido cross-origin
+                        imageTimeout: 0, // Sin timeout para imagenes
+                        removeContainer: true, // Limpiar contenedores temporales
+
                         onclone: function(clonedDoc) {
+                            // Eliminar márgenes y padding en el documento clonado
+                            const clonedBody = clonedDoc.body;
+                            clonedBody.style.margin = '0';
+                            clonedBody.style.padding = '0';
+                            clonedBody.style.border = 'none';
+                            clonedBody.style.overflow = 'visible';
+
                             // Restaurar la firma en el documento clonado
                             if (signatureDataUrl) {
                                 const clonedSignature = clonedDoc.getElementById('signature-pad');
@@ -447,16 +530,18 @@ document.addEventListener('DOMContentLoaded', function() {
                     });
 
                     const imgData = canvas.toDataURL('image/jpeg', 1.0);
-    
+                    
+                    // Obtener el tamaño de página del PDF
+                    const pdfWidth = pdf.internal.pageSize.getWidth();
+                    const pdfHeight = pdf.internal.pageSize.getHeight();
+
                     // Añadir el contenido capturado al PDF
                     if (i > 0) {
                         pdf.addPage();
                     }
-                    const pdfWidth = pdf.internal.pageSize.getWidth();
-                    const pdfHeight = pdf.internal.pageSize.getHeight();
-                    pdf.addImage(imgData, 'JPEG', 0, 0, pdfWidth, pdfHeight);
-                    // pdf.addImage(imgData, 'PNG', 15, 40, 180, 160);
-
+                    
+                    // Ajustar imagen para eliminar márgenes y ocupar toda la página
+                    pdf.addImage(imgData, 'JPEG', 0, 0, pdfWidth, pdfHeight, '', 'NONE');
     
                     // Restaurar el iframe a su estado original
                     iframe.style.display = 'none';
