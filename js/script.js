@@ -3,24 +3,24 @@
 import { signaturePadManager } from './signaturePadManager.js';
 import { formManager } from './formManager.js';
 
-function loadSignaturePadLibrary(iframeDocument) {
-    return new Promise((resolve, reject) => {
-        // Verificar si SignaturePad ya está cargado
-        if (iframeDocument.defaultView.SignaturePad) {
-            return resolve(iframeDocument.defaultView.SignaturePad);
-        }
+// function loadSignaturePadLibrary(iframeDocument) {
+//     return new Promise((resolve, reject) => {
+//         // Verificar si SignaturePad ya está cargado
+//         if (iframeDocument.defaultView.SignaturePad) {
+//             return resolve(iframeDocument.defaultView.SignaturePad);
+//         }
 
-        const script = iframeDocument.createElement('script');
-        script.src = 'https://cdn.jsdelivr.net/npm/signature_pad@4.1.5/dist/signature_pad.umd.min.js';
-        script.onload = () => {
-            // Hacer SignaturePad disponible en el contexto del iframe
-            iframeDocument.defaultView.SignaturePad = window.SignaturePad;
-            resolve(window.SignaturePad);
-        };
-        script.onerror = reject;
-        iframeDocument.head.appendChild(script);
-    });
-}
+//         const script = iframeDocument.createElement('script');
+//         script.src = 'https://cdn.jsdelivr.net/npm/signature_pad@4.1.5/dist/signature_pad.umd.min.js';
+//         script.onload = () => {
+//             // Hacer SignaturePad disponible en el contexto del iframe
+//             iframeDocument.defaultView.SignaturePad = window.SignaturePad;
+//             resolve(window.SignaturePad);
+//         };
+//         script.onerror = reject;
+//         iframeDocument.head.appendChild(script);
+//     });
+// }
 
 // Primero, asegurémonos de que todas las funciones estén definidas antes de usarlas
 let signaturePadInstance = null;
@@ -158,30 +158,30 @@ function addTouchSupport(canvas) {
 // }
 
 // Event listeners
-document.addEventListener('DOMContentLoaded', () => {
-    const formContainer = document.getElementById('formContainer');
-    if (formContainer) {
-        const iframes = formContainer.getElementsByTagName('iframe');
-        if (iframes.length > 0) {
-            // Inicializar el primer iframe
-            initializeSignaturePad(iframes[0]);
-        }
+// document.addEventListener('DOMContentLoaded', () => {
+//     const formContainer = document.getElementById('formContainer');
+//     if (formContainer) {
+//         const iframes = formContainer.getElementsByTagName('iframe');
+//         if (iframes.length > 0) {
+//             // Inicializar el primer iframe
+//             initializeSignaturePad(iframes[0]);
+//         }
 
-        // Observador para iframes adicionales
-        const observer = new MutationObserver((mutations) => {
-            mutations.forEach((mutation) => {
-                if (mutation.addedNodes.length) {
-                    const iframe = mutation.addedNodes[0];
-                    if (iframe.tagName === 'IFRAME') {
-                        initializeSignaturePad(iframe);
-                    }
-                }
-            });
-        });
+//         // Observador para iframes adicionales
+//         const observer = new MutationObserver((mutations) => {
+//             mutations.forEach((mutation) => {
+//                 if (mutation.addedNodes.length) {
+//                     const iframe = mutation.addedNodes[0];
+//                     if (iframe.tagName === 'IFRAME') {
+//                         initializeSignaturePad(iframe);
+//                     }
+//                 }
+//             });
+//         });
 
-        observer.observe(formContainer, { childList: true });
-    }
-});
+//         observer.observe(formContainer, { childList: true });
+//     }
+// });
 
 // Funcionalidades de index.html
 document.addEventListener('DOMContentLoaded', function() {
@@ -415,7 +415,7 @@ document.addEventListener('DOMContentLoaded', function() {
                         // Verificar que el pad sea visible y que la firma haya sido realizada
                         console.log('Pad Instance:', padInstance);
                         // Usando el metodo isEmpty()
-                        console.log('Pad Instance isEmpty:', padInstance.isEmpty());
+                        // console.log('Pad Instance isEmpty:', padInstance.isEmpty());
                         
                         if (padInstance && !padInstance.isEmpty()) {
                             // Obtener la firma como DataURL
@@ -480,7 +480,7 @@ document.addEventListener('DOMContentLoaded', function() {
                             margin-top:0.4rem;
                         }
                     `;
-                    // iframeDocument.head.appendChild(styleElement);
+                    iframeDocument.head.appendChild(styleElement);
     
                     // Forzar la visibilidad del contenido del iframe
                     iframeDocument.body.style.display = 'block';
