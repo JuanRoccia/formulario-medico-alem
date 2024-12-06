@@ -27,7 +27,7 @@ document.addEventListener('DOMContentLoaded', () => {
         }
 
         // Llamar a setupForms
-        setupForms();
+        // setupForms();
 
         // Agregar lógica para generar PDFs
         const generatePDFButton = document.getElementById('generatePDFButton');
