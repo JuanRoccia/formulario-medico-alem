@@ -2,6 +2,7 @@
 
 import { signaturePadManager } from './signaturePadManager.js';
 import { formManager } from './formManager.js';
+// import { generatePdfWithPdfLib } from './pdfGenerator.js';
 
 // function loadSignaturePadLibrary(iframeDocument) {
 //     return new Promise((resolve, reject) => {
@@ -386,191 +387,148 @@ document.addEventListener('DOMContentLoaded', function() {
 
     async function downloadForms(format) {
         if (format === 'pdf') {
-            const { jsPDF } = window.jspdf;
-            const pdf = new jsPDF({
-                orientation: 'portrait',
-                unit: 'pt',
-                format: 'a4'
-            });
-            const formIframes = formContainer.getElementsByTagName('iframe');
-    
-            for (let i = 0; i < formIframes.length; i++) {
-                const iframe = formIframes[i];
-                
-                try {
-                    // Mostrar iframe temporalmente para capturarlo
-                    iframe.style.display = 'block';
-                    iframe.style.visibility = 'visible';
-    
-                    // Asegurar que el iframe está cargado y visible
-                    await ensureIframeLoaded(iframe);
-    
-                    const iframeDocument = iframe.contentDocument || iframe.contentWindow.document;
-                    const signaturePad = iframeDocument.getElementById('signature-pad');
-                    let signatureDataUrl = null;
-
-                    // Capturar la firma si el signaturePad esta presente
-                    if (signaturePad) {
-                        const padInstance = signaturePadManager.padInstance;
-                        // Verificar que el pad sea visible y que la firma haya sido realizada
-                        console.log('Pad Instance:', padInstance);
-                        // Usando el metodo isEmpty()
-                        // console.log('Pad Instance isEmpty:', padInstance.isEmpty());
-                        
-                        if (padInstance && !padInstance.isEmpty()) {
-                            // Obtener la firma como DataURL
-                            signatureDataUrl = padInstance.toDataURL();
-                            // Asegurar que la imagen de la firma se obtuvo correctamente
-                            console.log('Signature Data URL:', signatureDataUrl);
-                            
-                            const tempCanvas = iframeDocument.createElement('canvas');
-                            tempCanvas.width = signaturePad.width;
-                            tempCanvas.height = signaturePad.height;
-                            const tempCtx = tempCanvas.getContext('2d');
-                            
-                            // Asegurar fondo blanco
-                            tempCtx.fillStyle = 'white';
-                            tempCtx.fillRect(0, 0, tempCanvas.width, tempCanvas.height);
-                            
-                            // Dibujar la firma en el canvas temporal
-                            const img = new Image();
-                            await new Promise((resolve) => {
-                                img.onload = () => {
-                                    tempCtx.drawImage(img, 0, 0);
-                                    resolve();
-                                };
-                                img.src = signatureDataUrl;
-                            });
-
-                            // Reemplazar el canvas original con el canvas temporal (opcional)
-                            const originalCtx = signaturePad.getContext('2d');
-                            originalCtx.clearRect(0, 0, signaturePad.width, signaturePad.height);
-                            originalCtx.drawImage(tempCanvas, 0, 0);
-                        }
-                    }
-
-                    // Aplicar estilos para mejorar la captura
-                    const styleElement = iframeDocument.createElement('style');
-                    styleElement.textContent = `
-                        body { 
-                            font-family: Arial, sans-serif;
-                            display: block !important;
-                            opacity: 1 !important;
-                            visibility: visible !important;
-                        }
-                        * { max-width: 100%; box-sizing: border-box; }
-                        #signature-pad {
-                            display: block !important;
-                            visibility: visible !important;
-                            opacity: 1 !important;
-                            background-color: white !important;
-                        }
-                        .signature-container {
-                            display: block !important;
-                            visibility: visible !important;
-                            opacity: 1 !important;
-                            position: relative !important;
-                            background-color: white !important;
-                        }
-                        input, textarea {
-                            line-height: 2rem!important;
-                            margin-top: 1rem!important;
-                        }
-                        .ial-ot{
-                            margin-top:0.4rem;
-                        }
-                    `;
-                    iframeDocument.head.appendChild(styleElement);
-    
-                    // Forzar la visibilidad del contenido del iframe
-                    iframeDocument.body.style.display = 'block';
-                    iframeDocument.body.style.opacity = '1';
-                    iframeDocument.body.style.visibility = 'visible';
-    
-                    // Esperar un momento para que los estilos se apliquen
-                    await new Promise(resolve => setTimeout(resolve, 1000));
-    
-                    // Usar html2canvas para capturar el contenido del iframe
-                    const canvas = await html2canvas(iframeDocument.body, {
-                        scale: 3,
-                        useCORS: true,
-                        logging: false,
-                        backgroundColor: '#ffffff',
-                        windowWidth: iframeDocument.body.scrollWidth, // Usar scrollWidth en lugar de clientWidth
-                        windowHeight: iframeDocument.body.scrollHeight * 1.05, // Usar scrollHeight y dar un poco de margen extra
-                        width: iframeDocument.body.scrollWidth, // Especificar ancho explícitamente
-                        height: iframeDocument.body.scrollHeight, // Especificar altura explícitamente
-                        x: 0, // Comenzar desde el inicio
-                        y: 0, // Comenzar desde el inicio
-                        scrollX: 0,
-                        scrollY: 0,
-                        allowTaint: true, // Permitir captura de contenido cross-origin
-                        imageTimeout: 0, // Sin timeout para imagenes
-                        removeContainer: true, // Limpiar contenedores temporales
-
-                        onclone: function(clonedDoc) {
-                            // Eliminar márgenes y padding en el documento clonado
-                            const clonedBody = clonedDoc.body;
-                            clonedBody.style.margin = '0';
-                            clonedBody.style.padding = '0';
-                            clonedBody.style.border = 'none';
-                            clonedBody.style.overflow = 'visible';
-
-                            // Restaurar la firma en el documento clonado
-                            if (signatureDataUrl) {
-                                const clonedSignature = clonedDoc.getElementById('signature-pad');
-                                if (clonedSignature) {
-                                    const ctx = clonedSignature.getContext('2d');
-                                    const img = new Image();
-                                    img.src = signatureDataUrl;
-                                    ctx.drawImage(img, 0, 0);
-                                }
-                            }
-                        }
-                    });
-
-                    const imgData = canvas.toDataURL('image/jpeg', 1.0);
-                    
-                    // Obtener el tamaño de página del PDF
-                    const pdfWidth = pdf.internal.pageSize.getWidth();
-                    const pdfHeight = pdf.internal.pageSize.getHeight();
-
-                    // Añadir el contenido capturado al PDF
-                    if (i > 0) {
-                        pdf.addPage();
-                    }
-                    
-                    // Ajustar imagen para eliminar márgenes y ocupar toda la página
-                    pdf.addImage(imgData, 'JPEG', 0, 0, pdfWidth, pdfHeight, '', 'NONE');
-    
-                    // Restaurar el iframe a su estado original
-                    iframe.style.display = 'none';
-                    iframe.style.visibility = 'hidden';
-
-                    // Restaurar la firma en el canvas
-                    if (signatureDataUrl && signaturePad) {
-                        const img = new Image();
-                        img.src = signatureDataUrl;
-                        const ctx = signaturePad.getContext('2d');
-                        ctx.clearRect(0, 0, signaturePad.width, signaturePad.height);
-                        ctx.drawImage(img, 0, 0);
-                    }
-    
-                } catch (error) {
-                    console.error(`Error al capturar el contenido del formulario ${i + 1}:`, error);
-                    throw new Error(`Error al capturar el contenido del formulario ${i + 1}. Por favor, intente de nuevo.`);
+            try {
+                const { pdfUrl, pdfBlob } = await generatePdfWithPdfLib(formContainer);
+                if (pdfUrl && pdfBlob) {
+                    showPdfModal(pdfUrl, 'formularios_completos.pdf', pdfBlob);
+                } else {
+                    throw new Error('No se pudo generar el PDF');
                 }
+            } catch (error) {
+                console.error('Error al generar PDF:', error);
+                alert('Hubo un problema al generar los PDFs. Por favor, inténtelo de nuevo.');
             }
-
-            const pdfBlob = pdf.output('blob');
-            const fileName = 'formularios_completos.pdf';
-            const pdfUrl = URL.createObjectURL(pdfBlob);
-
-            showPdfModal(pdfUrl, fileName, pdfBlob);
         } else {
             throw new Error('Formato no soportado');
         }
     }
+    
+    async function generatePdfWithPdfLib(formContainer) {
+        const pdfDoc = await PDFLib.PDFDocument.create();
+        const formIframes = formContainer.getElementsByTagName('iframe');
+        
+        for (let i = 0; i < formIframes.length; i++) {
+            const iframe = formIframes[i];
+    
+            try {
+                // Debug: Verificar el estado del iframe
+                console.log(`Procesando iframe ${i + 1}:`, {
+                    src: iframe.src,
+                    display: iframe.style.display,
+                    visibility: iframe.style.visibility,
+                    readyState: iframe.contentDocument ? iframe.contentDocument.readyState : 'documento no accesible'
+                });
+    
+                // Temporal fix: Forzar visibilidad para captura
+                const originalDisplay = iframe.style.display;
+                iframe.style.display = 'block';
+                iframe.style.opacity = '1';
+                iframe.style.position = 'absolute';
+                iframe.style.top = '-9999px';
+                iframe.style.left = '-9999px';
+                iframe.style.width = '100%';
+                iframe.style.height = 'auto';
+    
+                // Asegurar que el iframe está completamente cargado
+                await new Promise((resolve) => {
+                    if (iframe.contentDocument && iframe.contentDocument.readyState === 'complete') {
+                        resolve();
+                    } else {
+                        iframe.onload = resolve;
+                    }
+                });
+    
+                // Esperar un momento adicional para asegurar que el contenido esté renderizado
+                await new Promise(resolve => setTimeout(resolve, 500));
+    
+                // Debug: Verificar contenido del iframe
+                const iframeDocument = iframe.contentDocument || iframe.contentWindow.document;
+                if (!iframeDocument) {
+                    console.warn(`No se puede acceder al documento del iframe ${i + 1}`);
+                    // Restaurar estilo original
+                    iframe.style.display = originalDisplay;
+                    continue;
+                }
+    
+                // Capturar el contenido
+                const canvasElement = await html2canvas(iframeDocument.body, {
+                    scale: 2,
+                    useCORS: true,
+                    backgroundColor: '#ffffff',
+                    logging: true
+                });
+    
+                // Restaurar estilo original
+                iframe.style.display = originalDisplay;
+                iframe.style.position = '';
+                iframe.style.top = '';
+                iframe.style.left = '';
+                iframe.style.width = '';
+                iframe.style.height = '';
+    
+                // Convertir canvas a imagen embebida en el PDF
+                const imgBlob = await new Promise((resolve) => canvasElement.toBlob(resolve, 'image/png'));
+                
+                // Verificar que el blob no sea nulo
+                if (!imgBlob) {
+                    console.warn(`No se pudo generar la imagen para el formulario ${i + 1}`);
+                    continue;
+                }
+    
+                const imgBuffer = await imgBlob.arrayBuffer();
+                const img = await pdfDoc.embedPng(imgBuffer);
+    
+                // Crear una página nueva y ajustar la imagen
+                const page = pdfDoc.addPage();
+                const { width, height } = page.getSize();
+                const imgAspectRatio = img.width / img.height;
+                const pageAspectRatio = width / height;
+    
+                let drawWidth, drawHeight, x, y;
+                if (imgAspectRatio > pageAspectRatio) {
+                    // Escalar por ancho
+                    drawWidth = width;
+                    drawHeight = width / imgAspectRatio;
+                    x = 0;
+                    y = (height - drawHeight) / 2;
+                } else {
+                    // Escalar por altura
+                    drawHeight = height;
+                    drawWidth = height * imgAspectRatio;
+                    x = (width - drawWidth) / 2;
+                    y = 0;
+                }
+    
+                page.drawImage(img, {
+                    x: x,
+                    y: y,
+                    width: drawWidth,
+                    height: drawHeight,
+                });
+    
+            } catch (error) {
+                console.error(`Error completo al procesar formulario ${i + 1}:`, error);
+                continue;
+            }
+        }
+    
+        // Guardar el PDF
+        const pdfBytes = await pdfDoc.save();
+        const blob = new Blob([pdfBytes], { type: 'application/pdf' });
+        const url = URL.createObjectURL(blob);
+    
+        return { pdfUrl: url, pdfBlob: blob };
+    }
+    
+    // function showPdfModal(url, filename, blob) {
+    //     // Lógica para mostrar o descargar el PDF
+    //     const a = document.createElement('a');
+    //     a.href = url;
+    //     a.download = filename;
+    //     document.body.appendChild(a);
+    //     a.click();
+    //     document.body.removeChild(a);
+    // }    
 
     async function sendPdfViaWhatsApp(pdfBlob, fileName) {
         const WHATSAPP_CONFIG = {
@@ -794,18 +752,31 @@ document.addEventListener('DOMContentLoaded', function() {
     }
     
     // Función auxiliar para asegurar que el iframe está cargado y visible
+    // function ensureIframeLoaded(iframe) {
+    //     return new Promise((resolve, reject) => {
+    //         if (iframe.contentDocument && iframe.contentDocument.readyState === 'complete') {
+    //             resolve();
+    //         } else {
+    //             iframe.onload = resolve;
+    //             iframe.onerror = reject;
+                
+    //             // Forzar la recarga del iframe si no está visible o no está cargado
+    //             if (iframe.style.display === 'none' || iframe.style.visibility === 'hidden' || !iframe.contentDocument || iframe.contentDocument.readyState !== 'complete') {
+    //                 iframe.src = iframe.src;
+    //             }
+    //         }
+    //     });
+    // }
+
+    // Validar que el contenido del iframe esté completamente cargado
     function ensureIframeLoaded(iframe) {
         return new Promise((resolve, reject) => {
-            if (iframe.contentDocument && iframe.contentDocument.readyState === 'complete') {
+            const iframeDocument = iframe.contentDocument || iframe.contentWindow.document;
+            if (iframeDocument && iframeDocument.readyState === 'complete') {
                 resolve();
             } else {
-                iframe.onload = resolve;
-                iframe.onerror = reject;
-                
-                // Forzar la recarga del iframe si no está visible o no está cargado
-                if (iframe.style.display === 'none' || iframe.style.visibility === 'hidden' || !iframe.contentDocument || iframe.contentDocument.readyState !== 'complete') {
-                    iframe.src = iframe.src;
-                }
+                iframe.onload = () => resolve();
+                iframe.onerror = () => reject(new Error(`El iframe con ID ${iframe.id} no pudo cargarse.`));
             }
         });
     }

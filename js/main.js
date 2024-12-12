@@ -1,7 +1,7 @@
 import { dashboardManager } from './dashboardManager.js';
 import { signaturePadManager } from './signaturePadManager.js';
 import { formManager } from './formManager.js';
-import { pdfGenerator } from './pdfGenerator.js';
+import { pdfGenerator } from './pdfGenerator-old-version.js';
 
 document.addEventListener('DOMContentLoaded', () => {
     // Inicializar gestores según la página
