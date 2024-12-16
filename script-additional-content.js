@@ -1,6 +1,6 @@
 // Funcion para el manejo de contenido adicional en formularios
 document.addEventListener('DOMContentLoaded', () => {
-    function toggleAdditionalContent(radioName, contentId) {
+    /*function toggleAdditionalContent(radioName, contentId) {
         const radios = document.querySelectorAll(`input[name="${radioName}"]`);
         
         // Asegurarse de que encuentra elementos
@@ -8,101 +8,240 @@ document.addEventListener('DOMContentLoaded', () => {
             console.warn(`No se encontraron inputs con el nombre ${radioName}`);
             return;
         }
-        
+
         radios.forEach((elem) => {
             elem.addEventListener('change', function(event) {
                 console.log(`Cambio detectado en ${radioName}:`, event.target.value);
                 
                 const additionalContent = document.getElementById(contentId);
+                const inputs = additionalContent.querySelectorAll('input');
                 
-                // Verificamos si el valor del radio seleccionado es 'si'
-                if (event.target.value === 'si') {
+                if (event.target.value === 'si' || event.target.value === 'mujer' || (event.target.checked && event.target.value === 'on')) {
                     additionalContent.classList.remove('hidden');
-                }
-                else if (event.target.checked && event.target.value == 'on'){
-                    additionalContent.classList.remove('hidden');
+                    inputs.forEach(input => input.setAttribute('required', ''));
                 } else {
                     additionalContent.classList.add('hidden');
+                    inputs.forEach(input => input.removeAttribute('required'));
+                }
+            });
+        });
+    }*/
+   
+
+    //funciona bien
+    /*function toggleAdditionalContent(radioName, contentId) {
+        const radios = document.querySelectorAll(`input[name="${radioName}"]`);
+        
+        if (radios.length === 0) {
+            console.warn(`No se encontraron inputs con el nombre ${radioName}`);
+            return;
+        }
+    
+        radios.forEach((elem) => {
+            elem.addEventListener('change', function(event) {
+                console.log(`Cambio detectado en ${radioName}:`, event.target.value);
+                
+                const additionalContent = document.getElementById(contentId);
+                const inputs = additionalContent.querySelectorAll('input');
+    
+                if (event.target.value === 'si' || event.target.value === 'mujer' || (event.target.checked && event.target.value === 'on')) {
+                    additionalContent.classList.remove('hidden');
+                    
+                    if (!additionalContent.classList.contains('checkbox-group')) {
+                        inputs.forEach((input, index) => {
+                            if (!input.classList.contains('required-exception')) {
+                                if (input.type === 'radio') {
+                                    input.required = index === 0;
+                                } else {
+                                    input.setAttribute('required', '');
+                                }
+                            }
+                        });
+                    }
+                } else {
+                    additionalContent.classList.add('hidden');
+                    
+                    if (!additionalContent.classList.contains('checkbox-group')) {
+                        inputs.forEach(input => {
+                            if (!input.classList.contains('required-exception')) {
+                                input.removeAttribute('required');
+                            }
+                        });
+                    }
+                }
+            });
+        });
+    }*/
+
+    function toggleAdditionalContent(radioName, contentId) {
+        const radios = document.querySelectorAll(`input[name="${radioName}"]`);
+        
+        if (radios.length === 0) {
+            console.warn(`No se encontraron inputs con el nombre ${radioName}`);
+            return;
+        }
+    
+        radios.forEach((elem) => {
+            elem.addEventListener('change', function(event) {
+                console.log(`Cambio detectado en ${radioName}:`, event.target.value);
+                
+                const additionalContent = document.getElementById(contentId);
+                const inputs = additionalContent.querySelectorAll('input');
+    
+                if (event.target.value === 'si' || event.target.value === 'mujer' || (event.target.checked && event.target.value === 'on')) {
+                    additionalContent.classList.remove('hidden');
+                    
+                    if (additionalContent.classList.contains('checkbox-group')) {
+                        // Manejar grupo de checkboxes
+                        const checkboxes = additionalContent.querySelectorAll('input[type="checkbox"]');
+                        
+                        checkboxes.forEach(checkbox => {
+                            // Buscar inputs hermanos siguientes al checkbox
+                            const associatedInputs = [];
+                            let nextSibling = checkbox.parentElement.nextElementSibling;
+                            while (nextSibling && nextSibling.tagName !== 'LABEL') {
+                                if (nextSibling.tagName === 'INPUT') {
+                                    associatedInputs.push(nextSibling);
+                                }
+                                nextSibling = nextSibling.nextElementSibling;
+                            }
+                            
+                            checkbox.addEventListener('change', function() {
+                                if (this.checked) {
+                                    associatedInputs.forEach(input => {
+                                        if (!input.classList.contains('required-exception')) {
+                                            input.setAttribute('required', '');
+                                        }
+                                    });
+                                } else {
+                                    associatedInputs.forEach(input => {
+                                        if (!input.classList.contains('required-exception')) {
+                                            input.removeAttribute('required');
+                                        }
+                                    });
+                                }
+                            });
+    
+                            // Trigger inicial basado en el estado actual del checkbox
+                            if (checkbox.checked) {
+                                associatedInputs.forEach(input => {
+                                    if (!input.classList.contains('required-exception')) {
+                                        input.setAttribute('required', '');
+                                    }
+                                });
+                            }
+                        });
+                    } else {
+                        // Lógica existente para contenidos que no son grupos de checkbox
+                        inputs.forEach((input, index) => {
+                            if (!input.classList.contains('required-exception')) {
+                                if (input.type === 'radio') {
+                                    input.required = index === 0;
+                                } else {
+                                    input.setAttribute('required', '');
+                                }
+                            }
+                        });
+                    }
+                } else {
+                    additionalContent.classList.add('hidden');
+                    
+                    if (additionalContent.classList.contains('checkbox-group')) {
+                        // Remover required de todos los inputs en el grupo de checkboxes
+                        const inputs = additionalContent.querySelectorAll('input:not([type="checkbox"])');
+                        inputs.forEach(input => {
+                            if (!input.classList.contains('required-exception')) {
+                                input.removeAttribute('required');
+                            }
+                        });
+                    } else {
+                        inputs.forEach(input => {
+                            if (!input.classList.contains('required-exception')) {
+                                input.removeAttribute('required');
+                            }
+                        });
+                    }
                 }
             });
         });
     }
 
     // Formulario 2
-    toggleAdditionalContent('pregunta-dolor', 'additional-dolor');
-    toggleAdditionalContent('pregunta-cirugia', 'additional-content');
-    toggleAdditionalContent('pregunta-medicacion', 'additional-medicacion');
-    toggleAdditionalContent('pregunta-oncologica', 'additional-onc');
-    toggleAdditionalContent('pregunta-deporte', 'additional-deporte');
+    toggleAdditionalContent('Sexo', 'preg-additional-embarazo');
+    toggleAdditionalContent('Pregunta dolor', 'Seleccione el tipo de dolor');
+    toggleAdditionalContent('Pregunta cirugía', 'additional-content');
+    toggleAdditionalContent('Pregunta medicación', 'additional-medicacion');
+    toggleAdditionalContent('Pregunta antecedentes oncológicos personales', 'additional-onc');
+    toggleAdditionalContent('Pregunta deporte', 'additional-deporte');
     // Formulario 3
-    toggleAdditionalContent('traumatismo', 'additional-traumatismo');
-    toggleAdditionalContent('problemas al nacer', 'additional-problemas');
-    toggleAdditionalContent('cirugias-biopsias', 'additional-cirugias');
-    toggleAdditionalContent('pregunta-odontologica', 'additional-odontologica');
-    toggleAdditionalContent('pregunta-oncologica', 'additional-oncologica');
-    toggleAdditionalContent('radioterapia-f3', 'additional-radioterapia-f3');
-    toggleAdditionalContent('quimioterapia-f3', 'additional-quimioterapia-f3');
-    toggleAdditionalContent('medicacion-relacionada', 'medicacion-relacionada');
-    toggleAdditionalContent('prolactina', 'prolactina');
+    toggleAdditionalContent('Pregunta antecedentes de traumatismos', 'additional-traumatismo');
+    toggleAdditionalContent('Pregunta antecedentes de problemas al nacer', 'additional-problemas');
+    toggleAdditionalContent('Pregunta cirugias y/o biopsias', 'additional-cirugias');
+    toggleAdditionalContent('Pregunta antecedentes odontológicos', 'additional-odontologica');
+    toggleAdditionalContent('Antecedentes oncológicos personales', 'additional-oncologica');
+    toggleAdditionalContent('Radioterapia', 'additional-radioterapia-f3');
+    toggleAdditionalContent('Quimioterapia', 'additional-quimioterapia-f3');
+    toggleAdditionalContent('Pregunta medicación relacionada', 'medicacion-relacionada');
+    toggleAdditionalContent('Pregunta prolactina', 'prolactina');
     // Formulario 4
-    toggleAdditionalContent('estudios_previos', 'additional-estudios');
-    toggleAdditionalContent('estudio_mamografia_f4', 'fecha_mamografia_f4');
-    toggleAdditionalContent('estudio_ecografia_f4', 'fecha_ecografia_f4');
-    toggleAdditionalContent('estudio_resonancia_f4', 'fecha_resonancia_f4');
-    toggleAdditionalContent('historia_familiar', 'additional-historia-familiar');
-    toggleAdditionalContent('cirugias_mamas', 'additional-cirugias');
-    toggleAdditionalContent('biopsia_percutanea', 'additional-biopsia');
-    toggleAdditionalContent('tratamiento_cancer', 'additional-tratamiento');
-    toggleAdditionalContent('cirugia_mastoplastia', 'cirugia_mastoplastia_f4');
-    toggleAdditionalContent('cirugia_biopsia', 'fecha_biopsia_f4');
-    toggleAdditionalContent('cirugia_segmentectomia', 'fecha_segmentectomia_f4');
-    toggleAdditionalContent('cirugia_mastectomia', 'fecha_mastectomia_f4');
-    toggleAdditionalContent('cirugia_reconstruccion', 'reconstrucción_f4');
-    toggleAdditionalContent('quimioterapia_f4', 'additional-quimioterapia-f4');
-    toggleAdditionalContent('radioterapia_f4', 'additional-radioterapia-f4');
-    toggleAdditionalContent('tamoxifeno_f4', 'addition_tamoxifeno_f4');
-    toggleAdditionalContent('anticonceptivos_f4', 'addition_anticonceptivos_f4');
-    toggleAdditionalContent('terapia_hormonal_f4', 'additional_terapia_hormonal_f4');
-    toggleAdditionalContent('cirugia_mastoplastia', 'additional-mastoplastia');
-    toggleAdditionalContent('marcadores_sericos', 'additional-marcadores-sericos');
+    toggleAdditionalContent('Pregunta estudios previos', 'Seleccione estudio previo de la zona a estudiar');
+    toggleAdditionalContent('Opción estudio mamografía', 'fecha_mamografia_f4');
+    toggleAdditionalContent('Opción estudio ecografía', 'fecha_ecografia_f4');
+    toggleAdditionalContent('Opción estudio resonancia', 'fecha_resonancia_f4');
+    toggleAdditionalContent('Antecedente familiar de cancer', 'Seleccione familiar afectado de cáncer');
+    toggleAdditionalContent('Pregunta cirugías en mamas', 'Seleccione cirugía realizada en mamas');
+    toggleAdditionalContent('Pregunta biopsia percutanea', 'additional-biopsia');
+    toggleAdditionalContent('Pregunta tratamiento de cancer', 'additional-tratamiento');
+    toggleAdditionalContent('Opción cirugía mastoplastía', 'Seleccione tipo de mastoplastía');
+    toggleAdditionalContent('Opción biopsia quirúrgica', 'Opción cirugía segmentectomía');
+    toggleAdditionalContent('Opción cirugía segmentectomía', 'fecha_segmentectomia_f4');
+    toggleAdditionalContent('Opción cirugía mastectomía', 'fecha_mastectomia_f4');
+    toggleAdditionalContent('Opción cirugia reconstrucción', 'Seleccione tipo de reconstrucción');
+    toggleAdditionalContent('Pregunta quimioterapia', 'additional-quimioterapia-f4');
+    toggleAdditionalContent('Pregunta radioterapia', 'additional-radioterapia-f4');
+    toggleAdditionalContent('Pregunta tamoxifeno', 'addition_tamoxifeno_f4');
+    toggleAdditionalContent('Pregunta anticonceptivos', 'addition_anticonceptivos_f4');
+    toggleAdditionalContent('Pregunta terapia hormonal', 'additional_terapia_hormonal_f4');
+    toggleAdditionalContent('Opción cirugía mastoplastía', 'additional-mastoplastia');
+    toggleAdditionalContent('Pregunta marcadores séricos', 'additional-marcadores-sericos');
     // Formulario 5
-    toggleAdditionalContent('sintomas_abdominales', 'sintomas-adicionales');
-    toggleAdditionalContent('infecciones_recientes', 'infecciones-adicionales');
-    toggleAdditionalContent('otras_enfermedades', 'enfermedades-adicionales');
-    toggleAdditionalContent('hospitalizaciones_previas', 'hospitalizaciones-adicionales');
-    toggleAdditionalContent('cirugias_anteriores', 'cirugias-adicionales');
-    toggleAdditionalContent('pga-pr-menst', 'pga-mns-adicional');
-    toggleAdditionalContent('pr-menopausia', 'pg-mnp-adicional');
-    toggleAdditionalContent('pr-metodo-anticonceptivo', 'pg-mntc-adicional');
-    toggleAdditionalContent('pr-cesareas', 'pg-mcsa-adicional');
-    toggleAdditionalContent('pr-intervencion-q-ginecologica', 'pg-intva-adicional');
-    toggleAdditionalContent('enfermedades_familiares', 'enfermedades-familiares-adicionales');
-    toggleAdditionalContent('diagnostico_cancer', 'cancer-adicional');
-    toggleAdditionalContent('cirugia_cancer', 'cirugia-cancer-adicional');
-    toggleAdditionalContent('pr-pga-tratamiento-cc', 'pga-tdc-adicional');
-    toggleAdditionalContent('quimioterapia', 'quimioterapia-adicional');
-    toggleAdditionalContent('radioterapia', 'radioterapia-adicional');
-    toggleAdditionalContent('biopsia_reciente', 'biopsia-adicional');
-    toggleAdditionalContent('pga_marcadores_sericos', 'pga-marcadores-adicional');
+    toggleAdditionalContent('Pregunta sintomas abdominales', 'sintomas-adicionales');
+    toggleAdditionalContent('Pregunta infecciones recientes', 'infecciones-adicionales');
+    //toggleAdditionalContent('otras_enfermedades', 'enfermedades-adicionales');
+    toggleAdditionalContent('Pregunta hospitalizaciones previas', 'hospitalizaciones-adicionales');
+    toggleAdditionalContent('Pregunta cirugias anteriores', 'cirugias-adicionales');
+    toggleAdditionalContent('Pregunta menstruación', 'pga-mns-adicional');
+    toggleAdditionalContent('Pregunta menopausia', 'pg-mnp-adicional');
+    toggleAdditionalContent('Pregunta método anticonceptivo', 'pg-mntc-adicional');
+    toggleAdditionalContent('Pregunta cesareas', 'pg-mcsa-adicional');
+    toggleAdditionalContent('Pregunta intervención ginecológica', 'pg-intva-adicional');
+    toggleAdditionalContent('Pregunta antecedentes familiares de cáncer', 'enfermedades-familiares-adicionales');
+    toggleAdditionalContent('Pregunta antecedentes personales de cáncer', 'cancer-adicional');
+    toggleAdditionalContent('Pregunta intervención quirúrgica cáncer', 'cirugia-cancer-adicional');
+    toggleAdditionalContent('Pregunta tratamiento de cáncer', 'pga-tdc-adicional');
+    toggleAdditionalContent('Pregunta tratamiento quimioterapia', 'quimioterapia-adicional');
+    toggleAdditionalContent('Pregunta tratamiento radioterapia', 'radioterapia-adicional');
+    toggleAdditionalContent('Pregunta biopsia reciente', 'biopsia-adicional');
+    toggleAdditionalContent('Pregunta marcadores séricos elevados', 'pga-marcadores-adicional');
     //Form 6 Descartado
-    toggleAdditionalContent('pr-pg-antecendente-familiar', 'pg-afdc-adicional');
+    /*toggleAdditionalContent('pr-pg-antecendente-familiar', 'pg-afdc-adicional');
     toggleAdditionalContent('pr-pg-antecedente-personal', 'pg-apdc-adicional');
     toggleAdditionalContent('pr-pg-intervencion-cc', 'pg-iqdc-adicional');
-    toggleAdditionalContent('pr-pg-tratamiento-cc', 'pr-pg-tratamiento-cc');
+    toggleAdditionalContent('pr-pg-tratamiento-cc', 'pr-pg-tratamiento-cc');*/
     //Form 7
-    toggleAdditionalContent('pr-rpfst', 'rpfst-adicional');
-    toggleAdditionalContent('pr-pm-ciguria-biopsia', 'pm-cbade-adicional');
-    toggleAdditionalContent('pr-pm-cirugia-previa', 'pm-tacpe-adicional');
-    toggleAdditionalContent('pr-pm-antecedente-familiar', 'pm-afdcm-adicional');
-    toggleAdditionalContent('pr-pm-antecedente-personal', 'pm-apdcm-adicional');
-    toggleAdditionalContent('pr-pm-intervencion-cc', 'pm-iqdcm-adicional');
-    toggleAdditionalContent('pr-pm-tratamiento-cc', 'pm-tdcm-adicional');
-    toggleAdditionalContent('pmr-quimioterapia', 'pmr-quimioterapia-adicional');
-    toggleAdditionalContent('pmr-radioterapia', 'pmr-radioterapia-adicional');
-    toggleAdditionalContent('pmr_marcadores_sericos', 'pmr-marcadores-adicional');
+    toggleAdditionalContent('Pregunta pruebas de PSA', 'rpfst-adicional');
+    toggleAdditionalContent('Pregunta cirugía previa', 'pm-tacpe-adicional');
+    toggleAdditionalContent('Pregunta antecedente familiar de cáncer', 'pm-afdcm-adicional');
+    toggleAdditionalContent('Pregunta antecedente personal de cáncer', 'pm-apdcm-adicional');
+    toggleAdditionalContent('Pregunta intervención quirúrgica de su cáncer', 'pm-iqdcm-adicional');
+    toggleAdditionalContent('Pregunta tratamiento de cáncer', 'pm-tdcm-adicional');
+    toggleAdditionalContent('Pregunta de quimioterapia', 'pmr-quimioterapia-adicional');
+    toggleAdditionalContent('Pregunta de radioterapia', 'pmr-radioterapia-adicional');
+    toggleAdditionalContent('Pregunta cirguías o biopsias', 'pm-cbade-adicional');
+    toggleAdditionalContent('Pregunta de marcadores séricos', 'pmr-marcadores-adicional');
     //Form 8
-    toggleAdditionalContent('pr-odontologicos', 'odontologicos-adicional');
-    toggleAdditionalContent('pr-mandibula', 'mandibula-adicional');
-    toggleAdditionalContent('pr-atm-cirugia-zona', 'atm-cpae-adicional');
-    toggleAdditionalContent('pr-atm-antecedente-personal', 'atm-tapdc-adicional');
+    toggleAdditionalContent('Pregunta procedimientos odontológicos', 'odontologicos-adicional');
+    toggleAdditionalContent('Pregunta anormalidades y/o molestias en la mandibula', 'mandibula-adicional');
+    toggleAdditionalContent('Pregunta cirugía en la zona a estudiar', 'atm-cpae-adicional');
+    toggleAdditionalContent('Pregunta antecedentes personales cáncer', 'atm-tapdc-adicional');
 });

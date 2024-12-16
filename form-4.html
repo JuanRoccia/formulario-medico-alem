@@ -41,83 +41,83 @@
                 <p class="mb-2">¿Tiene estuidios previos de la zona a estudiar?</p>
                 <div class="flex items-center space-x-4 mb-4">
                     <label class="inline-flex items-center">
-                        <input type="radio" class="form-radio" name="estudios_previos" value="si">
+                        <input type="radio" class="form-radio" name="Pregunta estudios previos" value="si" required>
                         <span class="ml-2">Sí</span>
                     </label>
                     <label class="inline-flex items-center">
-                        <input type="radio" class="form-radio" name="estudios_previos" value="no">
+                        <input type="radio" class="form-radio" name="Pregunta estudios previos" value="no">
                         <span class="ml-2">No</span>
                     </label>
                 </div>
                 <!-- Si realizo estudios mamarios -->
-                <div id="additional-estudios" class="hidden space-y-4 ml-2 mb-4">
+                <div id="Seleccione estudio previo de la zona a estudiar" class="checkbox-group hidden space-y-4 ml-2 mb-4">
                     <div class="space-x-2 space-y-2">
                         <label>
-                            <input type="checkbox" class="form-checkbox" name="estudio_mamografia_f4">
+                            <input type="checkbox" class="form-checkbox" name="Opción estudio mamografía">
                             <span class="ml-2">Mamografía</span>
                         </label>
-                        <input type="date" class="form-input block w-auto text-slate-600 hidden" id="fecha_mamografia_f4" name="fecha_mamografia_form4" placeholder="DD/MM/AAAA" pattern="\d{2}/\d{2}/\d{4}">
+                        <input type="date" class="form-input block w-auto text-slate-600 hidden" id="fecha_mamografia_f4" name="Fecha mamografía" placeholder="DD/MM/AAAA" pattern="\d{2}/\d{2}/\d{4}">
                     </div>
                     <div class="space-x-2 space-y-2">
                         <label>
-                            <input type="checkbox" class="form-checkbox" name="estudio_ecografia_f4">
+                            <input type="checkbox" class="form-checkbox" name="Opción estudio ecografía">
                             <span class="ml-2">Ecografía</span>
                         </label>
-                        <input type="date" class="form-input block w-auto text-slate-600 hidden" id="fecha_ecografia_f4" name="fecha_ecografia_form4" placeholder="DD/MM/AAAA" pattern="\d{2}/\d{2}/\d{4}">
+                        <input type="date" class="form-input block w-auto text-slate-600 hidden" id="fecha_ecografia_f4" name="Fecha ecografía" placeholder="DD/MM/AAAA" pattern="\d{2}/\d{2}/\d{4}">
                     </div>
                     <div class="space-x-2 space-y-2">
                         <label>
-                            <input type="checkbox" class="form-checkbox" name="estudio_resonancia_f4">
+                            <input type="checkbox" class="form-checkbox" name="Opción estudio resonancia">
                             <span class="ml-2">Resonancia</span>
                         </label>
-                        <input type="date" class="form-input block w-auto text-slate-600 hidden" id="fecha_resonancia_f4" name="fecha_resonancia_form4" placeholder="DD/MM/AAAA" pattern="\d{2}/\d{2}/\d{4}">
+                        <input type="date" class="form-input block w-auto text-slate-600 hidden" id="fecha_resonancia_f4" name="Fecha resonancia" placeholder="DD/MM/AAAA" pattern="\d{2}/\d{2}/\d{4}">
                     </div>
                     <div class="mt-4 space-y-2">
                         <label>
                             <span>Adjuntar o llevar estudios previos:</span>
                         </label>
-                        <input type="file" class="form-input w-full text-slate-600" name="archivo_estudios" multiple>
+                        <input type="file" class="form-input w-full text-slate-600 required-exception" name="archivo_estudios" multiple>
                     </div>
                 </div>
                 <!-- Historia Familiar -->
                 <div class="mt-6">
-                    <p class="mb-2 ">¿Presenta historia familiar de cáncer de mama u otras enfermedades oncológicas?</p>
+                    <p class="mb-2 ">¿Presenta antecedente familiar de cáncer de mama u otras enfermedades oncológicas?</p>
                     <div class="flex items-center space-x-4 mb-4">
                         <label class="inline-flex items-center">
-                            <input type="radio" class="form-radio" name="historia_familiar" value="si">
+                            <input type="radio" class="form-radio" name="Antecedente familiar de cancer" value="si" required>
                             <span class="ml-2">Sí</span>
                         </label>
                         <label class="inline-flex items-center">
-                            <input type="radio" class="form-radio" name="historia_familiar" value="no">
+                            <input type="radio" class="form-radio" name="Antecedente familiar de cancer" value="no">
                             <span class="ml-2">No</span>
                         </label>
                     </div>
                     <!-- Si presenta historial familiar -->
-                    <div id="additional-historia-familiar" class="hidden space-y-2 ml-2 mb-4">
+                    <div id="Seleccione familiar afectado de cáncer" class="checkbox-group hidden space-y-2 ml-2 mb-4">
                         <p>¿Quién?</p>
                         <div class="flex flex-wrap gap-4">
                             <label class="inline-flex items-center">
-                                <input type="checkbox" class="form-checkbox" name="familiar_afectado" value="madre">
+                                <input type="checkbox" class="form-checkbox" name="Familiar afectado de cancer" value="madre">
                                 <span class="ml-2">Madre</span>
                             </label>
                             <label class="inline-flex items-center">
-                                <input type="checkbox" class="form-checkbox" name="familiar_afectado" value="hermana">
+                                <input type="checkbox" class="form-checkbox" name="Familiar afectado de cancer" value="hermana">
                                 <span class="ml-2">Hermana</span>
                             </label>
                             <label class="inline-flex items-center">
-                                <input type="checkbox" class="form-checkbox" name="familiar_afectado" value="hija">
+                                <input type="checkbox" class="form-checkbox" name="Familiar afectado de cancer" value="hija">
                                 <span class="ml-2">Hija</span>
                             </label>
                             <label class="inline-flex items-center">
-                                <input type="checkbox" class="form-checkbox" name="familiar_afectado" value="abuela">
+                                <input type="checkbox" class="form-checkbox" name="Familiar afectado de cancer" value="abuela">
                                 <span class="ml-2">Abuela</span>
                             </label>
                             <label class="inline-flex items-center">
-                                <input type="checkbox" class="form-checkbox" name="familiar_afectado" value="otra">
+                                <input type="checkbox" class="form-checkbox" name="Familiar afectado de cancer" value="otra">
                                 <span class="ml-2">Otra:</span>
                             </label>
                         </div>
-                        <input type="text" class="form-input block w-full mt-2" name="otro_familiar" placeholder="Especifique otro familiar">
+                        <input type="text" class="form-input block w-full mt-2" name="Otro familiar" placeholder="Especifique otro familiar">
                     </div>
                 </div>
             </div>
@@ -126,88 +126,88 @@
                 <p class="mb-2">¿Presenta cirugías en mamas?</p>
                 <div class="flex items-center space-x-4 mb-4">
                     <label class="inline-flex items-center">
-                        <input type="radio" class="form-radio" name="cirugias_mamas" value="si">
+                        <input type="radio" class="form-radio" name="Pregunta cirugías en mamas" value="si" required>
                         <span class="ml-2">Sí</span>
                     </label>
                     <label class="inline-flex items-center">
-                        <input type="radio" class="form-radio" name="cirugias_mamas" value="no">
+                        <input type="radio" class="form-radio" name="Pregunta cirugías en mamas" value="no">
                         <span class="ml-2">No</span>
                     </label>
                 </div>
                 <!-- Opciones de cirugías -->
-                <div id="additional-cirugias" class="hidden space-y-4 ml-2 mb-4">
+                <div id="Seleccione cirugía realizada en mamas" class="checkbox-group hidden space-y-4 ml-2 mb-4">
                     <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
                         <div>
                             <label class="block mb-2">
-                                <input type="checkbox" class="form-checkbox" name="cirugia_mastoplastia">
-                                <span class="ml-2">Mastoplastia</span>
+                                <input type="checkbox" class="form-checkbox" name="Opción cirugía mastoplastía">
+                                <span class="ml-2">Mastoplastía</span>
                             </label>
-                            <div class="pl-6 space-y-2 hidden" id="cirugia_mastoplastia_f4">
+                            <div class="checkbox-group pl-6 space-y-2 hidden" id="Seleccione tipo de mastoplastía">
                                 <label class="inline-flex items-center">
-                                    <input type="checkbox" class="form-checkbox" name="mastoplastia_reductora">
+                                    <input type="checkbox" class="form-checkbox" name="Opción cirugía mastoplastía reductora">
                                     <span class="ml-2">Reductora</span>
                                 </label>
                                 <label class="inline-flex items-center">
-                                    <input type="checkbox" class="form-checkbox" name="mastoplastia_protesis">
+                                    <input type="checkbox" class="form-checkbox" name="Opción cirugía prótesis">
                                     <span class="ml-2">Prótesis</span>
                                 </label>
-                                <input type="date" class="form-input block w-auto text-slate-600 ml-2" name="fecha_mastoplastia" placeholder="DD/MM/AAAA" pattern="\d{2}/\d{2}/\d{4}">                            </div>
+                                <input type="date" class="form-input block w-auto text-slate-600 ml-2" name="Fecha mastoplastía" placeholder="DD/MM/AAAA" pattern="\d{2}/\d{2}/\d{4}">                            </div>
                         </div>
                         <div>
                             <label class="block mb-2">
-                                <input type="checkbox" class="form-checkbox" name="cirugia_biopsia">
+                                <input type="checkbox" class="form-checkbox" name="Opción biopsia quirúrgica">
                                 <span class="ml-2">Biopsioa quirúrgica</span>
                             </label>
-                            <input type="date" class="form-input block w-auto text-slate-600 ml-2 hidden" id="fecha_biopsia_f4" name="fecha_biopsia" placeholder="DD/MM/AAAA" pattern="\d{2}/\d{2}/\d{4}">                        </div>
+                            <input type="date" class="form-input block w-auto text-slate-600 ml-2 hidden" id="fecha_biopsia_f4" name="Fecha biopsia" placeholder="DD/MM/AAAA" pattern="\d{2}/\d{2}/\d{4}">                        </div>
                         <div>
                             <label class="block mb-2">
-                                <input type="checkbox" class="form-checkbox" name="cirugia_segmentectomia">
+                                <input type="checkbox" class="form-checkbox" name="Opción cirugía segmentectomía">
                                 <span class="ml-2">Segmentectomía</span>
                             </label>
-                            <input type="date" class="form-input block w-auto text-slate-600 ml-2 hidden" id="fecha_segmentectomia_f4" name="fecha_segmentectomia" placeholder="DD/MM/AAAA" pattern="\d{2}/\d{2}/\d{4}">
+                            <input type="date" class="form-input block w-auto text-slate-600 ml-2 hidden" id="fecha_segmentectomia_f4" name="Fecha segmentectomía" placeholder="DD/MM/AAAA" pattern="\d{2}/\d{2}/\d{4}">
                         </div>
                         <div>
                             <label class="block mb-2">
-                                <input type="checkbox" class="form-checkbox" name="cirugia_mastectomia">
+                                <input type="checkbox" class="form-checkbox" name="Opción cirugía mastectomía">
                                 <span class="ml-2">Mastectomía</span>
                             </label>
-                            <input type="date" class="form-input block w-auto text-slate-600 ml-2 hidden" id="fecha_mastectomia_f4" name="fecha_mastectomia" placeholder="DD/MM/AAAA" pattern="\d{2}/\d{2}/\d{4}">
+                            <input type="date" class="form-input block w-auto text-slate-600 ml-2 hidden" id="fecha_mastectomia_f4" name="Fecha mastectomía" placeholder="DD/MM/AAAA" pattern="\d{2}/\d{2}/\d{4}">
                         </div>
                         <div>
                             <label class="block mb-2">
-                                <input type="checkbox" class="form-checkbox" name="cirugia_reconstruccion">
+                                <input type="checkbox" class="form-checkbox" name="Opción cirugia reconstrucción">
                                 <span class="ml-2">Reconstrucción</span>
                             </label>
-                            <div class="pl-6 space-y-2 hidden" id="reconstrucción_f4">
+                            <div class="checkbox-group pl-6 space-y-2 hidden" id="Seleccione tipo de reconstrucción">
                                 <label class="inline-flex items-center">
-                                    <input type="checkbox" class="form-checkbox" name="reconstruccion_musculo_abdominal">
+                                    <input type="checkbox" class="form-checkbox" name="Opción reconstrucción músculo abdominal">
                                     <span class="ml-2">Músculo abdominal</span>
                                 </label>
                                 <label class="inline-flex items-center">
-                                    <input type="checkbox" class="form-checkbox" name="reconstruccion_musculo_dorsal">
+                                    <input type="checkbox" class="form-checkbox" name="Opción reconstrucción músculo dorsal">
                                     <span class="ml-2">Músculo dorsal</span>
                                 </label>
                                 <label class="inline-flex items-center">
-                                    <input type="checkbox" class="form-checkbox" name="reconstruccion_protesis">
+                                    <input type="checkbox" class="form-checkbox" name="Opción reconstrucción prótesis">
                                     <span class="ml-2">Prótesis</span>
                                 </label>
-                                <input type="date" class="form-input block w-auto text-slate-600 ml-2" name="fecha_reconstruccion" placeholder="DD/MM/AAAA" pattern="\d{2}/\d{2}/\d{4}">
+                                <input type="date" class="form-input block w-auto text-slate-600 ml-2" name="Fecha reconstrucción" placeholder="DD/MM/AAAA" pattern="\d{2}/\d{2}/\d{4}">
                             </div>
                         </div>
                     </div>
                     <!-- Sección para mastoplastia -->
                     <div id="additional-mastoplastia" class="hidden mb-4">
-                        <p class="font-semibold mb-2">En caso de mastoplastia:</p>
+                        <p class="font-semibold mb-2">En caso de mastoplastía:</p>
                         <div class="space-y-2 ml-2">
                             <div>
                                 <p class="mb-1">Sospecha de ruptura</p>
                                 <div class="flex items-center space-x-4">
                                     <label class="inline-flex items-center">
-                                        <input type="radio" class="form-radio" name="sospecha_ruptura" value="si">
+                                        <input type="radio" class="form-radio" name="Pregunta sospecha de ruptura mastoplastía" value="si">
                                         <span class="ml-2">Sí</span>
                                     </label>
                                     <label class="inline-flex items-center">
-                                        <input type="radio" class="form-radio" name="sospecha_ruptura" value="no">
+                                        <input type="radio" class="form-radio" name="Pregunta sospecha de ruptura mastoplastía" value="no">
                                         <span class="ml-2">No</span>
                                     </label>
                                 </div>
@@ -216,11 +216,11 @@
                                 <p class="mb-1">Dolor</p>
                                 <div class="flex items-center space-x-4">
                                     <label class="inline-flex items-center">
-                                        <input type="radio" class="form-radio" name="dolor_mastoplastia" value="si">
+                                        <input type="radio" class="form-radio" name="Pregunta dolor mastoplastía" value="si">
                                         <span class="ml-2">Sí</span>
                                     </label>
                                     <label class="inline-flex items-center">
-                                        <input type="radio" class="form-radio" name="dolor_mastoplastia" value="no">
+                                        <input type="radio" class="form-radio" name="Pregunta dolor mastoplastía" value="no">
                                         <span class="ml-2">No</span>
                                     </label>
                                 </div>
@@ -229,11 +229,11 @@
                                 <p class="mb-1">Cambio previo</p>
                                 <div class="flex items-center space-x-4">
                                     <label class="inline-flex items-center">
-                                        <input type="radio" class="form-radio" name="cambio_previo" value="si">
+                                        <input type="radio" class="form-radio" name="Pregunta cambio previo mastoplastía" value="si">
                                         <span class="ml-2">Sí</span>
                                     </label>
                                     <label class="inline-flex items-center">
-                                        <input type="radio" class="form-radio" name="cambio_previo" value="no">
+                                        <input type="radio" class="form-radio" name="Pregunta cambio previo mastoplastía" value="no">
                                         <span class="ml-2">No</span>
                                     </label>
                                 </div>
@@ -247,11 +247,11 @@
                 <p class="mb-2">¿Ha tenido tratamiento de cáncer de mama?</p>
                 <div class="flex items-center space-x-4 mb-2">
                     <label class="inline-flex items-center">
-                        <input type="radio" class="form-radio" name="tratamiento_cancer" value="si">
+                        <input type="radio" class="form-radio" name="Pregunta tratamiento de cancer" value="si" required>
                         <span class="ml-2">Sí</span>
                     </label>
                     <label class="inline-flex items-center">
-                        <input type="radio" class="form-radio" name="tratamiento_cancer" value="no">
+                        <input type="radio" class="form-radio" name="Pregunta tratamiento de cancer" value="no">
                         <span class="ml-2">No</span>
                     </label>
                 </div>
@@ -261,82 +261,82 @@
                         <label>
                             <span>Fecha:</span>
                         </label>
-                        <input type="date" class="form-input block w-auto text-slate-600 ml-2 mt-1" name="fecha_tratamiento_cancer" placeholder="DD/MM/AAAA" pattern="\d{2}/\d{2}/\d{4}">
+                        <input type="date" class="form-input block w-auto text-slate-600 ml-2 mt-1" name="Fecha de tratamiento de cancer" placeholder="DD/MM/AAAA" pattern="\d{2}/\d{2}/\d{4}">
                     </div>
                     <!-- Quimioterapia -->
                     <div>
                         <p class="mb-2">¿Quimioterapia?</p>
                         <div class="flex items-center space-x-4 mb-2">
                             <label class="inline-flex items-center">
-                                <input type="radio" class="form-radio" name="quimioterapia_f4" value="si">
+                                <input type="radio" class="form-radio" name="Pregunta quimioterapia" value="si">
                                 <span class="ml-2">Sí</span>
                             </label>
                             <label class="inline-flex items-center">
-                                <input type="radio" class="form-radio" name="quimioterapia_f4" value="no">
+                                <input type="radio" class="form-radio" name="Pregunta quimioterapia" value="no">
                                 <span class="ml-2">No</span>
                             </label>
                         </div>
-                        <input type="date" class="form-input w-auto text-slate-600 ml-2 hidden" id="additional-quimioterapia-f4" name="fecha_quimioterapia" placeholder="DD/MM/AAAA" pattern="\d{2}/\d{2}/\d{4}">
+                        <input type="date" class="form-input w-auto text-slate-600 ml-2 hidden" id="additional-quimioterapia-f4" name="Fecha quimioterapia" placeholder="DD/MM/AAAA" pattern="\d{2}/\d{2}/\d{4}">
                     </div>
                     <!-- Radioterapia -->
                     <div>
                         <p class="mb-2">¿Radioterapia?</p>
                         <div class="flex items-center space-x-4 mb-2">
                             <label class="inline-flex items-center">
-                                <input type="radio" class="form-radio" name="radioterapia_f4" value="si">
+                                <input type="radio" class="form-radio" name="Pregunta radioterapia" value="si">
                                 <span class="ml-2">Sí</span>
                             </label>
                             <label class="inline-flex items-center">
-                                <input type="radio" class="form-radio" name="radioterapia_f4" value="no">
+                                <input type="radio" class="form-radio" name="Pregunta radioterapia" value="no">
                                 <span class="ml-2">No</span>
                             </label>
                         </div>
-                        <input type="date" class="form-input w-auto text-slate-600 ml-2 hidden" id="additional-radioterapia-f4" name="fecha_radioterapia" placeholder="DD/MM/AAAA" pattern="\d{2}/\d{2}/\d{4}">
+                        <input type="date" class="form-input w-auto text-slate-600 ml-2 hidden" id="additional-radioterapia-f4" name="Fecha radioterapia" placeholder="DD/MM/AAAA" pattern="\d{2}/\d{2}/\d{4}">
                     </div>
                     <!-- Tamoxifeno -->
                     <div>
                         <p class="mb-2">¿Toma tamoxifeno?</p>
                         <div class="flex items-center space-x-4 mb-2">
                             <label class="inline-flex items-center">
-                                <input type="radio" class="form-radio" name="tamoxifeno_f4" value="si">
+                                <input type="radio" class="form-radio" name="Pregunta tamoxifeno" value="si">
                                 <span class="ml-2">Sí</span>
                             </label>
                             <label class="inline-flex items-center">
-                                <input type="radio" class="form-radio" name="tamoxifeno_f4" value="no">
+                                <input type="radio" class="form-radio" name="Pregunta tamoxifeno" value="no">
                                 <span class="ml-2">No</span>
                             </label>
                         </div>
-                        <input type="text" class="form-input w-full ml-2 hidden" id="addition_tamoxifeno_f4" name="tiempo_tamoxifeno" placeholder="¿Hace cuánto tiempo aproximadamente?">
+                        <input type="text" class="form-input w-full ml-2 hidden" id="addition_tamoxifeno_f4" name="Tiempo desde el que toma de tamoxifeno" placeholder="¿Hace cuánto tiempo aproximadamente?">
                     </div>
                     <!-- Anticonceptivos -->
                     <div>
                         <p class="mb-2">¿Utilizó anticonceptivos?</p>
                         <div class="flex items-center space-x-4 mb-2">
                             <label class="inline-flex items-center">
-                                <input type="radio" class="form-radio" name="anticonceptivos_f4" value="si">
+                                <input type="radio" class="form-radio" name="Pregunta antionceptivos" value="si">
                                 <span class="ml-2">Sí</span>
                             </label>
                             <label class="inline-flex items-center">
-                                <input type="radio" class="form-radio" name="anticonceptivos_f4" value="no">
+                                <input type="radio" class="form-radio" name="Pregunta anticonceptivos" value="no">
                                 <span class="ml-2">No</span>
                             </label>
                         </div>
-                        <input type="text" class="form-input w-full ml-2 hidden" id="addition_anticonceptivos_f4" name="tiempo_anticonceptivos" placeholder="¿Hace cuánto tiempo aproximadamente?">
+                        <input type="text" class="form-input w-full ml-2 hidden" id="addition_anticonceptivos_f4" name="Ultimo uso de anticonceptivo" placeholder="¿Hace cuánto tiempo aproximadamente?">
                     </div>
                     <!-- Terapia Hormonal de Reemplazo -->
                     <div>
                         <p class="mb-2">¿Utilizó terapia hormonal de reemplazo?</p>
                         <div class="flex items-center space-x-4 mb-2">
                             <label class="inline-flex items-center">
-                                <input type="radio" class="form-radio" name="terapia_hormonal_f4" value="si">
+                                <input type="radio" class="form-radio" name="Pregunta terapia hormonal" value="si">
                                 <span class="ml-2">Sí</span>
                             </label>
                             <label class="inline-flex items-center">
-                                <input type="radio" class="form-radio" name="terapia_hormonal_f4" value="no">
+                                <input type="radio" class="form-radio" name="Pregunta terapia hormonal" value="no">
                                 <span class="ml-2">No</span>
                             </label>
                         </div>
-                        <input type="text" class="form-input w-full ml-2 hidden" id="additional_terapia_hormonal_f4" name="tiempo_terapia_hormonal" placeholder="¿Hace cuánto tiempo aproximadamente?">
+                        <input type="text" class="form-input w-full ml-2 hidden" id="additional_terapia_hormonal_f4" name="Tiempo desde el último tratamiento de terapia hormonal" placeholder="¿Hace cuánto tiempo aproximadamente?">
                     </div>
                 </div>
             </div>
@@ -345,11 +345,11 @@
                 <p class="mb-2">¿Se ha realizado cirugías o biopsias en el área de estudio? </p>
                 <div class="flex items-center space-x-4 mb-4">
                     <label class="inline-flex items-center">
-                        <input type="radio" class="form-radio" name="biopsia_percutanea" value="si">
+                        <input type="radio" class="form-radio" name="Pregunta biopsia percutanea" value="si" required>
                         <span class="ml-2">Sí</span>
                     </label>
                     <label class="inline-flex items-center">
-                        <input type="radio" class="form-radio" name="biopsia_percutanea" value="no">
+                        <input type="radio" class="form-radio" name="Pregunta biopsia percutanea" value="no">
                         <span class="ml-2">No</span>
                     </label>
                 </div>
@@ -359,19 +359,19 @@
                         <label>
                             <span>Indique cuales:</span>
                         </label>
-                        <input type="text" class="form-input w-full mt-1" name="tipo_biopsia_percutanea" placeholder="Especifique el tipo de biopsia">
+                        <input type="text" class="form-input w-full mt-1" name="Tipo biopsia percutanea" placeholder="Especifique el tipo de biopsia">
                     </div>
                     <div>
                         <label>
                             <span>Fecha:</span>
                         </label>
-                        <input type="date" class="form-input w-auto text-slate-600 mt-1" name="fecha_biopsia_percutanea" placeholder="DD/MM/AAAA" pattern="\d{2}/\d{2}/\d{4}">
+                        <input type="date" class="form-input w-auto text-slate-600 mt-1" name="Fecha biopsia percutanea" placeholder="DD/MM/AAAA" pattern="\d{2}/\d{2}/\d{4}">
                     </div>
                     <div>
                         <label>
                             <span>Resultado de la cirugías o biopsias:</span>
                         </label>
-                        <textarea class="form-textarea w-full mt-1" name="diagnostico_biopsia_percutanea" rows="3" placeholder="Ingrese el diagnóstico"></textarea>
+                        <textarea class="form-textarea w-full mt-1" name="Diagnostico biopsia percutanea" rows="3" placeholder="Ingrese el diagnóstico"></textarea>
                     </div>
                 </div>
             </div>
@@ -379,11 +379,11 @@
                 <p class="mb-2">¿Presenta marcadores séricos elevados? (elevación de marcadores tumorales)</p>
                 <div class="flex items-center space-x-4 mb-4">
                     <label class="inline-flex items-center">
-                        <input type="radio" class="form-radio" name="marcadores_sericos" value="si">
+                        <input type="radio" class="form-radio" name="Pregunta marcadores séricos" value="si" required>
                         <span class="ml-2">Sí</span>
                     </label>
                     <label class="inline-flex items-center">
-                        <input type="radio" class="form-radio" name="marcadores_sericos" value="no">
+                        <input type="radio" class="form-radio" name="Pregunta marcadores séricos" value="no">
                         <span class="ml-2">No</span>
                     </label>
                 </div>
@@ -393,7 +393,7 @@
                         <label>
                             <span>¿Cuál?</span>
                         </label>
-                        <input type="text" class="form-input w-full mt-1" name="txt_marcadores_sericos" placeholder="Escriba aquí">
+                        <input type="text" class="form-input w-full mt-1" name="Cual marcador sérico" placeholder="Escriba aquí">
                     </div>
                 </div>
             </div>
@@ -407,7 +407,7 @@
             otroFamiliarInput.style.display = this.checked ? 'block' : 'none';
         });
         // Mostrar/ocultar sección de mastoplastia
-        document.querySelector('input[name="cirugia_mastoplastia"]').addEventListener('change', function(event) {
+        document.querySelector('input[name="Opción cirugía mastoplastía"]').addEventListener('change', function(event) {
             const mastoplastiaContent = document.getElementById('additional-mastoplastia');
             mastoplastiaContent.style.display = this.checked ? 'block' : 'none';
         });
