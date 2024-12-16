@@ -48,7 +48,7 @@
                     <span class="ml-2">Ceguera</span>
                   </label>
                   <label class="inline-flex items-center w-full md:w-auto">
-                    <input type="checkbox" class="form-checkbox ml-3" name="olfato value="option2">
+                    <input type="checkbox" class="form-checkbox ml-3" name="olfato" value="option2">
                     <span class="ml-1">Perdida del olfato</span>
                   </label>
                   <label class="inline-flex items-center w-full md:w-auto">
@@ -80,15 +80,15 @@
                     <span class="ml-1">Molestias al tragar</span>
                   </label>
                   <label class="inline-flex items-center w-full md:w-auto">
-                    <input type="checkbox" class="form-checkbox ml-3" name="neuralgias" value="option9">
+                    <input type="checkbox" class="form-checkbox ml-3" name="neuralgias" value="option10">
                     <span class="ml-1">Neuralgias</span>
                   </label>
                   <label class="inline-flex items-center w-full md:w-auto">
-                    <input type="checkbox" class="form-checkbox ml-3" name="paralisis" value="option9">
+                    <input type="checkbox" class="form-checkbox ml-3" name="paralisis" value="option11">
                     <span class="ml-1">Parálisis</span>
                   </label>
                   <label class="inline-flex items-center w-full md:w-auto">
-                    <input type="checkbox" class="form-checkbox ml-3" name="hormigueos" value="option9">
+                    <input type="checkbox" class="form-checkbox ml-3" name="hormigueos" value="option12">
                     <span class="ml-1">Hormigueos</span>
                   </label>
                 </div>
@@ -103,7 +103,7 @@
               <p class="pr-4">¿Desde cuando los presenta los síntomas anteriormente mencionados? Fecha exacta o aproximada:</p>
               <div class="mb-4 md:mb-0 md:mr-4 ml-2">
                 <div class="flex flex-wrap items-center">
-                  <input type="date" class="form-input block w-full text-slate-600 sm:w-auto" name="fecha_sintomas_form3" placeholder="DD/MM/AAAA" pattern="\d{2}/\d{2}/\d{4}">   
+                  <input type="date" class="form-input block w-full text-slate-600 sm:w-auto" name="Fecha síntomas presentados" placeholder="DD/MM/AAAA" pattern="\d{2}/\d{2}/\d{4}" required>   
                 </div>
               </div>
             </div>
@@ -132,22 +132,22 @@
               <p class="mb-2">¿Presenta antecedentes de traumatismos de cráneo/cara?</p>        
               <div class="flex items-center space-x-4">           
                 <label class="inline-flex items-center">            
-                  <input type="radio" class="form-radio" name="traumatismo" value="si">            
+                  <input type="radio" class="form-radio" name="Pregunta antecedentes de traumatismos" value="si" required>            
                   <span class="ml-2">Sí</span>            
                 </label>
                 <label class="inline-flex items-center">          
-                  <input type="radio" class="form-radio" name="traumatismo" value="no">            
+                  <input type="radio" class="form-radio" name="Pregunta antecedentes de traumatismos" value="no">            
                   <span class="ml-2">No</span>            
                 </label>
               </div>
               <div id="additional-traumatismo" class="hidden mb-4 space-x-2">
                 <div class="ml-2 mt-2">        
                   <p>¿Dónde?</p>        
-                  <input type="text" class="form-input w-full mt-1" placeholder="Escriba aquí">
+                  <input type="text" class="form-input w-full mt-1" name="Zona de trumatismo" placeholder="Escriba aquí">
                 </div>
                 <div class="ml-2 mt-2">        
                   <p>¿Hace cuánto?</p>        
-                  <input type="text" class="form-input w-full mt-1" placeholder="Escriba aquí">
+                  <input type="text" class="form-input w-full mt-1" name="Tiempo aproximo del traumatismo" placeholder="Escriba aquí">
                 </div>
               </div>
             </div>
@@ -156,18 +156,18 @@
               <p class="mb-2">Antecedentes de problemas al nacer o durante el parto:</p>        
               <div class="flex items-center space-x-4">  
                 <label class="inline-flex items-center">            
-                  <input type="radio" class="form-radio" name="problemas al nacer" value="si">            
+                  <input type="radio" class="form-radio" name="Pregunta antecedentes de problemas al nacer" value="si" required>            
                   <span class="ml-2">Sí</span>            
                 </label> 
                 <label class="inline-flex items-center">          
-                  <input type="radio" class="form-radio" name="problemas al nacer" value="no">            
+                  <input type="radio" class="form-radio" name="Pregunta antecedentes de problemas al nacer" value="no">            
                   <span class="ml-2">No</span>            
                 </label>
               </div>
               <div id="additional-problemas" class="hidden">
                 <div class="ml-2 mt-2">        
                   <p>Indique cuales:</p>        
-                  <input type="text" class="form-input w-full mt-1" placeholder="Escriba aquí">
+                  <input type="text" class="form-input w-full mt-1" name="Describir los antecedentes de problemas al nacer" placeholder="Escriba aquí">
                 </div>
               </div>     
             </div>
@@ -175,26 +175,26 @@
               <p class="mb-2">¿Se ha realizado Cirugías/biopsias en el área de estudio?</p>        
               <div class="flex items-center space-x-4">
                 <label class="inline-flex items-center">            
-                  <input type="radio" class="form-radio" name="cirugias-biopsias" value="si">            
+                  <input type="radio" class="form-radio" name="Pregunta cirugias y/o biopsias" value="si" required>            
                   <span class="ml-2">Sí</span>            
                 </label>
                 <label class="inline-flex items-center">          
-                  <input type="radio" class="form-radio" name="cirugias-biopsias" value="no">            
+                  <input type="radio" class="form-radio" name="Pregunta cirugias y/o biopsias" value="no">            
                   <span class="ml-2">No</span>            
                 </label>          
               </div>
               <div id="additional-cirugias" class="hidden">
                 <div class="ml-2 mt-2">       
                   <p>¿Qué le hicieron?</p>        
-                  <input type="text" class="form-input w-full mt-1" placeholder="Escriba aquí">
+                  <input type="text" class="form-input w-full mt-1" name="Descripción cirugía y/o biopsia" placeholder="Escriba aquí">
                 </div>
                 <div class="ml-2 mt-2">       
                   <p>Fecha: </p>        
-                  <input type="date" class="form-input w-full text-slate-600 sm:w-auto mt-1" name="fecha_cirugias_form2" placeholder="DD/MM/AAAA" pattern="\d{2}/\d{2}/\d{4}">
+                  <input type="date" class="form-input w-full text-slate-600 sm:w-auto mt-1" name="Fecha cirugía y/o biopsia" placeholder="DD/MM/AAAA" pattern="\d{2}/\d{2}/\d{4}">
                 </div>
                 <div class="ml-2 mt-2">       
                   <p>Resultados de la cirugía o biopsia</p>        
-                  <input type="text" class="form-input w-full mt-1" placeholder="Escriba aquí">
+                  <input type="text" class="form-input w-full mt-1" name="Resultado de la cirugía y/o biopsia" placeholder="Escriba aquí">
                 </div>
               </div>        
             </div>
@@ -202,22 +202,22 @@
               <p class="mb-2">¿Presenta antecedentes odontológicos?</p>        
               <div class="flex items-center space-x-4">
                 <label class="inline-flex items-center">            
-                  <input type="radio" class="form-radio" name="pregunta-odontologica" value="si">            
+                  <input type="radio" class="form-radio" name="Pregunta antecedentes odontológicos" value="si" required>            
                   <span class="ml-2">Sí</span>            
                 </label>
                 <label class="inline-flex items-center">          
-                  <input type="radio" class="form-radio" name="pregunta-odontologica" value="no">            
+                  <input type="radio" class="form-radio" name="Pregunta antecedentes odontológicos" value="no">            
                   <span class="ml-2">No</span>            
                 </label>          
               </div>
               <div id="additional-odontologica" class="hidden">
                 <div class="ml-2 mt-2">        
                   <p>Indique cuales</p>        
-                  <input type="text" class="form-input w-full mt-1" placeholder="Escriba aquí">
+                  <input type="text" class="form-input w-full mt-1" name="Describa el antecedente odontológico" placeholder="Escriba aquí">
                 </div>
                 <div class="ml-2 mt-2">        
                   <p>Fecha: </p>        
-                  <input type="date" class="form-input w-auto text-slate-600 mt-1" name="fecha_odonto_form3" placeholder="DD/MM/AAAA" pattern="\d{2}/\d{2}/\d{4}">   
+                  <input type="date" class="form-input w-auto text-slate-600 mt-1" name="Fecha antecedente odontológico" placeholder="DD/MM/AAAA" pattern="\d{2}/\d{2}/\d{4}">   
                 </div>
               </div>         
             </div>
@@ -225,11 +225,11 @@
               <p class="mb-2">¿Presenta antecedentes oncológicos personales?</p>        
               <div class="flex items-center space-x-4">          
                 <label class="inline-flex items-center">            
-                  <input type="radio" class="form-radio" name="pregunta-oncologica" value="si">            
+                  <input type="radio" class="form-radio" name="Antecedentes oncológicos personales" value="si" required>            
                   <span class="ml-2">Sí</span>            
                 </label>
                 <label class="inline-flex items-center">          
-                  <input type="radio" class="form-radio" name="pregunta-oncologica" value="no">            
+                  <input type="radio" class="form-radio" name="Antecedentes oncológicos personales" value="no">            
                   <span class="ml-2">No</span>            
                 </label>
               </div>
@@ -238,35 +238,35 @@
                   <p>Indique cuales:</p>        
                   <input type="text" class="form-input block w-full mt-1" placeholder="Escriba aquí">
                 </div>
-                <p class="mb-1">Radioterapia: </p>        
-                <div class="flex items-center space-x-4">         
+                <p class="mb-1 ml-2">Radioterapia: </p>        
+                <div class="flex items-center space-x-4 ml-2">         
                   <label class="inline-flex items-center">            
-                    <input type="radio" class="form-radio" name="radioterapia-f3" value="si">            
+                    <input type="radio" class="form-radio" name="Radioterapia" value="si">            
                     <span class="ml-2">Sí</span>            
                   </label>
                   <label class="inline-flex items-center">          
-                    <input type="radio" class="form-radio" name="radioterapia-f3" value="no">            
+                    <input type="radio" class="form-radio" name="Radioterapia" value="no">            
                     <span class="ml-2">No</span>            
                   </label> 
                 </div>
-                <div class="ml-2 mb-4 mt-1 hidden" id="additional-radioterapia-f3">        
+                <div class="ml-4 mb-4 mt-1 hidden" id="additional-radioterapia-f3">        
                   <p>Fecha:</p>        
-                  <input type="date" class="form-input block w-auto text-slate-600 mt-1" name="fecha_radioterapia_form3" placeholder="DD/MM/AAAA" pattern="\d{2}/\d{2}/\d{4}">
+                  <input type="date" class="form-input block w-auto text-slate-600 mt-1" name="Fecha radioterapia" placeholder="DD/MM/AAAA" pattern="\d{2}/\d{2}/\d{4}">
                 </div>  
-                <p class="mb-1 mt-2">Quimioterapia: </p>        
-                <div class="flex items-center space-x-4">    
+                <p class="mb-1 mt-2 ml-2">Quimioterapia: </p>        
+                <div class="flex items-center space-x-4 ml-2">    
                   <label class="inline-flex items-center">            
-                    <input type="radio" class="form-radio" name="quimioterapia-f3" value="si">            
+                    <input type="radio" class="form-radio" name="Quimioterapia" value="si">            
                     <span class="ml-2">Sí</span>            
                   </label>
                   <label class="inline-flex items-center">          
-                    <input type="radio" class="form-radio" name="quimioterapia-f3" value="no">            
+                    <input type="radio" class="form-radio" name="Quimioterapia" value="no">            
                     <span class="ml-2">No</span>            
                   </label>      
                 </div>
-                <div class="ml-2 mt-1 hidden" id="additional-quimioterapia-f3">        
+                <div class="ml-4 mt-1 hidden" id="additional-quimioterapia-f3">        
                   <p>Fecha: </p>        
-                  <input type="date" class="form-input block w-auto text-slate-600mt-1" name="fecha_quimioterapia_form3" placeholder="DD/MM/AAAA" pattern="\d{2}/\d{2}/\d{4}">
+                  <input type="date" class="form-input block w-auto text-slate-600mt-1" name="Fecha quimioterapia" placeholder="DD/MM/AAAA" pattern="\d{2}/\d{2}/\d{4}">
                 </div> 
               </div>         
             </div>
@@ -277,11 +277,11 @@
               <p class="">Diabetes:</p>        
               <div class="flex items-center space-x-4 mb-4">          
                 <label class="inline-flex items-center">            
-                  <input type="radio" class="form-radio" name="diabetes" value="si">            
+                  <input type="radio" class="form-radio" name="Pregunta diabetes" value="si" required>            
                   <span class="ml-2">Sí</span>            
                 </label>
                 <label class="inline-flex items-center">       
-                  <input type="radio" class="form-radio" name="diabetes" value="no">            
+                  <input type="radio" class="form-radio" name="Pregunta diabetes" value="no">            
                   <span class="ml-2">No</span>            
                 </label>          
               </div>
@@ -289,11 +289,11 @@
               <p class="">Hipertensión:</p>        
               <div class="flex items-center space-x-4 mb-4">          
                 <label class="inline-flex items-center">            
-                  <input type="radio" class="form-radio" name="hipertension" value="si">            
+                  <input type="radio" class="form-radio" name="Pregunta hipertension" value="si" required>            
                   <span class="ml-2">Sí</span>            
                 </label>    
                 <label class="inline-flex items-center">          
-                  <input type="radio" class="form-radio" name="hipertension" value="no">            
+                  <input type="radio" class="form-radio" name="Pregunta hipertension" value="no">            
                   <span class="ml-2">No</span>            
                 </label>      
               </div>
@@ -301,11 +301,11 @@
               <p class="">Arritmias:</p>        
               <div class="flex items-center space-x-4 mb-4">          
                 <label class="inline-flex items-center">            
-                  <input type="radio" class="form-radio" name="arritmias" value="si">            
+                  <input type="radio" class="form-radio" name="Pregunta arritmias" value="si" required>            
                   <span class="ml-2">Sí</span>            
                 </label>
                 <label class="inline-flex items-center">          
-                  <input type="radio" class="form-radio" name="arritmias" value="no">            
+                  <input type="radio" class="form-radio" name="Pregunta arritmias" value="no">            
                   <span class="ml-2">No</span>            
                 </label>          
               </div>
@@ -313,11 +313,11 @@
               <p class="">HIV:</p>        
               <div class="flex items-center space-x-4 mb-4">          
                 <label class="inline-flex items-center">            
-                  <input type="radio" class="form-radio" name="hiv" value="si">            
+                  <input type="radio" class="form-radio" name="Pregunta hiv" value="si" required>            
                   <span class="ml-2">Sí</span>            
                 </label>      
                 <label class="inline-flex items-center">          
-                  <input type="radio" class="form-radio" name="hiv" value="no">            
+                  <input type="radio" class="form-radio" name="Pregunta hiv" value="no">            
                   <span class="ml-2">No</span>            
                 </label>    
               </div>
@@ -325,11 +325,11 @@
               <p class="">Alt. Tiroideas:</p>        
               <div class="flex items-center space-x-4 mb-4">          
                 <label class="inline-flex items-center">            
-                  <input type="radio" class="form-radio" name="alt_tiroideas" value="si">            
+                  <input type="radio" class="form-radio" name="Pregunta alt. tiroideas" value="si" required>            
                   <span class="ml-2">Sí</span>            
                 </label>    
                 <label class="inline-flex items-center">          
-                  <input type="radio" class="form-radio" name="alt_tiroideas" value="no">            
+                  <input type="radio" class="form-radio" name="Pregunta alt. tiroideas" value="no">            
                   <span class="ml-2">No</span>            
                 </label>      
               </div>
@@ -337,11 +337,11 @@
               <p class="">Esclerosis Múltiple:</p>        
               <div class="flex items-center space-x-4 mb-4">          
                 <label class="inline-flex items-center">            
-                  <input type="radio" class="form-radio" name="esclerosis_multiple" value="si">            
+                  <input type="radio" class="form-radio" name="Pregunta esclerosis multiple" value="si" required>            
                   <span class="ml-2">Sí</span>            
                 </label>   
                 <label class="inline-flex items-center">          
-                  <input type="radio" class="form-radio" name="esclerosis_multiple" value="no">            
+                  <input type="radio" class="form-radio" name="Pregunta esclerosis multiple" value="no">            
                   <span class="ml-2">No</span>            
                 </label>       
               </div>
@@ -349,11 +349,11 @@
               <p class="">T. Psiquiátricos:</p>        
               <div class="flex items-center space-x-4 mb-4">          
                 <label class="inline-flex items-center">            
-                  <input type="radio" class="form-radio" name="trastornos_psiquiatricos" value="si">            
+                  <input type="radio" class="form-radio" name="Pregunta trastornos psiquiatricos" value="si" required>            
                   <span class="ml-2">Sí</span>            
                 </label>
                 <label class="inline-flex items-center">          
-                  <input type="radio" class="form-radio" name="trastornos_psiquiatricos" value="no">            
+                  <input type="radio" class="form-radio" name="Pregunta trastornos psiquiatricos" value="no">            
                   <span class="ml-2">No</span>            
                 </label>          
               </div>
@@ -361,11 +361,11 @@
               <p class="">Migraña:</p>        
               <div class="flex items-center space-x-4 mb-4">          
                 <label class="inline-flex items-center">            
-                  <input type="radio" class="form-radio" name="migrana" value="si">            
+                  <input type="radio" class="form-radio" name="Pregunta migraña" value="si" required>            
                   <span class="ml-2">Sí</span>            
                 </label>    
                 <label class="inline-flex items-center">          
-                  <input type="radio" class="form-radio" name="migrana" value="no">            
+                  <input type="radio" class="form-radio" name="Pregunta migraña" value="no">            
                   <span class="ml-2">No</span>            
                 </label>      
               </div>
@@ -373,11 +373,11 @@
               <p class="">Parkinson:</p>        
               <div class="flex items-center space-x-4 mb-4">          
                 <label class="inline-flex items-center">            
-                  <input type="radio" class="form-radio" name="parkinson" value="si">            
+                  <input type="radio" class="form-radio" name="Pregunta parkinson" value="si" required>            
                   <span class="ml-2">Sí</span>            
                 </label>
                 <label class="inline-flex items-center">          
-                  <input type="radio" class="form-radio" name="parkinson" value="no">            
+                  <input type="radio" class="form-radio" name="Pregunta parkinson" value="no">            
                   <span class="ml-2">No</span>            
                 </label>          
               </div>
@@ -385,11 +385,11 @@
               <p class="">Hidrocefalia:</p>        
               <div class="flex items-center space-x-4 mb-4">          
                 <label class="inline-flex items-center">            
-                  <input type="radio" class="form-radio" name="hidrocefalia" value="si">            
+                  <input type="radio" class="form-radio" name="Pregunta hidrocefalia" value="si" required>            
                   <span class="ml-2">Sí</span>            
                 </label>
                 <label class="inline-flex items-center">          
-                  <input type="radio" class="form-radio" name="hidrocefalia" value="no">            
+                  <input type="radio" class="form-radio" name="Pregunta hidrocefalia" value="no">            
                   <span class="ml-2">No</span>            
                 </label>          
               </div>
@@ -404,18 +404,18 @@
               <p class="mb-2">¿Toma alguna medicación relacionada al estudio que se tiene que realizar?</p>        
               <div class="flex items-center space-x-4">
                 <label class="inline-flex items-center">            
-                  <input type="radio" class="form-radio" name="medicacion-relacionada" value="si">            
+                  <input type="radio" class="form-radio" name="Pregunta medicación relacionada" value="si" required>            
                   <span class="ml-2">Sí</span>            
                 </label>
                 <label class="inline-flex items-center">          
-                  <input type="radio" class="form-radio" name="medicacion-relacionada" value="no">            
+                  <input type="radio" class="form-radio" name="Pregunta medicación relacionada" value="no">            
                   <span class="ml-2">No</span>            
                 </label>  
               </div>
               <div id="medicacion-relacionada" class="hidden">
                 <div class="ml-2 mt-4">        
                   <p>Indique cuales:</p>        
-                  <input type="text" class="form-input w-full mt-1" placeholder="Escriba aquí">
+                  <input type="text" class="form-input w-full mt-1" name="Indique la medicación" placeholder="Escriba aquí">
                 </div>
               </div>     
             </div>
@@ -423,11 +423,11 @@
               <p class="mb-2">¿Se ha realizado exámenes de laboratorio por prolactina Y hormonas tiroideas?</p>        
               <div class="flex items-center space-x-4">
                 <label class="inline-flex items-center">            
-                  <input type="radio" class="form-radio" name="prolactina" value="si">            
+                  <input type="radio" class="form-radio" name="Pregunta prolactina" value="si" required>            
                   <span class="ml-2">Sí</span>            
                 </label>  
                 <label class="inline-flex items-center">          
-                  <input type="radio" class="form-radio" name="prolactina" value="no">            
+                  <input type="radio" class="form-radio" name="Pregunta prolactina" value="no">            
                   <span class="ml-2">No</span>            
                 </label>
               </div>
@@ -438,30 +438,30 @@
                 <p class="ml-4 mt-2 mb-2">Prolactina: </p>        
                 <div class="flex items-center space-x-4 ml-6 mb-2">  
                   <label class="inline-flex items-center">          
-                    <input type="radio" class="form-radio" name="prolactinas" value="alta">            
+                    <input type="radio" class="form-radio" name="Resultado prolactinas" value="alta">            
                     <span class="ml-2">Alta</span>            
                   </label>
                   <label class="inline-flex items-center">            
-                    <input type="radio" class="form-radio" name="prolactinas" value="baja">            
+                    <input type="radio" class="form-radio" name="Resultado prolactinas" value="baja">            
                     <span class="ml-2">Baja</span>            
                   </label>
                   <label class="inline-flex items-center">            
-                    <input type="radio" class="form-radio" name="prolactinas" value="normal">            
+                    <input type="radio" class="form-radio" name="Resultado prolactinas" value="normal">            
                     <span class="ml-2">Normal</span>            
                   </label> 
                 </div>
                 <p class="ml-4 mb-2">Hormonas tiroideas: </p>        
                 <div class="flex items-center space-x-4 ml-6">  
                   <label class="inline-flex items-center">          
-                    <input type="radio" class="form-radio" name="hormonas" value="alta">            
+                    <input type="radio" class="form-radio" name="Resultado hormonas tiroideas" value="alta">            
                     <span class="ml-2">Alta</span>            
                   </label>
                   <label class="inline-flex items-center">            
-                    <input type="radio" class="form-radio" name="hormonas" value="baja">            
+                    <input type="radio" class="form-radio" name="Resultado hormonas tiroideas" value="baja">            
                     <span class="ml-2">Baja</span>            
                   </label>
                   <label class="inline-flex items-center">            
-                    <input type="radio" class="form-radio" name="hormonas" value="normal">            
+                    <input type="radio" class="form-radio" name="Resultado hormonas tiroideas" value="normal">            
                     <span class="ml-2">Normal</span>            
                   </label> 
                 </div>

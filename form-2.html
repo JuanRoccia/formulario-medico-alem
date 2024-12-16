@@ -44,16 +44,16 @@
               <p class="mb-2">¿Presenta o presentó dolor y/o molestias en la zona a estudiar?</p>        
               <div class="flex items-center space-x-4">
                 <label class="inline-flex items-center">          
-                  <input type="radio" class="form-radio" name="pregunta-dolor" value="si">            
+                  <input type="radio" class="form-radio" name="Pregunta dolor" value="si" required>            
                   <span class="ml-2">Sí</span>            
                 </label>        
                 <label class="inline-flex items-center">            
-                  <input type="radio" class="form-radio" name="pregunta-dolor" value="no">            
+                  <input type="radio" class="form-radio" name="Pregunta dolor" value="no">            
                   <span class="ml-2">No</span>            
                 </label>
               </div>     
             </div>
-            <div class="hidden space-x-2" id="additional-dolor">
+            <div class="checkbox-group hidden space-x-2" id="Seleccione el tipo de dolor">
               <div class="flex flex-col md:flex-row ml-2">
               <p class="pr-2">Dolor:</p>
                 <div class="mb-4 md:mb-0 md:mr-4">
@@ -101,7 +101,7 @@
                 <p class="pr-4 mb-1">¿Desde cuándo los presenta? (Fecha Exacta o aproximada):</p>
                 <div class="mb-4 md:mb-0 md:mr-4 mb-1">
                   <div class="flex flex-wrap items-center">
-                    <input type="date" class="form-input block w-full text-slate-600 sm:w-auto" name="fecha_sintomas_form2" placeholder="DD/MM/AAAA" pattern="\d{2}/\d{2}/\d{4}">                  
+                    <input type="date" class="form-input block w-full text-slate-600 sm:w-auto" name="Fecha síntomas" placeholder="DD/MM/AAAA" pattern="\d{2}/\d{2}/\d{4}">                  
                   </div>
                 </div>
               </div>
@@ -133,11 +133,11 @@
               <p class="mb-2">¿Tuvo un traumatismo?</p>        
               <div class="flex items-center space-x-4">
                 <label class="inline-flex items-center">            
-                  <input type="radio" class="form-radio" name="pregunta-traumatismo" value="si">            
+                  <input type="radio" class="form-radio" name="Pregunta traumatismo" value="si" required>            
                   <span class="ml-2">Sí</span>            
                 </label>
                 <label class="inline-flex items-center">          
-                  <input type="radio" class="form-radio" name="pregunta-traumatismo" value="no">            
+                  <input type="radio" class="form-radio" name="Pregunta traumatismo" value="no">            
                   <span class="ml-2">No</span>            
                 </label>
               </div>          
@@ -146,11 +146,11 @@
               <p class="mb-2">¿Le han realizado cirugía/s de la zona a estudiar?</p>        
               <div class="flex items-center space-x-4">
                 <label class="inline-flex items-center">            
-                  <input type="radio" class="form-radio" name="pregunta-cirugia" value="si">            
+                  <input type="radio" class="form-radio" name="Pregunta cirugía" value="si" required>            
                   <span class="ml-2">Sí</span>            
                 </label>
                 <label class="inline-flex items-center">          
-                  <input type="radio" class="form-radio" name="pregunta-cirugia" value="no">            
+                  <input type="radio" class="form-radio" name="Pregunta cirugía" value="no">            
                   <span class="ml-2">No</span>            
                 </label>
               </div>      
@@ -158,22 +158,22 @@
             <div id="additional-content" class="hidden space-x-2">
               <div class="space-x-2 mt-4 ml-2">        
                 <p>¿Qué tipo de cirugía?</p>        
-                <input type="text" class="form-input mt-1" placeholder="Escriba aquí">
+                <input type="text" class="form-input mt-1" name="Tipo de cirugía" placeholder="Escriba aquí">
               </div>
               <div class="space-x-2 mt-4">        
                 <p>¿Hace cuánto tiempo?</p>        
-                <input type="text" class="form-input mt-1" placeholder="Escriba aquí">
+                <input type="text" class="form-input mt-1" name="Tiempo aproximado desde la cirugía" placeholder="Escriba aquí">
               </div>
             </div>
             <div>        
               <p class="mb-2">¿Toma Alguna medicion relacionada al estudio que se tiene que realizar?</p>        
               <div class="flex items-center space-x-4">
                 <label class="inline-flex items-center">            
-                  <input type="radio" class="form-radio" name="pregunta-medicacion" value="si">            
+                  <input type="radio" class="form-radio" name="Pregunta medicación" value="si" required>            
                   <span class="ml-2">Sí</span>            
                 </label>
                 <label class="inline-flex items-center">          
-                  <input type="radio" class="form-radio" name="pregunta-medicacion" value="no">            
+                  <input type="radio" class="form-radio" name="Pregunta medicación" value="no">            
                   <span class="ml-2">No</span>            
                 </label>          
               </div>          
@@ -181,18 +181,18 @@
             <div id="additional-medicacion" class="hidden">
               <div class="mt-4 ml-2">       
                 <p>Indique cuales:</p>        
-                <input type="text" class="form-input mt-1" placeholder="Escriba aquí">
+                <input type="text" class="form-input mt-1" name="Medicación relacionada al estudio" placeholder="Escriba aquí">
               </div>
             </div>
             <div>
               <p class="mb-2">¿Presenta antecedentes oncológicos personales?</p>        
               <div class="flex items-center space-x-4">
                 <label class="inline-flex items-center">            
-                  <input type="radio" class="form-radio" name="pregunta-oncologica" value="si">            
+                  <input type="radio" class="form-radio" name="Pregunta antecedentes oncológicos personales" value="si" required>            
                   <span class="ml-2">Sí</span>            
                 </label>
                 <label class="inline-flex items-center">          
-                  <input type="radio" class="form-radio" name="pregunta-oncologica" value="no">            
+                  <input type="radio" class="form-radio" name="Pregunta antecedentes oncológicos personales" value="no">            
                   <span class="ml-2">No</span>            
                 </label>          
               </div>          
@@ -200,18 +200,18 @@
             <div id="additional-onc" class="hidden">
               <div class="ml-2 mt-4">        
                 <p>Indique cuales:</p>        
-                <input type="text" class="form-input mt-1" placeholder="Escriba aquí">
+                <input type="text" class="form-input mt-1" name="Antecedentes oncológicos" placeholder="Escriba aquí">
               </div>
             </div>
             <div>
               <p class="mb-2">¿Realiza algún deporte?</p>        
               <div class="flex items-center space-x-4">
                 <label class="inline-flex items-center">            
-                  <input type="radio" class="form-radio" name="pregunta-deporte" value="si">            
+                  <input type="radio" class="form-radio" name="Pregunta deporte" value="si" required>            
                   <span class="ml-2">Sí</span>            
                 </label>   
                 <label class="inline-flex items-center">          
-                  <input type="radio" class="form-radio" name="pregunta-deporte" value="no">            
+                  <input type="radio" class="form-radio" name="Pregunta deporte" value="no">            
                   <span class="ml-2">No</span>            
                 </label>  
               </div>       
@@ -219,7 +219,7 @@
             <div id="additional-deporte" class="hidden">
               <div class="ml-2 mt-4">        
                 <p>Indique cuales:</p>
-                <input type="text" class="form-input mt-1" placeholder="Escriba aquí">
+                <input type="text" class="form-input mt-1" name="Deporte que realiza" placeholder="Escriba aquí">
               </div>
             </div>
           </div>

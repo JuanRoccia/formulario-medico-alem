@@ -254,7 +254,6 @@ document.addEventListener('DOMContentLoaded', function() {
         checkFormCompleteness(iframe);
     }
 
-    // Modificar la función checkFormCompleteness para incluir la verificación de firma
     function checkFormCompleteness(iframe) {
         if (!iframe) return false;
 
@@ -262,9 +261,78 @@ document.addEventListener('DOMContentLoaded', function() {
         const requiredInputs = iframeDocument.querySelectorAll('input[required], select[required], textarea[required]');
         let isComplete = true;
 
+        const checkboxGroups = iframeDocument.querySelectorAll('.checkbox-group');
+
+        checkboxGroups.forEach(checkboxGroup => {
+            // Si el grupo tiene la clase hidden, saltamos todo el procesamiento
+            if (checkboxGroup.classList.contains('hidden')) {
+                return;
+            }
+        
+            const checkboxes = checkboxGroup.querySelectorAll('input[type="checkbox"]');
+            
+            checkboxes.forEach(checkbox => {
+                const associatedInputs = [];
+                let nextSibling = checkbox.parentElement.nextElementSibling;
+                while (nextSibling && nextSibling.tagName !== 'LABEL') {
+                    if (nextSibling.tagName === 'INPUT') {
+                        associatedInputs.push(nextSibling);
+                    }
+                    nextSibling = nextSibling.nextElementSibling;
+                }
+                
+                checkbox.addEventListener('change', function() {
+                    if (this.checked) {
+                        associatedInputs.forEach(input => {
+                            if (!input.classList.contains('required-exception')) {
+                                input.setAttribute('required', '');
+                            }
+                        });
+                    } else {
+                        associatedInputs.forEach(input => {
+                            if (!input.classList.contains('required-exception')) {
+                                input.removeAttribute('required');
+                            }
+                        });
+                    }
+                });
+        
+                if (checkbox.checked) {
+                    associatedInputs.forEach(input => {
+                        if (!input.classList.contains('required-exception')) {
+                            input.setAttribute('required', '');
+                        }
+                    });
+                }
+            });
+        
+            const hasCheckedBox = Array.from(checkboxes).some(checkbox => checkbox.checked);
+        
+            if (!hasCheckedBox) {
+                console.log(`Checkbox group without selection: ${checkboxGroup.id || 'No identifier'}`);
+                isComplete = false;
+            }
+        });
+
         requiredInputs.forEach(input => {
-            if (!input.value.trim()) {
-                console.log(`Campo no completado: ${input.name || input.id}`);
+            const type = input.type;
+
+            if (type === 'radio' || type === 'checkbox') {
+                // Verificar si hay al menos un input del grupo seleccionado
+                const name = input.name;
+                if (name && !iframeDocument.querySelector(`input[name="${name}"]:checked`)) {
+                    console.log(`Campo requerido no completado (radio/checkbox): ${name}`);
+                    isComplete = false;
+                }
+            } else if (type === 'date') {
+                // Verificar que el input de tipo date tenga un valor
+                if (!input.value) {
+                    console.log(`Campo requerido no completado (date): ${input.name || input.id}`);
+                    isComplete = false;
+                }
+            } else if (!input.value.trim()) {
+                // Para los demás tipos de input (text, number, etc.)
+                console.log(`Campo requerido no completado: ${input.name || input.id}`);
                 isComplete = false;
             }
         });
@@ -373,6 +441,21 @@ document.addEventListener('DOMContentLoaded', function() {
             const requiredInputs = iframeDocument.querySelectorAll('input[required], select[required], textarea[required]');
             let incompleteFields = [];
             
+            // Primero, verificar grupos de checkbox
+            const checkboxGroups = iframeDocument.querySelectorAll('.checkbox-group');
+            checkboxGroups.forEach(checkboxGroup => {
+                // Solo verificar si el grupo NO está oculto
+                if (!checkboxGroup.classList.contains('hidden')) {
+                    const checkboxes = checkboxGroup.querySelectorAll('input[type="checkbox"]');
+                    const hasCheckedBox = Array.from(checkboxes).some(checkbox => checkbox.checked);
+                    
+                    if (!hasCheckedBox) {
+                        // Usar el ID o un texto descriptivo para el grupo de checkbox
+                        incompleteFields.push(checkboxGroup.id || 'Grupo de checkboxes');
+                    }
+                }
+            });
+            
             requiredInputs.forEach(input => {
                 if ((input.type === 'checkbox' || input.type === 'radio') && !iframeDocument.querySelector(`input[name="${input.name}"]:checked`)) {
                     incompleteFields.push(input.name);
@@ -380,7 +463,7 @@ document.addEventListener('DOMContentLoaded', function() {
                     incompleteFields.push(input.name || input.id);
                 }
             });
-            
+
             alert(`Por favor, completa los siguientes campos antes de continuar: ${incompleteFields.join(', ')}`);
         }
     });
@@ -449,6 +532,19 @@ document.addEventListener('DOMContentLoaded', function() {
                     iframe.style.display = originalDisplay;
                     continue;
                 }
+
+                // Agregar styles para corregir los iframes
+                const styleElement = iframeDocument.createElement('style');
+                styleElement.textContent = `
+                    input, textarea {
+                        line-height: 2rem!important;
+                        margin-top: 1rem!important;
+                    }
+                    .ial-ot{
+                        margin-top:0.4rem;
+                    }
+                `;
+                iframeDocument.head.appendChild(styleElement);
     
                 // Capturar el contenido
                 const canvasElement = await html2canvas(iframeDocument.body, {
@@ -505,6 +601,17 @@ document.addEventListener('DOMContentLoaded', function() {
                     width: drawWidth,
                     height: drawHeight,
                 });
+
+                styleElement.textContent = `
+                    input, textarea {
+                        line-height: inherit!important;
+                        margin-top: inherit!important;
+                    }
+                    .ial-ot{
+                        margin-top:0;
+                    }
+                `;
+                iframeDocument.head.appendChild(styleElement);
     
             } catch (error) {
                 console.error(`Error completo al procesar formulario ${i + 1}:`, error);
