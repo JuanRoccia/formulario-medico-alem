@@ -287,6 +287,9 @@
             penColor: 'rgb(0, 0, 0)'
         });
 
+        // Store the SignaturePad instance directly on the canvas
+        canvas.signaturePad = signaturePad;
+
         // Clear button functionality
         clearButton.addEventListener('click', function() {
             signaturePad.clear();

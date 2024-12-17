@@ -337,15 +337,16 @@ document.addEventListener('DOMContentLoaded', function() {
             }
         });
 
-        // Verificar la firma si es el último formulario
+        // Verificar la firma
         const signaturePad = iframeDocument.getElementById('signature-pad');
-        if (signaturePad && signaturePadManager.initialized) {
-            if (signaturePadManager.isEmpty()) {
+        if (signaturePad) {
+            const signaturePadInstance = signaturePad.signaturePad;
+            
+            if (!signaturePadInstance || signaturePadInstance.isEmpty()) {
                 console.log('Firma requerida');
                 isComplete = false;
             }
         }
-
         return isComplete;
     }
 
@@ -440,8 +441,18 @@ document.addEventListener('DOMContentLoaded', function() {
             const iframeDocument = currentIframe.contentWindow.document;
             const requiredInputs = iframeDocument.querySelectorAll('input[required], select[required], textarea[required]');
             let incompleteFields = [];
+
+            // Verificar específicamente la firma
+            const signaturePad = iframeDocument.getElementById('signature-pad');
+            if (signaturePad) {
+                const signaturePadInstance = signaturePad.signaturePad;
+                
+                if (!signaturePadInstance || signaturePadInstance.isEmpty()) {
+                    incompleteFields.push('Firma');
+                }
+            }
             
-            // Primero, verificar grupos de checkbox
+            // Verificar grupos de checkbox
             const checkboxGroups = iframeDocument.querySelectorAll('.checkbox-group');
             checkboxGroups.forEach(checkboxGroup => {
                 // Solo verificar si el grupo NO está oculto
