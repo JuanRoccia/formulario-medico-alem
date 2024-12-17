@@ -744,7 +744,7 @@ document.addEventListener('DOMContentLoaded', function() {
                             parameters: [
                                 {
                                     type: "text",
-                                    text: "la_variable_de_texto"
+                                    text: "Estimado"
                                 }
                             ]
                         }
