@@ -10,6 +10,8 @@
     <!-- <link href="https://cdn.jsdelivr.net/npm/tailwindcss@latest/dist/tailwind.min.css" rel="stylesheet"> -->
     <!-- icon -->
     <link rel="icon" href="images/imagenes-alem.webp" type="image/x-icon">
+    <!-- Script del SDK de Google -->
+    <script src="https://accounts.google.com/gsi/client" async defer></script>
 </head>
 <body class="bg-black font-sans max-h">
     <div class="relative min-h-screen bg-cover bg-center" style="background-image: url('images/centrodediagnostico3.webp');">
@@ -50,6 +52,19 @@
                                       </button>
                                 </div>
                             </form>
+
+                            <!-- Botón de Google Sign-In -->
+                            <div class="flex items-center justify-center mt-4">
+                                <div id="googleSignInButton" class="g_id_signin"
+                                     data-type="standard"
+                                     data-shape="rectangular"
+                                     data-theme="outline"
+                                     data-text="signin_with"
+                                     data-size="large"
+                                     data-logo_alignment="left">
+                                </div>
+                            </div>
+                            
                         </div>
                     </div>
                 </div>
