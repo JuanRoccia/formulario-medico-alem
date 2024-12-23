@@ -23,52 +23,6 @@ import { formManager } from './formManager.js';
 //     });
 // }
 
-// Inicializar Google Sign-In
-google.accounts.id.initialize({
-    client_id: "864893015805-nkeecbl7nlds55r0ntif19jvbh2e5tti.apps.googleusercontent.com", // Client ID de Consola de Google
-    callback: handleCredentialResponse,
-});
-
-// Renderizar el botón de Google
-google.accounts.id.renderButton(
-    document.getElementById("googleSignInButton"),
-    { theme: "outline", size: "large" }
-);
-
-// Manejar la respuesta del inicio de sesión
-function handleCredentialResponse(response) {
-    const token = response.credential; // Token JWT devuelto por Google
-    console.log("Token recibido:", token);
-
-    // Decodificar token para obtener la información del usuario
-    const user = parseJwt(token);
-    console.log("Información del usuario:", user);
-
-    // Validar que el correo sea el permitido
-    if (user.email === "imagenesalem@gmail.com") {
-        alert(`Bienvenido, ${user.name}!`);
-        localStorage.setItem("loggedIn", "true"); // Guardar estado de sesión
-        window.location.href = "dashboard.html"; // Redirigir al dashboard
-    } else {
-        alert("Correo no autorizado.");
-    }
-}
-
-// Decodificar el token JWT
-function parseJwt(token) {
-    const base64Url = token.split(".")[1];
-    const base64 = base64Url.replace(/-/g, "+").replace(/_/g, "/");
-    const jsonPayload = decodeURIComponent(
-        atob(base64)
-            .split("")
-            .map((c) => "%" + ("00" + c.charCodeAt(0).toString(16)).slice(-2))
-            .join("")
-    );
-
-    return JSON.parse(jsonPayload);
-}
-
-
 // Primero, asegurémonos de que todas las funciones estén definidas antes de usarlas
 let signaturePadInstance = null;
 
