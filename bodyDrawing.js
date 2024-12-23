@@ -76,7 +76,7 @@ class BodyDrawing {
         document.getElementById('penBtn').classList.add('tool-active');
     }
 
-    setupCanvas(img) {
+    /*setupCanvas(img) {
         const canvas = img.nextElementSibling;
         canvas.width = img.width;
         canvas.height = img.height;
@@ -93,9 +93,29 @@ class BodyDrawing {
           this.canvasEspalda = canvas;
           this.ctxEspalda = ctx;
         }
+    }*/
+
+    setupCanvas(img) {
+      const canvas = img.nextElementSibling;
+      // Usar getBoundingClientRect para obtener el tamaño real renderizado
+      const rect = img.getBoundingClientRect();
+      canvas.width = rect.width;
+      canvas.height = rect.height;
+      
+      const ctx = canvas.getContext('2d');
+      ctx.lineJoin = 'round';
+      ctx.lineCap = 'round';
+      
+      if (canvas.id === 'canvasFrontal') {
+          this.canvasFrontal = canvas;
+          this.ctxFrontal = ctx;
+      } else if (canvas.id === 'canvasEspalda') {
+          this.canvasEspalda = canvas;
+          this.ctxEspalda = ctx;
+      }
     }
 
-  setupEventListeners() {
+  /*setupEventListeners() {
     const canvases = document.querySelectorAll('canvas');
     canvases.forEach(canvas => {
       canvas.addEventListener('mousedown', this.startDrawing.bind(this));
@@ -118,6 +138,44 @@ class BodyDrawing {
     });
     
     document.getElementById('penBtn').addEventListener('click', () => this.setTool('pen'));
+  }*/
+
+  setupEventListeners() {
+    const canvases = document.querySelectorAll('canvas');
+    canvases.forEach(canvas => {
+        // Eventos del mouse
+        canvas.addEventListener('mousedown', (e) => this.startDrawing(e, 'mouse'));
+        canvas.addEventListener('mousemove', (e) => this.draw(e, 'mouse'));
+        canvas.addEventListener('mouseup', this.stopDrawing.bind(this));
+        canvas.addEventListener('mouseout', this.stopDrawing.bind(this));
+
+        // Eventos táctiles
+        canvas.addEventListener('touchstart', (e) => {
+            e.preventDefault(); // Prevenir scroll
+            this.startDrawing(e, 'touch');
+        });
+        canvas.addEventListener('touchmove', (e) => {
+            e.preventDefault(); // Prevenir scroll
+            this.draw(e, 'touch');
+        });
+        canvas.addEventListener('touchend', this.stopDrawing.bind(this));
+        canvas.addEventListener('touchcancel', this.stopDrawing.bind(this));
+    });
+
+    document.getElementById('clearBtn1').addEventListener('click', (e) => {
+      e.preventDefault();
+      this.clearCanvas1();
+    });
+    document.getElementById('clearBtn2').addEventListener('click', (e) => {
+        e.preventDefault();
+        this.clearCanvas2();
+    });
+    document.getElementById('penBtn').addEventListener('click', (e) => {
+        e.preventDefault();
+        this.setTool('pen');
+    });
+    
+    document.getElementById('penBtn').addEventListener('click', () => this.setTool('pen'));
   }
 
   setTool(tool) {
@@ -126,15 +184,27 @@ class BodyDrawing {
     document.getElementById('penBtn').classList.toggle('tool-active', tool === 'pen');
   }
 
-  startDrawing(e) {
+  /*startDrawing(e) {
     this.isDrawing = true;
     const ctx = e.target.getContext('2d');
     ctx.beginPath();
     const rect = e.target.getBoundingClientRect();
     ctx.moveTo(e.clientX - rect.left, e.clientY - rect.top);
+  }*/
+
+  startDrawing(e, inputType) {
+    this.isDrawing = true;
+    const canvas = inputType === 'mouse' ? e.target : e.touches[0].target;
+    const ctx = canvas.getContext('2d');
+    ctx.beginPath();
+    
+    const rect = canvas.getBoundingClientRect();
+    const pos = this.getPosition(e, inputType, rect);
+    
+    ctx.moveTo(pos.x, pos.y);
   }
 
-  draw(e) {
+  /*draw(e) {
     if (!this.isDrawing) return;
     
     const ctx = e.target.getContext('2d');
@@ -144,6 +214,36 @@ class BodyDrawing {
     ctx.lineWidth = this.brushSize;
     ctx.lineTo(e.clientX - rect.left, e.clientY - rect.top);
     ctx.stroke();
+  }*/
+
+  draw(e, inputType) {
+    if (!this.isDrawing) return;
+    
+    const canvas = inputType === 'mouse' ? e.target : e.touches[0].target;
+    const ctx = canvas.getContext('2d');
+    const rect = canvas.getBoundingClientRect();
+    const pos = this.getPosition(e, inputType, rect);
+    
+    ctx.globalCompositeOperation = 'source-over';
+    ctx.strokeStyle = this.color;
+    ctx.lineWidth = this.brushSize;
+    ctx.lineTo(pos.x, pos.y);
+    ctx.stroke();
+  }
+
+  getPosition(e, inputType, rect) {
+    if (inputType === 'mouse') {
+        return {
+            x: e.clientX - rect.left,
+            y: e.clientY - rect.top
+        };
+    } else { // touch
+        const touch = e.touches[0];
+        return {
+            x: touch.clientX - rect.left,
+            y: touch.clientY - rect.top
+        };
+    }
   }
 
   stopDrawing() {
@@ -159,8 +259,7 @@ class BodyDrawing {
     if (this.canvasEspalda && this.ctxEspalda) {
         this.ctxEspalda.clearRect(0, 0, this.canvasEspalda.width, this.canvasEspalda.height);
     }
-  }
-    
+  } 
 
   getDrawings() {
     return {
