@@ -38,8 +38,8 @@
             </div>
             <!-- Estudios Mamarios Previos -->
             <div class="mb-6">
-                <p class="mb-2">¿Tiene estuidios previos de la zona a estudiar?</p>
-                <div class="flex items-center space-x-4 mb-4">
+                <p class="mb-2">¿Se ha realizado estuidios previos relacionados a la zona a estudiar?</p>
+                <!---<div class="flex items-center space-x-4 mb-4">
                     <label class="inline-flex items-center">
                         <input type="radio" class="form-radio" name="Pregunta estudios previos" value="si" required>
                         <span class="ml-2">Sí</span>
@@ -48,29 +48,28 @@
                         <input type="radio" class="form-radio" name="Pregunta estudios previos" value="no">
                         <span class="ml-2">No</span>
                     </label>
-                </div>
-                <!-- Si realizo estudios mamarios -->
-                <div id="Seleccione estudio previo de la zona a estudiar" class="checkbox-group hidden space-y-4 ml-2 mb-4">
+                </div>--->
+                <div id="Pregunta estudios previos" class="checkbox-group hidden space-y-4 ml-2 mb-4">
                     <div class="space-x-2 space-y-2">
-                        <label>
+                        <label class="d-flex">
                             <input type="checkbox" class="form-checkbox" name="Opción estudio mamografía">
-                            <span class="ml-2">Mamografía</span>
+                            <span class="ml-2 mr-1">Si: Mamografía:</span>
                         </label>
-                        <input type="date" class="form-input block w-auto text-slate-600 hidden" id="fecha_mamografia_f4" name="Fecha mamografía" placeholder="DD/MM/AAAA" pattern="\d{2}/\d{2}/\d{4}">
+                        <input type="date" class="form-input d-flex w-auto text-slate-600 hidden" id="fecha_mamografia_f4" name="Fecha mamografía" placeholder="DD/MM/AAAA" pattern="\d{2}/\d{2}/\d{4}">
                     </div>
                     <div class="space-x-2 space-y-2">
-                        <label>
+                        <label class="d-flex">
                             <input type="checkbox" class="form-checkbox" name="Opción estudio ecografía">
-                            <span class="ml-2">Ecografía</span>
+                            <span class="ml-2 mr-1">Si: Ecografía</span>
                         </label>
-                        <input type="date" class="form-input block w-auto text-slate-600 hidden" id="fecha_ecografia_f4" name="Fecha ecografía" placeholder="DD/MM/AAAA" pattern="\d{2}/\d{2}/\d{4}">
+                        <input type="date" class="form-input d-flex w-auto text-slate-600 hidden" id="fecha_ecografia_f4" name="Fecha ecografía" placeholder="DD/MM/AAAA" pattern="\d{2}/\d{2}/\d{4}">
                     </div>
                     <div class="space-x-2 space-y-2">
-                        <label>
+                        <label class="d-flex">
                             <input type="checkbox" class="form-checkbox" name="Opción estudio resonancia">
-                            <span class="ml-2">Resonancia</span>
+                            <span class="ml-2 mr-1">Si: Resonancia</span>
                         </label>
-                        <input type="date" class="form-input block w-auto text-slate-600 hidden" id="fecha_resonancia_f4" name="Fecha resonancia" placeholder="DD/MM/AAAA" pattern="\d{2}/\d{2}/\d{4}">
+                        <input type="date" class="form-input d-flex w-auto text-slate-600 hidden" id="fecha_resonancia_f4" name="Fecha resonancia" placeholder="DD/MM/AAAA" pattern="\d{2}/\d{2}/\d{4}">
                     </div>
                     <div class="mt-4 space-y-2">
                         <label>
@@ -136,64 +135,47 @@
                 </div>
                 <!-- Opciones de cirugías -->
                 <div id="Seleccione cirugía realizada en mamas" class="checkbox-group hidden space-y-4 ml-2 mb-4">
-                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-                        <div>
-                            <label class="block mb-2">
-                                <input type="checkbox" class="form-checkbox" name="Opción cirugía mastoplastía">
-                                <span class="ml-2">Mastoplastía</span>
-                            </label>
-                            <div class="checkbox-group pl-6 space-y-2 hidden" id="Seleccione tipo de mastoplastía">
-                                <label class="inline-flex items-center">
-                                    <input type="checkbox" class="form-checkbox" name="Opción cirugía mastoplastía reductora">
-                                    <span class="ml-2">Reductora</span>
-                                </label>
-                                <label class="inline-flex items-center">
-                                    <input type="checkbox" class="form-checkbox" name="Opción cirugía prótesis">
-                                    <span class="ml-2">Prótesis</span>
-                                </label>
-                                <input type="date" class="form-input block w-auto text-slate-600 ml-2" name="Fecha mastoplastía" placeholder="DD/MM/AAAA" pattern="\d{2}/\d{2}/\d{4}">                            </div>
-                        </div>
-                        <div>
-                            <label class="block mb-2">
-                                <input type="checkbox" class="form-checkbox" name="Opción biopsia quirúrgica">
-                                <span class="ml-2">Biopsioa quirúrgica</span>
-                            </label>
-                            <input type="date" class="form-input block w-auto text-slate-600 ml-2 hidden" id="fecha_biopsia_f4" name="Fecha biopsia" placeholder="DD/MM/AAAA" pattern="\d{2}/\d{2}/\d{4}">                        </div>
-                        <div>
-                            <label class="block mb-2">
-                                <input type="checkbox" class="form-checkbox" name="Opción cirugía segmentectomía">
-                                <span class="ml-2">Segmentectomía</span>
-                            </label>
-                            <input type="date" class="form-input block w-auto text-slate-600 ml-2 hidden" id="fecha_segmentectomia_f4" name="Fecha segmentectomía" placeholder="DD/MM/AAAA" pattern="\d{2}/\d{2}/\d{4}">
-                        </div>
-                        <div>
-                            <label class="block mb-2">
-                                <input type="checkbox" class="form-checkbox" name="Opción cirugía mastectomía">
-                                <span class="ml-2">Mastectomía</span>
-                            </label>
-                            <input type="date" class="form-input block w-auto text-slate-600 ml-2 hidden" id="fecha_mastectomia_f4" name="Fecha mastectomía" placeholder="DD/MM/AAAA" pattern="\d{2}/\d{2}/\d{4}">
-                        </div>
-                        <div>
-                            <label class="block mb-2">
-                                <input type="checkbox" class="form-checkbox" name="Opción cirugia reconstrucción">
-                                <span class="ml-2">Reconstrucción</span>
-                            </label>
-                            <div class="checkbox-group pl-6 space-y-2 hidden" id="Seleccione tipo de reconstrucción">
-                                <label class="inline-flex items-center">
-                                    <input type="checkbox" class="form-checkbox" name="Opción reconstrucción músculo abdominal">
-                                    <span class="ml-2">Músculo abdominal</span>
-                                </label>
-                                <label class="inline-flex items-center">
-                                    <input type="checkbox" class="form-checkbox" name="Opción reconstrucción músculo dorsal">
-                                    <span class="ml-2">Músculo dorsal</span>
-                                </label>
-                                <label class="inline-flex items-center">
-                                    <input type="checkbox" class="form-checkbox" name="Opción reconstrucción prótesis">
-                                    <span class="ml-2">Prótesis</span>
-                                </label>
-                                <input type="date" class="form-input block w-auto text-slate-600 ml-2" name="Fecha reconstrucción" placeholder="DD/MM/AAAA" pattern="\d{2}/\d{2}/\d{4}">
-                            </div>
-                        </div>
+                    <div>
+                        <label class="block mb-2">
+                            <input type="checkbox" class="form-checkbox" name="Opción mastoplastía reductora">
+                            <span class="ml-2 mr-1">Mastoplastía Reductora</span>
+                            <input type="date" id="additional-fecha-mastoplastia-reductora" class="form-input d-flex w-auto text-slate-600 ml-2 hidden" name="Fecha mastoplastía reductora" placeholder="DD/MM/AAAA" pattern="\d{2}/\d{2}/\d{4}">
+                        </label>
+                        <label class="block mb-2">
+                            <input type="checkbox" class="form-checkbox" name="Opción mastoplastía prótesis">
+                            <span class="ml-2 mr-1">Mastoplastía Prótesis</span>
+                            <input type="date" id="additional-fecha-mastoplastia-protesis" class="form-input d-flex w-auto text-slate-600 ml-2 hidden" name="Fecha mastoplastía prótesis" placeholder="DD/MM/AAAA" pattern="\d{2}/\d{2}/\d{4}">
+                        </label>
+                        <label class="block mb-2">
+                            <input type="checkbox" class="form-checkbox" name="Opción biopsia quirúrgica">
+                            <span class="ml-2 mr-1">Biopsioa quirúrgica</span>
+                            <input type="date" id="additional-fecha-biopsia-quirurgica" class="form-input d-flex w-auto text-slate-600 ml-2 hidden" name="Fecha biopsioa quirúrgica" placeholder="DD/MM/AAAA" pattern="\d{2}/\d{2}/\d{4}">
+                        </label>
+                        <label class="block mb-2">
+                            <input type="checkbox" class="form-checkbox" name="Opción segmentectomía">
+                            <span class="ml-2 mr-1">Segmentectomía</span>
+                            <input type="date" id="additional-fecha-segmentectomia" class="form-input d-flex w-auto text-slate-600 ml-2 hidden" name="Fecha segmentectomía" placeholder="DD/MM/AAAA" pattern="\d{2}/\d{2}/\d{4}">
+                        </label>
+                        <label class="block mb-2">
+                            <input type="checkbox" class="form-checkbox" name="Opción cirugía mastectomía">
+                            <span class="ml-2">Mastectomía</span>
+                            <input type="date" class="form-input block w-auto text-slate-600 ml-2 hidden" id="additional-fecha-mastectomia" name="Fecha mastectomía" placeholder="DD/MM/AAAA" pattern="\d{2}/\d{2}/\d{4}">
+                        </label>
+                        <label class="block mb-2">
+                            <input type="checkbox" class="form-checkbox" name="Opción reconstrucción músculo abdominal">
+                            <span class="ml-2 mr-1">Reconstrucción músculo abdominal</span>
+                            <input type="date" class="form-input block w-auto text-slate-600 ml-2 hidden" id="additional-fecha-reconstruccion-musculo-abdominal" name="Fecha reconstrucción músculo abdominal" placeholder="DD/MM/AAAA" pattern="\d{2}/\d{2}/\d{4}">
+                        </label>
+                        <label class="inline-flex items-center">
+                            <input type="checkbox" class="form-checkbox" name="Opción reconstrucción músculo dorsal">
+                            <span class="ml-2 mr-1">Reconstrucción músculo dorsal</span>
+                            <input type="date" class="form-input block w-auto text-slate-600 ml-2 hidden" id="additional-fecha-reconstruccion-musculo-drosal" name="Fecha reconstrucción músculo dorsal" placeholder="DD/MM/AAAA" pattern="\d{2}/\d{2}/\d{4}">
+                        </label>
+                        <label class="inline-flex items-center">
+                            <input type="checkbox" class="form-checkbox" name="Opción reconstrucción prótesis">
+                            <span class="ml-2 mr-1">Reconstrucción prótesis</span>
+                            <input type="date" class="form-input block w-auto text-slate-600 ml-2 hidden" id="additional-fecha-reconstruccion-protesis" name="Fecha reconstrucción prótesis" placeholder="DD/MM/AAAA" pattern="\d{2}/\d{2}/\d{4}">
+                        </label>
                     </div>
                     <!-- Sección para mastoplastia -->
                     <div id="additional-mastoplastia" class="hidden mb-4">
