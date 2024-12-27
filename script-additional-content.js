@@ -181,10 +181,11 @@ document.addEventListener('DOMContentLoaded', () => {
     toggleAdditionalContent('Pregunta antecedentes de traumatismos', 'additional-traumatismo');
     toggleAdditionalContent('Pregunta antecedentes de problemas al nacer', 'additional-problemas');
     toggleAdditionalContent('Pregunta cirugias y/o biopsias', 'additional-cirugias');
-    toggleAdditionalContent('Pregunta antecedentes odontológicos', 'additional-odontologica');
+    toggleAdditionalContent('Pregunta procedimientos odontológicos', 'additional-odontologica');
     toggleAdditionalContent('Antecedentes oncológicos personales', 'additional-oncologica');
     toggleAdditionalContent('Radioterapia', 'additional-radioterapia-f3');
     toggleAdditionalContent('Quimioterapia', 'additional-quimioterapia-f3');
+    toggleAdditionalContent('Otras enfermemdades', 'additional-otras-enfermedades');
     toggleAdditionalContent('Pregunta prolactina', 'prolactina');
     // Formulario 4
     toggleAdditionalContent('Pregunta estudios previos', 'Seleccione estudio previo de la zona a estudiar');
