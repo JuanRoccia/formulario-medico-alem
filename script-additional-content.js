@@ -165,11 +165,14 @@ document.addEventListener('DOMContentLoaded', () => {
             });
         });
     }
-
-    // Formulario 2
+    // Formulario 1
+    toggleAdditionalContent('Otras sustancias', 'additional-otras-sustancias');
     toggleAdditionalContent('Sexo', 'preg-additional-embarazo');
-    toggleAdditionalContent('Pregunta dolor', 'Seleccione el tipo de dolor');
+    toggleAdditionalContent('Pregunta elementos metálicos', 'additional-objetos-metalicos');
     toggleAdditionalContent('Pregunta cirugía', 'additional-content');
+    toggleAdditionalContent('Pregunta medicación relacionada', 'medicacion-relacionada');
+    // Formulario 2
+    toggleAdditionalContent('Pregunta dolor', 'Seleccione el tipo de dolor');
     toggleAdditionalContent('Pregunta medicación', 'additional-medicacion');
     toggleAdditionalContent('Pregunta antecedentes oncológicos personales', 'additional-onc');
     toggleAdditionalContent('Pregunta deporte', 'additional-deporte');
@@ -181,7 +184,6 @@ document.addEventListener('DOMContentLoaded', () => {
     toggleAdditionalContent('Antecedentes oncológicos personales', 'additional-oncologica');
     toggleAdditionalContent('Radioterapia', 'additional-radioterapia-f3');
     toggleAdditionalContent('Quimioterapia', 'additional-quimioterapia-f3');
-    toggleAdditionalContent('Pregunta medicación relacionada', 'medicacion-relacionada');
     toggleAdditionalContent('Pregunta prolactina', 'prolactina');
     // Formulario 4
     toggleAdditionalContent('Pregunta estudios previos', 'Seleccione estudio previo de la zona a estudiar');
