@@ -188,7 +188,7 @@ document.addEventListener('DOMContentLoaded', () => {
     toggleAdditionalContent('Otras enfermemdades', 'additional-otras-enfermedades');
     toggleAdditionalContent('Pregunta prolactina', 'prolactina');
     // Formulario 4
-    toggleAdditionalContent('Pregunta estudios previos', 'Seleccione estudio previo de la zona a estudiar');
+    //toggleAdditionalContent('Pregunta estudios previos', 'Seleccione estudio previo de la zona a estudiar');
     toggleAdditionalContent('Opción estudio mamografía', 'fecha_mamografia_f4');
     toggleAdditionalContent('Opción estudio ecografía', 'fecha_ecografia_f4');
     toggleAdditionalContent('Opción estudio resonancia', 'fecha_resonancia_f4');
@@ -196,11 +196,14 @@ document.addEventListener('DOMContentLoaded', () => {
     toggleAdditionalContent('Pregunta cirugías en mamas', 'Seleccione cirugía realizada en mamas');
     toggleAdditionalContent('Pregunta biopsia percutanea', 'additional-biopsia');
     toggleAdditionalContent('Pregunta tratamiento de cancer', 'additional-tratamiento');
-    toggleAdditionalContent('Opción cirugía mastoplastía', 'Seleccione tipo de mastoplastía');
-    toggleAdditionalContent('Opción biopsia quirúrgica', 'Opción cirugía segmentectomía');
-    toggleAdditionalContent('Opción cirugía segmentectomía', 'fecha_segmentectomia_f4');
-    toggleAdditionalContent('Opción cirugía mastectomía', 'fecha_mastectomia_f4');
-    toggleAdditionalContent('Opción cirugia reconstrucción', 'Seleccione tipo de reconstrucción');
+    toggleAdditionalContent('Opción mastoplastía reductora', 'additional-fecha-mastoplastia-reductora');
+    toggleAdditionalContent('Opción mastoplastía prótesis', 'additional-fecha-mastoplastia-protesis');
+    toggleAdditionalContent('Opción biopsia quirúrgica', 'additional-fecha-biopsia-quirurgica');
+    toggleAdditionalContent('Opción segmentectomía', 'additional-fecha-segmentectomia');
+    toggleAdditionalContent('Opción cirugía mastectomía', 'additional-fecha-mastectomia');
+    toggleAdditionalContent('Opción reconstrucción músculo abdominal', 'additional-fecha-reconstruccion-musculo-abdominal');
+    toggleAdditionalContent('Opción reconstrucción músculo dorsal', 'additional-fecha-reconstruccion-musculo-drosal');
+    toggleAdditionalContent('Opción reconstrucción prótesis', 'additional-fecha-reconstruccion-protesis');
     toggleAdditionalContent('Pregunta quimioterapia', 'additional-quimioterapia-f4');
     toggleAdditionalContent('Pregunta radioterapia', 'additional-radioterapia-f4');
     toggleAdditionalContent('Pregunta tamoxifeno', 'addition_tamoxifeno_f4');
