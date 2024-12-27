@@ -177,6 +177,7 @@ document.addEventListener('DOMContentLoaded', () => {
     toggleAdditionalContent('Pregunta antecedentes oncológicos personales', 'additional-onc');
     toggleAdditionalContent('Pregunta deporte', 'additional-deporte');
     // Formulario 3
+    toggleAdditionalContent('Otros síntomas', 'additional-otros-sintomas');
     toggleAdditionalContent('Pregunta antecedentes de traumatismos', 'additional-traumatismo');
     toggleAdditionalContent('Pregunta antecedentes de problemas al nacer', 'additional-problemas');
     toggleAdditionalContent('Pregunta cirugias y/o biopsias', 'additional-cirugias');
