@@ -207,11 +207,11 @@
               <p class="mb-2">¿Presenta procedimientos odontológicos?</p>        
               <div class="flex items-center space-x-4">
                 <label class="inline-flex items-center">            
-                  <input type="radio" class="form-radio" name="Pregunta antecedentes odontológicos" value="si" required>            
+                  <input type="radio" class="form-radio" name="Pregunta procedimientos odontológicos" value="si" required>            
                   <span class="ml-2">Sí</span>            
                 </label>
                 <label class="inline-flex items-center">          
-                  <input type="radio" class="form-radio" name="Pregunta antecedentes odontológicos" value="no">            
+                  <input type="radio" class="form-radio" name="Pregunta procedimientos odontológicos" value="no">            
                   <span class="ml-2">No</span>            
                 </label>          
               </div>
@@ -276,8 +276,9 @@
               </div>         
             </div>
             <div class="flex flex-col md:flex-row ml-2">
+              <p class="pr-2 mb-2">¿Padece o cree haber padecido alguna de las siguientes?</p>
               <div class="mb-4 md:mb-0 md:mr-4">
-                <div class="flex flex-wrap items-center space-x-0 md:space-x-4 space-y-1">
+                <div class="flex flex-wrap items-center space-x-0 space-y-1 md:space-y-0">
                   <label class="inline-flex items-center w-full md:w-auto">
                     <input type="checkbox" class="form-checkbox ml-3" name="Diabetes" value="option1">
                     <span class="ml-2">Diabetes</span>
@@ -318,6 +319,15 @@
                     <input type="checkbox" class="form-checkbox ml-3" name="Hidrocefalia" value="option9">
                     <span class="ml-1">Hidrocefalia</span>
                   </label>
+                </div>
+                <div class="flex flex-wrap items-center space-x-0 space-y-1 md:space-y-0">
+                  <label class="inline-flex items-center w-full md:w-auto">
+                    <input type="checkbox" class="form-checkbox ml-3" name="Otras enfermemdades" value="otros">
+                    <span class="ml-2">Otras</span>
+                  </label>
+                </div>  
+                <div id="additional-otras-enfermedades" class="space-x-2 pt-2">      
+                  <input type="text" class="form-input w-full mt-1" placeholder="Escriba aquí" name="Detalle otras enfermedades">
                 </div>
               </div>
             </div>
