@@ -224,6 +224,7 @@ document.addEventListener('DOMContentLoaded', () => {
     toggleAdditionalContent('Pregunta intervención ginecológica', 'pg-intva-adicional');
     toggleAdditionalContent('Pregunta antecedentes familiares de cáncer', 'enfermedades-familiares-adicionales');
     toggleAdditionalContent('Pregunta antecedentes personales de cáncer', 'cancer-adicional');
+    toggleAdditionalContent('Pregunta antecedentes personales de cáncer', 'additional-cancer-condition');
     toggleAdditionalContent('Pregunta intervención quirúrgica cáncer', 'cirugia-cancer-adicional');
     toggleAdditionalContent('Pregunta tratamiento de cáncer', 'pga-tdc-adicional');
     toggleAdditionalContent('Pregunta tratamiento quimioterapia', 'quimioterapia-adicional');
