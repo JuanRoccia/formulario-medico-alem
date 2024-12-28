@@ -218,6 +218,7 @@ document.addEventListener('DOMContentLoaded', () => {
     toggleAdditionalContent('Pregunta hospitalizaciones previas', 'hospitalizaciones-adicionales');
     toggleAdditionalContent('Pregunta cirugias anteriores', 'cirugias-adicionales');
     toggleAdditionalContent('Pregunta menstruación', 'pga-mns-adicional');
+    toggleAdditionalContent('Pregunta menstruación', 'additional-mens-condition');
     toggleAdditionalContent('Pregunta menopausia', 'pg-mnp-adicional');
     toggleAdditionalContent('Pregunta método anticonceptivo', 'pg-mntc-adicional');
     toggleAdditionalContent('Pregunta cesareas', 'pg-mcsa-adicional');
