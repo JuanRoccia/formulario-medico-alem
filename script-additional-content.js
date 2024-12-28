@@ -221,7 +221,8 @@ document.addEventListener('DOMContentLoaded', () => {
     toggleAdditionalContent('Pregunta menstruación', 'additional-mens-condition');
     toggleAdditionalContent('Pregunta menopausia', 'pg-mnp-adicional');
     toggleAdditionalContent('Pregunta método anticonceptivo', 'pg-mntc-adicional');
-    toggleAdditionalContent('Pregunta cesareas', 'pg-mcsa-adicional');
+    toggleAdditionalContent('Pregunta embarazo', 'additional-embarazo-condition');
+    toggleAdditionalContent('Pregunta cesáreas', 'pg-mcsa-adicional');
     toggleAdditionalContent('Pregunta intervención ginecológica', 'pg-intva-adicional');
     toggleAdditionalContent('Pregunta antecedentes familiares de cáncer', 'enfermedades-familiares-adicionales');
     toggleAdditionalContent('Pregunta antecedentes personales de cáncer', 'cancer-adicional');
