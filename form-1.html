@@ -114,14 +114,14 @@
               <li>
                 ¿Es usted alérgico a alguna sustancia?
                 <div class="mb-4 md:mb-0 md:mr-4 mt-2">
-                  <div class="flex flex-wrap items-center space-x-0 space-y-1 md:space-y-0"> <!--md:space-x-4-->
+                  <div class="flex flex-wrap items-center space-x-0 space-y-1 md:space-y-0">
                     <label class="inline-flex items-center w-full md:w-auto">
                       <input type="checkbox" class="form-checkbox ml-3" name="movimiento" value="option1">
                       <span class="ml-2">IODO</span>
                     </label>
                     <label class="inline-flex items-center w-full md:w-auto">
                       <input type="checkbox" class="form-checkbox ml-3" name="reposo" value="option2">
-                      <span class="ml-1">GADOLINEO</span>
+                      <span class="ml-1">GADOLINIO</span>
                     </label>
                     <label class="inline-flex items-center w-full md:w-auto">
                       <input type="checkbox" class="form-checkbox ml-3" name="tumefacción" value="option3">
@@ -132,17 +132,19 @@
                       <span class="ml-1">BUSCAPINA</span>
                     </label>
                     <label class="inline-flex items-center w-full md:w-auto">
-                      <input type="checkbox" class="form-checkbox ml-3" name="inestabilidad" value="option5">
-                      <span class="ml-1">ANESTESIA</span>
-                    </label>
-                    <label class="inline-flex items-center w-full md:w-auto">
-                      <input type="checkbox" class="form-checkbox ml-3" name="bloqueo articular" value="option6">
-                      <span class="ml-1">ANESTESIA</span>
+                      <input type="checkbox" class="form-checkbox ml-3" name="dipirona" value="option5">
+                      <span class="ml-1">DIPIRONA</span>
                     </label>
                   </div>
-                  <div class="flex items-center space-x-2 ml-3 mt-2">        
-                    <p class="ial-ot">Otros:</p>        
-                    <input type="text" class="form-input block w-full" placeholder="Escriba aquí">
+                  <div class="flex flex-wrap items-center space-x-0 space-y-1 md:space-y-0">
+                    <label class="inline-flex items-center w-full md:w-auto">
+                      <input type="checkbox" class="form-checkbox ml-3" name="Otras sustancias" value="otras">
+                      <span class="ml-2">Otras</span>
+                    </label>
+                  </div>  
+                  <!--<p class="ial-ot">Otras</p>-->
+                  <div id="additional-otras-sustancias" class="flex items-center space-x-2 ml-3 mt-2 hidden">
+                    <input type="text" class="form-input block w-full" placeholder="Escriba aquí" name="Otras sustancias a las que tenga alergia">
                   </div>
                 </div>
               </li>
@@ -170,6 +172,35 @@
                     <input type="radio" class="form-radio" name="Pregunta elementos metálicos" value="no">
                     <span class="ml-2">No</span>
                   </label>
+                </div>
+              </li>
+              <li id="additional-objetos-metalicos" class="hidden space-x-2">
+                <div class="space-x-2 mt-4 ml-2">        
+                  <p>¿Cuales?</p>        
+                  <input type="text" class="form-input w-full mt-1" name="Ingrese elementos metálicos que posee" placeholder="Escriba aquí">
+                </div>
+              </li>
+              <li>
+                ¿Le han realizado alguna cirugía relacionada al estudio que tiene que realizar?        
+                <div class="flex items-center space-x-4">
+                  <label class="inline-flex items-center">            
+                    <input type="radio" class="form-radio" name="Pregunta cirugía" value="si" required>            
+                    <span class="ml-2">Sí</span>            
+                  </label>
+                  <label class="inline-flex items-center">          
+                    <input type="radio" class="form-radio" name="Pregunta cirugía" value="no">            
+                    <span class="ml-2">No</span>            
+                  </label>
+                </div>      
+              </li>
+              <li id="additional-content" class="hidden space-x-2">
+                <div class="space-x-2 mt-4 ml-2">        
+                  <p>¿Cuales?</p>        
+                  <input type="text" class="form-input mt-1" name="Tipo de cirugía" placeholder="Escriba aquí">
+                </div>
+                <div class="space-x-2 mt-4">        
+                  <p>Fecha aproximada: </p>        
+                  <input type="date" class="form-input w-full text-slate-600 sm:w-auto mt-1" name="Fecha cirugía" placeholder="DD/MM/AAAA" pattern="\d{2}/\d{2}/\d{4}">
                 </div>
               </li>
               <li>
@@ -238,8 +269,30 @@
                   </label>
                 </div>
               </li>
+              <li>
+                ¿Toma alguna medicación relacionada al estudio que se tiene que realizar?      
+                <div class="flex items-center space-x-4">
+                  <label class="inline-flex items-center">            
+                    <input type="radio" class="form-radio" name="Pregunta medicación relacionada" value="si" required>            
+                    <span class="ml-2">Sí</span>            
+                  </label>
+                  <label class="inline-flex items-center">          
+                    <input type="radio" class="form-radio" name="Pregunta medicación relacionada" value="no">            
+                    <span class="ml-2">No</span>            
+                  </label>  
+                </div>
+                <div id="medicacion-relacionada" class="hidden">
+                  <div class="ml-2 mt-4">        
+                    <p>Indique cuales:</p>        
+                    <input type="text" class="form-input w-full mt-1" name="Indique la medicación" placeholder="Escriba aquí">
+                  </div>
+                </div>     
+              </li>
             </ol>
           </div>      
+        </div>
+        <div>
+          <h3 class="mt-2 mb-2 font-semibold">Recuerde asistir al turno con todos los estudios previos relacionados al mismo</h3>
         </div>
         <!-- Signature Pad Section -->
         <div class="mb-6 border-t border-gray-900/10 pt-6">

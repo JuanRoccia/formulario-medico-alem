@@ -165,26 +165,30 @@ document.addEventListener('DOMContentLoaded', () => {
             });
         });
     }
-
-    // Formulario 2
+    // Formulario 1
+    toggleAdditionalContent('Otras sustancias', 'additional-otras-sustancias');
     toggleAdditionalContent('Sexo', 'preg-additional-embarazo');
-    toggleAdditionalContent('Pregunta dolor', 'Seleccione el tipo de dolor');
+    toggleAdditionalContent('Pregunta elementos metálicos', 'additional-objetos-metalicos');
     toggleAdditionalContent('Pregunta cirugía', 'additional-content');
+    toggleAdditionalContent('Pregunta medicación relacionada', 'medicacion-relacionada');
+    // Formulario 2
+    toggleAdditionalContent('Pregunta dolor', 'Seleccione el tipo de dolor');
     toggleAdditionalContent('Pregunta medicación', 'additional-medicacion');
     toggleAdditionalContent('Pregunta antecedentes oncológicos personales', 'additional-onc');
     toggleAdditionalContent('Pregunta deporte', 'additional-deporte');
     // Formulario 3
+    toggleAdditionalContent('Otros síntomas', 'additional-otros-sintomas');
     toggleAdditionalContent('Pregunta antecedentes de traumatismos', 'additional-traumatismo');
     toggleAdditionalContent('Pregunta antecedentes de problemas al nacer', 'additional-problemas');
     toggleAdditionalContent('Pregunta cirugias y/o biopsias', 'additional-cirugias');
-    toggleAdditionalContent('Pregunta antecedentes odontológicos', 'additional-odontologica');
+    toggleAdditionalContent('Pregunta procedimientos odontológicos', 'additional-odontologica');
     toggleAdditionalContent('Antecedentes oncológicos personales', 'additional-oncologica');
     toggleAdditionalContent('Radioterapia', 'additional-radioterapia-f3');
     toggleAdditionalContent('Quimioterapia', 'additional-quimioterapia-f3');
-    toggleAdditionalContent('Pregunta medicación relacionada', 'medicacion-relacionada');
+    toggleAdditionalContent('Otras enfermemdades', 'additional-otras-enfermedades');
     toggleAdditionalContent('Pregunta prolactina', 'prolactina');
     // Formulario 4
-    toggleAdditionalContent('Pregunta estudios previos', 'Seleccione estudio previo de la zona a estudiar');
+    //toggleAdditionalContent('Pregunta estudios previos', 'Seleccione estudio previo de la zona a estudiar');
     toggleAdditionalContent('Opción estudio mamografía', 'fecha_mamografia_f4');
     toggleAdditionalContent('Opción estudio ecografía', 'fecha_ecografia_f4');
     toggleAdditionalContent('Opción estudio resonancia', 'fecha_resonancia_f4');
@@ -192,11 +196,14 @@ document.addEventListener('DOMContentLoaded', () => {
     toggleAdditionalContent('Pregunta cirugías en mamas', 'Seleccione cirugía realizada en mamas');
     toggleAdditionalContent('Pregunta biopsia percutanea', 'additional-biopsia');
     toggleAdditionalContent('Pregunta tratamiento de cancer', 'additional-tratamiento');
-    toggleAdditionalContent('Opción cirugía mastoplastía', 'Seleccione tipo de mastoplastía');
-    toggleAdditionalContent('Opción biopsia quirúrgica', 'Opción cirugía segmentectomía');
-    toggleAdditionalContent('Opción cirugía segmentectomía', 'fecha_segmentectomia_f4');
-    toggleAdditionalContent('Opción cirugía mastectomía', 'fecha_mastectomia_f4');
-    toggleAdditionalContent('Opción cirugia reconstrucción', 'Seleccione tipo de reconstrucción');
+    toggleAdditionalContent('Opción mastoplastía reductora', 'additional-fecha-mastoplastia-reductora');
+    toggleAdditionalContent('Opción mastoplastía prótesis', 'additional-fecha-mastoplastia-protesis');
+    toggleAdditionalContent('Opción biopsia quirúrgica', 'additional-fecha-biopsia-quirurgica');
+    toggleAdditionalContent('Opción segmentectomía', 'additional-fecha-segmentectomia');
+    toggleAdditionalContent('Opción cirugía mastectomía', 'additional-fecha-mastectomia');
+    toggleAdditionalContent('Opción reconstrucción músculo abdominal', 'additional-fecha-reconstruccion-musculo-abdominal');
+    toggleAdditionalContent('Opción reconstrucción músculo dorsal', 'additional-fecha-reconstruccion-musculo-drosal');
+    toggleAdditionalContent('Opción reconstrucción prótesis', 'additional-fecha-reconstruccion-protesis');
     toggleAdditionalContent('Pregunta quimioterapia', 'additional-quimioterapia-f4');
     toggleAdditionalContent('Pregunta radioterapia', 'additional-radioterapia-f4');
     toggleAdditionalContent('Pregunta tamoxifeno', 'addition_tamoxifeno_f4');
@@ -211,12 +218,15 @@ document.addEventListener('DOMContentLoaded', () => {
     toggleAdditionalContent('Pregunta hospitalizaciones previas', 'hospitalizaciones-adicionales');
     toggleAdditionalContent('Pregunta cirugias anteriores', 'cirugias-adicionales');
     toggleAdditionalContent('Pregunta menstruación', 'pga-mns-adicional');
+    toggleAdditionalContent('Pregunta menstruación', 'additional-mens-condition');
     toggleAdditionalContent('Pregunta menopausia', 'pg-mnp-adicional');
     toggleAdditionalContent('Pregunta método anticonceptivo', 'pg-mntc-adicional');
-    toggleAdditionalContent('Pregunta cesareas', 'pg-mcsa-adicional');
+    toggleAdditionalContent('Pregunta embarazo', 'additional-embarazo-condition');
+    toggleAdditionalContent('Pregunta cesáreas', 'pg-mcsa-adicional');
     toggleAdditionalContent('Pregunta intervención ginecológica', 'pg-intva-adicional');
     toggleAdditionalContent('Pregunta antecedentes familiares de cáncer', 'enfermedades-familiares-adicionales');
     toggleAdditionalContent('Pregunta antecedentes personales de cáncer', 'cancer-adicional');
+    toggleAdditionalContent('Pregunta antecedentes personales de cáncer', 'additional-cancer-condition');
     toggleAdditionalContent('Pregunta intervención quirúrgica cáncer', 'cirugia-cancer-adicional');
     toggleAdditionalContent('Pregunta tratamiento de cáncer', 'pga-tdc-adicional');
     toggleAdditionalContent('Pregunta tratamiento quimioterapia', 'quimioterapia-adicional');

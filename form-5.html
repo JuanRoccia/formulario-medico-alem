@@ -177,14 +177,33 @@
                 <p class="mb-2">¿Estuvo alguna vez embarazada?</p>        
                 <div class="flex items-center space-x-4">
                     <label class="inline-flex items-center">            
-                    <input type="radio" class="form-radio" name="Pregunta de embarazo" value="si" required>            
+                    <input type="radio" class="form-radio" name="Pregunta embarazo" value="si" required>            
                     <span class="ml-2">Sí</span>            
                     </label>
                     <label class="inline-flex items-center">          
-                    <input type="radio" class="form-radio" name="Pregunta de embarazo" value="no">            
+                    <input type="radio" class="form-radio" name="Pregunta embarazo" value="no">            
                     <span class="ml-2">No</span>            
                     </label>
                 </div>          
+            </div>
+            <div class="mb-4 hidden" id="additional-embarazo-condition">        
+                <p class="mb-2">¿Tuvo cesáreas?</p>        
+                <div class="space-x-4">
+                    <label class="inline-flex items-center">            
+                    <input type="radio" class="form-radio" name="Pregunta cesáreas" value="si" required>            
+                    <span class="ml-2">Sí</span>            
+                    </label>
+                    <label class="inline-flex items-center">          
+                    <input type="radio" class="form-radio" name="Pregunta cesáreas" value="no">            
+                    <span class="ml-2">No</span>            
+                    </label>
+                </div>          
+            </div>
+            <div id="pg-mcsa-adicional" class="mb-4 hidden">
+                <div class="space-x-2">        
+                    <p>Indique cuantas:</p>        
+                    <input type="text" class="form-input block w-full mt-2" name="Describa cantidad de cesareas" placeholder="Escriba aquí">
+                </div>
             </div>
             <div class="mb-4">        
                 <p class="mb-2">¿Tiene problemas de fertilidad?</p>        
@@ -199,31 +218,33 @@
                     </label>
                 </div>          
             </div>
-            <div class="mb-4">        
-                <p class="mb-2">¿Tiene menstraciones regulares?</p>        
-                <div class="flex items-center space-x-4">
-                    <label class="inline-flex items-center">            
-                    <input type="radio" class="form-radio" name="Pregunta menstraciones regulares" value="si" required>            
-                    <span class="ml-2">Sí</span>            
-                    </label>
-                    <label class="inline-flex items-center">          
-                    <input type="radio" class="form-radio" name="Pregunta menstraciones regulares" value="no">            
-                    <span class="ml-2">No</span>            
-                    </label>
-                </div>          
-            </div>
-            <div class="mb-4">        
-                <p class="mb-2">¿Tiene dolores fuertes cuando menstrúa?</p>        
-                <div class="flex items-center space-x-4">
-                    <label class="inline-flex items-center">            
-                    <input type="radio" class="form-radio" name="Pregunta dolores menstruales" value="si" required>            
-                    <span class="ml-2">Sí</span>            
-                    </label>
-                    <label class="inline-flex items-center">          
-                    <input type="radio" class="form-radio" name="Pregunta dolores menstruales" value="no">            
-                    <span class="ml-2">No</span>            
-                    </label>
-                </div>          
+            <div class="hidden" id="additional-mens-condition">
+                <div class="mb-4">        
+                    <p class="mb-2">¿Tiene menstraciones regulares?</p>        
+                    <div class="flex items-center space-x-4">
+                        <label class="inline-flex items-center">            
+                        <input type="radio" class="form-radio" name="Pregunta menstraciones regulares" value="si" required>            
+                        <span class="ml-2">Sí</span>            
+                        </label>
+                        <label class="inline-flex items-center">          
+                        <input type="radio" class="form-radio" name="Pregunta menstraciones regulares" value="no">            
+                        <span class="ml-2">No</span>            
+                        </label>
+                    </div>          
+                </div>
+                <div class="mb-4">        
+                    <p class="mb-2">¿Tiene dolores fuertes cuando menstrúa?</p>        
+                    <div class="flex items-center space-x-4">
+                        <label class="inline-flex items-center">            
+                        <input type="radio" class="form-radio" name="Pregunta dolores menstruales" value="si" required>            
+                        <span class="ml-2">Sí</span>            
+                        </label>
+                        <label class="inline-flex items-center">          
+                        <input type="radio" class="form-radio" name="Pregunta dolores menstruales" value="no">            
+                        <span class="ml-2">No</span>            
+                        </label>
+                    </div>          
+                </div>
             </div>
             <div class="mb-4">        
                 <p class="mb-2">¿Tiene dolores cuando tiene relaciones sexuales?</p>        
@@ -237,25 +258,6 @@
                     <span class="ml-2">No</span>            
                     </label>
                 </div>          
-            </div>
-            <div class="mb-4">        
-                <p class="mb-2">¿Tuvo cesáreas?</p>        
-                <div class="space-x-4">
-                    <label class="inline-flex items-center">            
-                    <input type="radio" class="form-radio" name="Pregunta cesareas" value="si" required>            
-                    <span class="ml-2">Sí</span>            
-                    </label>
-                    <label class="inline-flex items-center">          
-                    <input type="radio" class="form-radio" name="Pregunta cesareas" value="no">            
-                    <span class="ml-2">No</span>            
-                    </label>
-                </div>          
-            </div>
-            <div id="pg-mcsa-adicional" class="mb-4 hidden">
-                <div class="space-x-2">        
-                    <p>Indique cuantas:</p>        
-                    <input type="text" class="form-input block w-full mt-2" name="Describa cantidad de cesareas" placeholder="Escriba aquí">
-                </div>
             </div>
             <div class="mb-4">        
                 <p class="mb-2">¿Tuvo alguna intervención quirúrgica ginecológica?</p>        
@@ -319,86 +321,88 @@
                     </div>
                 </div>
                 <!-- Cirugía del cáncer -->
-                <div class="mb-4">
-                    <p class="mb-2">¿Tuvo alguna intervención quirúrgica de su cáncer? </p>
-                    <div class="flex items-center space-x-4 mb-2">
-                        <label class="inline-flex items-center">
-                            <input type="radio" class="form-radio" name="Pregunta intervención quirúrgica cáncer" value="si">
-                            <span class="ml-2">Sí</span>
-                        </label>
-                        <label class="inline-flex items-center">
-                            <input type="radio" class="form-radio" name="Pregunta intervención quirúrgica cáncer" value="no">
-                            <span class="ml-2">No</span>
-                        </label>
+                <div class="hidden" id="additional-cancer-condition">
+                    <div class="mb-4">
+                        <p class="mb-2">¿Tuvo alguna intervención quirúrgica de su cáncer? </p>
+                        <div class="flex items-center space-x-4 mb-2">
+                            <label class="inline-flex items-center">
+                                <input type="radio" class="form-radio" name="Pregunta intervención quirúrgica cáncer" value="si">
+                                <span class="ml-2">Sí</span>
+                            </label>
+                            <label class="inline-flex items-center">
+                                <input type="radio" class="form-radio" name="Pregunta intervención quirúrgica cáncer" value="no">
+                                <span class="ml-2">No</span>
+                            </label>
+                        </div>
+                        <div id="cirugia-cancer-adicional" class="hidden mb-4">
+                            <label class="space-x-2">
+                                <span>Fecha:</span>
+                                <input type="date" class="form-input block w-full text-slate-600 mt-1" name="fecha intervención quirúrgica de cáncer" placeholder="DD/MM/AAAA" pattern="\d{2}/\d{2}/\d{4}">
+                            </label>
+                        </div>
                     </div>
-                    <div id="cirugia-cancer-adicional" class="hidden mb-4">
-                        <label class="space-x-2">
-                            <span>Fecha:</span>
-                            <input type="date" class="form-input block w-full text-slate-600 mt-1" name="fecha intervención quirúrgica de cáncer" placeholder="DD/MM/AAAA" pattern="\d{2}/\d{2}/\d{4}">
-                        </label>
+                    <div class="mb-4">        
+                        <p class="mb-2">¿Está actualmente en tratamiento de cáncer?</p>        
+                        <div class="flex items-center space-x-4">
+                          <label class="inline-flex items-center">            
+                            <input type="radio" class="form-radio" name="Pregunta tratamiento de cáncer" value="si">            
+                            <span class="ml-2">Sí</span>            
+                          </label>
+                          <label class="inline-flex items-center">          
+                            <input type="radio" class="form-radio" name="Pregunta tratamiento de cáncer" value="no">            
+                            <span class="ml-2">No</span>            
+                          </label>
+                        </div>          
                     </div>
-                </div>
-                <div class="mb-4">        
-                    <p class="mb-2">¿Está actualmente en tratamiento de cáncer?</p>        
-                    <div class="flex items-center space-x-4">
-                      <label class="inline-flex items-center">            
-                        <input type="radio" class="form-radio" name="Pregunta tratamiento de cáncer" value="si">            
-                        <span class="ml-2">Sí</span>            
-                      </label>
-                      <label class="inline-flex items-center">          
-                        <input type="radio" class="form-radio" name="Pregunta tratamiento de cáncer" value="no">            
-                        <span class="ml-2">No</span>            
-                      </label>
-                    </div>          
-                </div>
-                <div id="pga-tdc-adicional" class="mb-4 hidden">
-                    <div class="space-x-2">        
-                      <p>Inicio del tratamiento:</p>        
-                      <input type="date" class="form-input block w-full text-slate-600 mt-1" name="Fecha de inicio tratamiento de cáncer" placeholder="DD/MM/AAAA" pattern="\d{2}/\d{2}/\d{4}">
+                    <div id="pga-tdc-adicional" class="mb-4 hidden">
+                        <div class="space-x-2">        
+                          <p>Inicio del tratamiento:</p>        
+                          <input type="date" class="form-input block w-full text-slate-600 mt-1" name="Fecha de inicio tratamiento de cáncer" placeholder="DD/MM/AAAA" pattern="\d{2}/\d{2}/\d{4}">
+                        </div>
+                        <div class="space-x-2 mt-2">        
+                          <p>Si lo finalizó indique cuando:</p>        
+                          <input type="date" class="form-input block w-full text-slate-600 mt-1" name="Fecha de finalización tratamiento de cáncer" placeholder="DD/MM/AAAA" pattern="\d{2}/\d{2}/\d{4}">
+                        </div>
                     </div>
-                    <div class="space-x-2 mt-2">        
-                      <p>Si lo finalizó indique cuando:</p>        
-                      <input type="date" class="form-input block w-full text-slate-600 mt-1" name="Fecha de finalización tratamiento de cáncer" placeholder="DD/MM/AAAA" pattern="\d{2}/\d{2}/\d{4}">
+                    <!-- Quimioterapia -->
+                    <div class="mb-4">
+                        <p class="mb-2">¿Ha recibido quimioterapia?</p>
+                        <div class="flex items-center space-x-4 mb-2">
+                            <label class="inline-flex items-center">
+                                <input type="radio" class="form-radio" name="Pregunta tratamiento quimioterapia" value="si">
+                                <span class="ml-2">Sí</span>
+                            </label>
+                            <label class="inline-flex items-center">
+                                <input type="radio" class="form-radio" name="Pregunta tratamiento quimioterapia" value="no">
+                                <span class="ml-2">No</span>
+                            </label>
+                        </div>
+                        <div id="quimioterapia-adicional" class="hidden mb-4">
+                            <label class="space-x-2">
+                                <span class="">Fecha de finalización:</span>
+                                <input type="date" class="form-input block w-full text-slate-600 mt-1" name="Fecha de finalización de quimioterapia" placeholder="DD/MM/AAAA" pattern="\d{2}/\d{2}/\d{4}">
+                            </label>
+                        </div>
                     </div>
-                </div>
-                <!-- Quimioterapia -->
-                <div class="mb-4">
-                    <p class="mb-2">¿Ha recibido quimioterapia?</p>
-                    <div class="flex items-center space-x-4 mb-2">
-                        <label class="inline-flex items-center">
-                            <input type="radio" class="form-radio" name="Pregunta tratamiento quimioterapia" value="si">
-                            <span class="ml-2">Sí</span>
-                        </label>
-                        <label class="inline-flex items-center">
-                            <input type="radio" class="form-radio" name="Pregunta tratamiento quimioterapia" value="no">
-                            <span class="ml-2">No</span>
-                        </label>
-                    </div>
-                    <div id="quimioterapia-adicional" class="hidden mb-4">
-                        <label class="space-x-2">
-                            <span class="">Fecha de finalización:</span>
-                            <input type="date" class="form-input block w-full text-slate-600 mt-1" name="Fecha de finalización de quimioterapia" placeholder="DD/MM/AAAA" pattern="\d{2}/\d{2}/\d{4}">
-                        </label>
-                    </div>
-                </div>
-                <!-- Radioterapia -->
-                <div class="mb-4">
-                    <p class="mb-2">¿Ha recibido radioterapia?</p>
-                    <div class="flex items-center space-x-4 mb-2">
-                        <label class="inline-flex items-center">
-                            <input type="radio" class="form-radio" name="Pregunta tratamiento radioterapia" value="si">
-                            <span class="ml-2">Sí</span>
-                        </label>
-                        <label class="inline-flex items-center">
-                            <input type="radio" class="form-radio" name="Pregunta tratamiento radioterapia" value="no">
-                            <span class="ml-2">No</span>
-                        </label>
-                    </div>
-                    <div id="radioterapia-adicional" class="hidden mb-4">
-                        <label class="space-x-2">
-                            <span class="">Fecha de finalización:</span>
-                            <input type="date" class="form-input block w-full text-slate-600 mt-1" name="Fecha de finalización de radioterapia" placeholder="DD/MM/AAAA" pattern="\d{2}/\d{2}/\d{4}">
-                        </label>
+                    <!-- Radioterapia -->
+                    <div class="mb-4">
+                        <p class="mb-2">¿Ha recibido radioterapia?</p>
+                        <div class="flex items-center space-x-4 mb-2">
+                            <label class="inline-flex items-center">
+                                <input type="radio" class="form-radio" name="Pregunta tratamiento radioterapia" value="si">
+                                <span class="ml-2">Sí</span>
+                            </label>
+                            <label class="inline-flex items-center">
+                                <input type="radio" class="form-radio" name="Pregunta tratamiento radioterapia" value="no">
+                                <span class="ml-2">No</span>
+                            </label>
+                        </div>
+                        <div id="radioterapia-adicional" class="hidden mb-4">
+                            <label class="space-x-2">
+                                <span class="">Fecha de finalización:</span>
+                                <input type="date" class="form-input block w-full text-slate-600 mt-1" name="Fecha de finalización de radioterapia" placeholder="DD/MM/AAAA" pattern="\d{2}/\d{2}/\d{4}">
+                            </label>
+                        </div>
                     </div>
                 </div>
                 <!-- Biopsia reciente -->

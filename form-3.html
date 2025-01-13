@@ -40,7 +40,7 @@
           <div class="space-y-4">
             <!-- Sintomas -->
             <div class="space-x-2 space-y-1 md:space-y-0">
-              <p class="pr-2 mb-2">¿Cuáles son o fueron los síntomas por los cuales se realiza el estudio?</p>
+              <p class="pr-2 mb-2">¿Cuáles son o fueron los síntomas por los cuales se realiza el estudio? (Marcar las correctas)</p>
               <div class="mb-4 md:mb-0 md:mr-4">
                 <div class="flex flex-wrap items-center space-x-0 space-y-1 md:space-y-0"> <!--md:space-x-4-->
                   <label class="inline-flex items-center w-full md:w-auto">
@@ -93,9 +93,14 @@
                   </label>
                 </div>
               </div>
-              <div class="space-x-2 pt-2">   
-                <p class="ml-2">Otros:</p>        
-                <input type="text" class="form-input w-full mt-1" placeholder="Escriba aquí">
+              <div class="flex flex-wrap items-center space-x-0 space-y-1 md:space-y-0">
+                <label class="inline-flex items-center w-full md:w-auto">
+                  <input type="checkbox" class="form-checkbox ml-3" name="Otros síntomas" value="otros">
+                  <span class="ml-2">Otros</span>
+                </label>
+              </div>  
+              <div id="additional-otros-sintomas" class="space-x-2 pt-2 hidden">      
+                <input type="text" class="form-input w-full mt-1 ml-4" placeholder="Escriba aquí">
               </div>
             </div>
             <!-- Fecha -->
@@ -153,7 +158,7 @@
             </div>
 
             <div class="mb-6">
-              <p class="mb-2">Antecedentes de problemas al nacer o durante el parto:</p>        
+              <p class="mb-2">Presentó problemas al nacer o durante el parto:</p>        
               <div class="flex items-center space-x-4">  
                 <label class="inline-flex items-center">            
                   <input type="radio" class="form-radio" name="Pregunta antecedentes de problemas al nacer" value="si" required>            
@@ -199,14 +204,14 @@
               </div>        
             </div>
             <div class="mb-6">
-              <p class="mb-2">¿Presenta antecedentes odontológicos?</p>        
+              <p class="mb-2">¿Presenta procedimientos odontológicos?</p>        
               <div class="flex items-center space-x-4">
                 <label class="inline-flex items-center">            
-                  <input type="radio" class="form-radio" name="Pregunta antecedentes odontológicos" value="si" required>            
+                  <input type="radio" class="form-radio" name="Pregunta procedimientos odontológicos" value="si" required>            
                   <span class="ml-2">Sí</span>            
                 </label>
                 <label class="inline-flex items-center">          
-                  <input type="radio" class="form-radio" name="Pregunta antecedentes odontológicos" value="no">            
+                  <input type="radio" class="form-radio" name="Pregunta procedimientos odontológicos" value="no">            
                   <span class="ml-2">No</span>            
                 </label>          
               </div>
@@ -270,154 +275,61 @@
                 </div> 
               </div>         
             </div>
-            
             <div>
-              <h3 class="mt-5 mb-2">¿Padece o cree haber sufrido algunas de las siguientes?</h3>
-              <!-- Diabetes -->
-              <p class="">Diabetes:</p>        
-              <div class="flex items-center space-x-4 mb-4">          
-                <label class="inline-flex items-center">            
-                  <input type="radio" class="form-radio" name="Pregunta diabetes" value="si" required>            
-                  <span class="ml-2">Sí</span>            
-                </label>
-                <label class="inline-flex items-center">       
-                  <input type="radio" class="form-radio" name="Pregunta diabetes" value="no">            
-                  <span class="ml-2">No</span>            
-                </label>          
-              </div>
-              <!-- Hipertensión -->
-              <p class="">Hipertensión:</p>        
-              <div class="flex items-center space-x-4 mb-4">          
-                <label class="inline-flex items-center">            
-                  <input type="radio" class="form-radio" name="Pregunta hipertension" value="si" required>            
-                  <span class="ml-2">Sí</span>            
-                </label>    
-                <label class="inline-flex items-center">          
-                  <input type="radio" class="form-radio" name="Pregunta hipertension" value="no">            
-                  <span class="ml-2">No</span>            
-                </label>      
-              </div>
-              <!-- Arritmias -->
-              <p class="">Arritmias:</p>        
-              <div class="flex items-center space-x-4 mb-4">          
-                <label class="inline-flex items-center">            
-                  <input type="radio" class="form-radio" name="Pregunta arritmias" value="si" required>            
-                  <span class="ml-2">Sí</span>            
-                </label>
-                <label class="inline-flex items-center">          
-                  <input type="radio" class="form-radio" name="Pregunta arritmias" value="no">            
-                  <span class="ml-2">No</span>            
-                </label>          
-              </div>
-              <!-- HIV -->
-              <p class="">HIV:</p>        
-              <div class="flex items-center space-x-4 mb-4">          
-                <label class="inline-flex items-center">            
-                  <input type="radio" class="form-radio" name="Pregunta hiv" value="si" required>            
-                  <span class="ml-2">Sí</span>            
-                </label>      
-                <label class="inline-flex items-center">          
-                  <input type="radio" class="form-radio" name="Pregunta hiv" value="no">            
-                  <span class="ml-2">No</span>            
-                </label>    
-              </div>
-              <!-- Alteraciones Tiroideas -->
-              <p class="">Alt. Tiroideas:</p>        
-              <div class="flex items-center space-x-4 mb-4">          
-                <label class="inline-flex items-center">            
-                  <input type="radio" class="form-radio" name="Pregunta alt. tiroideas" value="si" required>            
-                  <span class="ml-2">Sí</span>            
-                </label>    
-                <label class="inline-flex items-center">          
-                  <input type="radio" class="form-radio" name="Pregunta alt. tiroideas" value="no">            
-                  <span class="ml-2">No</span>            
-                </label>      
-              </div>
-              <!-- Esclerosis Múltiple -->
-              <p class="">Esclerosis Múltiple:</p>        
-              <div class="flex items-center space-x-4 mb-4">          
-                <label class="inline-flex items-center">            
-                  <input type="radio" class="form-radio" name="Pregunta esclerosis multiple" value="si" required>            
-                  <span class="ml-2">Sí</span>            
-                </label>   
-                <label class="inline-flex items-center">          
-                  <input type="radio" class="form-radio" name="Pregunta esclerosis multiple" value="no">            
-                  <span class="ml-2">No</span>            
-                </label>       
-              </div>
-              <!-- Trastornos Psiquiátricos -->
-              <p class="">T. Psiquiátricos:</p>        
-              <div class="flex items-center space-x-4 mb-4">          
-                <label class="inline-flex items-center">            
-                  <input type="radio" class="form-radio" name="Pregunta trastornos psiquiatricos" value="si" required>            
-                  <span class="ml-2">Sí</span>            
-                </label>
-                <label class="inline-flex items-center">          
-                  <input type="radio" class="form-radio" name="Pregunta trastornos psiquiatricos" value="no">            
-                  <span class="ml-2">No</span>            
-                </label>          
-              </div>
-              <!-- Migraña -->
-              <p class="">Migraña:</p>        
-              <div class="flex items-center space-x-4 mb-4">          
-                <label class="inline-flex items-center">            
-                  <input type="radio" class="form-radio" name="Pregunta migraña" value="si" required>            
-                  <span class="ml-2">Sí</span>            
-                </label>    
-                <label class="inline-flex items-center">          
-                  <input type="radio" class="form-radio" name="Pregunta migraña" value="no">            
-                  <span class="ml-2">No</span>            
-                </label>      
-              </div>
-              <!-- Parkinson -->
-              <p class="">Parkinson:</p>        
-              <div class="flex items-center space-x-4 mb-4">          
-                <label class="inline-flex items-center">            
-                  <input type="radio" class="form-radio" name="Pregunta parkinson" value="si" required>            
-                  <span class="ml-2">Sí</span>            
-                </label>
-                <label class="inline-flex items-center">          
-                  <input type="radio" class="form-radio" name="Pregunta parkinson" value="no">            
-                  <span class="ml-2">No</span>            
-                </label>          
-              </div>
-              <!-- Hidrocefalia -->
-              <p class="">Hidrocefalia:</p>        
-              <div class="flex items-center space-x-4 mb-4">          
-                <label class="inline-flex items-center">            
-                  <input type="radio" class="form-radio" name="Pregunta hidrocefalia" value="si" required>            
-                  <span class="ml-2">Sí</span>            
-                </label>
-                <label class="inline-flex items-center">          
-                  <input type="radio" class="form-radio" name="Pregunta hidrocefalia" value="no">            
-                  <span class="ml-2">No</span>            
-                </label>          
-              </div>
-              <!-- Alguna otra enfermedad -->
-              <p class="mb-2">Alguna otra enfermedad:</p>        
-              <div class="ml-2 mb-4">
-                <input type="text" class="form-input w-full" name="otra_enfermedad" placeholder="Especifique...">
-              </div>
-            </div>
-
-            <div>
-              <p class="mb-2">¿Toma alguna medicación relacionada al estudio que se tiene que realizar?</p>        
-              <div class="flex items-center space-x-4">
-                <label class="inline-flex items-center">            
-                  <input type="radio" class="form-radio" name="Pregunta medicación relacionada" value="si" required>            
-                  <span class="ml-2">Sí</span>            
-                </label>
-                <label class="inline-flex items-center">          
-                  <input type="radio" class="form-radio" name="Pregunta medicación relacionada" value="no">            
-                  <span class="ml-2">No</span>            
-                </label>  
-              </div>
-              <div id="medicacion-relacionada" class="hidden">
-                <div class="ml-2 mt-4">        
-                  <p>Indique cuales:</p>        
-                  <input type="text" class="form-input w-full mt-1" name="Indique la medicación" placeholder="Escriba aquí">
+              <p class="pr-2 mb-2">¿Padece o cree haber padecido alguna de las siguientes?</p>
+              <div class="mb-4 md:mb-0 md:mr-4">
+                <div class="flex flex-wrap items-center space-x-0 space-y-1 md:space-y-0">
+                  <label class="inline-flex items-center w-full md:w-auto">
+                    <input type="checkbox" class="form-checkbox ml-3" name="Diabetes" value="option1">
+                    <span class="ml-2">Diabetes</span>
+                  </label>
+                  <label class="inline-flex items-center w-full md:w-auto">
+                    <input type="checkbox" class="form-checkbox ml-3" name="Hipertensión" value="option2">
+                    <span class="ml-1">Hipertensión</span>
+                  </label>
+                  <label class="inline-flex items-center w-full md:w-auto">
+                    <input type="checkbox" class="form-checkbox ml-3" name="Arritmias" value="option3">
+                    <span class="ml-1">Arritmias</span>
+                  </label>
+                  <label class="inline-flex items-center w-full md:w-auto">
+                    <input type="checkbox" class="form-checkbox ml-3" name="HIV" value="option4">
+                    <span class="ml-1">HIV</span>
+                  </label>
+                  <label class="inline-flex items-center w-full md:w-auto">
+                    <input type="checkbox" class="form-checkbox ml-3" name="Alt. Tiroideas" value="option5">
+                    <span class="ml-1">Alt. Tiroideas</span>
+                  </label>
+                  <label class="inline-flex items-center w-full md:w-auto">
+                    <input type="checkbox" class="form-checkbox ml-3" name="Esclerosis Múltiple" value="option6">
+                    <span class="ml-1">Esclerosis Múltiple</span>
+                  </label>
+                  <label class="inline-flex items-center w-full md:w-auto">
+                    <input type="checkbox" class="form-checkbox ml-3" name="T. Psiquiátricos" value="option7">
+                    <span class="ml-1">T. Psiquiátricos</span>
+                  </label>
+                  <label class="inline-flex items-center w-full md:w-auto">
+                    <input type="checkbox" class="form-checkbox ml-3" name="Migraña" value="option8">
+                    <span class="ml-1">Migraña</span>
+                  </label>
+                  <label class="inline-flex items-center w-full md:w-auto">
+                    <input type="checkbox" class="form-checkbox ml-3" name="Parkinson" value="option9">
+                    <span class="ml-1">Parkinson</span>
+                  </label>
+                  <label class="inline-flex items-center w-full md:w-auto">
+                    <input type="checkbox" class="form-checkbox ml-3" name="Hidrocefalia" value="option9">
+                    <span class="ml-1">Hidrocefalia</span>
+                  </label>
                 </div>
-              </div>     
+                <div class="flex flex-wrap items-center space-x-0 space-y-1 md:space-y-0">
+                  <label class="inline-flex items-center w-full md:w-auto">
+                    <input type="checkbox" class="form-checkbox ml-3" name="Otras enfermemdades" value="otras">
+                    <span class="ml-2">Otras</span>
+                  </label>
+                </div>  
+                <div id="additional-otras-enfermedades" class="space-x-2 pt-2 pl-4 hidden">      
+                  <input type="text" class="form-input w-full mt-1" placeholder="Escriba aquí" name="Detalle otras enfermedades">
+                </div>
+              </div>
             </div>
             <div>
               <p class="mb-2">¿Se ha realizado exámenes de laboratorio por prolactina Y hormonas tiroideas?</p>        

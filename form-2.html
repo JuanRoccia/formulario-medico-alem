@@ -41,34 +41,21 @@
           <div id="body-drawing-container"></div>
           <div class="space-y-4">
             <div>      
-              <p class="mb-2">¿Presenta o presentó dolor y/o molestias en la zona a estudiar?</p>        
-              <div class="flex items-center space-x-4">
-                <label class="inline-flex items-center">          
-                  <input type="radio" class="form-radio" name="Pregunta dolor" value="si" required>            
-                  <span class="ml-2">Sí</span>            
-                </label>        
-                <label class="inline-flex items-center">            
-                  <input type="radio" class="form-radio" name="Pregunta dolor" value="no">            
-                  <span class="ml-2">No</span>            
-                </label>
-              </div>     
-            </div>
-            <div class="checkbox-group hidden space-x-2" id="Seleccione el tipo de dolor">
+              <p class="mb-2">¿Presenta o presentó alguno de los síntomas en la zona a estudiar?</p>        
               <div class="flex flex-col md:flex-row ml-2">
-              <p class="pr-2">Dolor:</p>
                 <div class="mb-4 md:mb-0 md:mr-4">
-                  <div class="flex flex-wrap items-center space-x-0 md:space-x-4 space-y-1">
+                  <div class="flex flex-wrap items-center">
                     <label class="inline-flex items-center w-full md:w-auto">
                       <input type="checkbox" class="form-checkbox ml-3" name="movimiento" value="option1">
-                      <span class="ml-2">Ante movimiento</span>
+                      <span class="ml-2">Dolor ante movimiento</span>
                     </label>
                     <label class="inline-flex items-center w-full md:w-auto">
                       <input type="checkbox" class="form-checkbox ml-3" name="reposo" value="option2">
-                      <span class="ml-1">En Reposo</span>
+                      <span class="ml-1">Dolor en Reposo</span>
                     </label>
                     <label class="inline-flex items-center w-full md:w-auto">
                       <input type="checkbox" class="form-checkbox ml-3" name="tumefacción" value="option3">
-                      <span class="ml-1">Tumefacción</span>
+                      <span class="ml-1">Hinchazon</span>
                     </label>
                     <label class="inline-flex items-center w-full md:w-auto">
                       <input type="checkbox" class="form-checkbox ml-3" name="calambres" value="option4">
@@ -94,6 +81,10 @@
                       <input type="checkbox" class="form-checkbox ml-3" name="hormigueos" value="option9">
                       <span class="ml-1">Hormigueos</span>
                     </label>
+                    <label class="inline-flex items-center w-full md:w-auto">
+                      <input type="checkbox" class="form-checkbox ml-3" name="molestias" value="option9">
+                      <span class="ml-1">Molestias</span>
+                    </label>
                   </div>
                 </div>
               </div>
@@ -104,7 +95,7 @@
                     <input type="date" class="form-input block w-full text-slate-600 sm:w-auto" name="Fecha síntomas" placeholder="DD/MM/AAAA" pattern="\d{2}/\d{2}/\d{4}">                  
                   </div>
                 </div>
-              </div>
+              </div>     
             </div>
             <div class="md:flex-row">
               <p class="pr-4 mb-2">¿Se ha realizado estudios previos? (relacionados a la zona a estudiar):</p>
@@ -141,48 +132,6 @@
                   <span class="ml-2">No</span>            
                 </label>
               </div>          
-            </div>
-            <div>
-              <p class="mb-2">¿Le han realizado cirugía/s de la zona a estudiar?</p>        
-              <div class="flex items-center space-x-4">
-                <label class="inline-flex items-center">            
-                  <input type="radio" class="form-radio" name="Pregunta cirugía" value="si" required>            
-                  <span class="ml-2">Sí</span>            
-                </label>
-                <label class="inline-flex items-center">          
-                  <input type="radio" class="form-radio" name="Pregunta cirugía" value="no">            
-                  <span class="ml-2">No</span>            
-                </label>
-              </div>      
-            </div>
-            <div id="additional-content" class="hidden space-x-2">
-              <div class="space-x-2 mt-4 ml-2">        
-                <p>¿Qué tipo de cirugía?</p>        
-                <input type="text" class="form-input mt-1" name="Tipo de cirugía" placeholder="Escriba aquí">
-              </div>
-              <div class="space-x-2 mt-4">        
-                <p>¿Hace cuánto tiempo?</p>        
-                <input type="text" class="form-input mt-1" name="Tiempo aproximado desde la cirugía" placeholder="Escriba aquí">
-              </div>
-            </div>
-            <div>        
-              <p class="mb-2">¿Toma Alguna medicion relacionada al estudio que se tiene que realizar?</p>        
-              <div class="flex items-center space-x-4">
-                <label class="inline-flex items-center">            
-                  <input type="radio" class="form-radio" name="Pregunta medicación" value="si" required>            
-                  <span class="ml-2">Sí</span>            
-                </label>
-                <label class="inline-flex items-center">          
-                  <input type="radio" class="form-radio" name="Pregunta medicación" value="no">            
-                  <span class="ml-2">No</span>            
-                </label>          
-              </div>          
-            </div>
-            <div id="additional-medicacion" class="hidden">
-              <div class="mt-4 ml-2">       
-                <p>Indique cuales:</p>        
-                <input type="text" class="form-input mt-1" name="Medicación relacionada al estudio" placeholder="Escriba aquí">
-              </div>
             </div>
             <div>
               <p class="mb-2">¿Presenta antecedentes oncológicos personales?</p>        
