@@ -23,7 +23,6 @@ const template = `
 
   <!-- Controles de dibujo en fila separada -->
   <div class="flex flex-wrap justify-center gap-4 mt-4 pb-8">
-    <button id="penBtn" class="px-4 py-2 bg-blue-500 text-white rounded">Lápiz</button>
     <button id="clearBtn1" class="px-4 py-2 bg-red-500 text-white rounded">Borrar Imagen 1</button>
     <button id="clearBtn2" class="px-4 py-2 bg-red-500 text-white rounded">Borrar Imagen 2</button>
   </div>
