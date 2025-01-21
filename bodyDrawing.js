@@ -55,7 +55,7 @@ class BodyDrawing {
         this.canvasEspalda = null;
         this.ctxFrontal = null;
         this.ctxEspalda = null;
-        this.currentTool = 'pen';
+        // this.currentTool = 'pen';
     }
 
     initialize() {
@@ -72,7 +72,7 @@ class BodyDrawing {
         });
 
         this.setupEventListeners();
-        document.getElementById('penBtn').classList.add('tool-active');
+        // document.getElementById('penBtn').classList.add('tool-active');
     }
 
     /*setupCanvas(img) {
@@ -169,19 +169,17 @@ class BodyDrawing {
         e.preventDefault();
         this.clearCanvas2();
     });
-    document.getElementById('penBtn').addEventListener('click', (e) => {
-        e.preventDefault();
-        this.setTool('pen');
-    });
-    
-    document.getElementById('penBtn').addEventListener('click', () => this.setTool('pen'));
+    // document.getElementById('penBtn').addEventListener('click', (e) => {
+    //     e.preventDefault();
+    //     this.setTool('pen');
+    // });
+    // document.getElementById('penBtn').addEventListener('click', () => this.setTool('pen'));
   }
 
-  setTool(tool) {
-    this.currentTool = tool;
-    
-    document.getElementById('penBtn').classList.toggle('tool-active', tool === 'pen');
-  }
+  // setTool(tool) {
+  //   this.currentTool = tool;
+  //   document.getElementById('penBtn').classList.toggle('tool-active', tool === 'pen');
+  // }
 
   /*startDrawing(e) {
     this.isDrawing = true;
