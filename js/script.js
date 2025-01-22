@@ -190,13 +190,13 @@ document.addEventListener('DOMContentLoaded', function() {
     const forms = urlParams.getAll('form');
     const formNames = urlParams.getAll('name');
     const formContainer = document.getElementById('formContainer');
-    const formList = document.getElementById('formList');
+    //const formList = document.getElementById('formList');
     const prevBtn = document.getElementById('prevBtn');
     const nextBtn = document.getElementById('nextBtn');
     const pageIndicator = document.getElementById('pageIndicator');
     let currentFormIndex = 0;
 
-    function createFormList() {
+    /*function createFormList() {
         const list = document.createElement('ul');
         list.className = 'list-disc pl-5 mb-4';
         formNames.forEach((name, index) => {
@@ -206,7 +206,7 @@ document.addEventListener('DOMContentLoaded', function() {
             list.appendChild(listItem);
         });
         formList.appendChild(list);
-    }
+    }*/
 
     function createIframes() {
         forms.forEach((form, index) => {
@@ -901,12 +901,12 @@ document.addEventListener('DOMContentLoaded', function() {
 
     if (forms.length === 0) {
         formContainer.innerHTML = '<p class="text-red-500">No se han seleccionado formularios.</p>';
-    } else {
+    } /*else {
         createFormList();
         createIframes();
         updatePageIndicator();
         updateButtonText();
-    }
+    }*/
 
 });
 // FIN Funcionalidades de index.html
