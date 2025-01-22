@@ -88,7 +88,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 const additionalContent = document.getElementById(contentId);
                 const inputs = additionalContent.querySelectorAll('input');
     
-                if (event.target.value === 'si' || event.target.value === 'mujer' || (event.target.checked && event.target.value === 'on')) {
+                if (event.target.value === 'si' || event.target.value === 'mujer' || (event.target.checked && (event.target.value === 'on' || ['otras', 'otros'].includes(event.target.value)))) {
                     additionalContent.classList.remove('hidden');
                     
                     if (additionalContent.classList.contains('checkbox-group')) {
