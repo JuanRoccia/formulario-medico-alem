@@ -901,12 +901,12 @@ document.addEventListener('DOMContentLoaded', function() {
 
     if (forms.length === 0) {
         formContainer.innerHTML = '<p class="text-red-500">No se han seleccionado formularios.</p>';
-    } /*else {
-        createFormList();
+    } else {
+        //createFormList();
         createIframes();
         updatePageIndicator();
         updateButtonText();
-    }*/
+    }
 
 });
 // FIN Funcionalidades de index.html
