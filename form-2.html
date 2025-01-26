@@ -85,17 +85,45 @@
                       <input type="checkbox" class="form-checkbox ml-3" name="molestias" value="option9">
                       <span class="ml-1">Molestias</span>
                     </label>
+                    <label class="inline-flex items-center w-full md:w-auto">
+                      <input type="checkbox" class="form-checkbox ml-3" name="Otros síntomas" value="otros">
+                      <span class="ml-2">Otros</span>
+                    </label>
+                  </div>
+                  <div id="additional-otros-sintomas-f2" class="space-x-2 pt-2 hidden">      
+                    <input type="text" class="form-input w-full mt-1 ml-4" placeholder="Describa otros síntomas">
                   </div>
                 </div>
               </div>
               <div class="space-x-0 md:space-x-4 space-y-1 mt-4">
-                <p class="pr-4 mb-1">¿Desde cuándo los presenta? (Fecha Exacta o aproximada):</p>
+                <p class="pr-4 mb-1">¿Desde cuándo los presenta? (Fecha exacta o aproximada):</p>
                 <div class="mb-4 md:mb-0 md:mr-4 mb-1">
                   <div class="flex flex-wrap items-center">
                     <input type="date" class="form-input block w-full text-slate-600 sm:w-auto" name="Fecha síntomas" placeholder="DD/MM/AAAA" pattern="\d{2}/\d{2}/\d{4}">                  
                   </div>
                 </div>
               </div>     
+            </div>
+            <div>      
+              <p class="mb-2">¿Tuvo un traumatismo? (Golpe, tirón o mal esfuerzo)</p>        
+              <div class="flex items-center space-x-4">
+                <label class="inline-flex items-center">            
+                  <input type="radio" class="form-radio" name="Pregunta traumatismo" value="si" required>            
+                  <span class="ml-2">Sí</span>            
+                </label>
+                <label class="inline-flex items-center">          
+                  <input type="radio" class="form-radio" name="Pregunta traumatismo" value="no">            
+                  <span class="ml-2">No</span>            
+                </label>
+              </div>
+              <div id="additional-fecha-traumatismo" class="space-x-0 md:space-x-4 space-y-1 mt-4 hidden">
+                <p class="pr-4 mb-1">Fecha exacta o aproximada:</p>
+                <div class="mb-4 md:mb-0 md:mr-4 mb-1">
+                  <div class="flex flex-wrap items-center">
+                    <input type="date" class="form-input block w-full text-slate-600 sm:w-auto" name="Fecha traumatismo" placeholder="DD/MM/AAAA" pattern="\d{2}/\d{2}/\d{4}">                  
+                  </div>
+                </div>
+              </div>          
             </div>
             <div class="md:flex-row">
               <p class="pr-4 mb-2">¿Se ha realizado estudios previos? (relacionados a la zona a estudiar):</p>
@@ -119,19 +147,6 @@
                   </label>
                 </div>
               </div>
-            </div>
-            <div>      
-              <p class="mb-2">¿Tuvo un traumatismo? (Golpe, tirón o mal esfuerzo)</p>        
-              <div class="flex items-center space-x-4">
-                <label class="inline-flex items-center">            
-                  <input type="radio" class="form-radio" name="Pregunta traumatismo" value="si" required>            
-                  <span class="ml-2">Sí</span>            
-                </label>
-                <label class="inline-flex items-center">          
-                  <input type="radio" class="form-radio" name="Pregunta traumatismo" value="no">            
-                  <span class="ml-2">No</span>            
-                </label>
-              </div>          
             </div>
             <div>
               <p class="mb-2">¿Presenta antecedentes oncológicos personales?</p>        

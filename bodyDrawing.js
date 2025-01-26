@@ -4,16 +4,16 @@ const template = `
   <!-- Contenedor de imágenes -->
   <div class="flex flex-col sm:flex-row items-center justify-center gap-4 my-10 px-4">
     <!-- Primer imagen y texto -->
-    <div class="flex flex-col sm:flex-row items-center gap-2 w-full sm:w-auto">
-      <span class="border border-black px-2 py-1 mb-2 sm:mb-0 text-sm">DERECHA</span>
+    <div class="text-center gap-2 w-full sm:w-auto">
+      <span class="border border-black px-2 py-1 mb-2 sm:mb-0 text-sm">DE FRENTE</span>
       <div class="relative">
         <img src="images/frontal.webp" alt="Imagen 1" class="body-img w-52 h-auto object-contain">
         <canvas id="canvasFrontal" class="absolute top-0 left-0 z-10"></canvas>
       </div>
     </div>
     <!-- Segunda imagen y texto -->
-    <div class="flex flex-col sm:flex-row items-center gap-2 w-full sm:w-auto">
-      <span class="border border-black px-2 py-1 mb-2 sm:mb-0 text-sm">IZQUIERDA</span>
+    <div class="text-center gap-2 w-full sm:w-auto">
+      <span class="border border-black px-2 py-1 mb-2 sm:mb-0 text-sm">DE ESPALDA</span>
       <div class="relative">
         <img src="images/espalda.webp" alt="Imagen 2" class="body-img w-52 h-auto object-contain">
         <canvas id="canvasEspalda" class="absolute top-0 left-0 z-10"></canvas>

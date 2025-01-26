@@ -172,7 +172,9 @@ document.addEventListener('DOMContentLoaded', () => {
     toggleAdditionalContent('Pregunta cirugía', 'additional-content');
     toggleAdditionalContent('Pregunta medicación relacionada', 'medicacion-relacionada');
     // Formulario 2
-    toggleAdditionalContent('Pregunta dolor', 'Seleccione el tipo de dolor');
+    toggleAdditionalContent('Otros síntomas', 'additional-otros-sintomas-f2');
+    //toggleAdditionalContent('Pregunta dolor', 'Seleccione el tipo de dolor');
+    toggleAdditionalContent('Pregunta traumatismo', 'additional-fecha-traumatismo');
     toggleAdditionalContent('Pregunta medicación', 'additional-medicacion');
     toggleAdditionalContent('Pregunta antecedentes oncológicos personales', 'additional-onc');
     toggleAdditionalContent('Pregunta deporte', 'additional-deporte');
@@ -201,9 +203,10 @@ document.addEventListener('DOMContentLoaded', () => {
     toggleAdditionalContent('Opción biopsia quirúrgica', 'additional-fecha-biopsia-quirurgica');
     toggleAdditionalContent('Opción segmentectomía', 'additional-fecha-segmentectomia');
     toggleAdditionalContent('Opción cirugía mastectomía', 'additional-fecha-mastectomia');
-    toggleAdditionalContent('Opción reconstrucción músculo abdominal', 'additional-fecha-reconstruccion-musculo-abdominal');
-    toggleAdditionalContent('Opción reconstrucción músculo dorsal', 'additional-fecha-reconstruccion-musculo-drosal');
-    toggleAdditionalContent('Opción reconstrucción prótesis', 'additional-fecha-reconstruccion-protesis');
+    toggleAdditionalContent('Opción reconstrucción', 'additional-fecha-reconstruccion');
+    //toggleAdditionalContent('Opción reconstrucción músculo abdominal', 'additional-fecha-reconstruccion-musculo-abdominal');
+    //toggleAdditionalContent('Opción reconstrucción músculo dorsal', 'additional-fecha-reconstruccion-musculo-drosal');
+    //toggleAdditionalContent('Opción reconstrucción prótesis', 'additional-fecha-reconstruccion-protesis');
     toggleAdditionalContent('Pregunta quimioterapia', 'additional-quimioterapia-f4');
     toggleAdditionalContent('Pregunta radioterapia', 'additional-radioterapia-f4');
     toggleAdditionalContent('Pregunta tamoxifeno', 'addition_tamoxifeno_f4');
