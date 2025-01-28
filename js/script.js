@@ -479,12 +479,44 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     });
 
+    // async function downloadForms(format) {
+    //     if (format === 'pdf') {
+    //         try {
+    //             const { pdfUrl, pdfBlob } = await generatePdfWithPdfLib(formContainer);
+    //             if (pdfUrl && pdfBlob) {
+    //                 showPdfModal(pdfUrl, 'formularios_completos.pdf', pdfBlob);
+    //             } else {
+    //                 throw new Error('No se pudo generar el PDF');
+    //             }
+    //         } catch (error) {
+    //             console.error('Error al generar PDF:', error);
+    //             alert('Hubo un problema al generar los PDFs. Por favor, inténtelo de nuevo.');
+    //         }
+    //     } else {
+    //         throw new Error('Formato no soportado');
+    //     }
+    // }
+
     async function downloadForms(format) {
         if (format === 'pdf') {
             try {
+                // Obtener el nombre y apellido del usuario
+                const iframe = document.querySelector('iframe[src="form-1.html"]');
+                if (!iframe) {
+                    throw new Error('Formulario no encontrado');
+                }
+    
+                const iframeDocument = iframe.contentDocument || iframe.contentWindow.document;
+                const nombre = iframeDocument.getElementById('Nombre')?.value || 'Usuario';
+                const apellido = iframeDocument.getElementById('Apellido')?.value || 'Desconocido';
+    
+                // Generar el nombre del archivo basado en el usuario
+                const dynamicFileName = `${nombre}_${apellido}_formulario.pdf`;
+    
+                // Generar el PDF
                 const { pdfUrl, pdfBlob } = await generatePdfWithPdfLib(formContainer);
                 if (pdfUrl && pdfBlob) {
-                    showPdfModal(pdfUrl, 'formularios_completos.pdf', pdfBlob);
+                    showPdfModal(pdfUrl, dynamicFileName, pdfBlob);
                 } else {
                     throw new Error('No se pudo generar el PDF');
                 }
@@ -495,7 +527,7 @@ document.addEventListener('DOMContentLoaded', function() {
         } else {
             throw new Error('Formato no soportado');
         }
-    }
+    }    
     
     async function generatePdfWithPdfLib(formContainer) {
         const pdfDoc = await PDFLib.PDFDocument.create();
