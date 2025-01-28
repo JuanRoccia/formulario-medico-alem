@@ -87,8 +87,15 @@ document.addEventListener('DOMContentLoaded', () => {
                 
                 const additionalContent = document.getElementById(contentId);
                 const inputs = additionalContent.querySelectorAll('input');
-    
-                if (event.target.value === 'si' || event.target.value === 'mujer' || (event.target.checked && (event.target.value === 'on' || ['otras', 'otros'].includes(event.target.value)))) {
+                let mastoplastia_selector = (event.target.name === 'Opción mastoplastía reductora' || event.target.name === 'Opción mastoplastía prótesis'); 
+                let isMastoplastiaChecked = false
+                if (mastoplastia_selector) {
+                    isMastoplastiaChecked = document.querySelector('input[name="Opción mastoplastía reductora"]')?.checked || 
+                                document.querySelector('input[name="Opción mastoplastía prótesis"]')?.checked;
+                }
+                
+                if (isMastoplastiaChecked || event.target.value === 'si' || event.target.value === 'mujer' || (event.target.checked && (event.target.value === 'on' || ['otras', 'otros'].includes(event.target.value)))) {
+                    
                     additionalContent.classList.remove('hidden');
                     
                     if (additionalContent.classList.contains('checkbox-group')) {
@@ -212,7 +219,8 @@ document.addEventListener('DOMContentLoaded', () => {
     toggleAdditionalContent('Pregunta tamoxifeno', 'addition_tamoxifeno_f4');
     toggleAdditionalContent('Pregunta anticonceptivos', 'addition_anticonceptivos_f4');
     toggleAdditionalContent('Pregunta terapia hormonal', 'additional_terapia_hormonal_f4');
-    toggleAdditionalContent('Opción cirugía mastoplastía', 'additional-mastoplastia');
+    toggleAdditionalContent('Opción mastoplastía reductora', 'additional-mastoplastia');
+    toggleAdditionalContent('Opción mastoplastía prótesis', 'additional-mastoplastia');
     toggleAdditionalContent('Pregunta marcadores séricos', 'additional-marcadores-sericos');
     // Formulario 5
     toggleAdditionalContent('Pregunta sintomas abdominales', 'sintomas-adicionales');
