@@ -130,3 +130,6 @@ input[type=number] { -moz-appearance:textfield; }
     border: 1px solid #ddd;
     border-radius: 0.25rem;
 }
+.hidden-exception{
+    display: none;
+}
