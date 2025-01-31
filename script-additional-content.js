@@ -93,6 +93,14 @@ document.addEventListener('DOMContentLoaded', () => {
                     isMastoplastiaChecked = document.querySelector('input[name="Opción mastoplastía reductora"]')?.checked || 
                                 document.querySelector('input[name="Opción mastoplastía prótesis"]')?.checked;
                 }
+                if (event.target.name === 'Pregunta menstruación' && additionalContent.id === 'additional-preg-mnp'){
+                    if (event.target.value === 'no'){
+                        additionalContent.classList.remove('hidden-exception');
+                    }
+                    else if (event.target.value === 'si'){
+                        additionalContent.classList.add('hidden-exception');
+                    }
+                }
                 
                 if (isMastoplastiaChecked || event.target.value === 'si' || event.target.value === 'mujer' || (event.target.checked && (event.target.value === 'on' || ['otras', 'otros'].includes(event.target.value)))) {
                     
@@ -151,7 +159,9 @@ document.addEventListener('DOMContentLoaded', () => {
                         });
                     }
                 } else {
-                    additionalContent.classList.add('hidden');
+                    if (additionalContent.id !== 'additional-preg-mnp'){
+                        additionalContent.classList.add('hidden');
+                    }
                     
                     if (additionalContent.classList.contains('checkbox-group')) {
                         // Remover required de todos los inputs en el grupo de checkboxes
